@@ -1,15 +1,14 @@
 from Bio import SeqIO
 import re
+from os.path import dirname, join, abspath
+
+ecoli_files_dir = dirname(abspath(__file__))
+
+del dirname, abspath
 
 
 divalent_list = ['ca2', 'mg2', 'mn2', 'cobalt2', 'ni2', 'cd2', 'zn2']
 monovalent_list = ['k', 'na1']
-
-
-# TODO: Popuate transcription reactions using function here
-def get_K12_genbank():
-    gb_file = SeqIO.read('NC_000913.2.gb', 'gb')
-    return gb_file
 
 
 def get_complex_to_bnum_dict():
@@ -17,7 +16,7 @@ def get_complex_to_bnum_dict():
 
     Reads from protein_complexes.txt
     """
-    ME_complex = open('protein_complexes.txt')
+    ME_complex = open(join(ecoli_files_dir, 'protein_complexes.txt'))
     ME_complex_dict = {}
 
     for line in ME_complex:
@@ -25,8 +24,8 @@ def get_complex_to_bnum_dict():
         line = line.rstrip('\t2011_Updated_E_recon\n')
         line = re.split('\t| AND |', line)
         ME_complex_dict[line[0]] = line[2:]
-    return ME_complex_dict
     ME_complex.close()
+    return ME_complex_dict
 
 
 def get_reaction_to_modified_complex(generic=False):
@@ -55,7 +54,7 @@ def get_reaction_to_modified_complex(generic=False):
 
 
 def get_reaction_matrix_dict():
-    reaction_matrix = open('reaction_matrix.txt', 'r')
+    reaction_matrix = open(join(ecoli_files_dir, 'reaction_matrix.txt'), 'r')
     ME_reaction_dict = {}
     for line in reaction_matrix:
         line = line.replace('\n', '')
@@ -73,6 +72,7 @@ def get_reaction_matrix_dict():
         if line[0] not in ME_reaction_dict:
             ME_reaction_dict[line[0]] = []
         ME_reaction_dict[line[0]] += [[line[1], float(line[3])]]
+    reaction_matrix.close()
     return ME_reaction_dict
 
 
@@ -81,23 +81,24 @@ def get_reaction_info_dict():
 
     """
 
-    ME_reactions = open('reactions.txt', 'r')
+    ME_reactions = open(join(ecoli_files_dir, 'reactions.txt'), 'r')
     Reaction_info_dict = {}
     for line in ME_reactions:
         line = line.split('\t')
         Reaction_info_dict[line[0]] = [line[1], line[2]]
-
+    ME_reactions.close()
     return Reaction_info_dict
 
 
 def get_full_iJO_update_list():
-    ME_reactions = open('reactions.txt', 'r')
+    ME_reactions = open(join(ecoli_files_dir, 'reactions.txt'), 'r')
     iJO_update_list = []
     for line in ME_reactions:
         line = line.split('\t')
         if line[3] != 'iJO1366':
             iJO_update_list.append(line[0])
     iJO_update_list = iJO_update_list[1:]
+    ME_reactions.close()
     return iJO_update_list
 
 
@@ -108,7 +109,7 @@ def get_protein_modification_dict(generic=False):
     Return: Modified_complex: [core_complex, modification_dict]
 
     """
-    reaction_matrix = open('reaction_matrix.txt', 'r')
+    reaction_matrix = open(join(ecoli_files_dir, 'reaction_matrix.txt'), 'r')
     metlist = []
     for line in reaction_matrix:
         line = line.replace('\n', '')
@@ -116,7 +117,7 @@ def get_protein_modification_dict(generic=False):
         line[1] = line[1].replace('DASH', '')
         metlist.append(line[1])
 
-    enzMod = open('protein_modification.txt', 'r')
+    enzMod = open(join(ecoli_files_dir, 'protein_modification.txt'), 'r')
     modification_dict = {}
     for line in enzMod:
         mod_dict = {}
@@ -148,4 +149,6 @@ def get_protein_modification_dict(generic=False):
                     mod_dict[mod] = 0
                 mod_dict[mod] += -stoich
             modification_dict[line[0]] = [core_complex, mod_dict]
+    reaction_matrix.close()
+    enzMod.close()
     return modification_dict
