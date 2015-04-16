@@ -1,5 +1,7 @@
-from Bio import SeqIO
 import re
+
+import pandas
+
 from os.path import dirname, join, abspath
 
 ecoli_files_dir = dirname(abspath(__file__))
@@ -49,7 +51,7 @@ def get_reaction_to_modified_complex(generic=False):
                     if mono in cplx:
                         cplx = cplx.replace(mono, 'generic_monovalent')
                 line[i+1] = cplx
-        rxnToModCplxDict[line[0]] = line[1:]
+        rxnToModCplxDict[line[0]] = set(line[1:])
     return rxnToModCplxDict
 
 
@@ -57,49 +59,27 @@ def get_reaction_matrix_dict():
     reaction_matrix = open(join(ecoli_files_dir, 'reaction_matrix.txt'), 'r')
     ME_reaction_dict = {}
     for line in reaction_matrix:
-        line = line.replace('\n', '')
-        line = line.split('\t')
-        line[1] = line[1].replace('DASH', '')
+        line = line.strip()
+        if line.startswith("#") or len(line) == 0:
+            continue
+        rxn, met, comp, count = line.split('\t')
+        met = met.replace('DASH', '')
         # use compartment to append appropriate suffix
-        if line[2] == 'Cytosol':
-            line[1] += '_c'
-        elif line[2] == 'Periplasm':
-            line[1] += '_p'
-        elif line[2] == 'Extra-organism':
-            line[1] += '_e'
-        elif line[2] == 'No_compartment':
-            line[1] += '_c'
-        if line[0] not in ME_reaction_dict:
-            ME_reaction_dict[line[0]] = []
-        ME_reaction_dict[line[0]] += [[line[1], float(line[3])]]
+        if comp == 'Cytosol':
+            met += '_c'
+        elif comp == 'Periplasm':
+            met += '_p'
+        elif comp == 'Extra-organism':
+            met += '_e'
+        if rxn not in ME_reaction_dict:
+            ME_reaction_dict[rxn] = {}
+        ME_reaction_dict[rxn][met] = float(count)
     reaction_matrix.close()
     return ME_reaction_dict
 
 
-def get_reaction_info_dict():
-    """ Index [1] in reaction_info_dict list refers to reversibility 1 = reversible
-
-    """
-
-    ME_reactions = open(join(ecoli_files_dir, 'reactions.txt'), 'r')
-    Reaction_info_dict = {}
-    for line in ME_reactions:
-        line = line.split('\t')
-        Reaction_info_dict[line[0]] = [line[1], line[2]]
-    ME_reactions.close()
-    return Reaction_info_dict
-
-
-def get_full_iJO_update_list():
-    ME_reactions = open(join(ecoli_files_dir, 'reactions.txt'), 'r')
-    iJO_update_list = []
-    for line in ME_reactions:
-        line = line.split('\t')
-        if line[3] != 'iJO1366':
-            iJO_update_list.append(line[0])
-    iJO_update_list = iJO_update_list[1:]
-    ME_reactions.close()
-    return iJO_update_list
+def get_reaction_info_frame():
+    return pandas.read_csv("reactions.txt", delimiter="\t", index_col=0)
 
 
 def get_protein_modification_dict(generic=False):
@@ -120,6 +100,8 @@ def get_protein_modification_dict(generic=False):
     enzMod = open(join(ecoli_files_dir, 'protein_modification.txt'), 'r')
     modification_dict = {}
     for line in enzMod:
+        if line.startswith("#"):
+            continue  # commented out line
         mod_dict = {}
         line = line.rstrip('\tM_protein_recon\n')
         line = line.rstrip('\t2011_Updated_E_recon\n')
