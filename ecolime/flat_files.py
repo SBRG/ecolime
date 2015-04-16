@@ -12,13 +12,15 @@ del dirname, abspath
 divalent_list = ['ca2', 'mg2', 'mn2', 'cobalt2', 'ni2', 'cd2', 'zn2']
 monovalent_list = ['k', 'na1']
 
+def fixpath(filename):
+    return join(ecoli_files_dir, filename)
 
 def get_complex_to_bnum_dict():
     """Returns dictions of complex: bnumber stoichiometry
 
     Reads from protein_complexes.txt
     """
-    ME_complex = open(join(ecoli_files_dir, 'protein_complexes.txt'))
+    ME_complex = open(fixpath('protein_complexes.txt'))
     ME_complex_dict = {}
 
     for line in ME_complex:
@@ -31,7 +33,7 @@ def get_complex_to_bnum_dict():
 
 
 def get_reaction_to_modified_complex(generic=False):
-    enzRxn = open('enzyme_reaction_association.txt', 'r')
+    enzRxn = open(fixpath('enzyme_reaction_association.txt'), 'r')
     rxnToModCplxDict = {}
     for line in enzRxn:
         line = line.rstrip('\n')
@@ -56,7 +58,7 @@ def get_reaction_to_modified_complex(generic=False):
 
 
 def get_reaction_matrix_dict():
-    reaction_matrix = open(join(ecoli_files_dir, 'reaction_matrix.txt'), 'r')
+    reaction_matrix = open(fixpath('reaction_matrix.txt'), 'r')
     ME_reaction_dict = {}
     for line in reaction_matrix:
         line = line.strip()
@@ -79,7 +81,8 @@ def get_reaction_matrix_dict():
 
 
 def get_reaction_info_frame():
-    return pandas.read_csv("reactions.txt", delimiter="\t", index_col=0)
+    return pandas.read_csv(fixpath("reactions.txt"),
+                           delimiter="\t", index_col=0)
 
 
 def get_protein_modification_dict(generic=False):
@@ -89,7 +92,7 @@ def get_protein_modification_dict(generic=False):
     Return: Modified_complex: [core_complex, modification_dict]
 
     """
-    reaction_matrix = open(join(ecoli_files_dir, 'reaction_matrix.txt'), 'r')
+    reaction_matrix = open(fixpath('reaction_matrix.txt'), 'r')
     metlist = []
     for line in reaction_matrix:
         line = line.replace('\n', '')
@@ -97,7 +100,7 @@ def get_protein_modification_dict(generic=False):
         line[1] = line[1].replace('DASH', '')
         metlist.append(line[1])
 
-    enzMod = open(join(ecoli_files_dir, 'protein_modification.txt'), 'r')
+    enzMod = open(fixpath('protein_modification.txt'), 'r')
     modification_dict = {}
     for line in enzMod:
         if line.startswith("#"):
