@@ -12,8 +12,10 @@ del dirname, abspath
 divalent_list = ['ca2', 'mg2', 'mn2', 'cobalt2', 'ni2', 'cd2', 'zn2']
 monovalent_list = ['k', 'na1']
 
+
 def fixpath(filename):
     return join(ecoli_files_dir, filename)
+
 
 def get_complex_to_bnum_dict():
     """Returns dictions of complex: bnumber stoichiometry
@@ -136,4 +138,8 @@ def get_protein_modification_dict(generic=False):
             modification_dict[line[0]] = [core_complex, mod_dict]
     reaction_matrix.close()
     enzMod.close()
+    # specific patches
+    modification_dict.pop('CPLX0-246_CPLX0-1342_mod_1:SH')
+    modification_dict["CPLX0-246_CPLX0-1342_mod_pydx5p"] = \
+        ["CPLX0-246_CPLX0-1342", {"pydx5p_c": -1}]
     return modification_dict
