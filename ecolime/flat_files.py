@@ -1,6 +1,7 @@
 import re
 
 import pandas
+from six import iteritems
 
 from os.path import dirname, join, abspath
 
@@ -61,6 +62,10 @@ def get_reaction_to_modified_complex(generic=False):
 
 def get_reaction_matrix_dict():
     reaction_matrix = open(fixpath('reaction_matrix.txt'), 'r')
+    # These metabolites are mistakenly labeled as NoCompartment when they
+    # should really be in the cytosol.
+    move_to_cytosol = {'adp', 'atp', 'h', 'pi', '2tpr3dpcoa', 'dpm', 'fe2',
+                       'dad__5', 'met__L', 'tl'}
     ME_reaction_dict = {}
     for line in reaction_matrix:
         line = line.strip()
@@ -75,10 +80,16 @@ def get_reaction_matrix_dict():
             met += '_p'
         elif comp == 'Extra-organism':
             met += '_e'
+        # some mistakenly annotated as no compartment
+        elif comp == 'No_Compartment' and met in move_to_cytosol:
+            met += '_c'
         if rxn not in ME_reaction_dict:
             ME_reaction_dict[rxn] = {}
         ME_reaction_dict[rxn][met] = float(count)
     reaction_matrix.close()
+    for rxn_id in ["PFL_act", "hemeD_synthesis", "23bpg_generation"]:
+        ME_reaction_dict[rxn_id] = \
+            {k + "_c": v for k, v in iteritems(ME_reaction_dict[rxn_id])}
     return ME_reaction_dict
 
 
