@@ -27,6 +27,8 @@ def get_complex_to_bnum_dict():
     ME_complex_dict = {}
 
     for line in ME_complex:
+        if line.startswith("#"):
+            continue
         line = line.rstrip('\tM_protein_recon\n')
         line = line.rstrip('\t2011_Updated_E_recon\n')
         line = re.split('\t| AND |', line)

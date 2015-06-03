@@ -1294,3 +1294,29 @@ GLUTRACE-CPLX	default_name	b3967(2)	M_protein_recon
 cisGroES_hepta	cisGroES_hepta	b4142(7)	2011_Updated_E_recon
 YheLMN_cplx	default_name	YheL_mono(2) AND YheM_mono(2) AND YheN_mono(2)	2011_Updated_E_recon
 MnmEG_cplx	default_name	MnmE_dim(1) AND MnmG_dim(1)	2011_Updated_E_recon
+TatA_MONOMER	default_name	b3836(1)	2011_Updated_E_recon
+TatE_MONOMER	defualt_name	b0627(1)	2011_Updated_E_recon
+TatBC_octa	default_name	b3838(8) AND b3839(8)	2011_Updated_E_recon
+SecA_MONOMER	default_name	b0098(1)	2011_Updated_E_recon
+SecB_tetra	default_name	b3609(4)	2011_Updated_E_recon
+SRP-CPLX	default_name	b2610(1) AND b0455(1)	2011_Updated_E_recon
+Sec-CPLX	default_name	b3300(1) AND b3981(1) AND b3175(1) AND b0408(1) AND b0409(1)	2011_Updated_E_recon
+SecYE-CPLX	Sec CPLX without secG	b3300(1) AND b3981(1) AND b0408(1) AND b0409(1)	2011_Updated_E_recon
+LolA_MONOMER	default_name	b0891(1)	2011_Updated_E_recon
+#LolB_precursor	default_name	b1209(1)	2011_Updated_E_recon
+LolB_MONOMER	default_name	b1209(1)	2011_Updated_E_recon
+LolCDE-CPLX	default_name	b1116(2) AND b1117(1) AND b1118(1)	2011_Updated_E_recon
+#BamB_precursor	default_name	b2512(1)	2011_Updated_E_recon
+#BamC_precursor	default_name	b2477(1)	2011_Updated_E_recon
+#BamD_precursor	default_name	b2595(1)	2011_Updated_E_recon
+#BamE_precursor	default_name	b2617(1)	2011_Updated_E_recon
+Bam-CPLX	default_name	b0177(1) AND b2512(1) AND b2477(1) AND b2595(1) AND b2617(1)	2011_Updated_E_recon
+BamAD-CPLX	Minimal Bam CPLX needed for insertion	b0177(1) AND b2595(1)	2011_Updated_E_recon
+YidC_MONOMER	default_name	b3705(1)	2011_Updated_E_recon
+SurA_MONOMER	default_name	b0053(1)	2011_Updated_E_recon
+Lgt_MONOMER	Diacylglycerol transferase	b2828(1)	2011_Updated_E_recon
+LspA_MONOMER	Signal peptidase II	b0027(1)	2011_Updated_E_recon
+#LepB_MONOMER	Leader peptidase I	b2568(1)	2011_Updated_E_recon
+FtsY_MONOMER	SRP receptor	b3464(1)	2011_Updated_E_recon
+#SpeA_precursor	default_name	b2938(1)	2011_Updated_E_recon
+#ARGDECARBOXBIO-CPLX_mod_4:pydx5p	default_name	SpeA_mod_pydx5p(4)	M_protein_recon
