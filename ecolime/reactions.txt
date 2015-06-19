@@ -2281,3 +2281,4 @@ LCTSt3ipp	Lactose transport via proton aniport (periplasm)	0	iJO1366	0
 SELR	selenate reductase	0	iJO1366	0
 PLIPA1G180pp	Phospholipase A1 (phosphatidylglycerol, n-C18:0) (periplasm)	0	iJO1366	0
 pqq_transport	pqq_transport	0	M_protein_recon	0
+GLUTRR	glutamyl-tRNA reductase	0	M_protein_recon	0

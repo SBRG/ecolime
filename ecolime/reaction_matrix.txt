@@ -3536,6 +3536,7 @@ BTS6	h	No_Compartment	1
 BTS6	dtbt	Cytosol	-1
 BTS6	amet	Cytosol	-1
 BTS6	met_DASH_L	No_Compartment	1
+BTS6	btn	Cytosol	1
 XMPtex	xmp	Extra-organism	-1.0
 XMPtex	xmp	Periplasm	1.0
 GALCTLO	nadh	Cytosol	1.0
@@ -9743,3 +9744,9 @@ PLIPA1G180pp	pg180	Periplasm	-1.0
 PLIPA1G180pp	2agpg180	Periplasm	1.0
 pqq_transport	pqq	Extra-organism	-1.0
 pqq_transport	pqq	Cytosol	1.0
+GLUTRR	nadph	Cytosol	-1.0
+GLUTRR	generic_tRNA_glu__L	Cytosol	-1.0
+GLUTRR	h	Cytosol	-1.0
+GLUTRR	GltX_mono	No_Compartment	1.0
+GLUTRR	nadp	Cytosol	1.0
+GLUTRR	glu1sa	Cytosol	1.0
