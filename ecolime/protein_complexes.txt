@@ -1299,7 +1299,7 @@ TatE_MONOMER	defualt_name	b0627(1)	2011_Updated_E_recon
 TatBC_octa	default_name	b3838(8) AND b3839(8)	2011_Updated_E_recon
 SecA_MONOMER	default_name	b0098(1)	2011_Updated_E_recon
 SecB_tetra	default_name	b3609(4)	2011_Updated_E_recon
-SRP-CPLX	default_name	b2610(1) AND b0455(1)	2011_Updated_E_recon
+SRP-CPLX	default_name	b2610(1) AND b3464(1)	2011_Updated_E_recon
 Sec-CPLX	default_name	b3300(1) AND b3981(1) AND b3175(1) AND b0408(1) AND b0409(1)	2011_Updated_E_recon
 SecYE-CPLX	Sec CPLX without secG	b3300(1) AND b3981(1) AND b0408(1) AND b0409(1)	2011_Updated_E_recon
 LolA_MONOMER	default_name	b0891(1)	2011_Updated_E_recon
