@@ -9,11 +9,6 @@ ecoli_files_dir = dirname(abspath(__file__))
 
 del dirname, abspath
 
-
-divalent_list = ['ca2', 'mg2', 'mn2', 'cobalt2', 'ni2', 'cd2', 'zn2']
-monovalent_list = ['k', 'na1']
-
-
 def fixpath(filename):
     return join(ecoli_files_dir, filename)
 
