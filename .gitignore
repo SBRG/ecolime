@@ -1,2 +1,6 @@
+gorobi.log
+*.swp
+*~
+.ipynb_checkpoints
 *.pyc
 *.egg-info
