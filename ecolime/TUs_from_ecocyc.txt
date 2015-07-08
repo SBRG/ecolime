@@ -1,4 +1,4 @@
-TU_ID	start	stop	tss	strand	rho_dependent	sigma
+TU_id	start	stop	tss	strand	rho_dependent	sigma
 TU0_13350_from_RpoD_mono	1700257	1701258	None	+	True	RpoD_mono
 TU0_12877_from_RpoD_mono	303077	303406	None	-	True	RpoD_mono
 TU0_7622_from_RpoD_mono	542485	545635	545635	-	True	RpoD_mono

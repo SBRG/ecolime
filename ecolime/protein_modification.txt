@@ -1,3 +1,4 @@
+Modified_enzyme	Core_enzyme	Modifications	Source
 ACETYL-COA-CARBOXYLMULTI-CPLX_mod_btn	ACETYL-COA-CARBOXYLMULTI-CPLX	btn()	M_protein_recon
 ACETOLACTSYNI-CPLX_mod_mg2_mod_fad_mod_thmpp	ACETOLACTSYNI-CPLX	mg2() AND fad() AND thmpp()	M_protein_recon
 PABASYN-CPLX_mod_mg2	PABASYN-CPLX	mg2()	M_protein_recon

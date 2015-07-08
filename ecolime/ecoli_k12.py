@@ -15,12 +15,12 @@ generic_RNase_list = ['RNase_T_dim_mod_4:mg2', 'RNase_BN_dim_mod_2:zn2',
                       'Rph_mono_mod_mg2']
 
 Ribosome_modifications_phase1 = {'gtp_bound_30S_assembly_factor_phase1':
-                                     {'enzyme': 'Era_dim',
-                                      'stoich': {'gtp_c': 2,
-                                                 'h2o_c': 2,
-                                                 'h_c': -2,
-                                                 'pi_c': -2},
-                                      'num_mods': 1},
+                                 {'enzyme': 'Era_dim',
+                                  'stoich': {'gtp_c': 2,
+                                             'h2o_c': 2,
+                                             'h_c': -2,
+                                             'pi_c': -2},
+                                  'num_mods': 1},
 
                                  'RbfA_mono_assembly_factor_phase1':
                                      {'enzyme': 'RbfA_mono',
@@ -102,3 +102,15 @@ Ribosome_rRNA_generics = {'generic_16s': 1,
                           'generic_23s': 1,
                           'generic_5s': 1}
 
+
+rRNA_containing = ['RNase_E_tetra_mod_2:zn2', 'RNase_P_cplx_mod_2:mg2',
+                   'generic_RNase', 'RNase_m5', 'RNase_m16', 'RNase_m23',
+                   'RNase_III_dim_mod_2:mg2', 'RNase_G_dim',
+                   'RNase_T_dim_mod_4:mg2']
+
+monocistronic = ['RNase_E_tetra_mod_2:zn2', 'RNase_P_cplx_mod_2:mg2',
+                 'generic_RNase']
+
+polycistronic_wout_rRNA = ['RNase_E_tetra_mod_2:zn2', 'RNase_P_cplx_mod_2:mg2',
+                           'generic_RNase', 'RNase_III_dim', 'RNase_G_dim',
+                           'RNase_T_dim_mod_4:mg2']
