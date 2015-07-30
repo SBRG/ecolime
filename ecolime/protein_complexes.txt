@@ -1292,8 +1292,8 @@ CPLX0-1261	default_name	b2465()	M_protein_recon
 SAICARSYN-CPLX	default_name	b2476(3)	M_protein_recon
 GLUTRACE-CPLX	default_name	b3967(2)	M_protein_recon
 cisGroES_hepta	cisGroES_hepta	b4142(7)	2011_Updated_E_recon
-YheLMN_cplx	default_name	YheL_mono(2) AND YheM_mono(2) AND YheN_mono(2)	2011_Updated_E_recon
-MnmEG_cplx	default_name	MnmE_dim(1) AND MnmG_dim(1)	2011_Updated_E_recon
+YheLMN_cplx	default_name	b3343(2) AND b3344(2) AND b3345(2)	2011_Updated_E_recon
+MnmEG_cplx	default_name	b3706(2) AND b3741(2)	2011_Updated_E_recon
 TatA_MONOMER	default_name	b3836(1)	2011_Updated_E_recon
 TatE_MONOMER	defualt_name	b0627(1)	2011_Updated_E_recon
 TatBC_octa	default_name	b3838(8) AND b3839(8)	2011_Updated_E_recon

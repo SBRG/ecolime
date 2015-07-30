@@ -1,5 +1,7 @@
 import re
+from collections import defaultdict
 
+from ecolime.ecoli_k12 import *
 import pandas
 from six import iteritems
 
@@ -10,15 +12,11 @@ ecoli_files_dir = dirname(abspath(__file__))
 del dirname, abspath
 
 
-divalent_list = ['ca2', 'mg2', 'mn2', 'cobalt2', 'ni2', 'cd2', 'zn2']
-monovalent_list = ['k', 'na1']
-
-
 def fixpath(filename):
     return join(ecoli_files_dir, filename)
 
 
-def get_complex_to_bnum_dict():
+def get_complex_to_bnum_dict(rna_components):
     """Returns dictions of complex: bnumber stoichiometry
 
     Reads from protein_complexes.txt
@@ -32,7 +30,17 @@ def get_complex_to_bnum_dict():
         line = line.rstrip('\tM_protein_recon\n')
         line = line.rstrip('\t2011_Updated_E_recon\n')
         line = re.split('\t| AND |', line)
-        ME_complex_dict[line[0]] = line[2:]
+        complex_composition = {}
+        for gene in line[2:]:
+            stoichiometry = gene[6]
+            bnum = gene[0:5]
+            comp_id = "RNA_" + bnum if bnum in rna_components \
+                else "protein_" + bnum
+            try:
+                complex_composition[comp_id] = float(stoichiometry)
+            except:
+                complex_composition[comp_id] = float(1)
+        ME_complex_dict[line[0]] = complex_composition
     ME_complex.close()
     return ME_complex_dict
 
@@ -74,6 +82,7 @@ def get_reaction_matrix_dict():
         if line.startswith("#") or len(line) == 0:
             continue
         rxn, met, comp, count = line.split('\t')
+        rxn = rxn.replace('DASH', '')
         met = met.replace('DASH', '')
         # use compartment to append appropriate suffix
         if comp == 'Cytosol':
@@ -100,59 +109,45 @@ def get_reaction_info_frame():
                            delimiter="\t", index_col=0)
 
 
-def get_protein_modification_dict(generic=False):
+def get_protein_modification_dict(filename, metabolite_list, generic=False):
     """ Get dictionary of protein modifications to components for complexes
     which don't act as metabolites in metabolic reaction.
 
     Return: Modified_complex: [core_complex, modification_dict]
 
     """
-    reaction_matrix = open(fixpath('reaction_matrix.txt'), 'r')
-    metlist = []
-    for line in reaction_matrix:
-        line = line.replace('\n', '')
-        line = line.split('\t')
-        line[1] = line[1].replace('DASH', '')
-        metlist.append(line[1])
-
-    enzMod = open(fixpath('protein_modification.txt'), 'r')
+    enzMod = pandas.read_csv(fixpath('protein_modification.txt'),
+                             delimiter='\t', index_col=0)
     modification_dict = {}
-    for line in enzMod:
-        if line.startswith("#"):
+    for mod_complex, Modenz in enzMod.iterrows():
+        if mod_complex.startswith("#"):
             continue  # commented out line
-        mod_dict = {}
-        line = line.rstrip('\tM_protein_recon\n')
-        line = line.rstrip('\t2011_Updated_E_recon\n')
-        line = re.split('\t| AND |', line)
-        # CPLX-7524_mod_mn2 acts as reactant in FE-S reactions and as enyzme
-        # for ALLTAMH
-        if line[0] not in metlist or line[0] == 'CPLX-7524_mod_mn2':
-            core_complex = line[1]
-            for term in line[2:]:
+        mod_dict = defaultdict(float)
+
+        core_complex = Modenz.Core_enzyme
+        mods = Modenz.Modifications.split(' AND ')
+        if mod_complex not in metabolite_list or \
+                mod_complex == 'CPLX-7524_mod_mn2':
+            for term in mods:
                 term = term.rstrip(')')
                 term = term.split('(')
-                try:
-                    stoich = float(term[1])
-                    mod = term[0]
-                except:
-                    stoich = 1
-                    mod = term[0]
+                mod = term[0]
+                stoich = float(term[1]) if len(term[1]) > 0 else float(1)
                 if generic:
                     if mod in divalent_list:
-                        line[0] = line[0].replace(mod, 'generic_divalent')
+                        mod_complex = mod_complex.replace(mod, 'generic_divalent')
                         mod = 'generic_divalent'
                     if mod in monovalent_list:
-                        line[0] = line[0].replace(mod, 'generic_monovalent')
+                        mod_complex = mod_complex.replace(mod, 'generic_monovalent')
                         mod = 'generic_monovalent'
                 mod = mod.replace('DASH', '') + '_c'
-                if mod not in mod_dict:
-                    mod_dict[mod] = 0
                 mod_dict[mod] += -stoich
-            modification_dict[line[0]] = [core_complex, mod_dict]
-    reaction_matrix.close()
-    enzMod.close()
+            modification_dict[mod_complex] = [core_complex, mod_dict]
+
     # specific patches
     modification_dict.pop('CPLX0-246_CPLX0-1342_mod_1:SH')
     modification_dict["CPLX0-246_CPLX0-1342_mod_pydx5p"] = \
         ["CPLX0-246_CPLX0-1342", {"pydx5p_c": -1}]
+
     return modification_dict
+
