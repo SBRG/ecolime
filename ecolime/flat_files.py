@@ -2,6 +2,8 @@ import re
 from collections import defaultdict
 
 from ecolime.ecoli_k12 import *
+from ecolime import ecoli_k12
+import cobra
 import pandas
 from six import iteritems
 
@@ -46,6 +48,7 @@ def get_complex_to_bnum_dict(rna_components):
 
 
 def get_reaction_to_modified_complex(generic=False):
+    """anything not in this dict is assumed to be an orphan"""
     enzRxn = open(fixpath('enzyme_reaction_association.txt'), 'r')
     rxnToModCplxDict = {}
     for line in enzRxn:
@@ -59,14 +62,21 @@ def get_reaction_to_modified_complex(generic=False):
 
         if generic:
             for i, cplx in enumerate(line[1:]):
-                for div in divalent_list:
+                for div in ecoli_k12.divalent_list:
                     if div in cplx:
                         cplx = cplx.replace(div, 'generic_divalent')
-                for mono in monovalent_list:
+                for mono in ecoli_k12.monovalent_list:
                     if mono in cplx:
                         cplx = cplx.replace(mono, 'generic_monovalent')
                 line[i+1] = cplx
         rxnToModCplxDict[line[0]] = set(line[1:])
+    enzRxn.close()
+    m_model = get_m_model()
+    for reaction in m_model.reactions:
+        if reaction.gene_reaction_rule == "s0001":
+            if reaction.id not in rxnToModCplxDict:
+                rxnToModCplxDict[reaction.id] = set()
+            rxnToModCplxDict[reaction.id].add(None)
     return rxnToModCplxDict
 
 
@@ -151,3 +161,95 @@ def get_protein_modification_dict(filename, metabolite_list, generic=False):
 
     return modification_dict
 
+
+def fix_id(id_str):
+    return id_str.replace("_DASH_", "__")
+
+
+def get_m_model(generic_ions=True):
+    m = cobra.Model("e_coli_ME_M_portion")
+    m.compartments = {"p": "Periplasm", "e": "Extra-organism", "c": "Cytosol"}
+    compartment_lookup = {v: k for k, v in m.compartments.items()}
+
+    met_info = pandas.read_csv(join(ecoli_files_dir, "metabolites.txt"),
+                               delimiter="\t", header=None, index_col=0,
+                               names=["id", "name", "formula", "compartment",
+                                      "data_source"])
+
+    for met_id in met_info.index:
+        fixed_id = fix_id(met_id)
+        for compartment in met_info.compartment[met_id].split("AND"):
+            compartment = compartment.strip()
+            if compartment == "No_Compartment":
+                print "Assigned %s to c" % met_id
+                compartment = m.compartments["c"]
+            new_met = cobra.Metabolite(
+                fixed_id + "_" + compartment_lookup[compartment])
+            new_met.name = met_info.name[met_id]
+            new_met.formula = met_info.formula[met_id]
+            m.add_metabolites(new_met)
+
+    if generic_ions:
+        generic_ions = {"divalent": ecoli_k12.divalent_list,
+                        "monovalent": ecoli_k12.monovalent_list}
+    else:
+        generic_ions = {}
+    for valency, ion_list in generic_ions.items():
+        compartment = "_c"
+        new_met = cobra.Metabolite('generic_%s%s' % (valency, compartment))
+        new_met.name = 'Generic ' + valency + ' ion'
+        m.add_metabolites([new_met])
+
+        for ion in ion_list:
+            new_rxn = cobra.Reaction(ion + compartment + '_to_generic')
+            new_rxn.gene_reaction_rule = "s0001"
+            ion_dict = {}
+            new_met2 = m.metabolites.get_by_id(ion + compartment)
+            ion_dict[new_met2] = -1
+            ion_dict[new_met] = 1
+            new_rxn.add_metabolites(ion_dict)
+            m.add_reaction(new_rxn)
+
+    rxn_info = get_reaction_info_frame()
+    rxn_dict = get_reaction_matrix_dict()
+    for rxn_id in rxn_info.index:
+        reaction = cobra.Reaction(rxn_id)
+        reaction.name = rxn_info.description[rxn_id]
+        for met_id, amount in rxn_dict[rxn_id].items():
+            try:
+                metabolite = m.metabolites.get_by_id(met_id)
+            except KeyError:
+                metabolite = cobra.Metabolite(met_id)
+            reaction.add_metabolites({metabolite: amount})
+        reaction.lower_bound = \
+            -1000. if rxn_info.is_reversible[rxn_id] else 0.
+        reaction.upper_bound = 1000.
+        if rxn_info.is_spontaneous[rxn_id]:
+            reaction.gene_reaction_rule = "s0001"
+        m.add_reaction(reaction)
+
+    sources_sinks = pandas.read_csv(
+        join(ecoli_files_dir, "reaction_matrix_sources_and_sinks.txt"),
+        delimiter="\t", header=None, names=["rxn_id", "met_id", "compartment",
+                                            "stoic"], index_col=1)
+
+    source_amounts = pandas.read_csv(join(ecoli_files_dir,
+                                          "exchange_bounds.txt"),
+                                     delimiter="\t", index_col=0,
+                                     names=["met_id", "amount"])
+
+    sources_sinks.index = [fix_id(i) for i in sources_sinks.index]
+    source_amounts.index = [fix_id(i) for i in source_amounts.index]
+
+    for met in sources_sinks.index:
+        met_id = met + "_" + compartment_lookup[sources_sinks.compartment[met]]
+        # EX_ or DM_ + met_id
+        reaction_id = sources_sinks.rxn_id[met][:3] + met_id
+        reaction = cobra.Reaction(reaction_id)
+        m.add_reaction(reaction)
+        reaction.add_metabolites({m.metabolites.get_by_id(met_id): -1})
+        # set bounds on exchanges
+        if reaction.id.startswith("EX_") and met in source_amounts.index:
+            reaction.lower_bound = -source_amounts.amount[met]
+
+    return m
