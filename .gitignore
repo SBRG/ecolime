@@ -1,6 +1,6 @@
 gurobi.log
 *.swp
 *~
-.ipynb_checkpoints
+.ipynb_checkpoints/
 *.pyc
 *.egg-info
