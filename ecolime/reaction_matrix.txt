@@ -9746,8 +9746,8 @@ pqq_transport	pqq	Extra-organism	-1.0
 pqq_transport	pqq	Cytosol	1.0
 GLUTRR	nadph	Cytosol	-1.0
 GLUTRR	generic_tRNA_glu__L	Cytosol	-1.0
+GLUTRR	glu_DASH_L	Cytosol	-1.0
 GLUTRR	h	Cytosol	-1.0
-GLUTRR	generic_glu_tRNA	No_Compartment	1.0
 GLUTRR	nadp	Cytosol	1.0
 GLUTRR	glu1sa	Cytosol	1.0
 acp_lipoate_synthase	EG50003-MONOMER_mod_pan4p_mod_oc	No_Compartment	-1.0
@@ -9763,11 +9763,3 @@ acp_lipoate_synthase	nad	Cytosol	-1.0
 acp_lipoate_synthase	nadh	Cytosol	1.0
 CPLX0-782_mod_4fe4s_regeneration	CPLX0-782_mod_1:2fe2s_mod_1:4fe4s	No_Compartment	-1.0
 CPLX0-782_mod_4fe4s_regeneration	CPLX0-782_mod_2:4fe4s	No_Compartment	1.0
-RNA_b2590_to_generic	RNA_b2590	No_Compartment	-1.0
-RNA_b2590_to_generic	generic_glu_tRNA	No_Compartment	1.0
-RNA_b3757_to_generic	RNA_b3757	No_Compartment	-1.0
-RNA_b3757_to_generic	generic_glu_tRNA	No_Compartment	1.0
-RNA_b3969_to_generic	RNA_b3969	No_Compartment	-1.0
-RNA_b3969_to_generic	generic_glu_tRNA	No_Compartment	1.0
-RNA_b4008_to_generic	RNA_b4008	No_Compartment	-1.0
-RNA_b4008_to_generic	generic_glu_tRNA	No_Compartment	1.0

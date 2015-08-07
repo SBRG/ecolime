@@ -2284,7 +2284,3 @@ pqq_transport	pqq_transport	0	M_protein_recon	0
 GLUTRR	glutamyl-tRNA reductase	0	M_protein_recon	0
 acp_lipoate_synthase	acp lipoate synthase	0	M_protein_recon	1
 CPLX0-782_mod_4fe4s_regeneration	CPLX0-782_mod_4fe4s_regeneration	0	M_protein_recon	1
-RNA_b2590_to_generic	RNA_b2590 to generic	1	Updates	1
-RNA_b3757_to_generic	RNA_b3757 to generic	1	Updates	1
-RNA_b3969_to_generic	RNA_b3969 to generic	1	Updates	1
-RNA_b4008_to_generic	RNA_b4008 to generic	1	Updates	1
