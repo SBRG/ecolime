@@ -166,6 +166,14 @@ def fix_id(id_str):
     return id_str.replace("_DASH_", "__")
 
 
+def get_generics(generic_ions=True):
+    generics = {}
+    if generic_ions:
+        generics["generic_divalent_c"] = [i + "_c" for i in divalent_list]
+        generics["generic_monovalent_c"] = [i + "_c" for i in monovalent_list]
+    return generics
+
+
 def get_m_model(generic_ions=True):
     m = cobra.Model("e_coli_ME_M_portion")
     m.compartments = {"p": "Periplasm", "e": "Extra-organism", "c": "Cytosol"}
@@ -194,21 +202,6 @@ def get_m_model(generic_ions=True):
                         "monovalent": ecoli_k12.monovalent_list}
     else:
         generic_ions = {}
-    for valency, ion_list in generic_ions.items():
-        compartment = "_c"
-        new_met = cobra.Metabolite('generic_%s%s' % (valency, compartment))
-        new_met.name = 'Generic ' + valency + ' ion'
-        m.add_metabolites([new_met])
-
-        for ion in ion_list:
-            new_rxn = cobra.Reaction(ion + compartment + '_to_generic')
-            new_rxn.gene_reaction_rule = "s0001"
-            ion_dict = {}
-            new_met2 = m.metabolites.get_by_id(ion + compartment)
-            ion_dict[new_met2] = -1
-            ion_dict[new_met] = 1
-            new_rxn.add_metabolites(ion_dict)
-            m.add_reaction(new_rxn)
 
     rxn_info = get_reaction_info_frame()
     rxn_dict = get_reaction_matrix_dict()

@@ -103,6 +103,11 @@ Ribosome_rRNA_generics = {'generic_16s': 1,
                           'generic_5s': 1}
 
 
+def replace_divalent(c):
+    for i in divalent_list:
+        c = c.replace(i, "generic_divalent")
+    return c
+
 rRNA_containing = ['RNase_E_tetra_mod_2:zn2', 'RNase_P_cplx_mod_2:mg2',
                    'generic_RNase', 'RNase_m5', 'RNase_m16', 'RNase_m23',
                    'RNase_III_dim_mod_2:mg2', 'RNase_G_dim',
