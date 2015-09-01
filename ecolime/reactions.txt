@@ -2284,3 +2284,7 @@ pqq_transport	pqq_transport	0	M_protein_recon	0
 GLUTRR	glutamyl-tRNA reductase	0	M_protein_recon	0
 acp_lipoate_synthase	acp lipoate synthase	0	M_protein_recon	1
 CPLX0-782_mod_4fe4s_regeneration	CPLX0-782_mod_4fe4s_regeneration	0	M_protein_recon	1
+suf_2fe2s_formation	formation of 2fe2s by suf	0	custom	0
+suf_4fe4s_formation	formation of 4fe4s by suf	0	custom	0
+isc_2fe2s_formation	formation of 2fe2s by isc	0	custom	0
+isc_4fe4s_formation	formation of 4fe4s by isc	0	custom	0

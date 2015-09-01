@@ -44,6 +44,8 @@ def get_complex_to_bnum_dict(rna_components):
                 complex_composition[comp_id] = float(1)
         ME_complex_dict[line[0]] = complex_composition
     ME_complex.close()
+    # add in missing entries
+    ME_complex_dict["CPLX0-7617"] = {"b0156": 2}
     return ME_complex_dict
 
 
@@ -119,7 +121,7 @@ def get_reaction_info_frame():
                            delimiter="\t", index_col=0)
 
 
-def get_protein_modification_dict(filename, metabolite_list, generic=False):
+def get_protein_modification_dict(metabolite_list, generic=False):
     """ Get dictionary of protein modifications to components for complexes
     which don't act as metabolites in metabolic reaction.
 
@@ -158,6 +160,8 @@ def get_protein_modification_dict(filename, metabolite_list, generic=False):
     modification_dict.pop('CPLX0-246_CPLX0-1342_mod_1:SH')
     modification_dict["CPLX0-246_CPLX0-1342_mod_pydx5p"] = \
         ["CPLX0-246_CPLX0-1342", {"pydx5p_c": -1}]
+    modification_dict["IscS_mod_2:pydx5p"] = \
+        ["IscS", {"pydx5p_c": -2}]
 
     return modification_dict
 
