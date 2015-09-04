@@ -119,3 +119,7 @@ monocistronic = ['RNase_E_tetra_mod_2:zn2', 'RNase_P_cplx_mod_2:mg2',
 polycistronic_wout_rRNA = ['RNase_E_tetra_mod_2:zn2', 'RNase_P_cplx_mod_2:mg2',
                            'generic_RNase', 'RNase_III_dim', 'RNase_G_dim',
                            'RNase_T_dim_mod_4:mg2']
+
+RNA_polymerase_components = {"b3295" : "rpoA",
+                             "b3988" : "rpoC",
+                             "b3987" : "rpoB"}

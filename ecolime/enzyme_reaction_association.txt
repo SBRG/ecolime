@@ -2079,4 +2079,3 @@ suf_2fe2s_formation	sufBC2DES_pathway_complex
 suf_4fe4s_formation	sufBC2DES_pathway_complex
 isc_2fe2s_formation	iscUS_cyaY_pathway_complex
 isc_4fe4s_formation	iscUS_cyaY_pathway_complex
-

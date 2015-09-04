@@ -45,11 +45,11 @@ def get_complex_to_bnum_dict(rna_components):
         ME_complex_dict[line[0]] = complex_composition
     ME_complex.close()
     # add in missing entries
-    ME_complex_dict["CPLX0-7617"] = {"b0156": 2}
+    ME_complex_dict["CPLX0-7617"] = {"protein_b0156": 2}
     return ME_complex_dict
 
 
-def get_reaction_to_modified_complex(generic=False):
+def get_reaction_to_complex(modifications=True, generic=False):
     """anything not in this dict is assumed to be an orphan"""
     enzRxn = open(fixpath('enzyme_reaction_association.txt'), 'r')
     rxnToModCplxDict = {}
@@ -71,7 +71,14 @@ def get_reaction_to_modified_complex(generic=False):
                     if mono in cplx:
                         cplx = cplx.replace(mono, 'generic_monovalent')
                 line[i+1] = cplx
-        rxnToModCplxDict[line[0]] = set(line[1:])
+
+        reaction = line[0]
+        rxnToModCplxDict[reaction] = set()
+        for line in line[1:]:
+            if modifications:
+                rxnToModCplxDict[reaction].add(line)
+            else:
+                rxnToModCplxDict[reaction].add(line.split('_mod_')[0])
     enzRxn.close()
     m_model = get_m_model()
     for reaction in m_model.reactions:
@@ -80,6 +87,9 @@ def get_reaction_to_modified_complex(generic=False):
                 rxnToModCplxDict[reaction.id] = set()
             rxnToModCplxDict[reaction.id].add(None)
     return rxnToModCplxDict
+
+
+
 
 
 def get_reaction_matrix_dict():
