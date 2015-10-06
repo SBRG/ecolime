@@ -23,14 +23,14 @@ Ribosome_modifications_phase1 = {'gtp_bound_30S_assembly_factor_phase1':
                                   'num_mods': 1},
 
                                  'RbfA_mono_assembly_factor_phase1':
-                                     {'enzyme': 'RbfA_mono',
-                                      'stoich': {},
-                                      'num_mods': 1},
+                                 {'enzyme': 'RbfA_mono',
+                                  'stoich': {},
+                                  'num_mods': 1},
 
                                  'RimM_mono_assembly_factor_phase1':
-                                     {'enzyme': 'RimM_mono',
-                                      'stoich': {},
-                                      'num_mods': 1}}
+                                 {'enzyme': 'RimM_mono',
+                                  'stoich': {},
+                                  'num_mods': 1}}
 
 Ribosome_30s_proteins = {'RpsD_mono': 1,  # Phase 1 protein
                          'RpsE_mono': 1,

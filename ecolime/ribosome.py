@@ -128,3 +128,21 @@ ribosome_modifications = {'gtp_bound_30S_assembly_factor_phase1':
                               {'enzyme': 'InfB_mono',
                                'stoich': {},
                                'num_mods': 1}}
+
+# Subreaction for translation termination
+translation_stop_dict = {'UAG': 'PrfA_mono',
+                         'UGA': 'PrfB_mono',
+                         'UAA': 'generic_RF'}
+
+translation_subreactions = {'PrfA_mono_mediated_termination':
+                            {'enzyme': 'PrfA_mono',
+                             'stoich': {},
+                             'num_subreactions': 1},
+                            'PrfB_mono_mediated_termination':
+                            {'enzyme': 'PrfB_mono',
+                             'stoich': {},
+                             'num_subreactions': 1},
+                            'generic_RF_mediated_termination':
+                            {'enzyme': 'generic_RF',
+                             'stoich': {},
+                             'num_subreactions': 1}}
