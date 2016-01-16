@@ -89,9 +89,6 @@ def get_reaction_to_complex(modifications=True, generic=False):
     return rxnToModCplxDict
 
 
-
-
-
 def get_reaction_matrix_dict():
     reaction_matrix = open(fixpath('reaction_matrix.txt'), 'r')
     # These metabolites are mistakenly labeled as NoCompartment when they
