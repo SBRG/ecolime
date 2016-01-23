@@ -9745,7 +9745,7 @@ PLIPA1G180pp	2agpg180	Periplasm	1.0
 pqq_transport	pqq	Extra-organism	-1.0
 pqq_transport	pqq	Cytosol	1.0
 GLUTRR	nadph	Cytosol	-1.0
-GLUTRR	generic_tRNA_glu__L	Cytosol	-1.0
+GLUTRR	generic_tRNA_GAG_glu__L	Cytosol	-1.0
 GLUTRR	glu_DASH_L	Cytosol	-1.0
 GLUTRR	h	Cytosol	-1.0
 GLUTRR	nadp	Cytosol	1.0

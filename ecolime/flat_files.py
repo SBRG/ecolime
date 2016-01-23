@@ -1,13 +1,17 @@
+from __future__ import print_function
 import re
 from collections import defaultdict
+import json
+from os.path import dirname, join, abspath
 
-from ecolime.ecoli_k12 import *
-from ecolime import ecoli_k12
+
+from minime.core.MEReactions import MetabolicReaction
 import cobra
 import pandas
 from six import iteritems
 
-from os.path import dirname, join, abspath
+from ecolime.ecoli_k12 import *
+from ecolime import ecoli_k12
 
 ecoli_files_dir = dirname(abspath(__file__))
 
@@ -24,8 +28,14 @@ def get_complex_to_bnum_dict(rna_components):
     Reads from protein_complexes.txt
     """
     ME_complex = open(fixpath('protein_complexes.txt'))
+
+    # ME_complex_dict is a dict of {'complex_id': [{'bnum' : count}]}
     ME_complex_dict = {}
 
+    # some entries in the file need to be renamed.
+    # Colton 7/8/15 made changes directly to flat file
+    # renames = {"MnmE_": "b3706", "MnmG_": "b3741", "YheM_": "b3344",
+    # "YheL_": "b3343", "YheN_": "b3345"}
     for line in ME_complex:
         if line.startswith("#"):
             continue
@@ -60,7 +70,7 @@ def get_reaction_to_complex(modifications=True, generic=False):
         # fix legacy naming. TODO fix lysing modification with _DASH_
         if 'DASH' in line[0]:
             line[0] = line[0].replace('DASH', '')
-            print 'Fixed _DASH: ', line[0]
+            print('Fixed _DASH: ' + line[0])
 
         if generic:
             for i, cplx in enumerate(line[1:]):
@@ -87,9 +97,6 @@ def get_reaction_to_complex(modifications=True, generic=False):
                 rxnToModCplxDict[reaction.id] = set()
             rxnToModCplxDict[reaction.id].add(None)
     return rxnToModCplxDict
-
-
-
 
 
 def get_reaction_matrix_dict():
@@ -131,7 +138,7 @@ def get_reaction_info_frame():
                            delimiter="\t", index_col=0)
 
 
-def get_protein_modification_dict(metabolite_list, generic=False):
+def get_protein_modification_dict():
     """ Get dictionary of protein modifications to components for complexes
     which don't act as metabolites in metabolic reaction.
 
@@ -140,6 +147,20 @@ def get_protein_modification_dict(metabolite_list, generic=False):
     """
     enzMod = pandas.read_csv(fixpath('protein_modification.txt'),
                              delimiter='\t', index_col=0)
+    # ignore complexes which are produced in the reaction matrix
+    rxn_dict = get_reaction_matrix_dict()
+    ignored_complexes = set()
+    for met_stoich in rxn_dict.values():
+        for met in met_stoich:
+            if 'mod_c' not in met:
+                ignored_complexes.add(met.replace('_c',''))
+            else:
+                ignored_complexes.add(met)
+    # don't ignore these
+    ignored_complexes.remove('EG10544-MONOMER_mod_palmitate')
+    ignored_complexes.remove('CPLX-7524_mod_mn2')
+
+
     modification_dict = {}
     for mod_complex, Modenz in enzMod.iterrows():
         if mod_complex.startswith("#"):
@@ -148,26 +169,20 @@ def get_protein_modification_dict(metabolite_list, generic=False):
 
         core_complex = Modenz.Core_enzyme
         mods = Modenz.Modifications.split(' AND ')
-        if mod_complex not in metabolite_list or \
-                mod_complex == 'CPLX-7524_mod_mn2':
+        if mod_complex not in ignored_complexes:
             for term in mods:
                 term = term.rstrip(')')
                 term = term.split('(')
                 mod = term[0]
                 stoich = float(term[1]) if len(term[1]) > 0 else float(1)
-                if generic:
-                    if mod in divalent_list:
-                        mod_complex = mod_complex.replace(mod, 'generic_divalent')
-                        mod = 'generic_divalent'
-                    if mod in monovalent_list:
-                        mod_complex = mod_complex.replace(mod, 'generic_monovalent')
-                        mod = 'generic_monovalent'
                 mod = mod.replace('DASH', '') + '_c'
                 mod_dict[mod] += -stoich
             modification_dict[mod_complex] = [core_complex, mod_dict]
 
     # specific patches
-    modification_dict.pop('CPLX0-246_CPLX0-1342_mod_1:SH')
+    for i in ['CPLX0-246_CPLX0-1342_mod_1:SH']:
+        modification_dict.pop(i)
+
     modification_dict["CPLX0-246_CPLX0-1342_mod_pydx5p"] = \
         ["CPLX0-246_CPLX0-1342", {"pydx5p_c": -1}]
     modification_dict["IscS_mod_2:pydx5p"] = \
@@ -180,7 +195,9 @@ def fix_id(id_str):
     return id_str.replace("_DASH_", "__")
 
 
-def get_generics(generic_ions=True):
+def get_generics(generic_ions=False):
+    from warnings import warn
+    warn("shouldn't be used")
     generics = {}
     if generic_ions:
         generics["generic_divalent_c"] = [i + "_c" for i in divalent_list]
@@ -188,7 +205,9 @@ def get_generics(generic_ions=True):
     return generics
 
 
-def get_m_model(generic_ions=True):
+def get_m_model(generic_ions=False):
+    if generic_ions:
+        raise ValueError("no longer supported")
     m = cobra.Model("e_coli_ME_M_portion")
     m.compartments = {"p": "Periplasm", "e": "Extra-organism", "c": "Cytosol"}
     compartment_lookup = {v: k for k, v in m.compartments.items()}
@@ -203,19 +222,13 @@ def get_m_model(generic_ions=True):
         for compartment in met_info.compartment[met_id].split("AND"):
             compartment = compartment.strip()
             if compartment == "No_Compartment":
-                print "Assigned %s to c" % met_id
+                print("Assigned %s to c" % met_id)
                 compartment = m.compartments["c"]
             new_met = cobra.Metabolite(
                 fixed_id + "_" + compartment_lookup[compartment])
             new_met.name = met_info.name[met_id]
             new_met.formula = met_info.formula[met_id]
             m.add_metabolites(new_met)
-
-    if generic_ions:
-        generic_ions = {"divalent": ecoli_k12.divalent_list,
-                        "monovalent": ecoli_k12.monovalent_list}
-    else:
-        generic_ions = {}
 
     rxn_info = get_reaction_info_frame()
     rxn_dict = get_reaction_matrix_dict()
@@ -236,7 +249,7 @@ def get_m_model(generic_ions=True):
         m.add_reaction(reaction)
 
     sources_sinks = pandas.read_csv(
-        join(ecoli_files_dir, "reaction_matrix_sources_and_sinks.txt"),
+        fixpath("reaction_matrix_sources_and_sinks.txt"),
         delimiter="\t", header=None, names=["rxn_id", "met_id", "compartment",
                                             "stoic"], index_col=1)
 
@@ -260,3 +273,50 @@ def get_m_model(generic_ions=True):
             reaction.lower_bound = -source_amounts.amount[met]
 
     return m
+
+
+def get_tRNA_modifications():
+    tRNA_mod_dict = defaultdict(dict)
+    filename = fixpath('post_transcriptional_modification_of_tRNA.txt')
+    tRNA_mod = pandas.read_csv(filename, delimiter='\t')
+    for mod in tRNA_mod.iterrows():
+        mod = mod[1]
+        mod_loc = '%s_at_%s' % (mod['modification'], mod['position'])
+        tRNA_mod_dict[mod['bnum']][mod_loc] = 1
+
+    return tRNA_mod_dict
+
+
+def get_reaction_keffs(me, verbose=True):
+    def log(*args, **kwargs):
+        if verbose:
+            print(*args, **kwargs)
+    with open(fixpath('keffs.json'), 'rb') as infile:
+        keffs = json.load(infile)
+    new_keffs = {}
+    for r in me.reactions:
+        # skip spontaneous reactions
+        if getattr(r, "complex_data", None) is None:
+            continue
+        if isinstance(r, MetabolicReaction) and r.complex_data.id != "CPLX_dummy":
+            met_rxn = r
+            key = met_rxn.id.replace("-", "_DASH_").replace("__", "_DASH_").replace(":","_COLON_")
+            # key = met_rxn.id
+            key = "keff_" + key.replace("_FWD_", "_").replace("_REV_", "_")
+
+            matches = [i for i in keffs if key in i]
+            # get the direction
+            if met_rxn.reverse:
+                matches = [i for i in matches if i.endswith("_reverse_priming_keff")]
+            else:
+                matches = [i for i in matches if i.endswith("_forward_priming_keff")]
+            if len(matches) == 1:
+                new_keffs[met_rxn.id] = keffs[matches[0]]
+            elif len(matches) > 0:
+                if len(matches) == len([i for i in matches if key + "_mod_"]):
+                    new_keffs[met_rxn.id] = keffs[matches[0]]
+                else:
+                    log(key, len(matches))
+            else:  # len(matches) == 0
+                log("no keff found for " + key)
+    return new_keffs

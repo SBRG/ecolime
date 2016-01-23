@@ -502,7 +502,7 @@ GLUTAMATESYN-CPLX	default_name	b3213(4) AND b3212(4)	M_protein_recon
 THIH-MONOMER_THIF-MONOMER_THII-MONOMER_THIS-MONOMER	default_name	b3990() AND b4407() AND b0423() AND b3992()	M_protein_recon
 ADCLY-CPLX	default_name	b1096(2)	M_protein_recon
 TrmU_mono	tRNA (5-methylaminomethyl-2-thiouridylate)-methyltransferase	b1133(1)	2011_Updated_E_recon
-PGK	default_name	b2926(1)	M_protein_recon
+PGK-CPLX	default_name	b2926(1)	M_protein_recon
 NANT-MONOMER	default_name	b3224(1)	M_protein_recon
 EG11639-MONOMER	default_name	b1533(1)	M_protein_recon
 CPLX0-7838_CPLX0-7839	default_name	b2810(2) AND b2811(2)	M_protein_recon
@@ -924,7 +924,7 @@ SUCCGLUALDDEHYD-MONOMER	default_name	b1746(1)	M_protein_recon
 DEOXYGLUCONOKIN-MONOMER	default_name	b3526(1)	M_protein_recon
 Met_RS_dim	methionyl-tRNA synthetase (EC:6.1.1.10)	b2114(2)	2011_Updated_E_recon
 G6986-MONOMER	default_name	b1800(1)	M_protein_recon
-TPI	default_name	b3919(2)	M_protein_recon
+TPI-CPLX	default_name	b3919(2)	M_protein_recon
 CPLX-153	default_name	b2415(1) AND b2715(2) AND b2416(2)	M_protein_recon
 RpsA_mono	30S ribosomal subunit protein S1	b0911(1)	2011_Updated_E_recon
 DIHYDROPTERIREDUCT-CPLX	default_name	b0578(2)	M_protein_recon

@@ -146,3 +146,6 @@ translation_subreactions = {'PrfA_mono_mediated_termination':
                             {'enzyme': 'generic_RF',
                              'stoich': {},
                              'num_subreactions': 1}}
+
+# Dictionary of frame shift mutations
+frameshift_dict = {'b2891': '3033206:3034228,3034230:3034304'}
