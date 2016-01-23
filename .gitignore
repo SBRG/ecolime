@@ -4,3 +4,4 @@ gurobi.log
 .ipynb_checkpoints/
 *.pyc
 *.egg-info
+.idea/

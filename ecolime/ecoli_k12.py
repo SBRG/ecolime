@@ -3,6 +3,8 @@ __author__ = 'coltonlloyd'
 divalent_list = ['ca2', 'mg2', 'mn2', 'cobalt2', 'ni2', 'cd2', 'zn2']
 monovalent_list = ['k', 'na1']
 
+
+
 generic_16s_rRNAs = ['b3851', 'b3968', 'b3756', 'b3278', 'b4007', 'b2591',
                      'b0201']
 generic_23s_rRNAs = ['b3854', 'b3970', 'b3758', 'b3275', 'b4009', 'b2589',
@@ -13,6 +15,15 @@ generic_5s_rRNAs = ['b3855', 'b3971', 'b3759', 'b3274', 'b4010', 'b2588',
 generic_RNase_list = ['RNase_T_dim_mod_4:mg2', 'RNase_BN_dim_mod_2:zn2',
                       'Rnd_mono_mod_5:mg2', 'Rnb_mono_mod_1:mg2',
                       'Rph_mono_mod_mg2']
+
+generic_dict = {'generic_16Sm4Cm1402': ['RsmH_mono', 'RsmI_mono'],
+                'generic_LYSINEaaRS': ['LysI_RS_dim', 'LysII_RS_dim_mod_6:mg2'],
+                'generic_Dus': ['DusA_mono', 'DusB_mono', 'DusC_mono'],
+                'generic_RF': ['PrfA_mono', 'PrfB_mono'],
+                'generic_Tuf': ['TufA_mono', 'TufB_mono'],
+                'generic_RNase': ['RNase_T_dim_mod_4:mg2', 'RNase_BN_dim_mod_2:zn2',
+                                  'Rnd_mono_mod_5:mg2', 'Rnb_mono_mod_1:mg2',
+                                  'Rph_mono_mod_mg2']}
 
 Ribosome_modifications_phase1 = {'gtp_bound_30S_assembly_factor_phase1':
                                  {'enzyme': 'Era_dim',
