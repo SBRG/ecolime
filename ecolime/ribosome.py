@@ -1,3 +1,8 @@
+from minime import ComplexData, TranscribedGene
+from minime.util.building import add_modification_data
+
+import cobra
+
 __author__ = 'sbrg-cjlloyd'
 # Dictionary of {formation_step:[{metabolite:stoichiometry}]}
 # Positive for reactants negative for products (complex formation convention)
@@ -149,3 +154,40 @@ translation_subreactions = {'PrfA_mono_mediated_termination':
 
 # Dictionary of frame shift mutations
 frameshift_dict = {'b2891': '3033206:3034228,3034230:3034304'}
+
+generic_rRNAs = {"generic_16s_rRNAs": ['b3851', 'b3968', 'b3756', 'b3278',
+                                       'b4007', 'b2591', 'b0201'],
+                 "generic_23s_rRNAs": ['b3854', 'b3970', 'b3758', 'b3275',
+                                       'b4009', 'b2589', 'b0204'],
+                 "generic_5s_rRNAs": ['b3855', 'b3971', 'b3759', 'b3274',
+                                      'b4010', 'b2588', 'b0205', 'b3272']}
+
+
+def add_ribosome(me_model, verbose=True):
+    ribosome_complex = ComplexData("ribosome", me_model)
+    ribosome_components = ribosome_complex.stoichiometry
+    ribosome_modifications = ribosome_complex.modifications
+
+    for rRNA_type, generic_list in generic_rRNAs.items():
+        for rRNA in generic_list:
+            rRNA_id = 'RNA_' + rRNA
+            me_model.add_metabolites([TranscribedGene(rRNA_type)])
+            me_model.add_metabolites([TranscribedGene(rRNA_id)])
+            new_rxn = cobra.Reaction("rRNA_" + rRNA + '_to_generic')
+            me_model.add_reaction(new_rxn)
+            new_rxn.reaction = rRNA_id + ' <=> ' + rRNA_type
+
+    mod_dict = ribosome_modifications
+    for mod_id in mod_dict:
+        mod_stoich = mod_dict[mod_id]['stoich']
+        mod_enzyme = mod_dict[mod_id]['enzyme']
+        num_mods = mod_dict[mod_id]['num_mods']
+        mod = add_modification_data(me_model, mod_id, mod_stoich, mod_enzyme)
+        ribosome_modifications[mod.id] = -num_mods
+
+    ribosome_assembly = ribosome_stoich
+    for process in ribosome_assembly:
+        for protein, amount in ribosome_assembly[process]['stoich'].items():
+            ribosome_components[protein] += amount
+
+    ribosome_complex.create_complex_formation(verbose=verbose)

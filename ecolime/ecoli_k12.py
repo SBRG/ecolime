@@ -5,12 +5,6 @@ monovalent_list = ['k', 'na1']
 
 
 
-generic_16s_rRNAs = ['b3851', 'b3968', 'b3756', 'b3278', 'b4007', 'b2591',
-                     'b0201']
-generic_23s_rRNAs = ['b3854', 'b3970', 'b3758', 'b3275', 'b4009', 'b2589',
-                     'b0204']
-generic_5s_rRNAs = ['b3855', 'b3971', 'b3759', 'b3274', 'b4010', 'b2588',
-                    'b0205', 'b3272']
 
 generic_RNase_list = ['RNase_T_dim_mod_4:mg2', 'RNase_BN_dim_mod_2:zn2',
                       'Rnd_mono_mod_5:mg2', 'Rnb_mono_mod_1:mg2',
