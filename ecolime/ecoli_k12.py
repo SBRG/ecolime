@@ -1,10 +1,6 @@
-__author__ = 'coltonlloyd'
 
-divalent_list = ['ca2', 'mg2', 'mn2', 'cobalt2', 'ni2', 'cd2', 'zn2']
-monovalent_list = ['k', 'na1']
-
-
-
+#divalent_list = ['ca2', 'mg2', 'mn2', 'cobalt2', 'ni2', 'cd2', 'zn2']
+#monovalent_list = ['k', 'na1']
 
 generic_RNase_list = ['RNase_T_dim_mod_4:mg2', 'RNase_BN_dim_mod_2:zn2',
                       'Rnd_mono_mod_5:mg2', 'Rnb_mono_mod_1:mg2',
@@ -113,21 +109,30 @@ def replace_divalent(c):
         c = c.replace(i, "generic_divalent")
     return c
 
-rRNA_containing = ['RNase_E_tetra_mod_2:zn2', 'RNase_P_cplx_mod_2:mg2',
-                   'generic_RNase', 'RNase_m5', 'RNase_m16', 'RNase_m23',
-                   'RNase_III_dim_mod_2:mg2', 'RNase_G_dim',
-                   'RNase_T_dim_mod_4:mg2']
 
-monocistronic = ['RNase_E_tetra_mod_2:zn2', 'RNase_P_cplx_mod_2:mg2',
-                 'generic_RNase']
+excision_machinery = {
+    'rRNA_containing': ['RNase_E_tetra_mod_2:zn2', 'RNase_P_cplx_mod_2:mg2',
+                        'generic_RNase', 'RNase_m5', 'RNase_m16', 'RNase_m23',
+                        'RNase_III_dim_mod_2:mg2', 'RNase_G_dim',
+                        'RNase_T_dim_mod_4:mg2'],
+    'monocistronic': ['RNase_E_tetra_mod_2:zn2', 'RNase_P_cplx_mod_2:mg2',
+                      'generic_RNase'],
+    'polycistronic_wout_rRNA': ['RNase_E_tetra_mod_2:zn2',
+                                'RNase_P_cplx_mod_2:mg2', 'generic_RNase',
+                                'RNase_III_dim', 'RNase_G_dim',
+                                'RNase_T_dim_mod_4:mg2']}
+
+
+
+
 
 polycistronic_wout_rRNA = ['RNase_E_tetra_mod_2:zn2', 'RNase_P_cplx_mod_2:mg2',
                            'generic_RNase', 'RNase_III_dim', 'RNase_G_dim',
                            'RNase_T_dim_mod_4:mg2']
 
-RNA_polymerase_components = {"b3295" : "rpoA",
-                             "b3988" : "rpoC",
-                             "b3987" : "rpoB"}
+RNA_polymerase_components = {"b3295": "rpoA",
+                             "b3988": "rpoC",
+                             "b3987": "rpoB"}
 
 no_TU_list = ['b0024', 'b4586', 'b4690', 'b0533', 'b4588', 'b4589', 'b4590',
               'b0799', 'b4705', 'b4417', 'b0877', 'b0952', 'b1172', 'b4593',

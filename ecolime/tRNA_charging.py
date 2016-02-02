@@ -1,4 +1,3 @@
-__author__ = 'sbrg-cjlloyd'
 
 trna_modification = {'D_at_20A': {'machines': ['generic_Dus'],  # fixed
                                   'metabolites': {'nadph_c': -1,

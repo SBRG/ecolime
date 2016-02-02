@@ -3,7 +3,6 @@ from minime.util.building import add_modification_data
 
 import cobra
 
-__author__ = 'sbrg-cjlloyd'
 # Dictionary of {formation_step:[{metabolite:stoichiometry}]}
 # Positive for reactants negative for products (complex formation convention)
 
