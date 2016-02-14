@@ -67,7 +67,7 @@ def get_reaction_to_complex(modifications=True, generic=False):
         line = line.rstrip('\n')
         line = re.split('\t| OR ', line)
         # Colton Update
-        # fix legacy naming. TODO fix lysing modification with _DASH_
+        # fix legacy naming. TODO fix lysine modification with _DASH_
         if 'DASH' in line[0]:
             line[0] = line[0].replace('DASH', '')
             print('Fixed _DASH: ' + line[0])
@@ -156,9 +156,14 @@ def get_protein_modification_dict():
                 ignored_complexes.add(met.replace('_c',''))
             else:
                 ignored_complexes.add(met)
-    # don't ignore these
+    # don't ignore these. They are included in the reaction matrix but still
+    # must be formed via a complex formation reaction
     ignored_complexes.remove('EG10544-MONOMER_mod_palmitate')
     ignored_complexes.remove('CPLX-7524_mod_mn2')
+    ignored_complexes.remove('CPLX0-782_mod_2:4fe4s')
+    ignored_complexes.remove('DSBC-CPLX_mod_Oxidized')
+    ignored_complexes.remove('DSBG-CPLX_mod_Oxidized')
+    ignored_complexes.remove('EG11597-MONOMER_mod_amp')
 
 
     modification_dict = {}
@@ -179,7 +184,7 @@ def get_protein_modification_dict():
                 mod_dict[mod] += -stoich
             modification_dict[mod_complex] = [core_complex, mod_dict]
 
-    # specific patches
+    # specific patches. Not used in iOL1650 but included as a complex
     for i in ['CPLX0-246_CPLX0-1342_mod_1:SH']:
         modification_dict.pop(i)
 
