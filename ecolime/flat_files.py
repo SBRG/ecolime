@@ -11,7 +11,7 @@ import pandas
 from six import iteritems
 
 from ecolime.ecoli_k12 import *
-from ecolime import ecoli_k12
+from ecolime import ecoli_k12, tRNA_charging
 
 ecoli_files_dir = dirname(abspath(__file__))
 
@@ -56,6 +56,9 @@ def get_complex_to_bnum_dict(rna_components):
     ME_complex.close()
     # add in missing entries
     ME_complex_dict["CPLX0-7617"] = {"protein_b0156": 2}
+    # should actually be a dimer PMID 24914049
+    ME_complex_dict['YdaO_mono'] = {"protein_b1344": 2}
+
     return ME_complex_dict
 
 
@@ -280,7 +283,7 @@ def get_m_model(generic_ions=False):
     return m
 
 
-def get_tRNA_modifications():
+def get_tRNA_modification_targets():
     tRNA_mod_dict = defaultdict(dict)
     filename = fixpath('post_transcriptional_modification_of_tRNA.txt')
     tRNA_mod = pandas.read_csv(filename, delimiter='\t')
@@ -325,3 +328,39 @@ def get_reaction_keffs(me, verbose=True):
             else:  # len(matches) == 0
                 log("no keff found for " + key)
     return new_keffs
+
+
+def get_tRNA_modification_procedures():
+
+    mod = tRNA_charging.trna_modification.copy()
+
+    # flavodoxin fix based off of doi:10.1016/j.febslet.2005.05.047
+    # "Two types of flavodoxins exist in E. coli. Flavodoxin
+    # I is encoded by fldA and is constitutively expressed in
+    # E. coli whereas flavodoxin II is encoded by fldB and is induced
+    # by oxidative stress [18]. Flavodoxin I has been shown
+    # to be an essential gene in E. coli. Flavodoxin II cannot replace
+    # flavodoxin I"
+
+    correct_mod = mod['ms2i6A_at_37']['carriers']
+    correct_mod["FLAVODOXIN1-MONOMER"] = correct_mod.pop('fldrd_c')
+    correct_mod["FLAVODOXIN1-MONOMER_mod_Oxidized"] = correct_mod.pop('fldox_c')
+
+    # iron sulfur clusters do sulfur transferase
+    # no indication that that a separate redox metabolite is needed
+    correct_mod = mod['s2C_at_32']['carriers']
+    correct_mod.pop('trdrd_c')
+    correct_mod.pop('trdox_c')
+
+    # also not needed for this one. PMID 10753862
+    correct_mod = mod['s4U_at_8']['carriers']
+    correct_mod.pop('trdrd_c')
+    correct_mod.pop('trdox_c')
+
+    # no reference for this, but it's free anyways. doesn't make sense to have
+    # it in, and it's probably not real anyways
+    correct_mod = mod['mnm5s2U_at_34']['carriers']
+    correct_mod.pop('trdrd_c')
+    correct_mod.pop('trdox_c')
+
+    return mod
