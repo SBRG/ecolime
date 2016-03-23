@@ -41,11 +41,6 @@ def unmodeled_protein_fraction(fraction):
                   compiled_expressions=expressions)
     save_solution(model, "unmodeled_protein_fraction_" + str_fraction)
 
-    with open("unused_fraction_%.4f_flux.json" % fraction, "wb") as outfile:
-        json.dump(model.get_metabolic_flux(), outfile)
-    with open("unused_fraction_%.4f_sol.pickle" % fraction, "wb") as outfile:
-        dump(model.solution, outfile)
-
 
 def slurm_farm(function_name, values):
     # the function is passed in directly
