@@ -55,6 +55,31 @@ def ngam(value):
     save_solution(model, "ngam_" + str_ngam)
 
 
+def gam(value):
+    str_gam = value
+    GAM = float(value)
+    me, expressions = get_model()
+    me.unmodeled_protein_fraction = 0.45
+    gam_components = {
+            "atp_c": -1 * GAM,
+            "h2o_c": -1 * GAM,
+            "adp_c": 1 * GAM,
+            "h_c": 1 * GAM,
+            "pi_c": 1 * GAM,
+    }
+    me.reactions.biomass_dilution.add_metabolites(gam_components,
+                                                  combine=False)
+    # this should probably be added to a biomass reaction class
+    component_mass = sum(met.formula_weight / 1000. * -v for met, v in
+                         me.reactions.biomass_dilution.metabolites.items() if
+                         met.id != "biomass")
+    me.reactions.biomass_dilution.add_metabolites(
+        {'biomass': component_mass - 1}, combine=False)
+    binary_search(me, max_mu=1.5, mu_accuracy=1e-15, verbose=True,
+                  compiled_expressions=expressions)
+    save_solution(me, "gam_" + str_ngam)
+
+
 def slurm_farm(function_name, values):
     # the function is passed in directly
     if hasattr(function_name, "__call__") and \
@@ -80,7 +105,3 @@ def slurm_farm(function_name, values):
             outfile.write(CMD_TEMPLATE % (function_name, v))
             outfile.write("\n")
         system("sbatch " + job_file)
-
-
-if __name__ == "__main__":
-    unmodeled_protein_fraction(0.1)
