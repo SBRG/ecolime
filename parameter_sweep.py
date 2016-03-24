@@ -11,7 +11,7 @@ SLURM_TEMPLATE = """#!/usr/bin/zsh
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
-#SBATCH --time=02:00:00
+#SBATCH --time=03:00:00
 """
 
 CMD_TEMPLATE = """python -c "from parameter_sweep import *; %s('%s')" """
@@ -40,6 +40,19 @@ def unmodeled_protein_fraction(fraction):
     binary_search(model, max_mu=1.5, mu_accuracy=1e-15, verbose=True,
                   compiled_expressions=expressions)
     save_solution(model, "unmodeled_protein_fraction_" + str_fraction)
+
+
+def ngam(value):
+    str_ngam = value
+    ngam_value = float(value)
+    model, expressions = get_model()
+    model.unmodeled_protein_fraction = 0.45
+    model.stoichiometric_data.ATPM.lower_bound = ngam_value
+    for r in model.stoichiometric_data.ATPM.parent_reactions:
+        r.update()
+    binary_search(model, max_mu=1.5, mu_accuracy=1e-15, verbose=True,
+                  compiled_expressions=expressions)
+    save_solution(model, "ngam_" + str_ngam)
 
 
 def slurm_farm(function_name, values):
