@@ -77,7 +77,7 @@ def gam(value):
         {'biomass': component_mass - 1}, combine=False)
     binary_search(me, max_mu=1.5, mu_accuracy=1e-15, verbose=True,
                   compiled_expressions=expressions)
-    save_solution(me, "gam_" + str_ngam)
+    save_solution(me, "gam_" + str_gam)
 
 
 def slurm_farm(function_name, values):
