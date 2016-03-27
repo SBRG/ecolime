@@ -6,15 +6,6 @@ from six import string_types
 
 from minime.solve.algorithms import binary_search
 
-SLURM_TEMPLATE = """#!/usr/bin/zsh
-#SBATCH --partition=shared
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=1
-#SBATCH --time=03:00:00
-"""
-
-CMD_TEMPLATE = """python -c "from parameter_sweep import *; %s('%s')" """
 
 
 def get_model():
@@ -55,11 +46,7 @@ def ngam(value):
     save_solution(model, "ngam_" + str_ngam)
 
 
-def gam(value):
-    str_gam = value
-    GAM = float(value)
-    me, expressions = get_model()
-    me.unmodeled_protein_fraction = 0.45
+def adjust_gam(me, GAM):
     gam_components = {
             "atp_c": -1 * GAM,
             "h2o_c": -1 * GAM,
@@ -75,33 +62,14 @@ def gam(value):
                          met.id != "biomass")
     me.reactions.biomass_dilution.add_metabolites(
         {'biomass': component_mass - 1}, combine=False)
+
+
+def gam(value):
+    str_gam = value
+    GAM = float(value)
+    me, expressions = get_model()
+    me.unmodeled_protein_fraction = 0.45
+    adjust_gam(me, GAM)
     binary_search(me, max_mu=1.5, mu_accuracy=1e-15, verbose=True,
                   compiled_expressions=expressions)
     save_solution(me, "gam_" + str_gam)
-
-
-def slurm_farm(function_name, values):
-    # the function is passed in directly
-    if hasattr(function_name, "__call__") and \
-            hasattr(function_name, "__name__"):
-        function_name = function_name.__name__
-    elif isinstance(function_name, string_types):
-        try:
-            eval(function_name)
-        except:
-            raise ValueError("'%s' is not the name of a function" %
-                             function_name)
-    else:
-        raise TypeError("'%s' not a function or string" % function_name)
-    for v in values:
-        if not isinstance(v, string_types):
-            raise ValueError("value %s is not a string" % repr(v))
-        job_name = "me_%s_%s" % (function_name, v)
-        job_file = job_name + ".sl"
-        with open(job_file, "w") as outfile:
-            outfile.write(SLURM_TEMPLATE)
-            outfile.write("#SBATCH --output=slurmout_%s\n" % job_name)
-            outfile.write("#SBATCH --job-name=%s\n\n" % job_name)
-            outfile.write(CMD_TEMPLATE % (function_name, v))
-            outfile.write("\n")
-        system("sbatch " + job_file)
