@@ -180,7 +180,16 @@ def get_conservation_table():
 
 def get_genome_sequences(genome):
     filename = "seqs/%s_seqs.csv" % genome
-    return pandas.read_csv(filename, index_col="locus_tag")["seq"]
+    seqs = pandas.read_csv(filename, index_col="locus_tag")["seq"]
+    # replace all invalid characters with C
+    valid_bases = re.compile("^[ATGC]$")
+    invalid_bases = re.compile("[^ATGC]")
+    for locus, s in seqs.iteritems():
+        if not valid_bases.match(s):
+            for c in invalid_bases.findall(s):
+                s = s.replace(c, "C")
+            seqs[locus] = s
+    return seqs
 
 
 def run_builder(strain_name):
