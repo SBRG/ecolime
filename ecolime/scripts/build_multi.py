@@ -33,7 +33,7 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
     model.id = model_name + "_ME"
     model.name = strain_name
     # remove transcription
-    for reaction in model.reactions:
+    for reaction in list(model.reactions):
         if reaction.id == "transcription_RNA_dummy":
             continue
         data = getattr(reaction, "transcription_data", None)
@@ -52,6 +52,7 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
         reaction.remove_from_model()
 
     for data in list(model.transcription_data):
+        continue  # this whole block is unnecessary
         if len(data.RNA_products) > 0 and set(data.RNA_types) != {"mRNA"}:
             continue
         else:
@@ -98,7 +99,6 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
         else:
             translation.nucleotide_sequence = na
 
-    model.unmodeled_protein_fraction = 0.1
     model.update()
 
     # add in non-k12 content
