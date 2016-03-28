@@ -116,11 +116,14 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
                 "s0001" in {str(i) for i in m_reaction.genes}:
             model.add_reaction(m_reaction)
             continue
-        data = StoichiometricData(r_id, model)
-        data.lower_bound = m_reaction.lower_bound
-        data.upper_bound = m_reaction.upper_bound
-        data._stoichiometry = {str(k): v for k, v
-                               in iteritems(m_reaction.metabolites)}
+        try:
+            data = model.stoichiometric_data.get_by_id(r_id)
+        except KeyError:
+            data = StoichiometricData(r_id, model)
+            data.lower_bound = m_reaction.lower_bound
+            data.upper_bound = m_reaction.upper_bound
+            data._stoichiometry = {str(k): v for k, v
+                                   in iteritems(m_reaction.metabolites)}
 
         # add in orphan reactions
         if len(m_reaction.gene_reaction_rule) == 0:
