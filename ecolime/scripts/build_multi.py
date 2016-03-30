@@ -154,6 +154,9 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
                                    create_new=True, update=True)
 
     model.prune()
+    # no idea why this is necessary - there must be a bug somewhere
+    model.reactions.biomass_dilution.reaction = \
+        model.reactions.biomass_dilution.reaction
 
     if solve:
         expr = compile_expressions(model)
