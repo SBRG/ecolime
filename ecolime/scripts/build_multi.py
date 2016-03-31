@@ -169,7 +169,7 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
         else:
             if verbose:
                 print("model %s can't grow at 0.1" % strain_name)
-    with open(escape_path("me_%s.pickle" % strain_name), "wb") as outfile:
+    with open(escape_path("me_%s.pickle" % model_name), "wb") as outfile:
         dump(model, outfile, 2)
     return model
 
@@ -177,7 +177,7 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
 def get_info_frame():
     # from supplement of Jon's PNAS paper
     return pandas.read_excel("sd01.xlsx", sheetname="Table 1", skiprows=2,
-                             skip_footer=1, index_col="Strain")
+                             skip_footer=1, index_col="Model Name")
 
 
 def get_conservation_table():
@@ -198,9 +198,9 @@ def get_genome_sequences(genome):
     return seqs
 
 
-def run_builder(strain_name):
-    info = get_info_frame().ix[strain_name]
-    model_name = info["Model Name"]
+def run_builder(model_name):
+    info = get_info_frame().ix[model_name]
+    strain_name = info["Strain"]
     conservation_table = get_conservation_table()
     # The genome in info doesn't have the version, and the conservation table
     # does. For example, it will be 'CU651637' in the info and 'CU651637_1' in
