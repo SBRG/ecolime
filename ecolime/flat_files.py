@@ -364,3 +364,8 @@ def get_tRNA_modification_procedures():
     correct_mod.pop('trdox_c')
 
     return mod
+
+def get_m_to_me_metabolite_mapping():
+    """returns a mapping from m metabolites to me metabolites"""
+    f = pandas.read_csv(fixpath("m_to_me_mets.csv"), index_col=0)["me_name"]
+    return f.dropna().to_dict()
