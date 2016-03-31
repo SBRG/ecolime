@@ -3,6 +3,7 @@ import re
 
 from six import iteritems
 import pandas
+from IPython import embed
 import sympy
 from sympy.logic.boolalg import to_dnf
 
@@ -135,8 +136,15 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
         # ok those are the easy ones. For the rest, create a complex
         sympy_rule = sympy.sympify(m_reaction.gene_reaction_rule.replace(" and ", " & ").replace (" or ", " | "))
         converted_rule = to_dnf(sympy_rule)
+        # just one gene
+        if isinstance(converted_rule, sympy.Symbol):
+            gpr_complexes = [converted_rule]
         # if it's an and command, it's just one complex
-        gpr_complexes = [converted_rule] if converted_rule.func == sympy.And else converted_rule.args
+        elif converted_rule.func == sympy.And:
+            gpr_complexes = [converted_rule]
+        else:  # or
+            gpr_complexes = converted_rule.args
+
         complexes = []
         for count, entry in enumerate(gpr_complexes):
             if entry.is_Symbol:
@@ -162,11 +170,25 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
         if check_sol.status == "optimal":
             if verbose:
                 print("model %s grows at 0.1" % strain_name)
+            check_0 = False
             binary_search(model, verbose=verbose, compiled_expressions=expr,
                           debug=True, mu_accuracy=1e-15)
         else:
             if verbose:
+                check_0 = True
                 print("model %s can't grow at 0.1" % strain_name)
+
+        if check_0:
+            check_0 = solve_at_growth_rate(model, 0, compiled_expressions=expr)
+            if check_0.status == "optimal":
+                if verbose:
+                    print("model %s grows at 0" % strain_name)
+                check_m_biomass = False
+            else:
+                if verbose:
+                    print("model %s can't grow at 0" % strain_name)
+                check_m_biomass = True
+
     with open(escape_path("me_%s.pickle" % model_name), "wb") as outfile:
         dump(model, outfile, 2)
     return model
