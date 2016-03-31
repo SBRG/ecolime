@@ -3,7 +3,6 @@ import re
 
 from six import iteritems
 import pandas
-from IPython import embed
 import sympy
 from sympy.logic.boolalg import to_dnf
 
@@ -13,6 +12,7 @@ from minime.solve.algorithms import binary_search, solve_at_growth_rate, \
     compile_expressions
 from minime.util.building import *
 from minime.core.ProcessData import *
+from ecolime.flat_files import get_m_to_me_metabolite_mapping
 
 
 def load_full_model():
@@ -21,6 +21,13 @@ def load_full_model():
     for exchange in model.reactions.query(re.compile("^EX_")):
         if exchange.lower_bound == 0:
             exchange.lower_bound = -10
+    for m_id, me_id in get_m_to_me_metabolite_mapping().items():
+        mapping = cobra.Reaction("rename_%s_to_%s" % (m_id, me_id))
+        model.add_reaction(mapping)
+        mapping.add_metabolites({
+            cobra.Metabolite(m_id): -1,
+            me_id: 1})
+        mapping.lower_bound = -1000
     return model
 
 
@@ -162,7 +169,10 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
                                    create_new=True, update=True)
 
     model.prune()
-    # no idea why this is necessary - there must be a bug somewhere
+    # ultra easy mode - remove biomass components
+    # for i in list(model.reactions.biomass_dilution.metabolites):
+    #    if i.id != "biomass":
+    #        model.reactions.biomass_dilution.pop(i)
 
     if solve:
         expr = compile_expressions(model)
