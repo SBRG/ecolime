@@ -1,5 +1,6 @@
 from parameter_sweep import *
 from build_multi import *
+from essentiality import *
 
 SLURM_TEMPLATE = """#!/usr/bin/zsh
 #SBATCH --partition=shared
