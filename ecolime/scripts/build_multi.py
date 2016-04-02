@@ -48,7 +48,7 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
     missing_essential = missing_proteins.intersection(essential)
     missing_proteins.difference_update(essential)  # don't remove essential
     missing_essential_renamed = {"RNA_" + i for i in missing_essential}
-    with open("%s_missing.json" % strain_name, "wb") as outfile:
+    with open("%s_missing.json" % model_name, "wb") as outfile:
         json.dump(sorted(missing_essential), outfile, indent=True)
 
     model = load_full_model()
