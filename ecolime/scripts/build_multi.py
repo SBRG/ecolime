@@ -1,5 +1,6 @@
 from cPickle import load, dump
 import re
+import json
 
 from six import iteritems
 import pandas
@@ -37,9 +38,23 @@ def escape_path(name):
 
 def create_strain_model(strain_name, model_name, homologous_loci, sequences,
                         verbose=True, solve=True):
+
+    # get essential
+    with open("essentiality.json", "rb") as infile:
+        essential = set(json.load(infile))
+
+    # remove proteins with missing homologs
+    missing_proteins = set(homologous_loci.index[homologous_loci.isnull()])
+    missing_essential = missing_proteins.intersection(essential)
+    missing_proteins.difference_update(essential)  # don't remove essential
+    missing_essential_renamed = {"RNA_" + i for i in missing_essential}
+    with open("%s_missing.json" % strain_name, "wb") as outfile:
+        json.dump(sorted(missing_essential), outfile, indent=True)
+
     model = load_full_model()
     model.id = model_name + "_ME"
     model.name = strain_name
+
     # remove transcription
     for reaction in list(model.reactions):
         if reaction.id == "transcription_RNA_dummy":
@@ -54,6 +69,13 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
             if verbose:
                 print("not removing %s, which has %s" %
                       (repr(reaction), str(set(data.RNA_types))))
+            continue
+        shouldnt_remove = data.RNA_products.intersection(
+            missing_essential_renamed)
+        if len(shouldnt_remove) > 0:
+            if verbose:
+                print("not removing %s, which has essential genes %s" %
+                      (repr(reaction), str(shouldnt_remove)))
             continue
         model.transcription_data.remove(reaction.transcription_data.id)
         model.process_data.remove(reaction.transcription_data.id)
@@ -70,7 +92,6 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
             model.process_data.remove(data)
 
     # remove proteins with missing homologs
-    missing_proteins = set(homologous_loci.index[homologous_loci.isnull()])
     for bnum in missing_proteins:
         try:
             # for less stringent, only remove the constraint, like this
