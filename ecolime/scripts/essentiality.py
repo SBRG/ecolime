@@ -26,7 +26,9 @@ def compute_gene_essentiality(str_range):
     lp, solver = create_lP_at_growth_rate(me, 0.1)
     solver.solve_problem(lp)
 
-    target_genes = me.metabolites.query(re.compile("^RNA_b[0-9]"))[a:b]
+    all_genes = me.metabolites.query(re.compile("^RNA_b[0-9]"))
+    b = min(b, len(all_genes) - 1)
+    target_genes = all_genes[a:b]
     results = {i.id: -1 for i in target_genes}
 
     def update_results(iterlimit):
