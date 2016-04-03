@@ -17,7 +17,7 @@ from ecolime.flat_files import get_m_to_me_metabolite_mapping
 
 
 def load_full_model():
-    with open("full_model_49.pickle", "rb") as infile:
+    with open("full_model_50.pickle", "rb") as infile:
         model = load(infile)
     for exchange in model.reactions.query(re.compile("^EX_")):
         if exchange.lower_bound == 0:
@@ -31,9 +31,6 @@ def load_full_model():
         mapping.lower_bound = -1000
     return model
 
-
-def escape_path(name):
-    return name.replace(r"/", "_SLASH_")
 
 
 def create_strain_model(strain_name, model_name, homologous_loci, sequences,
@@ -220,7 +217,7 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
                     print("model %s can't grow at 0" % strain_name)
                 check_m_biomass = True
 
-    with open(escape_path("me_%s.pickle" % model_name), "wb") as outfile:
+    with open("me_%s.pickle" % model_name, "wb") as outfile:
         dump(model, outfile, 2)
     return model
 
@@ -262,51 +259,3 @@ def run_builder(model_name):
     create_strain_model(strain_name, model_name,
                         conservation_table[genome_key],
                         get_genome_sequences(genome))
-
-
-def get_sources(strain_key, model_info, conservation_table, all_seqs_table):
-    strain_name = strain_key.rsplit("(", 1)[0]
-    info = model_info.ix[strain_name]
-    model_name = info["Model Name"]
-
-    homologous_loci = conservation_table[strain_key + "_LOCI"]
-    sequences = all_seqs_table[all_seqs_table.model == model_name]
-    return (strain_name, model_name, homologous_loci, sequences)
-
-
-if __name__ == "__main__":
-    from multiprocessing import Pool
-    from os.path import isfile
-
-    #pool = Pool(processes=4)
-    # files containing homology sequences
-    protein_consv = pandas.read_excel("Ecoli_k-12_gene_consv.xlsx")
-    #DNA_consv = pandas.read_excel("Ecoli_k-12_gene_consv_NA_seqs.xlsx")
-
-    all_seqs = pandas.read_csv("55_strains_seqs.csv", index_col="locus")
-
-    # to map strain name to model name
-    model_info = pandas.read_excel("sd01.xlsx", sheetname="Table 1",
-                                   skiprows=2, skip_footer=1,
-                                   index_col="Strain")
-    model_info.pop("Unnamed: 0")
-    strain_to_model = {strain: model for strain, model
-                       in model_info["Model Name"].iteritems()}
-
-    n_strains = len(protein_consv.keys()) / 4
-    for i in xrange(n_strains):
-        strain_key = protein_consv.keys()[4 * i + 1].rsplit("_", 1)[0]
-        strain_name = strain_key.rsplit("(", 1)[0]
-        model_name = strain_to_model[strain_name]
-
-        protein_seqs = protein_consv[strain_key + "_SEQ"]
-        DNA_seqs = DNA_consv[strain_key + "_SEQ"]
-
-
-
-        if isfile(escape_path("me_%s.pickle" % strain_name)):
-            print("skipped " + strain_name)
-        #pool.apply_async(create_strain_model,
-        #                 (strain_name, protein_seqs, DNA_seqs, False))
-    #pool.close()
-    #pool.join()
