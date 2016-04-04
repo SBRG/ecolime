@@ -31,7 +31,7 @@ def _get_function_name(function_name):
 
 
 def slurm_farm(function_name, values):
-    function = _get_function_name(function_name)
+    function_name = _get_function_name(function_name)
     for v in values:
         if not isinstance(v, string_types):
             raise ValueError("value %s is not a string" % repr(v))
