@@ -5,7 +5,7 @@ from cloudpickle import load, dump
 from six import string_types
 
 from minime.solve.algorithms import binary_search
-
+from minime.core.MEReactions import TranslationReaction
 
 
 def get_model():
@@ -73,3 +73,22 @@ def gam(value):
     binary_search(me, max_mu=1.5, mu_accuracy=1e-15, verbose=True,
                   compiled_expressions=expressions)
     save_solution(me, "gam_" + str_gam)
+
+
+def adjust_global_parameter(me, parameter, multiplier):
+    me.global_info[parameter] = me.global_info[parameter] * multiplier
+    me.update()
+
+
+def global_parameter(param_change):
+    """
+    param_change = str(parameter:multiplier)
+    """
+
+    parameter, str_multiplier = param_change.split(':')
+    parameter_multiplier = float(str_multiplier)
+    me, expressions = get_model()
+    adjust_global_parameter(me, parameter, parameter_multiplier)
+    binary_search(me, max_mu=1.5, mu_accuracy=1e-15, verbose=True,
+                  compiled_expressions=expressions)
+    save_solution(me, parameter + "_" + str_multiplier)
