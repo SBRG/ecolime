@@ -98,6 +98,5 @@ def global_parameter(param_change):
     parameter_multiplier = float(str_multiplier)
     me, expressions = get_model()
     adjust_global_parameter(me, parameter, parameter_multiplier)
-    binary_search(me, max_mu=1.5, mu_accuracy=1e-15, verbose=True,
-                  compiled_expressions=expressions)
+    binary_search(me, max_mu=1.5, mu_accuracy=1e-15, verbose=True)
     save_solution(me, parameter + "_" + str_multiplier)
