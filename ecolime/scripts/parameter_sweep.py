@@ -23,6 +23,15 @@ def save_solution(model, filename_base):
         dump(model.solution, outfile)
 
 
+def anaerobic_growth(model_file):
+    model_name = model_file.rsplit(".", 1)[0]
+    with open(model_file, "rb") as infile:
+        me = load(infile)
+    me.reactions.EX_o2_e.lower_bound = 0
+    binary_search(me, max_mu=1.5, mu_accuracy=1e-15, verbose=True)
+    save_solution(me, model_name + "_anaerobic")
+
+
 def unmodeled_protein_fraction(fraction):
     str_fraction = fraction
     fraction = float(fraction)
