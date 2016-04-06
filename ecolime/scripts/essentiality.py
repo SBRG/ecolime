@@ -8,7 +8,7 @@ from minime.solve import *
 
 
 def get_rich_media_model():
-    with open("prototype_50.pickle", "rb") as infile:
+    with open("prototype_51.pickle", "rb") as infile:
         me = load(infile)
     for exchange in me.reactions.query(re.compile("^EX_")):
         if exchange.lower_bound == 0:

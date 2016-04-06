@@ -9,9 +9,9 @@ from minime.core.MEReactions import TranslationReaction
 
 
 def get_model():
-    with open("prototype_50.pickle", "rb") as infile:
+    with open("prototype_51.pickle", "rb") as infile:
         model = load(infile)
-    with open("prototype_50_expressions.pickle", "rb") as infile:
+    with open("prototype_51_expressions.pickle", "rb") as infile:
         expressions = load(infile)
     return model, expressions
 

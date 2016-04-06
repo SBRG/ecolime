@@ -17,7 +17,7 @@ from ecolime.flat_files import get_m_to_me_metabolite_mapping
 
 
 def load_full_model():
-    with open("full_model_50.pickle", "rb") as infile:
+    with open("full_model_51.pickle", "rb") as infile:
         model = load(infile)
     for exchange in model.reactions.query(re.compile("^EX_")):
         if exchange.lower_bound == 0:
