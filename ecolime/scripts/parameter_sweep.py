@@ -1,5 +1,6 @@
 import json
 from os import system
+import re
 
 from cloudpickle import load, dump
 from six import string_types
@@ -53,6 +54,27 @@ def ngam(value):
     binary_search(model, max_mu=1.5, mu_accuracy=1e-15, verbose=True,
                   compiled_expressions=expressions)
     save_solution(model, "ngam_" + str_ngam)
+
+
+def limit_uptake(model):
+    for r in model.reactions.query(re.compile("^EX_")):
+        if r.id in {"EX_h2o_e", "EX_h_e", "EX_o2_e"}:
+            continue
+        r.lower_bound = max(-1, r.lower_bound)
+
+
+def nutrient_limited_ngam(value):
+    str_ngam = value
+    ngam_value = float(value)
+    model, expressions = get_model()
+    limit_uptake(model)
+    model.stoichiometric_data.ATPM.lower_bound = ngam_value
+
+    for r in model.stoichiometric_data.ATPM.parent_reactions:
+        r.update()
+    binary_search(model, max_mu=1.5, mu_accuracy=1e-15, verbose=True,
+                  compiled_expressions=expressions)
+    save_solution(model, "limited_ngam_" + str_ngam)
 
 
 def adjust_gam(me, GAM):
