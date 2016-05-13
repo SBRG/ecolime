@@ -216,15 +216,16 @@ def add_ribosome(me_model, verbose=True):
     ribosome_components = ribosome_complex.stoichiometry
 
     for mod, components in rrna_modifications.items():
-        tRNA_mod = ModificationData(mod, me_model)
-        tRNA_mod.enzyme = components['machine']
-        tRNA_mod.stoichiometry = components['metabolites']
+        rRNA_mod = ModificationData(mod, me_model)
+        rRNA_mod.enzyme = components['machine']
+        rRNA_mod.stoichiometry = components['metabolites']
+        rRNA_mod.keff = 65.  # iOL uses 65. for all RNA mods
         if 'carriers' in components.keys():
             for carrier, stoich in components['carriers'].items():
                 if stoich < 0:
-                    tRNA_mod.enzyme += [carrier]
-                tRNA_mod.stoichiometry[carrier] = stoich
-        ribosome_complex.modifications[tRNA_mod.id] = 1
+                    rRNA_mod.enzyme += [carrier]
+                rRNA_mod.stoichiometry[carrier] = stoich
+        ribosome_complex.modifications[rRNA_mod.id] = 1
 
     for rRNA_type, generic_list in generic_rRNAs.items():
         for rRNA in generic_list:

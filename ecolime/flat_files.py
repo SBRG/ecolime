@@ -308,7 +308,10 @@ def get_reaction_keffs(me, verbose=True):
             continue
         if isinstance(r, MetabolicReaction) and r.complex_data.id != "CPLX_dummy":
             met_rxn = r
-            key = met_rxn.id.replace("-", "_DASH_").replace("__", "_DASH_").replace(":","_COLON_")
+            key = met_rxn.id.replace("-", "_DASH_").replace("__", "_DASH_").replace(":", "_COLON_")
+            # specific patches for PGK, TPI ids
+            key = key.replace('TPI_DASH_CPLX', 'TPI')
+            key = key.replace('PGK_DASH_CPLX', 'PGK')
             # key = met_rxn.id
             key = "keff_" + key.replace("_FWD_", "_").replace("_REV_", "_")
 

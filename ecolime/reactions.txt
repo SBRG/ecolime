@@ -1120,7 +1120,7 @@ AADDGT	dTDP-N-4-acetamido-4,6-dideoxy-D-galactose transferase	0	iJO1366	0
 GUAPRT	guanine phosphoribosyltransferase	0	iJO1366	0
 ARBTNtpp	aerobactin secretion (to periplasm)	0	iJO1366	0
 FORCT	Formyl-CoA Transferase	1	iJO1366	0
-ATPM	ATP maintenance requirement	0	iJO1366	0
+ATPM	ATP maintenance requirement	0	iJO1366	1
 3NTD4pp	3_prime_-nucleotidase (CMP) (periplasm)	0	iJO1366	0
 UDPGALtex	UDPgalactose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
 APH140	acylphosphatase (C14:0)	0	iJO1366	0

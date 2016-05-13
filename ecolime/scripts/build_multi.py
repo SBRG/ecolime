@@ -8,6 +8,7 @@ import sympy
 from sympy.logic.boolalg import to_dnf
 
 import cobra
+import cobra.test
 
 from minime.solve.algorithms import binary_search, solve_at_growth_rate, \
     compile_expressions
@@ -15,6 +16,8 @@ from minime.util.building import *
 from minime.core.ProcessData import *
 from ecolime.flat_files import get_m_to_me_metabolite_mapping
 
+import sys
+import os
 
 def load_full_model():
     with open("full_model_51.pickle", "rb") as infile:
@@ -32,21 +35,20 @@ def load_full_model():
     return model
 
 
-
 def create_strain_model(strain_name, model_name, homologous_loci, sequences,
                         verbose=True, solve=True):
 
     # get essential
-    with open("essentiality.json", "rb") as infile:
-        essential = set(json.load(infile))
-
+    #with open("essentiality.json", "rb") as infile:
+    #    essential = set(json.load(infile))
+    #
     # remove proteins with missing homologs
     missing_proteins = set(homologous_loci.index[homologous_loci.isnull()])
-    missing_essential = missing_proteins.intersection(essential)
-    missing_proteins.difference_update(essential)  # don't remove essential
-    missing_essential_renamed = {"RNA_" + i for i in missing_essential}
-    with open("%s_missing.json" % model_name, "wb") as outfile:
-        json.dump(sorted(missing_essential), outfile, indent=True)
+    #missing_essential = missing_proteins.intersection(essential)
+    #missing_proteins.difference_update(essential)  # don't remove essential
+    #missing_essential_renamed = {"RNA_" + i for i in missing_essential}
+    #with open("%s_missing.json" % model_name, "wb") as outfile:
+    #    json.dump(sorted(missing_essential), outfile, indent=True)
 
     model = load_full_model()
     model.id = model_name + "_ME"
@@ -67,13 +69,13 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
                 print("not removing %s, which has %s" %
                       (repr(reaction), str(set(data.RNA_types))))
             continue
-        shouldnt_remove = data.RNA_products.intersection(
-            missing_essential_renamed)
-        if len(shouldnt_remove) > 0:
-            if verbose:
-                print("not removing %s, which has essential genes %s" %
-                      (repr(reaction), str(shouldnt_remove)))
-            continue
+        #shouldnt_remove = data.RNA_products.intersection(
+        #    missing_essential_renamed)
+        #if len(shouldnt_remove) > 0:
+        #    if verbose:
+        #        print("not removing %s, which has essential genes %s" %
+        #              (repr(reaction), str(shouldnt_remove)))
+        #    continue
         model.transcription_data.remove(reaction.transcription_data.id)
         model.process_data.remove(reaction.transcription_data.id)
         reaction.remove_from_model()
@@ -93,7 +95,7 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
         try:
             # for less stringent, only remove the constraint, like this
             # model.metabolites.get_by_id("protein_" + bnum).remove_from_model()
-            model.reactions.get_by_id("translation_" + bnum).remove_from_model()
+            model.reactions.get_by_id("translation_" + str(bnum)).remove_from_model()
         except KeyError:
             if verbose:
                 print("gene for removal '%s' in strain %s not found" %
@@ -112,9 +114,14 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
     for locus, na in sequences.iteritems():
         bnum = locus_to_bnum.get(locus, locus)
         na = na.upper()
+        bnum = str(bnum)
 
         # add new transcription with fake TU's
-        add_transcription_reaction(model, "TU_" + locus, {bnum}, na, update=True)
+        try:
+            model.metabolites.get_by_id('RNA_' + bnum)
+            print("transcript %s aready in model" % bnum)
+        except KeyError:
+            add_transcription_reaction(model, "TU_" + locus, {bnum}, na, update=True)
 
         # update translation homolog
         try:
@@ -128,7 +135,7 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
     model.update()
 
     # add in non-k12 content
-    iJO1366 = cobra.io.read_sbml_model("m_models/iJO1366.xml")
+    iJO1366 = cobra.test.create_test_model('ecoli')
     k12_reactions = set(iJO1366.reactions.list_attr("id"))
 
     m_model = cobra.io.read_sbml_model("m_models/%s.xml" % model_name)
@@ -148,7 +155,7 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
             data = StoichiometricData(r_id, model)
             data.lower_bound = m_reaction.lower_bound
             data.upper_bound = m_reaction.upper_bound
-            data._stoichiometry = {str(k): v for k, v
+            data._stoichiometry = {str(k).replace('DASH', ''): v for k, v
                                    in iteritems(m_reaction.metabolites)}
 
         # add in orphan reactions
@@ -229,12 +236,13 @@ def get_info_frame():
 
 
 def get_conservation_table():
-    return pandas.read_csv("homology_matrix.csv", index_col="gene")
+    return pandas.read_csv("homology_matrix.csv", index_col="gene").drop_duplicates()
 
 
 def get_genome_sequences(genome):
     filename = "seqs/%s_seqs.csv" % genome
-    seqs = pandas.read_csv(filename, index_col="locus_tag")["seq"]
+    seqs = pandas.read_csv(filename)
+    seqs = seqs.dropna(how='any').set_index("locus_tag")["seq"]
     # replace all invalid characters with C
     valid_bases = re.compile("^[ATGC]$")
     invalid_bases = re.compile("[^ATGC]")
@@ -247,15 +255,22 @@ def get_genome_sequences(genome):
 
 
 def run_builder(model_name):
-    info = get_info_frame().ix[model_name]
-    strain_name = info["Strain"]
+    #info = get_info_frame().ix[model_name]
+    #strain_name = info["Strain"]
     conservation_table = get_conservation_table()
     # The genome in info doesn't have the version, and the conservation table
     # does. For example, it will be 'CU651637' in the info and 'CU651637_1' in
     # the conservation table.
-    genome = info["NCBI ID"]
-    genome_key = genome + "_1"
+    #genome = info["NCBI ID"]
+    genome = model_name
+    strain_name = model_name
+    genome_key = model_name + "_1"
 
     create_strain_model(strain_name, model_name,
                         conservation_table[genome_key],
                         get_genome_sequences(genome))
+
+if __name__ == '__main__':
+    os.chdir('/home/sbrg-cjlloyd/Desktop/multi_7_strains')
+    run_builder("BL21")
+

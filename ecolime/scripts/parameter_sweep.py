@@ -6,13 +6,21 @@ from cloudpickle import load, dump
 from six import string_types
 
 from minime.solve.algorithms import binary_search
-from minime.core.MEReactions import TranslationReaction
+from IPython import embed
 
 
 def get_model():
     with open("prototype_51.pickle", "rb") as infile:
         model = load(infile)
     with open("prototype_51_expressions.pickle", "rb") as infile:
+        expressions = load(infile)
+    return model, expressions
+
+
+def get_community_model():
+    with open("prototype_community_GLUDy_CS.pickle", "rb") as infile:
+        model = load(infile)
+    with open("prototype_community_GLUDy_CS_expressions.pickle", "rb") as infile:
         expressions = load(infile)
     return model, expressions
 
@@ -31,6 +39,11 @@ def anaerobic_growth(model_file):
     me.reactions.EX_o2_e.lower_bound = 0
     binary_search(me, max_mu=1.5, mu_accuracy=1e-15, verbose=True)
     save_solution(me, model_name + "_anaerobic")
+
+
+def save_model(model, filename_base):
+    with open(filename_base + "_model.pickle", "wb") as outfile:
+        dump(model, outfile)
 
 
 def unmodeled_protein_fraction(fraction):
@@ -120,5 +133,39 @@ def global_parameter(param_change):
     parameter_multiplier = float(str_multiplier)
     me, expressions = get_model()
     adjust_global_parameter(me, parameter, parameter_multiplier)
-    binary_search(me, max_mu=1.5, mu_accuracy=1e-15, verbose=True)
+    binary_search(me, max_mu=1.5, mu_accuracy=1e-4, verbose=True)
     save_solution(me, parameter + "_" + str_multiplier)
+
+
+def change_strain_fraction(me, fraction):
+    for rxn in me.reactions.query('EX_'):
+        # filter out a few complexes with 'COMPLEX_mod' in ID
+        if 'EX_m' in rxn.id:
+            continue
+
+        check_rxn_id = rxn.id.replace('_S1', '_Shared').replace('_S2',
+                                                                '_Shared')
+        check_rxn = me.reactions.get_by_id(check_rxn_id)
+        if check_rxn.lower_bound < 0:
+            continue
+
+        if '_S1' in rxn.id:
+            met_id = rxn.id.replace('EX_', '').replace('_S1', '_Shared')
+            rxn.add_metabolites({me.metabolites.get_by_id(met_id): fraction},
+                                combine=False)
+        elif '_S2' in rxn.id:
+            met_id = rxn.id.replace('EX_', '').replace('_S2', '_Shared')
+            rxn.add_metabolites({me.metabolites.get_by_id(met_id):
+                                     (1-fraction)}, combine=False)
+
+
+def strain_fractions(fraction_strain_1):
+    """
+    fraction
+    """
+    str_fraction_strain_1 = fraction_strain_1
+    float_fraction_strain_1 = float(fraction_strain_1)
+    me, expressions = get_community_model()
+    change_strain_fraction(me, float_fraction_strain_1)
+    binary_search(me, max_mu=1.5, mu_accuracy=1e-4, verbose=True)
+    save_solution(me, "fraction_strain_1_" + str_fraction_strain_1)
