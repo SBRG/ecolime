@@ -6,7 +6,6 @@ from cloudpickle import load, dump
 from six import string_types
 
 from minime.solve.algorithms import binary_search
-from IPython import embed
 
 
 def get_model():
@@ -44,6 +43,31 @@ def anaerobic_growth(model_file):
 def save_model(model, filename_base):
     with open(filename_base + "_model.pickle", "wb") as outfile:
         dump(model, outfile)
+
+
+def pyruvate_growth(model_file):
+    model_name = model_file.rsplit(".", 1)[0]
+    with open(model_file, "rb") as infile:
+        me = load(infile)
+    with open("pyruvate_media.json", "rb") as infile:
+        media = json.load(infile)
+    for r, v in media.items():
+        if r in me.reactions:
+            me.reactions.get_by_id(r).lower_bound = v
+    binary_search(me, max_mu=1.5, mu_accuracy=1e-15, verbose=True)
+    save_solution(me, model_name + "_pyruvate")
+
+
+def glucose_uptake(value):
+    str_value = value
+    value = -float(value)
+    model, expressions = get_model()
+    model.reactions.EX_glc__D_e.lower_bound = value
+    model.reactions.EX_glc__D_e.upper_bound = value
+    max_mu = -value / 10. * 1.1 + 0.1
+    binary_search(model, max_mu=max_mu, mu_accuracy=1e-15, verbose=True,
+                  compiled_expressions=expressions)
+    save_solution(model, "glucose_uptake_" + str_value)
 
 
 def unmodeled_protein_fraction(fraction):
@@ -88,6 +112,18 @@ def nutrient_limited_ngam(value):
     binary_search(model, max_mu=1.5, mu_accuracy=1e-15, verbose=True,
                   compiled_expressions=expressions)
     save_solution(model, "limited_ngam_" + str_ngam)
+
+
+def nutrient_limited_gam(value):
+    str_gam = value
+    GAM = float(value)
+    me, expressions = get_model()
+    limit_uptake(me)
+    me.unmodeled_protein_fraction = 0.45
+    adjust_gam(me, GAM)
+    binary_search(me, max_mu=.2, mu_accuracy=1e-15, verbose=True,
+                  compiled_expressions=expressions)
+    save_solution(me, "limited_gam_" + str_gam)
 
 
 def adjust_gam(me, GAM):

@@ -1,3 +1,5 @@
+from urllib import quote
+
 from parameter_sweep import *
 from build_multi import *
 from essentiality import *
@@ -6,7 +8,7 @@ SLURM_TEMPLATE = """#!/usr/bin/zsh
 #SBATCH --partition=shared
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=1
+#SBATCH --cpus-per-task=2
 #SBATCH --time=03:00:00
 """
 
@@ -35,7 +37,7 @@ def slurm_farm(function_name, values):
     for v in values:
         if not isinstance(v, string_types):
             raise ValueError("value %s is not a string" % repr(v))
-        job_name = "me_%s_%s" % (function_name, v)
+        job_name = "me_%s_%s" % (function_name, quote(v, safe=''))
         job_file = job_name + ".sl"
         with open(job_file, "w") as outfile:
             outfile.write(SLURM_TEMPLATE)
