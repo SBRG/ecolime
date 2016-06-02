@@ -12,25 +12,16 @@ generic_dict = {'generic_16Sm4Cm1402': ['RsmH_mono', 'RsmI_mono'],
                 'generic_RNase': ['RNase_T_dim_mod_4:mg2',
                                   'RNase_BN_dim_mod_2:zn2',
                                   'Rnd_mono_mod_5:mg2', 'Rnb_mono_mod_1:mg2',
-                                  'Rph_mono_mod_mg2']}
-
-Ribosome_modifications_phase1 = {'gtp_bound_30S_assembly_factor_phase1':
-                                 {'enzyme': 'Era_dim',
-                                  'stoich': {'gtp_c': 2,
-                                             'h2o_c': 2,
-                                             'h_c': -2,
-                                             'pi_c': -2},
-                                  'num_mods': 1},
-
-                                 'RbfA_mono_assembly_factor_phase1':
-                                 {'enzyme': 'RbfA_mono',
-                                  'stoich': {},
-                                  'num_mods': 1},
-
-                                 'RimM_mono_assembly_factor_phase1':
-                                 {'enzyme': 'RimM_mono',
-                                  'stoich': {},
-                                  'num_mods': 1}}
+                                  'Rph_mono_mod_mg2'],
+                'generic_16s_rRNAs': ['RNA_b3851', 'RNA_b3968', 'RNA_b3756',
+                                      'RNA_b3278', 'RNA_b4007', 'RNA_b2591',
+                                      'RNA_b0201'],
+                'generic_23s_rRNAs': ['RNA_b3854', 'RNA_b3970', 'RNA_b3758',
+                                      'RNA_b3275', 'RNA_b4009', 'RNA_b2589',
+                                      'RNA_b0204'],
+                'generic_5s_rRNAs': ['RNA_b3855', 'RNA_b3971', 'RNA_b3759',
+                                     'RNA_b3274', 'RNA_b4010', 'RNA_b2588',
+                                     'RNA_b0205', 'RNA_b3272']}
 
 
 excision_machinery = {
@@ -65,3 +56,7 @@ no_TU_list = ['b0024', 'b4586', 'b4690', 'b0533', 'b4588', 'b4589', 'b4590',
               'b3110', 'b3247', 'b3248', 'b4612', 'b4704', 'b3529', 'b4454',
               'b4557', 'b3705', 'b4456', 'b3865', 'b4686', 'b3933', 'b4620',
               'b4621', 'b4622', 'b4703', 'b4655']
+
+RNA_degradosome = {'Eno_dim_mod_4:mg2': 1, 'Pnp_trim': 1,
+                   'RNase_E_tetra_mod_2:zn2': 1, 'RhlB_dim': 1,
+                   'Orn_dim_mod_2:mg2': 1}
