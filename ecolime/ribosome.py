@@ -38,11 +38,7 @@ ribosome_stoich = {'30_S_assembly_1_(215)': {'stoich': {'RpsD_mono': 1,
                                                         'RpsR_mono': 1,
                                                         'RpsS_mono': 1,
                                                         'RpsT_mono': 1,
-                                                        'generic_16s_rRNAs': 1},
-                                             'mods': {
-                                                 'gtp_bound_30S_assembly_factor_phase1': 1},
-                                             'enzymes': {'RbfA_mono',
-                                                         'RimM_mono'}},
+                                                        'generic_16s_rRNAs': 1}},
                    '30_S_assembly_2_(21S)': {'stoich': {'mg2_c': 60,
                                                         'RpsA_mono': 1,
                                                         'RpsB_mono': 1,
@@ -50,9 +46,7 @@ ribosome_stoich = {'30_S_assembly_1_(215)': {'stoich': {'RpsD_mono': 1,
                                                         'RpsJ_mono': 1, # TODO is the RplJ stoich right?
                                                         'RpsN_mono': 1,
                                                         'RpsU_mono': 1,
-                                                        'Sra_mono': 1},
-                                             'mods': None,
-                                             'enzymes': None},
+                                                        'Sra_mono': 1}},
                    '50_S_assembly_1': {'stoich': {'generic_23s_rRNAs': 1,
                                                   'generic_5s_rRNAs': 1,
                                                   'RplA_mono': 1,
@@ -74,9 +68,7 @@ ribosome_stoich = {'30_S_assembly_1_(215)': {'stoich': {'RpsD_mono': 1,
                                                   'RpmC_mono': 1,
                                                   'RpmG_mono': 1,
                                                   'RpmH_mono': 1,
-                                                  'rpL7/12_mod_1:acetyl': 2},
-                                       'mods': None,
-                                       'enzymes': None},
+                                                  'rpL7/12_mod_1:acetyl': 2}},
                    '50_S_assembly_2': {'stoich': {'mg2_c': 111,
                                                   'RplF_mono': 1,
                                                   'RplN_mono': 1,
@@ -94,11 +86,9 @@ ribosome_stoich = {'30_S_assembly_1_(215)': {'stoich': {'RpsD_mono': 1,
                                                   'Tig_mono': 1}, # Leave Tig_mono in or remove it?
                                        'mods': None,
                                        'enzymes': None},
-                   'assemble_ribosome_subunits': {'stoich': {'gtp_c': 1},
-                                                  'mods': None, # maybe add InfB_gtp as modification not as separate process
-                                                  'enzymes': {'InfB_mono',
-                                                              'InfA_mono',
-                                                              'InfC_mono'}}}
+                   # TODO Make sure this isn't double counted
+                   'assemble_ribosome_subunits': {'stoich': {'gtp_c': 1}
+                                                  }}
 
 ribosome_modifications = {'gtp_bound_30S_assembly_factor_phase1':
                           {'enzyme': 'Era_dim',
@@ -130,7 +120,10 @@ ribosome_modifications = {'gtp_bound_30S_assembly_factor_phase1':
 
                           'Translation_gtp_initiation_factor_InfB':
                           {'enzyme': 'InfB_mono',
-                           'stoich': {},
+                           'stoich': {'gtp_c': 1,
+                                      'h2o_c': 1,
+                                      'h_c': -1,
+                                      'pi_c': -1},
                            'num_mods': 1}}
 
 # Subreaction for translation termination
@@ -179,7 +172,7 @@ translation_subreactions = {'PrfA_mono_mediated_termination':
                             {'enzyme': 'Rrf_mono',
                              'stoich': {}},
 
-                            # TODO below INCOMPLETE and this can be done better
+                            # TODO create complex formation for GroEL complex
                             # 7 adp and 7 mg2 are used to modify GroEL
                             'GroEL_dependent_folding':
                             {'enzyme': ['GroL_14', 'cisGroES_hepta',
@@ -190,6 +183,7 @@ translation_subreactions = {'PrfA_mono_mediated_termination':
                                         'adp_c': 7,
                                         'pi_c': 7}},
 
+                            # DnaK is correct
                             'DnaK_dependent_folding':
                             {'enzyme': ['DnaK_mono', 'DnaJ_dim_mod_4:zn2',
                                         'GrpE_dim'],
@@ -202,13 +196,6 @@ translation_subreactions = {'PrfA_mono_mediated_termination':
 
 # Dictionary of frame shift mutations
 frameshift_dict = {'b2891': '3033206:3034228,3034230:3034304'}
-
-generic_rRNAs = {"generic_16s_rRNAs": ['b3851', 'b3968', 'b3756', 'b3278',
-                                       'b4007', 'b2591', 'b0201'],
-                 "generic_23s_rRNAs": ['b3854', 'b3970', 'b3758', 'b3275',
-                                       'b4009', 'b2589', 'b0204'],
-                 "generic_5s_rRNAs": ['b3855', 'b3971', 'b3759', 'b3274',
-                                      'b4010', 'b2588', 'b0205', 'b3272']}
 
 
 def add_ribosome(me_model, verbose=True):
@@ -226,15 +213,6 @@ def add_ribosome(me_model, verbose=True):
                     rRNA_mod.enzyme += [carrier]
                 rRNA_mod.stoichiometry[carrier] = stoich
         ribosome_complex.modifications[rRNA_mod.id] = 1
-
-    for rRNA_type, generic_list in generic_rRNAs.items():
-        for rRNA in generic_list:
-            rRNA_id = 'RNA_' + rRNA
-            me_model.add_metabolites([TranscribedGene(rRNA_type)])
-            me_model.add_metabolites([TranscribedGene(rRNA_id)])
-            new_rxn = cobra.Reaction("rRNA_" + rRNA + '_to_generic')
-            me_model.add_reaction(new_rxn)
-            new_rxn.reaction = rRNA_id + ' <=> ' + rRNA_type
 
     mod_dict = ribosome_modifications
     for mod_id in mod_dict:

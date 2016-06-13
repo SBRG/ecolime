@@ -22,47 +22,98 @@ def fixpath(filename):
     return join(ecoli_files_dir, filename)
 
 
-def get_complex_to_bnum_dict(rna_components):
-    """Returns dictions of complex: bnumber stoichiometry
+def get_complex_composition(rna_components):
+    """Returns dictionary of complex: {stoichiometry: {bnumber: stoichiometry},
+                                       modifications: {modificaiton: number}
 
-    Reads from protein_complexes.txt
+    Reads from protein_complexes.txt and protein_modification.text
+
+    some entries in the file need to be renamed.
+    Colton 7/8/15 made changes directly to flat file
+    renames = {"MnmE_": "b3706", "MnmG_": "b3741", "YheM_": "b3344",
+    "YheL_": "b3343", "YheN_": "b3345"}
     """
-    ME_complex = open(fixpath('protein_complexes.txt'))
+    complex_stoich = pandas.read_table(fixpath('protein_complexes.txt'),
+                                       names=['Complex', 'Name',
+                                              'Stoichiometry',
+                                              'Source']).set_index('Complex')
 
-    # ME_complex_dict is a dict of {'complex_id': [{'bnum' : count}]}
-    ME_complex_dict = {}
+    complex_mods = pandas.read_table(fixpath('protein_modification.txt'))
+    complex_mods = complex_mods.set_index('Modified_enzyme')
 
-    # some entries in the file need to be renamed.
-    # Colton 7/8/15 made changes directly to flat file
-    # renames = {"MnmE_": "b3706", "MnmG_": "b3741", "YheM_": "b3344",
-    # "YheL_": "b3343", "YheN_": "b3345"}
-    for line in ME_complex:
-        if line.startswith("#"):
+    # ignore complexes which are produced in the reaction matrix
+    rxn_dict = get_reaction_matrix_dict()
+    ignored_complexes = set()
+    for met_stoich in rxn_dict.values():
+        for met in met_stoich:
+            if 'mod_c' not in met:
+                ignored_complexes.add(met.replace('_c',''))
+            else:
+                ignored_complexes.add(met)
+    # don't ignore these. They are included in the reaction matrix but still
+    # must be formed via a complex formation reaction
+    # TODO look into this list closer
+    ignored_complexes.remove('EG10544-MONOMER_mod_palmitate')
+    ignored_complexes.remove('CPLX-7524_mod_mn2')
+    ignored_complexes.remove('CPLX0-782_mod_2:4fe4s')
+    ignored_complexes.remove('DSBC-CPLX_mod_Oxidized')
+    ignored_complexes.remove('DSBG-CPLX_mod_Oxidized')
+    ignored_complexes.remove('EG11597-MONOMER_mod_amp')
+
+    new_mod_dict = {}
+    for key, value in complex_mods.T.to_dict().items():
+        if key.startswith('#') or key in ignored_complexes:
             continue
-        line = line.rstrip('\tM_protein_recon\n')
-        line = line.rstrip('\t2011_Updated_E_recon\n')
-        line = re.split('\t| AND |', line)
-        complex_composition = {}
-        for gene in line[2:]:
-            stoichiometry = gene[6]
-            bnum = gene[0:5]
-            comp_id = "RNA_" + bnum if bnum in rna_components \
-                else "protein_" + bnum
-            try:
-                complex_composition[comp_id] = float(stoichiometry)
-            except:
-                complex_composition[comp_id] = float(1)
-        ME_complex_dict[line[0]] = complex_composition
-    ME_complex.close()
+        new_mod_dict[key] = {}
+        new_mod_dict[key]['core_enzyme'] = value['Core_enzyme']
+        new_mod_dict[key]['modifications'] = {}
+        for mods in value['Modifications'].split(' AND '):
+            mod, num_mods = mods.rstrip(')').split('(')
+            if num_mods == '':
+                num_mods = 1.
+            else:
+                num_mods = float(num_mods)
+
+            mod = mod.replace('DASH', '')
+            new_mod_dict[key]['modifications'][mod + '_c'] = -num_mods
+
+    # specific patches. Not used in iOL1650 but included as a complex
+    for i in ['CPLX0-246_CPLX0-1342_mod_1:SH']:
+        new_mod_dict.pop(i)
+
+    new_mod_dict["CPLX0-246_CPLX0-1342_mod_pydx5p"] = {"core_enzyme":
+                                                           "CPLX0-246_CPLX0-1342",
+                                                       "modifications": {"pydx5p_c": 1}}
+    new_mod_dict["IscS_mod_2:pydx5p"] = {"core_enzyme": "IscS",
+                                         "modifications": {"pydx5p_c": 2}}
+
+
+    new_stoich_dict = {}
+    for key, value in complex_stoich['Stoichiometry'].T.to_dict().items():
+        if key.startswith('#'):
+            continue
+        new_stoich_dict[key] = {}
+        for bnums in value.split(' AND '):
+
+            bnum, num = bnums.rstrip(')').split('(')
+
+            if num == '':
+                num = 1.
+            else:
+                num = float(num)
+
+            prefix = 'protein_' if bnum not in rna_components else 'RNA_'
+            new_stoich_dict[key][prefix + bnum] = num
+
     # add in missing entries
-    ME_complex_dict["CPLX0-7617"] = {"protein_b0156": 2}
+    new_stoich_dict["CPLX0-7617"] = {"protein_b0156": 2}
     # should actually be a dimer PMID 24914049
-    ME_complex_dict['YdaO_mono'] = {"protein_b1344": 2}
+    new_stoich_dict['YdaO_mono'] = {"protein_b1344": 2}
 
-    return ME_complex_dict
+    return new_stoich_dict, new_mod_dict
 
 
-def get_reaction_to_complex(modifications=True, generic=False):
+def get_reaction_to_complex(modifications=True):
     """anything not in this dict is assumed to be an orphan"""
     enzRxn = open(fixpath('enzyme_reaction_association.txt'), 'r')
     rxnToModCplxDict = {}
@@ -74,16 +125,6 @@ def get_reaction_to_complex(modifications=True, generic=False):
         if 'DASH' in line[0]:
             line[0] = line[0].replace('DASH', '')
             print('Fixed _DASH: ' + line[0])
-
-        if generic:
-            for i, cplx in enumerate(line[1:]):
-                for div in ecoli_k12.divalent_list:
-                    if div in cplx:
-                        cplx = cplx.replace(div, 'generic_divalent')
-                for mono in ecoli_k12.monovalent_list:
-                    if mono in cplx:
-                        cplx = cplx.replace(mono, 'generic_monovalent')
-                line[i+1] = cplx
 
         reaction = line[0]
         rxnToModCplxDict[reaction] = set()
@@ -141,81 +182,11 @@ def get_reaction_info_frame():
                            delimiter="\t", index_col=0)
 
 
-def get_protein_modification_dict():
-    """ Get dictionary of protein modifications to components for complexes
-    which don't act as metabolites in metabolic reaction.
-
-    Return: Modified_complex: [core_complex, modification_dict]
-
-    """
-    enzMod = pandas.read_csv(fixpath('protein_modification.txt'),
-                             delimiter='\t', index_col=0)
-    # ignore complexes which are produced in the reaction matrix
-    rxn_dict = get_reaction_matrix_dict()
-    ignored_complexes = set()
-    for met_stoich in rxn_dict.values():
-        for met in met_stoich:
-            if 'mod_c' not in met:
-                ignored_complexes.add(met.replace('_c',''))
-            else:
-                ignored_complexes.add(met)
-    # don't ignore these. They are included in the reaction matrix but still
-    # must be formed via a complex formation reaction
-    ignored_complexes.remove('EG10544-MONOMER_mod_palmitate')
-    ignored_complexes.remove('CPLX-7524_mod_mn2')
-    ignored_complexes.remove('CPLX0-782_mod_2:4fe4s')
-    ignored_complexes.remove('DSBC-CPLX_mod_Oxidized')
-    ignored_complexes.remove('DSBG-CPLX_mod_Oxidized')
-    ignored_complexes.remove('EG11597-MONOMER_mod_amp')
-
-
-    modification_dict = {}
-    for mod_complex, Modenz in enzMod.iterrows():
-        if mod_complex.startswith("#"):
-            continue  # commented out line
-        mod_dict = defaultdict(float)
-
-        core_complex = Modenz.Core_enzyme
-        mods = Modenz.Modifications.split(' AND ')
-        if mod_complex not in ignored_complexes:
-            for term in mods:
-                term = term.rstrip(')')
-                term = term.split('(')
-                mod = term[0]
-                stoich = float(term[1]) if len(term[1]) > 0 else float(1)
-                mod = mod.replace('DASH', '') + '_c'
-                mod_dict[mod] += -stoich
-            modification_dict[mod_complex] = [core_complex, mod_dict]
-
-    # specific patches. Not used in iOL1650 but included as a complex
-    for i in ['CPLX0-246_CPLX0-1342_mod_1:SH']:
-        modification_dict.pop(i)
-
-    modification_dict["CPLX0-246_CPLX0-1342_mod_pydx5p"] = \
-        ["CPLX0-246_CPLX0-1342", {"pydx5p_c": -1}]
-    modification_dict["IscS_mod_2:pydx5p"] = \
-        ["IscS", {"pydx5p_c": -2}]
-
-    return modification_dict
-
-
 def fix_id(id_str):
     return id_str.replace("_DASH_", "__")
 
 
-def get_generics(generic_ions=False):
-    from warnings import warn
-    warn("shouldn't be used")
-    generics = {}
-    if generic_ions:
-        generics["generic_divalent_c"] = [i + "_c" for i in divalent_list]
-        generics["generic_monovalent_c"] = [i + "_c" for i in monovalent_list]
-    return generics
-
-
-def get_m_model(generic_ions=False):
-    if generic_ions:
-        raise ValueError("no longer supported")
+def get_m_model():
     m = cobra.Model("e_coli_ME_M_portion")
     m.compartments = {"p": "Periplasm", "e": "Extra-organism", "c": "Cytosol"}
     compartment_lookup = {v: k for k, v in m.compartments.items()}

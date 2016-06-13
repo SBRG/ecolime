@@ -17,7 +17,7 @@ from ecolime.flat_files import get_m_to_me_metabolite_mapping
 
 
 def load_full_model():
-    with open("full_model_51.pickle", "rb") as infile:
+    with open("full_model_53.pickle", "rb") as infile:
         model = load(infile)
     for exchange in model.reactions.query(re.compile("^EX_")):
         if exchange.lower_bound == 0:
@@ -94,6 +94,9 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
             # for less stringent, only remove the constraint, like this
             # model.metabolites.get_by_id("protein_" + bnum).remove_from_model()
             model.reactions.get_by_id("translation_" + bnum).remove_from_model()
+            for rxn in model.reactions.query('translocation_' + bnum):
+                print("removing %s" % rxn.id)
+                rxn.remove_from_model()
         except KeyError:
             if verbose:
                 print("gene for removal '%s' in strain %s not found" %
@@ -105,6 +108,8 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
         else:
             model.process_data.remove(data)
             model.translation_data.remove(data)
+            for post_trans_data in model.posttranslation_data.query(bnum):
+                model.posttranslation_data.remove(post_trans_data.id)
 
     locus_to_bnum = {locus: bnum for bnum, locus
                      in homologous_loci.dropna().iteritems()}
@@ -112,6 +117,19 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
     for locus, na in sequences.iteritems():
         bnum = locus_to_bnum.get(locus, locus)
         na = na.upper()
+
+        # Create new transcript and demand reaction (Must be done in
+        # multi builder script DNA_Sequence required to obtain mass)
+        # Colton addition
+
+        if 'RNA_' + bnum not in model.metabolites:
+            transcript = TranscribedGene('RNA_' + bnum)
+            #print("adding transcript (%s) and demand to model" % transcript.id)
+            transcript.nucleotide_sequence = na
+            model.add_metabolites([transcript])
+            demand_reaction = Reaction("DM_" + transcript.id)
+            model.add_reaction(demand_reaction)
+            demand_reaction.add_metabolites({transcript.id: -1})
 
         # add new transcription with fake TU's
         add_transcription_reaction(model, "TU_" + locus, {bnum}, na, update=True)
@@ -154,9 +172,12 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
         # add in orphan reactions
         if len(m_reaction.gene_reaction_rule) == 0:
             print("adding in orphan reaction '%s'" % r_id)
-
-            add_complexes_and_rxn_data(model, data, ["CPLX_dummy"],
-                                       create_new=True, update=True)
+            if data.lower_bound < 0:
+                add_metabolic_reaction_to_model(model, data.id, 'reverse',
+                                                "CPLX_dummy", update=True)
+            if data.upper_bound > 0:
+                add_metabolic_reaction_to_model(model, data.id, 'forward',
+                                                "CPLX_dummy", update=True)
             continue
         # ok those are the easy ones. For the rest, create a complex
         sympy_rule = sympy.sympify(m_reaction.gene_reaction_rule.replace(" and ", " & ").replace (" or ", " | "))
@@ -183,8 +204,13 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
             complex_data.stoichiometry = composition
             complex_data.create_complex_formation(verbose=True)
             complexes.append(complex_data)
-        add_complexes_and_rxn_data(model, data, [i.complex_id for i in complexes],
-                                   create_new=True, update=True)
+        for cplx in complexes:
+            if data.lower_bound < 0:
+                add_metabolic_reaction_to_model(model, data.id, 'reverse',
+                                                cplx.id, update=True)
+            if data.upper_bound > 0:
+                add_metabolic_reaction_to_model(model, data.id, 'forward',
+                                                cplx.id, update=True)
 
     model.prune()
     # ultra easy mode - remove biomass components

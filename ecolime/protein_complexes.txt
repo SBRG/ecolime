@@ -267,7 +267,7 @@ G7596-MONOMER	default_name	b3073(1)	M_protein_recon
 VALINE-PYRUVATE-AMINOTRANSFER-MONOMER	default_name	b3572(1)	M_protein_recon
 TRKA-MONOMER_SAPD-MONOMER_TRKH-MONOMER	default_name	b3849() AND b1291() AND b3290()	M_protein_recon
 YJCG-MONOMER	default_name	b4067(1)	M_protein_recon
-#RimL_mono	ribosomal-protein-L7/L12-serine acetyltransferase (EC:2.3.1.-)	b1427(1)	2011_Updated_E_recon
+RimL_mono	ribosomal-protein-L7/L12-serine acetyltransferase (EC:2.3.1.-)	b1427(1)	2011_Updated_E_recon
 EG12069-MONOMER	default_name	b2210(1)	M_protein_recon
 DEOXYRIBOSE-P-ALD-MONOMER	default_name	b4381(1)	M_protein_recon
 MGTA-MONOMER	default_name	b4242(1)	M_protein_recon
