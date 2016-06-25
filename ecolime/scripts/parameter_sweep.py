@@ -17,9 +17,9 @@ def get_model():
 
 
 def get_community_model():
-    with open("prototype_community_GLUDy_CS.pickle", "rb") as infile:
+    with open("prototype_community_53.pickle", "rb") as infile:
         model = load(infile)
-    with open("prototype_community_GLUDy_CS_expressions.pickle", "rb") as infile:
+    with open("prototype_community_53_expressions.pickle", "rb") as infile:
         expressions = load(infile)
     return model, expressions
 
@@ -195,13 +195,36 @@ def change_strain_fraction(me, fraction):
                                      (1-fraction)}, combine=False)
 
 
-def strain_fractions(fraction_strain_1):
+def create_community_knockouts(me, KOs_1, KOs_2):
+    for ko in KOs_1.split(','):
+        for rxn in me.stoichiometric_data.get_by_id(ko)._parent_reactions:
+            me.reactions.get_by_id(rxn + '_S1').knock_out()
+    for ko in KOs_2.split(','):
+        for rxn in me.stoichiometric_data.get_by_id(ko)._parent_reactions:
+            me.reactions.get_by_id(rxn + '_S2').knock_out()
+
+
+def save_only_solution(model, filename_base):
+    with open(filename_base + "_sol.pickle", "wb") as outfile:
+        dump(model.solution, outfile)
+
+
+def strain_fractions(fraction_change):
     """
-    fraction
+    fraction_strain_1 = str(KO1_S1,KO2_S1:KO1_S2,KO2_S2:fraction_strain1)
     """
+    KOs_1, KOs_2, fraction_strain_1 = fraction_change.split(':')
     str_fraction_strain_1 = fraction_strain_1
     float_fraction_strain_1 = float(fraction_strain_1)
     me, expressions = get_community_model()
+    create_community_knockouts(me, KOs_1, KOs_2)
     change_strain_fraction(me, float_fraction_strain_1)
-    binary_search(me, max_mu=1.5, mu_accuracy=1e-4, verbose=True)
-    save_solution(me, "fraction_strain_1_" + str_fraction_strain_1)
+    binary_search(me, max_mu=0.9, mu_accuracy=1e-6, verbose=True)
+    save_only_solution(me, KOs_1 + '_' + KOs_2 + "_fraction_strain_1_" + str_fraction_strain_1)
+
+
+def solve_minimal_media(model):
+    model_name = model + ".pickle"
+    wt_me, expressions = get_model()
+    with open(model_name, "rb") as infile:
+        me = load(infile)

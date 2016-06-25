@@ -339,7 +339,45 @@ def get_tRNA_modification_procedures():
 
     return mod
 
+
 def get_m_to_me_metabolite_mapping():
     """returns a mapping from m metabolites to me metabolites"""
     f = pandas.read_csv(fixpath("m_to_me_mets.csv"), index_col=0)["me_name"]
     return f.dropna().to_dict()
+
+
+def get_replace_function(source):
+    def fix_columns(x):
+        return x.replace(source, '').replace('C', '')
+    return fix_columns
+
+
+def get_dill_keq_df():
+    """returns the dill length-based approximation of protein folding keqs"""
+    df = pandas.read_csv(fixpath('Dill_dG_matrix.csv'))
+
+    dill = df.rename(columns=get_replace_function('Dill_Keq_'))
+    return dill.set_index('genome_region')
+
+
+def get_oobatake_keq_df():
+    """returns the Oobatake prediction protein folding keqs"""
+    df = pandas.read_csv(fixpath('Oobatake_Keq_matrix.csv'))
+
+    oobatake = df.rename(columns=get_replace_function('Oobatake_Keq_'))
+    return oobatake.set_index('genome_region')
+
+
+def get_folding_rates_df():
+    """returns the Oobatake prediction protein folding keqs"""
+    df = pandas.read_csv(fixpath('Folding_Rates_matrix_slope22000.csv'))
+
+    folding_rates = df.rename(columns=get_replace_function('k_f_'))
+    return folding_rates.set_index('genome_region')
+
+
+def get_aggregation_popensity_df():
+    """returns the Oobatake prediction protein folding keqs"""
+    df = pandas.read_csv(fixpath('DnaK_reactions_parameters_5.csv'))
+
+    return df.set_index('gene')

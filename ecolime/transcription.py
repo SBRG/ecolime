@@ -102,4 +102,4 @@ def add_RNA_polymerase_complexes(me_model, verbose=True):
         rnap_components[sigma_factor] = 1
         rnap_components[polymerase] = 1
 
-        rnap_complex.create_complex_formation()
+        rnap_complex.create_complex_formation(verbose=verbose)

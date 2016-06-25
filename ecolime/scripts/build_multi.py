@@ -6,6 +6,7 @@ from six import iteritems
 import pandas
 import sympy
 from sympy.logic.boolalg import to_dnf
+import numpy as np
 
 import cobra
 
@@ -17,7 +18,7 @@ from ecolime.flat_files import get_m_to_me_metabolite_mapping
 
 
 def load_full_model():
-    with open("full_model_53.pickle", "rb") as infile:
+    with open("full_model_54.pickle", "rb") as infile:
         model = load(infile)
     for exchange in model.reactions.query(re.compile("^EX_")):
         if exchange.lower_bound == 0:
@@ -29,8 +30,57 @@ def load_full_model():
             cobra.Metabolite(m_id): -1,
             me_id: 1})
         mapping.lower_bound = -1000
+
+    # New reaction for thf_c auxotrophs from Monk et al
+    print 'adding thf_c exchange'
+    rxn = cobra.Reaction('EX_thf_c')
+    model.add_reaction(rxn)
+    rxn.add_metabolites({model.metabolites.thf_c: -1})
+    rxn.upper_bound = 1000
+    rxn.lower_bound = -1000
+
     return model
 
+locus_prefix_to_model_id = {'EcDH1': 'iEcDH1_1363'}
+
+
+def add_homologous_protein(model, locus, info_frame):
+    model_id = locus_prefix_to_model_id.get(locus.split('_')[0])
+    if not model_id:
+        return False
+    NCBI_id = info_frame.ix[model_id]['NCBI ID']
+    seqs = get_genome_sequences(NCBI_id)
+    try:
+        seq = seqs[locus]
+    except KeyError:
+        return False
+
+    if 'RNA_' + locus not in model.metabolites:
+        transcript = TranscribedGene('RNA_' + locus)
+        # print("adding transcript (%s) and demand to model" % transcript.id)
+        transcript.nucleotide_sequence = seq
+        model.add_metabolites([transcript])
+        demand_reaction = Reaction("DM_" + transcript.id)
+        model.add_reaction(demand_reaction)
+        demand_reaction.add_metabolites({transcript.id: -1})
+
+    if 'transcription_TU_' + locus not in model.reactions:
+        # add new transcription with fake TU's
+        add_transcription_reaction(model, "TU_" + locus, {locus},
+                                   seq, update=True)
+        model.transcription_data.get_by_id("TU_" + locus).RNA_polymerase = \
+            'RNAP70-CPLX'
+
+    # update translation homolog
+    try:
+        translation = model.translation_data.get_by_id(locus)
+    except KeyError:
+        add_translation_reaction(model, locus, dna_sequence=seq, update=True)
+        print("adding translation data for %s" % locus)
+    else:
+        translation.nucleotide_sequence = seq
+
+    return True
 
 
 def create_strain_model(strain_name, model_name, homologous_loci, sequences,
@@ -78,15 +128,15 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
         model.process_data.remove(reaction.transcription_data.id)
         reaction.remove_from_model()
 
-    for data in list(model.transcription_data):
-        continue  # this whole block is unnecessary
-        if len(data.RNA_products) > 0 and set(data.RNA_types) != {"mRNA"}:
-            continue
-        else:
-            for r in data.parent_reactions:
-                r.remove_from_model()
-            model.transcription_data.remove(data)
-            model.process_data.remove(data)
+#    for data in list(model.transcription_data):
+#        continue  # this whole block is unnecessary
+#        if len(data.RNA_products) > 0 and set(data.RNA_types) != {"mRNA"}:
+#            continue
+#        else:
+#            for r in data.parent_reactions:
+#                r.remove_from_model()
+#            model.transcription_data.remove(data)
+#            model.process_data.remove(data)
 
     # remove proteins with missing homologs
     for bnum in missing_proteins:
@@ -115,11 +165,14 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
                      in homologous_loci.dropna().iteritems()}
 
     for locus, na in sequences.iteritems():
+        if type(na) != str:
+            from IPython import embed
+            embed()
         bnum = locus_to_bnum.get(locus, locus)
         na = na.upper()
 
         # Create new transcript and demand reaction (Must be done in
-        # multi builder script DNA_Sequence required to obtain mass)
+        # multi builder script _Sequence required to obtain mass)
         # Colton addition
 
         if 'RNA_' + bnum not in model.metabolites:
@@ -131,8 +184,12 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
             model.add_reaction(demand_reaction)
             demand_reaction.add_metabolites({transcript.id: -1})
 
-        # add new transcription with fake TU's
-        add_transcription_reaction(model, "TU_" + locus, {bnum}, na, update=True)
+        if 'transcription_TU_' + locus not in model.reactions:
+            # add new transcription with fake TU's
+            add_transcription_reaction(model, "TU_" + locus, {bnum},
+                                       na, update=True)
+            model.transcription_data.get_by_id("TU_" + locus).RNA_polymerase = \
+                'RNAP70-CPLX'
 
         # update translation homolog
         try:
@@ -142,8 +199,6 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
             print("adding translation data for %s" % bnum)
         else:
             translation.nucleotide_sequence = na
-
-    model.update()
 
     # add in non-k12 content
     iJO1366 = cobra.io.read_sbml_model("m_models/iJO1366.xml")
@@ -192,14 +247,25 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
             gpr_complexes = converted_rule.args
 
         complexes = []
+        info_frame = get_info_frame()
         for count, entry in enumerate(gpr_complexes):
             if entry.is_Symbol:
                 composition = [entry.name]
             elif entry.is_Boolean:
                 composition = [b.name for b in entry.args]
-            loci = [locus_to_bnum.get(a, a) for a in composition]
             # TODO try to use an existing complex if possible
-            composition = {"protein_" + i: 1 for i in loci}
+            fixed_loci = []
+            for locus in [locus_to_bnum.get(a, a) for a in composition]:
+                # Specific patched for iECDH1ME8569 TODO move these somewhere else
+                if 'protein_' + locus not in model.metabolites:
+                    added = add_homologous_protein(model, locus, info_frame)
+                    if not added:
+                        print("No %s homolog found, using dummy" % locus)
+                        locus = 'dummy'
+                fixed_loci.append(locus)
+            if len(fixed_loci) == 0:
+                raise('Complex %s must contain a protein' % "complex_" + r_id)
+            composition = {"protein_" + i: 1 for i in fixed_loci}
             complex_data = ComplexData("complex_%s_%d" % (r_id, count), model)
             complex_data.stoichiometry = composition
             complex_data.create_complex_formation(verbose=True)
@@ -211,8 +277,9 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
             if data.upper_bound > 0:
                 add_metabolic_reaction_to_model(model, data.id, 'forward',
                                                 cplx.id, update=True)
-
+    model.update()
     model.prune()
+
     # ultra easy mode - remove biomass components
     # for i in list(model.reactions.biomass_dilution.metabolites):
     #    if i.id != "biomass":
@@ -226,7 +293,7 @@ def create_strain_model(strain_name, model_name, homologous_loci, sequences,
                 print("model %s grows at 0.1" % strain_name)
             check_0 = False
             binary_search(model, verbose=verbose, compiled_expressions=expr,
-                          debug=True, mu_accuracy=1e-15)
+                          debug=True, mu_accuracy=1e-6)
         else:
             if verbose:
                 check_0 = True
@@ -260,16 +327,23 @@ def get_conservation_table():
 
 def get_genome_sequences(genome):
     filename = "seqs/%s_seqs.csv" % genome
-    seqs = pandas.read_csv(filename, index_col="locus_tag")["seq"]
+    fixed_seqs = {}
+    seqs = pandas.read_csv(filename).set_index("locus_tag")["seq"]
     # replace all invalid characters with C
     valid_bases = re.compile("^[ATGC]$")
     invalid_bases = re.compile("[^ATGC]")
     for locus, s in seqs.iteritems():
-        if not valid_bases.match(s):
-            for c in invalid_bases.findall(s):
-                s = s.replace(c, "C")
-            seqs[locus] = s
-    return seqs
+        if type(s) == float:
+            print locus, 'has no sequence'
+        elif type(locus) == float:
+            print s, 'has no locus id'
+        else:
+            if not valid_bases.match(s):
+                for c in invalid_bases.findall(s):
+                    s = s.replace(c, "C")
+            fixed_seqs[locus] = s
+
+    return fixed_seqs
 
 
 def run_builder(model_name):
