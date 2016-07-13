@@ -246,4 +246,4 @@ def temperature(value):
     change_temperature(me, temp)
     binary_search(me, max_mu=1.5, mu_accuracy=1e-8, verbose=True)
     save_solution(me, "temperature_" + str_temp)
-    
+
