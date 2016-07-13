@@ -214,3 +214,14 @@ def add_chaperone_network(model):
         #me.add_reaction(rxn_2)
         #rxn_2.posttranslation_data = data_2
         #rxn_2.update()
+
+
+def change_temperature(model, temperature):
+    int_temp = int(temperature)
+    str_temp = str(temperature)
+    model.global_info['temperature'] = int_temp
+    for subreaction, keff_dict in folding_keffs.items():
+        subreaction_data = model.subreaction_data.get_by_id(subreaction)
+        subreaction_data.keff = keff_dict[str_temp]
+
+    model.update()

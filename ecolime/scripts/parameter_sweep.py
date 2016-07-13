@@ -6,12 +6,13 @@ from cloudpickle import load, dump
 from six import string_types
 
 from minime.solve.algorithms import binary_search
+from ecolime.chaperones import change_temperature
 
 
 def get_model():
-    with open("prototype_51.pickle", "rb") as infile:
+    with open("prototype_55.pickle", "rb") as infile:
         model = load(infile)
-    with open("prototype_51_expressions.pickle", "rb") as infile:
+    with open("prototype_55_expressions.pickle", "rb") as infile:
         expressions = load(infile)
     return model, expressions
 
@@ -75,7 +76,7 @@ def unmodeled_protein_fraction(fraction):
     fraction = float(fraction)
     model, expressions = get_model()
     model.unmodeled_protein_fraction = fraction
-    binary_search(model, max_mu=1.5, mu_accuracy=1e-15, verbose=True,
+    binary_search(model, max_mu=1.5, mu_accuracy=1e-8, verbose=True,
                   compiled_expressions=expressions)
     save_solution(model, "unmodeled_protein_fraction_" + str_fraction)
 
@@ -150,7 +151,7 @@ def gam(value):
     me, expressions = get_model()
     me.unmodeled_protein_fraction = 0.45
     adjust_gam(me, GAM)
-    binary_search(me, max_mu=1.5, mu_accuracy=1e-15, verbose=True,
+    binary_search(me, max_mu=1.5, mu_accuracy=1e-8, verbose=True,
                   compiled_expressions=expressions)
     save_solution(me, "gam_" + str_gam)
 
@@ -228,3 +229,21 @@ def solve_minimal_media(model):
     wt_me, expressions = get_model()
     with open(model_name, "rb") as infile:
         me = load(infile)
+
+
+def get_chaperone_model():
+    with open("prototype_56_chaperone.pickle", "rb") as infile:
+        model = load(infile)
+    with open("prototype_56_chaperone_expressions.pickle", "rb") as infile:
+        expressions = load(infile)
+    return model, expressions
+
+
+def temperature(value):
+    str_temp = value
+    temp = int(value)
+    me, expressions = get_chaperone_model()
+    change_temperature(me, temp)
+    binary_search(me, max_mu=1.5, mu_accuracy=1e-8, verbose=True)
+    save_solution(me, "temperature_" + str_temp)
+    
