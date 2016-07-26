@@ -10,9 +10,9 @@ from ecolime.chaperones import change_temperature
 
 
 def get_model():
-    with open("prototype_55.pickle", "rb") as infile:
+    with open("prototype_58.pickle", "rb") as infile:
         model = load(infile)
-    with open("prototype_55_expressions.pickle", "rb") as infile:
+    with open("prototype_58_expressions.pickle", "rb") as infile:
         expressions = load(infile)
     return model, expressions
 
@@ -81,6 +81,26 @@ def unmodeled_protein_fraction(fraction):
     save_solution(model, "unmodeled_protein_fraction_" + str_fraction)
 
 
+def unmodeled_protein_fraction_acetate(fraction):
+    str_fraction = fraction
+    fraction = float(fraction)
+    model, expressions = get_model()
+
+    model.unmodeled_protein_fraction = fraction
+
+    # max growth
+    binary_search(model, max_mu=1.5, mu_accuracy=1e-8, verbose=True,
+                  compiled_expressions=expressions)
+    save_solution(model, "unmodeled_protein_fraction_" + str_fraction)
+
+    # 95% max
+    gluc = model.solution.x_dict['EX_glc__D_e']
+    new_gluc = gluc * .95
+    model.reactions.EX_glc__D_e.lower_bound = new_gluc
+    binary_search(model, max_mu=1.5, mu_accuracy=1e-8, verbose=True,
+              compiled_expressions=expressions)
+    save_solution(model, "unmodeled_protein_fraction_" + str_fraction + '_95')
+
 def ngam(value):
     str_ngam = value
     ngam_value = float(value)
@@ -89,9 +109,30 @@ def ngam(value):
     model.stoichiometric_data.ATPM.lower_bound = ngam_value
     for r in model.stoichiometric_data.ATPM.parent_reactions:
         r.update()
-    binary_search(model, max_mu=1.5, mu_accuracy=1e-15, verbose=True,
+    binary_search(model, max_mu=1.5, mu_accuracy=1e-8, verbose=True,
                   compiled_expressions=expressions)
     save_solution(model, "ngam_" + str_ngam)
+
+
+def ngam_acetate(value):
+    str_ngam = value
+    ngam_value = float(value)
+    model, expressions = get_model()
+    model.unmodeled_protein_fraction = 0.45
+    model.stoichiometric_data.ATPM.lower_bound = ngam_value
+    for r in model.stoichiometric_data.ATPM.parent_reactions:
+        r.update()
+    binary_search(model, max_mu=1.5, mu_accuracy=1e-8, verbose=True,
+                  compiled_expressions=expressions)
+    save_solution(model, "ngam_" + str_ngam)
+
+    # 95% max
+    gluc = model.solution.x_dict['EX_glc__D_e']
+    new_gluc = gluc * .95
+    model.reactions.EX_glc__D_e.lower_bound = new_gluc
+    binary_search(model, max_mu=1.5, mu_accuracy=1e-8, verbose=True,
+              compiled_expressions=expressions)
+    save_solution(model, "ngam_" + str_ngam + '_95')
 
 
 def limit_uptake(model):
@@ -154,6 +195,52 @@ def gam(value):
     binary_search(me, max_mu=1.5, mu_accuracy=1e-8, verbose=True,
                   compiled_expressions=expressions)
     save_solution(me, "gam_" + str_gam)
+
+
+def gam_acetate(value):
+    str_gam = value
+    GAM = float(value)
+    me, expressions = get_model()
+    me.unmodeled_protein_fraction = 0.45
+    adjust_gam(me, GAM)
+    binary_search(me, max_mu=1.5, mu_accuracy=1e-8, verbose=True,
+                  compiled_expressions=expressions)
+    save_solution(me, "gam_" + str_gam)
+
+    # 95% max
+    gluc = me.solution.x_dict['EX_glc__D_e']
+    new_gluc = gluc * .95
+    me.reactions.EX_glc__D_e.lower_bound = new_gluc
+    binary_search(me, max_mu=1.5, mu_accuracy=1e-8, verbose=True,
+              compiled_expressions=expressions)
+    save_solution(me, "gam_" + str_gam + '_95')
+
+def adjust_membrane_protein_fraction(me, membrane, value):
+    rxn_prefix = 'SA_components_to_SA_'
+    rxn = me.reactions.get_by_id(rxn_prefix + membrane)
+    rxn.add_metabolites({'SA_total_protein_' + membrane: -value,
+                         'SA_nonprotein_' + membrane: -(1-value)},
+                        combine=False)
+
+
+def membrane_protein_fraction(membrane_change):
+    """
+    membrane_change = str(membrane:fraction)
+    """
+    membrane, str_fraction = membrane_change.split(':')
+    protein_fraction = float(str_fraction)
+    me, expressions = get_model()
+    adjust_membrane_protein_fraction(me, membrane, protein_fraction)
+    binary_search(me, max_mu=1.5, mu_accuracy=1e-8, verbose=True)
+    save_solution(me, membrane + "_protein_fraction_" + str_fraction)
+
+    # 95% max
+    gluc = me.solution.x_dict['EX_glc__D_e']
+    new_gluc = gluc * .95
+    me.reactions.EX_glc__D_e.lower_bound = new_gluc
+    binary_search(me, max_mu=1.5, mu_accuracy=1e-8, verbose=True,
+              compiled_expressions=expressions)
+    save_solution(me, membrane + "_protein_fraction_" + str_fraction + '_95')
 
 
 def adjust_global_parameter(me, parameter, multiplier):
@@ -246,4 +333,3 @@ def temperature(value):
     change_temperature(me, temp)
     binary_search(me, max_mu=1.5, mu_accuracy=1e-8, verbose=True)
     save_solution(me, "temperature_" + str_temp)
-

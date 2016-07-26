@@ -1,3 +1,6 @@
+from minime.core.ProcessData import PostTranslationData
+from minime.core.MEReactions import PostTranslationReaction
+
 pathway = {'sec': {'enzymes': {'SecB_tetra': {'length_dependent': True,
                                               'fixed_keff': False},
                                'SecA_MONOMER': {'length_dependent': True,
@@ -109,3 +112,124 @@ multipliers = {'YidC_MONOMER': {'b1855': 2., 'b3731': 2.},
                                 'b2996': 21.0, 'b2994': 14.0, 'b2435': 20.0,
                                 'b0894': 26.0, 'b0123': 23.0, 'b2206': 27.0,
                                 'b2205': 20.0}}
+
+mmol = 6.022e20  # number of molecules per mmol
+nm2_per_m2 = 1e18  # used to convert nm^2 to m^2
+
+
+def add_translocation_pathways(model, pathways_df, membrane_constraints=False):
+    membrane_thickness = model.global_info['membrane_thickness']
+
+    def add_translocation_data_and_reaction(model, pathways, preprocessed_id,
+                                            processed_id, compartment,
+                                            alt=False):
+
+        suffix = '_alt' if alt else ''
+
+        data = PostTranslationData('translocation_' + preprocessed_id + suffix,
+                                   model, processed_id, preprocessed_id)
+        for pathway in pathways:
+            data.translocation[pathway] = 1
+
+        # Add protein surface area constraint
+        if compartment != 'Periplasm':
+            mass = peptide_data.mass
+            thickness = membrane_thickness[compartment]
+            # Relationship uses protein molecular in kDa
+            # Adds surface area constraint in units of m^2/mmol
+            data.surface_area['SA_protein_' + compartment] = \
+                (1.21 / thickness * 2.) * mass * mmol / nm2_per_m2
+
+        rxn = PostTranslationReaction('translocation_' + peptide_data.id +
+                                      suffix)
+        rxn.posttranslation_data = data
+        model.add_reaction(rxn)
+        rxn.update()
+
+    # loop through all translation data and add translocation rxns/surface area
+    # constraints if they are membrane proteins
+    for peptide_data in model.translation_data:
+
+        # extract translocation info if peptide contained in complex
+        # stoichiometry
+        translocation_info = pathways_df[
+            pathways_df.Protein.str.match(peptide_data.id)]
+        # iterate if protein is not in a membrane complex
+        if len(translocation_info) == 0:
+            continue
+
+        # Assign preprocessed and processed (translocated) peptide ids
+        compartment = translocation_info.Protein_compartment.values[0]
+        processed_id = 'protein_' + peptide_data.id + '_' + compartment
+        preprocessed_id = 'protein_' + peptide_data.id
+
+        # compile translocation pathways for each membrane protein
+        pathways = set()
+        pathways_alt = set()
+        for abbrev in translocation_info.translocase_pathway.values[0]:
+            pathway_name = abbreviation_to_pathway[abbrev]
+
+            # The tat translocation pathway can use an alternate enzyme
+            if type(pathway_name) == list:
+                pathways.add(pathway_name[0])
+                pathways_alt.add(pathway_name[1])
+            else:
+                pathways.add(pathway_name)
+                pathways_alt.add(pathway_name)
+
+        add_translocation_data_and_reaction(model, pathways, preprocessed_id,
+                                            processed_id, compartment)
+
+        # if there's an alternative pathway (tat) add this reaction as well
+        if pathways != pathways_alt:
+            add_translocation_data_and_reaction(model, pathways_alt,
+                                                preprocessed_id, processed_id,
+                                                compartment, alt=True)
+
+
+lipoprotein_precursors = {'AcrA': 'b0463', 'AcrE': 'b3265', 'BamB': 'b2512',
+                          'BamC': 'b2477', 'BamD': 'b2595', 'BamE': 'b2617',
+                          'CusC': 'b0572', 'EG10544-MONOMER': 'b1677',
+                          'EmtA': 'b1193', 'LolB': 'b1209', 'MetQ': 'b0197',
+                          'MltA': 'b2813', 'MltB': 'b2701', 'MltC': 'b2963'}
+
+lipid_modifications = ['pg120_p', 'pg141_p', 'pg140_p', 'pg181_p', 'pg161_p',
+                       'pg160_p', 'pg180_p']
+
+
+def add_lipoprotein_formation(model, compartment_dict, update=True):
+
+    # loop through all proteins which need lipid modifications (lipoproteins)
+    for protein in lipoprotein_precursors.values():
+        compartment = compartment_dict.get(protein)
+        protein_met = model.metabolites.get_by_id('protein_' + protein)
+        mass = protein_met.mass
+
+        processed_id = 'protein_' + protein + '_lipoprotein_' + compartment
+        preprocessed_id = 'protein_' + protein + '_' + compartment
+        thickness_dict = model.global_info['membrane_thickness']
+        thickness = thickness_dict['Outer_Membrane']
+
+        protein_SA = 1.21 / thickness * 2 * mass * mmol / nm2_per_m2
+
+        def add_lipoprotein_data_and_reaction(first_lipid, second_lipid):
+
+            # Add PostTranslation Data, modifications and surface area
+            data = PostTranslationData(reaction_prefix + '_' + second_lipid,
+                                       model, processed_id, preprocessed_id)
+            data.modifications['mod_' + first_lipid] = 1
+            data.modifications['mod2_' + second_lipid + '_p'] = 1
+            data.surface_area = {'SA_protein_' + compartment: -protein_SA,
+                                 'SA_lipoprotein': 1. * mmol / nm2_per_m2}
+
+            # Add Reaction to model and associated it with its data
+            rxn = PostTranslationReaction(reaction_prefix + '_' + second_lipid)
+            model.add_reaction(rxn)
+            rxn.posttranslation_data = data
+            if update:
+                rxn.update()
+
+        for mod in lipid_modifications:
+            reaction_prefix = protein + '_lipid_modification_' + mod
+            add_lipoprotein_data_and_reaction(mod, 'pg160')
+            add_lipoprotein_data_and_reaction(mod, 'pe160')

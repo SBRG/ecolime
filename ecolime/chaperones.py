@@ -1,38 +1,10 @@
-import flat_files
+import math
 import re
+
+import flat_files
 from minime.core.ProcessData import SubreactionData, PostTranslationData
 from minime.core.Components import ProcessedProtein, TranslatedGene
 from minime.core.MEReactions import PostTranslationReaction
-
-# Temperature dependent Keffs for each folding mechanism/step
-folding_keffs = {
-    'folding_KJE_1': {'24': 0.0288, '25': 0.0323, '26': 0.0362, '27': 0.0405,
-                      '28': 0.0453, '29': 0.0506, '30': 0.0565, '31': 0.0631,
-                      '32': 0.0703, '33': 0.0784, '34': 0.0873, '35': 0.0971,
-                      '36': 0.1080, '37': 0.1200, '38': 0.1333, '39': 0.1479,
-                      '40': 0.1640, '41': 0.1818, '42': 0.2014, '43': 0.2229,
-                      '44': 0.2466, '45': 0.2726, '46': 0.3012, '47': 0.3326,
-                      '48': 0.3670, '49': 0.4047, '50': 0.4461},
-    'folding_KJE_2': {'24': 0.0092, '25': 0.0103, '26': 0.0116, '27': 0.0130,
-                      '28': 0.0146, '29': 0.0164, '30': 0.0184, '31': 0.0206,
-                      '32': 0.0230, '33': 0.0258, '34': 0.0288, '35': 0.0321,
-                      '36': 0.0359, '37': 0.0400, '38': 0.0446, '39': 0.0496,
-                      '40': 0.0553, '41': 0.0615, '42': 0.0683, '43': 0.0759,
-                      '44': 0.0842, '45': 0.0934, '46': 0.1036, '47': 0.1147,
-                      '48': 0.1270, '49': 0.1405, '50': 0.1554},
-    'folding_GroEL_ES': {'24': 0.2636, '25': 0.2933, '26': 0.3260,
-                         '27': 0.3622,
-                         '28': 0.4021, '29': 0.4461, '30': 0.4946,
-                         '31': 0.5480,
-                         '32': 0.6068, '33': 0.6714, '34': 0.7424,
-                         '35': 0.8204,
-                         '36': 0.9061, '37': 1.0000, '38': 1.1030,
-                         '39': 1.2158,
-                         '40': 1.3394, '41': 1.4746, '42': 1.6225,
-                         '43': 1.7842,
-                         '44': 1.9608, '45': 2.1537, '46': 2.3642,
-                         '47': 2.5937,
-                         '48': 2.8439, '49': 3.1165, '50': 3.4134}}
 
 folding_subreactions = {
     'folding_KJE_1': {'enzymes': ['DnaJ_dim_mod_4:zn2', 'DnaK_mono'],
@@ -40,8 +12,11 @@ folding_subreactions = {
                                         'h2o_c': -1,
                                         'adp_c': 1,
                                         'h_c': 1,
-                                        'pi_c': 1}},
-    'folding_KJE_2': {'enzymes': ['GrpE_dim'], 'stoichiometry': {}},
+                                        'pi_c': 1},
+                      'keff': 0.12},
+
+    'folding_KJE_2': {'enzymes': ['GrpE_dim'], 'stoichiometry': {},
+                      'keff': 0.04},
 
     'folding_GroEL_ES': {'enzymes': ['transGroES_hepta',
                                      '[GroL]14['
@@ -50,7 +25,7 @@ folding_subreactions = {
                                            'adp_c': 7,
                                            'h_c': 7,
                                            'pi_c': 7},
-                         },
+                         'keff': 1.0},
     'folding_spontaneous': {'enzymes': None, 'stoichiometry': {}}
     }
 
@@ -117,13 +92,12 @@ genes_to_use_dill = ["b2411", "b4035", "b1709", "b2926", "b0115", "b1676",
 
 
 def add_chaperone_subreactions(model):
-    temperature = model.global_info['temperature']
     for subreaction, values in folding_subreactions.items():
         data = SubreactionData(subreaction, model)
         data.enzyme = values['enzymes']
         data.stoichiometry = values['stoichiometry']
         if subreaction != 'folding_spontaneous':
-            data.keff = folding_keffs[subreaction][str(temperature)] * 3600.
+            data.keff = values['keff']  # in 1/s
 
 
 def add_chaperone_network(model):
@@ -162,12 +136,11 @@ def add_chaperone_network(model):
             keq_folding = oobatake_df.median().to_dict()
             k_folding = k_folding_df.median().to_dict()
 
-
         for folding in folding_subreactions:
             if folding == 'folding_KJE_2':
                 continue
             folding_id = 'folding_' + protein.id + '_' + \
-                         folding.replace('_1','')
+                         folding.replace('_1', '')
 
             if folding == 'folding_spontaneous':
 
@@ -179,7 +152,6 @@ def add_chaperone_network(model):
                 data.aggregation_propensity = propensity
                 data.k_folding = k_folding
                 data.keq_folding = keq_folding
-
 
                 rxn = PostTranslationReaction(folding_id)
                 model.add_reaction(rxn)
@@ -217,11 +189,36 @@ def add_chaperone_network(model):
 
 
 def change_temperature(model, temperature):
+    """
+    Updates temperature dependent model parameters
+
+    :param model: ME-model
+    :param temperature: in degC
+    :return:
+    """
     int_temp = int(temperature)
     str_temp = str(temperature)
     model.global_info['temperature'] = int_temp
+
+    def get_temperature_dependent_keff(keff_0, T):
+        T_kelvin = T + 273.15
+        R = 1.9872  # in cal / mol / k
+        T0 = 273.15 + 37.  # in k
+        Ea = R * T0 * (30.5 - math.log(keff_0))
+
+        return math.e ** (30.5 - Ea / R / T_kelvin)
+
     for subreaction, keff_dict in folding_keffs.items():
         subreaction_data = model.subreaction_data.get_by_id(subreaction)
         subreaction_data.keff = keff_dict[str_temp]
+
+    for rxn in model.reactions:
+        if hasattr(rxn, 'keff'):
+            new_keff = get_temperature_dependent_keff(rxn.keff, temperature)
+            rxn.keff = new_keff
+    for data in model.process_data:
+        if hasattr(data, 'keff'):
+            new_keff = get_temperature_dependent_keff(data.keff, temperature)
+            data.keff = new_keff
 
     model.update()
