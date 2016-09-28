@@ -16,13 +16,19 @@ def get_rich_media_model():
     return me
 
 
+def get_model():
+    with open("prototype_64.pickle", "rb") as infile:
+        me = load(infile)
+    return me
+
+
 def compute_gene_essentiality(str_range):
     """str_range is "0-10" for example"""
     a_str, b_str = str_range.split("-")
     a = int(a_str)
     b = int(b_str)
 
-    me = get_rich_media_model()
+    me = get_model()
     lp, solver = create_lP_at_growth_rate(me, 0.1)
     solver.solve_problem(lp)
 

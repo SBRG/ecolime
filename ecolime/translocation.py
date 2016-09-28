@@ -210,6 +210,7 @@ def add_lipoprotein_formation(model, compartment_dict, update=True):
         thickness_dict = model.global_info['membrane_thickness']
         thickness = thickness_dict['Outer_Membrane']
 
+        # From Liu et al. x2 for each to account for each leaflet
         protein_SA = 1.21 / thickness * 2 * mass * mmol / nm2_per_m2
 
         def add_lipoprotein_data_and_reaction(first_lipid, second_lipid):

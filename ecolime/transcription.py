@@ -1,6 +1,7 @@
 from minime import ComplexData, TranscribedGene, ModificationData
 from minime.util.building import add_modification_data
 
+from ecolime import ecoli_k12
 import cobra
 
 
@@ -103,3 +104,46 @@ def add_RNA_polymerase_complexes(me_model, verbose=True):
         rnap_components[polymerase] = 1
 
         rnap_complex.create_complex_formation(verbose=verbose)
+
+
+def add_RNA_splicing(me_model):
+
+    # Ecoli has three alternatie mechanisms for splicing RNA, depending
+    # on what RNA types the TU contains
+    excision_types = ['rRNA_containing', 'monocistronic',
+                  'polycistronic_wout_rRNA']
+
+    for excision_type in excision_types:
+        complex_data =  ComplexData(excision_type + "_excision_machinery",
+                                    me_model)
+
+        for machine in ecoli_k12.excision_machinery[excision_type]:
+            complex_data.stoichiometry[machine] = 1
+
+        complex_data.create_complex_formation()
+        modification = ModificationData(excision_type + "_excision", me_model)
+        modification.stoichiometry = {'h2o_c': -1, 'h_c': 1}
+        modification.enzyme = complex_data.id
+
+    # Loop through transcription reactions and add appropriate splicing
+    # machinery based on RNA types and number of splices required
+    for t in me_model.transcription_data:
+        n_excised = sum(t.excised_bases.values())
+        n_cuts = len(t.RNA_products) * 2
+        if n_excised == 0 or n_cuts == 0:
+            continue
+        RNA_types = list(t.RNA_types)
+        n_tRNA = RNA_types.count("tRNA")
+
+        if "rRNA" in set(RNA_types):
+            t.modifications["rRNA_containing_excision"] = n_cuts
+        elif n_tRNA == 1:
+            t.modifications["monocistronic_excision"] = n_cuts
+        elif n_tRNA > 1:
+            t.modifications["polycistronic_wout_rRNA_excision"] = n_cuts
+        else:  # only applies to rnpB
+            t.modifications["monocistronic_excision"] = n_cuts
+
+        # The non functional RNA segments need degraded back to nucleotides
+        t.modifications["RNA_degradation_machine"] = n_cuts
+        t.modifications["RNA_degradation_atp_requirement"] = n_excised

@@ -13,10 +13,10 @@ folding_subreactions = {
                                         'adp_c': 1,
                                         'h_c': 1,
                                         'pi_c': 1},
-                      'keff': 0.12},
+                      'keff': 0.04},
 
     'folding_KJE_2': {'enzymes': ['GrpE_dim'], 'stoichiometry': {},
-                      'keff': 0.04},
+                      'keff': 1.0},
 
     'folding_GroEL_ES': {'enzymes': ['transGroES_hepta',
                                      '[GroL]14['
@@ -25,7 +25,7 @@ folding_subreactions = {
                                            'adp_c': 7,
                                            'h_c': 7,
                                            'pi_c': 7},
-                         'keff': 1.0},
+                         'keff': 0.12},
     'folding_spontaneous': {'enzymes': None, 'stoichiometry': {}}
     }
 
@@ -175,6 +175,7 @@ def add_chaperone_network(model):
                 rxn.posttranslation_data = data
                 rxn.update()
 
+        # TODO remove this block once it is confirmed it is not needed
         #data_2 = PostTranslationData('folding_' + protein.id + '_2', me,
         #                             protein.id + '_folded', protein.id + '_partially_folded')
         #data_2.folding_mechanism = folding
@@ -193,7 +194,7 @@ def change_temperature(model, temperature):
     Updates temperature dependent model parameters
 
     :param model: ME-model
-    :param temperature: in degC
+    :param temperature: int (in degC)
     :return:
     """
     int_temp = int(temperature)
@@ -207,10 +208,6 @@ def change_temperature(model, temperature):
         Ea = R * T0 * (30.5 - math.log(keff_0))
 
         return math.e ** (30.5 - Ea / R / T_kelvin)
-
-    for subreaction, keff_dict in folding_keffs.items():
-        subreaction_data = model.subreaction_data.get_by_id(subreaction)
-        subreaction_data.keff = keff_dict[str_temp]
 
     for rxn in model.reactions:
         if hasattr(rxn, 'keff'):
