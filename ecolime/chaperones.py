@@ -2,9 +2,9 @@ import math
 import re
 
 import flat_files
-from minime.core.ProcessData import SubreactionData, PostTranslationData
-from minime.core.Components import ProcessedProtein, TranslatedGene
-from minime.core.MEReactions import PostTranslationReaction
+from cobrame.core.ProcessData import SubreactionData, PostTranslationData
+from cobrame.core.Components import ProcessedProtein, TranslatedGene
+from cobrame.core.MEReactions import PostTranslationReaction
 
 folding_subreactions = {
     'folding_KJE_1': {'enzymes': ['DnaJ_dim_mod_4:zn2', 'DnaK_mono'],

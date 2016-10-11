@@ -1,5 +1,5 @@
-from minime.core.ProcessData import PostTranslationData
-from minime.core.MEReactions import PostTranslationReaction
+from cobrame.core.ProcessData import PostTranslationData
+from cobrame.core.MEReactions import PostTranslationReaction
 
 pathway = {'sec': {'enzymes': {'SecB_tetra': {'length_dependent': True,
                                               'fixed_keff': False},
@@ -118,7 +118,7 @@ nm2_per_m2 = 1e18  # used to convert nm^2 to m^2
 
 
 def add_translocation_pathways(model, pathways_df, membrane_constraints=False):
-    membrane_thickness = model.global_info['membrane_thickness']
+
 
     def add_translocation_data_and_reaction(model, pathways, preprocessed_id,
                                             processed_id, compartment,
@@ -132,8 +132,9 @@ def add_translocation_pathways(model, pathways_df, membrane_constraints=False):
             data.translocation[pathway] = 1
 
         # Add protein surface area constraint
-        if compartment != 'Periplasm':
+        if membrane_constraints and compartment != 'Periplasm':
             mass = peptide_data.mass
+            membrane_thickness = model.global_info['membrane_thickness']
             thickness = membrane_thickness[compartment]
             # Relationship uses protein molecular in kDa
             # Adds surface area constraint in units of m^2/mmol
@@ -197,7 +198,8 @@ lipid_modifications = ['pg120_p', 'pg141_p', 'pg140_p', 'pg181_p', 'pg161_p',
                        'pg160_p', 'pg180_p']
 
 
-def add_lipoprotein_formation(model, compartment_dict, update=True):
+def add_lipoprotein_formation(model, compartment_dict,
+                              membrane_constraints=False, update=True):
 
     # loop through all proteins which need lipid modifications (lipoproteins)
     for protein in lipoprotein_precursors.values():
@@ -207,11 +209,7 @@ def add_lipoprotein_formation(model, compartment_dict, update=True):
 
         processed_id = 'protein_' + protein + '_lipoprotein_' + compartment
         preprocessed_id = 'protein_' + protein + '_' + compartment
-        thickness_dict = model.global_info['membrane_thickness']
-        thickness = thickness_dict['Outer_Membrane']
 
-        # From Liu et al. x2 for each to account for each leaflet
-        protein_SA = 1.21 / thickness * 2 * mass * mmol / nm2_per_m2
 
         def add_lipoprotein_data_and_reaction(first_lipid, second_lipid):
 
@@ -220,8 +218,15 @@ def add_lipoprotein_formation(model, compartment_dict, update=True):
                                        model, processed_id, preprocessed_id)
             data.modifications['mod_' + first_lipid] = 1
             data.modifications['mod2_' + second_lipid + '_p'] = 1
-            data.surface_area = {'SA_protein_' + compartment: -protein_SA,
-                                 'SA_lipoprotein': 1. * mmol / nm2_per_m2}
+
+            if membrane_constraints:
+                thickness_dict = model.global_info['membrane_thickness']
+                thickness = thickness_dict['Outer_Membrane']
+
+                # From Liu et al. x2 for each to account for each leaflet
+                protein_SA = 1.21 / thickness * 2 * mass * mmol / nm2_per_m2
+                data.surface_area = {'SA_protein_' + compartment: -protein_SA,
+                                     'SA_lipoprotein': 1. * mmol / nm2_per_m2}
 
             # Add Reaction to model and associated it with its data
             rxn = PostTranslationReaction(reaction_prefix + '_' + second_lipid)

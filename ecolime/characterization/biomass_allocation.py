@@ -1,7 +1,7 @@
 from collections import defaultdict
 import pandas as pd
 import cobra.test
-from minime import dogma
+from cobrame import dogma
 
 def get_biomass_composition(model, solution=None):
     if solution is None:

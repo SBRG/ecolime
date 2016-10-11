@@ -1,4 +1,4 @@
-from minime import SubreactionData, dogma, Complex
+from cobrame import SubreactionData, dogma, Complex
 from ecolime import ribosome
 # 1 machine + 1 atp + 1 aa + 1 h2o --> 1 machine-amp + 1 h + 1 ppi
 # 1 machine-amp + 1 free tRNA --> 1 machine + 1 amp + 1 charged tRNA

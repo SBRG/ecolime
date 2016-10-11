@@ -5,7 +5,7 @@ import re
 from cloudpickle import load, dump
 from six import string_types
 
-from minime.solve.algorithms import binary_search
+from cobrame.solve.algorithms import binary_search
 from ecolime.chaperones import change_temperature
 
 

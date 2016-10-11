@@ -1,5 +1,5 @@
-from minime import ComplexData, TranscribedGene, ModificationData
-from minime.util.building import add_modification_data
+from cobrame import ComplexData, TranscribedGene, ModificationData
+from cobrame.util.building import add_modification_data
 
 import cobra
 

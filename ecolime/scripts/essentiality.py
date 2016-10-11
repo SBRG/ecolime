@@ -3,8 +3,8 @@ from cPickle import load
 import json
 
 from cobra.flux_analysis.deletion_worker import compute_fba_deletion
-from minime.core.MEReactions import *
-from minime.solve import *
+from cobrame.core.MEReactions import *
+from cobrame.solve import *
 
 
 def get_rich_media_model():

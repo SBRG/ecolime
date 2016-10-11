@@ -5,7 +5,7 @@ import json
 from os.path import dirname, join, abspath
 
 
-from minime.core.MEReactions import MetabolicReaction
+from cobrame.core.MEReactions import MetabolicReaction
 import cobra
 import pandas
 from six import iteritems

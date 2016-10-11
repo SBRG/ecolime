@@ -10,10 +10,10 @@ import numpy as np
 
 import cobra
 
-from minime.solve.algorithms import binary_search, solve_at_growth_rate, \
+from cobrame.solve.algorithms import binary_search, solve_at_growth_rate, \
     compile_expressions
-from minime.util.building import *
-from minime.core.ProcessData import *
+from cobrame.util.building import *
+from cobrame.core.ProcessData import *
 from ecolime.flat_files import get_m_to_me_metabolite_mapping
 
 

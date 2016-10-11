@@ -1,7 +1,7 @@
 import math
 from scipy.optimize import leastsq
-from minime import mu
-from minime.util.mass import dna_mw_no_ppi
+from cobrame import mu
+from cobrame.util.mass import dna_mw_no_ppi
 
 # Experimental Data
 gr_data_doublings_per_hour = [0, 0.6, 1.0, 1.5, 2.0, 2.5]
