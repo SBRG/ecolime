@@ -4,7 +4,7 @@ from ecolime import ribosome
 # 1 machine-amp + 1 free tRNA --> 1 machine + 1 amp + 1 charged tRNA
 general_subrxns = {'fmet_addition_at_START': {
                        'enzymes': ['InfB_mono', 'Fmt_mono_mod_mg2_mod_k'],
-                        # iOL had h_c:1 for fmet addition but this is not
+                        #  iOL had h_c:1 for fmet addition but this is not
                         #  mass balanced
                        'stoich': {'10fthf_c': -1, 'thf_c': 1,  # 'h_c': 1,
                                   'generic_tRNA_START_met__L_c': -1,
@@ -12,7 +12,7 @@ general_subrxns = {'fmet_addition_at_START': {
 
                    'sec_addition_at_UGA': {
                        'enzymes': ['SelA_deca_mod_10:pydx5p',
-                                   'SelB_mono'], # Selenocysteine loader enzyme
+                                   'SelB_mono'],  # Selenocysteine loaders
                        'stoich': {'h_c': 1, 'h2o_c': -1, 'selnp_c': -1,
                                   'pi_c': 1,
                                   'generic_tRNA_UGA_cys__L_c': -1,
@@ -116,7 +116,7 @@ def add_translation_subreactions_to_model(me_model):
     # the addition of charged tRNAs to the elongating peptide
     for codon in dogma.codon_table:
         if dogma.codon_table[codon] == '*':
-            stop_codon = codon.replace('T','U')
+            stop_codon = codon.replace('T', 'U')
             stop_enzyme = translation_stop_dict.get(stop_codon)
             me_model.add_metabolites([Complex(stop_enzyme)])
 
@@ -131,11 +131,11 @@ def add_translation_subreactions_to_model(me_model):
             subreaction_data = SubreactionData(
                 amino_acid + '_addition_at_' + codon.replace('T', 'U'),
                 me_model)
-            tRNA = 'generic_tRNA_' + codon.replace('T','U') + '_' + full_aa
-            subreaction_data.enzyme = 'generic_Tuf' # Default AA loader enzyme
-            subreaction_data.stoichiometry = {full_aa: -1, 'gtp_c': -1,
+            tRNA = 'generic_tRNA_' + codon.replace('T', 'U') + '_' + full_aa
+            subreaction_data.enzyme = 'generic_Tuf'  # Default AA loader enzyme
+            subreaction_data.stoichiometry = {'gtp_c': -1,
                                               'gdp_c': 1, 'h_c': 1, 'pi_c': 1,
-                                              tRNA: -1} # 'h2o_c': 1
+                                              tRNA: -1}  # 'h2o_c': 1
 
 # N terminal methionine cleaved
 methionine_cleaved = ['b4154', 'b1109', 'b3908', 'b3417', 'b3940', 'b0344',
