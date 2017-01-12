@@ -2,6 +2,15 @@ from collections import defaultdict
 import pandas as pd
 import cobra.test
 from cobrame import dogma
+from os.path import dirname, join, abspath
+
+ecoli_data_files_dir = dirname(abspath(__file__))
+
+del dirname, abspath
+
+def fixpath(filename):
+    return join(ecoli_data_files_dir, filename)
+
 
 def get_biomass_composition(model, solution=None):
     if solution is None:
@@ -163,6 +172,7 @@ def make_composition_piechart(model, kind='Biomass', solution=None):
     return frame.plot(kind='pie', subplots=True, legend=None,
                       colormap=color_map)
 
+
 def compare_to_ijo_biomass(model, kind='amino_acid', solution=None):
     ijo = cobra.test.create_test_model('ecoli')
     biomass_rxn = ijo.reactions.Ec_biomass_iJO1366_core_53p95M
@@ -198,3 +208,51 @@ def compare_to_ijo_biomass(model, kind='amino_acid', solution=None):
                     biomass_rxn._metabolites[ijo_met])
 
     return pd.DataFrame.from_dict(compare).dropna(how='any')
+
+
+def get_protein_distribution(model, solution=None, groupby='COG'):
+    """
+    Return the synthesis flux for each protein.
+
+    First implementation-can be improved
+    """
+    protein_dict = defaultdict(float)
+    if not solution:
+        solution = model.solution
+
+    transcription = model.get_translation_flux(solution=solution)
+
+    if groupby == 'COG':
+        COG_df = pd.read_csv(fixpath('data/cogs_ecoli_mg1655.csv'))
+        COG_df = COG_df.set_index('locus')
+        for protein, flux in transcription.items():
+            protein_mass = model.translation_data.get_by_id(protein).mass
+            if protein != 'dummy':
+                if protein in COG_df. index:
+                    try:
+                        COG = COG_df.loc[protein, 'COG description'].values[0]
+                    except:
+                        COG = COG_df.loc[protein, 'COG description']
+                else:
+                    COG = 'No COG'
+
+                protein_dict[COG] += protein_mass * flux
+            else:
+                protein_dict['dummy'] += protein_mass * flux
+
+    elif groupby == 'Metabolic_Subsystem':
+        for protein_id, flux in transcription.items():
+            if flux <= 0:
+                continue
+            subsystem = set()
+            protein = model.metabolites.get_by_id('protein_' + protein_id)
+            protein_mass = protein.mass
+            for complex in protein.complexes:
+                for metabolic_reaction in complex.metabolic_reactions:
+                    subsystem.add(metabolic_reaction.subsystem)
+            if len(subsystem) > 0:
+                protein_dict['_'.join(subsystem)] = protein_mass * flux
+    else:
+        raise('groupby flag is not "COG" or "Metabolic_Subsystem')
+
+    return protein_dict
