@@ -145,5 +145,6 @@ def add_RNA_splicing(me_model):
             t.modifications["monocistronic_excision"] = n_cuts
 
         # The non functional RNA segments need degraded back to nucleotides
+        # TODO check if RNA_degradation requirement is per nucleotide
         t.modifications["RNA_degradation_machine"] = n_cuts
         t.modifications["RNA_degradation_atp_requirement"] = n_excised

@@ -1,32 +1,34 @@
 from cobrame import SubreactionData, dogma, Complex
 from ecolime import ribosome
+
 # 1 machine + 1 atp + 1 aa + 1 h2o --> 1 machine-amp + 1 h + 1 ppi
 # 1 machine-amp + 1 free tRNA --> 1 machine + 1 amp + 1 charged tRNA
-general_subrxns = {'fmet_addition_at_START': {
-                       'enzymes': ['InfB_mono', 'Fmt_mono_mod_mg2_mod_k'],
-                        #  iOL had h_c:1 for fmet addition but this is not
-                        #  mass balanced
-                       'stoich': {'10fthf_c': -1, 'thf_c': 1,  # 'h_c': 1,
-                                  'generic_tRNA_START_met__L_c': -1,
-                                  'met__L_c': -1}},
+special_tRNA_subreactions = {
+    'fmet_addition_at_START': {
+        'enzymes': ['InfB_mono', 'Fmt_mono_mod_mg2_mod_k'],
+        #  iOL had h_c:1 for fmet addition but this is not
+        #  mass balanced
+        'stoich': {'10fthf_c': -1, 'thf_c': 1,  # 'h_c': 1,
+                   'generic_tRNA_START_met__L_c': -1,
+                   'met__L_c': -1}},
 
-                   'sec_addition_at_UGA': {
-                       'enzymes': ['SelA_deca_mod_10:pydx5p',
-                                   'SelB_mono'],  # Selenocysteine loaders
-                       'stoich': {'h_c': 1, 'h2o_c': -1, 'selnp_c': -1,
-                                  'pi_c': 1,
-                                  'generic_tRNA_UGA_cys__L_c': -1,
-                                  'cys__L_c': -1}},
+    'sec_addition_at_UGA': {
+        'enzymes': ['SelA_deca_mod_10:pydx5p',
+                    'SelB_mono'],  # Selenocysteine loaders
+        'stoich': {'h_c': 1, 'h2o_c': -1, 'selnp_c': -1,
+                   'pi_c': 1,
+                   'generic_tRNA_UGA_cys__L_c': -1,
+                   'cys__L_c': -1}}}
 
-                   'FusA_mono_elongation': {'enzymes': ['FusA_mono'],
-                                            'stoich': {'gtp_c': -1,
-                                                       'h2o_c': -1,
-                                                       'h_c': 1,
-                                                       'pi_c': 1,
-                                                       'gdp_c': 1}},
+elongation_subreactions = {'FusA_mono_elongation': {'enzymes': ['FusA_mono'],
+                                                    'stoich': {'gtp_c': -1,
+                                                               'h2o_c': -1,
+                                                               'h_c': 1,
+                                                               'pi_c': 1,
+                                                               'gdp_c': 1}},
 
-                   'Tuf_gtp_regeneration': {'enzymes': ['Tsf_mono'],
-                                            'stoich': {}}}
+                           'Tuf_gtp_regeneration': {'enzymes': ['Tsf_mono'],
+                                                    'stoich': {}}}
 
 # 1 mRNA_nextRiboComplex + [1 b1211_assumedMonomer (pre-assigned) OR
 #  1 b2891_assumedMonomer (pre-assigned) OR 1 generic_RF (pre-assigned)
@@ -99,9 +101,10 @@ translation_stop_dict = {'UAG': 'PrfA_mono',
 # Dictionary of frame shift mutations
 frameshift_dict = {'b2891': '3033206:3034228,3034230:3034304'}
 
+
 def add_translation_subreactions_to_model(me_model):
     # add general subreactions
-    for rxn, info in general_subrxns.items():
+    for rxn, info in elongation_subreactions.items():
         data = SubreactionData(rxn, me_model)
         data.enzyme = info['enzymes']
         data.stoichiometry = info['stoich']
@@ -112,6 +115,8 @@ def add_translation_subreactions_to_model(me_model):
         data.enzyme = info['enzymes']
         data.stoichiometry = info['stoich']
 
+
+def add_charged_tRNA_subreactions(me_model):
     # create subreaction for each codon. this will be used to model
     # the addition of charged tRNAs to the elongating peptide
     for codon in dogma.codon_table:
@@ -136,6 +141,12 @@ def add_translation_subreactions_to_model(me_model):
             subreaction_data.stoichiometry = {'gtp_c': -1,
                                               'gdp_c': 1, 'h_c': 1, 'pi_c': 1,
                                               tRNA: -1}  # 'h2o_c': 1
+
+    # Add subreactions for start codon and selenocysteine
+    for rxn, info in special_tRNA_subreactions.items():
+        data = SubreactionData(rxn, me_model)
+        data.enzyme = info['enzymes']
+        data.stoichiometry = info['stoich']
 
 # N terminal methionine cleaved
 methionine_cleaved = ['b4154', 'b1109', 'b3908', 'b3417', 'b3940', 'b0344',

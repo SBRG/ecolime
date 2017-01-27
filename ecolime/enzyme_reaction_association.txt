@@ -2075,7 +2075,3 @@ LCTSt3ipp	B2170-MONOMER OR B0070-MONOMER OR YDEA-MONOMER
 SELR	CPLX0-1601
 PLIPA1G180pp	MONOMER0-341
 GLUTRR	CPLX0-3741
-suf_2fe2s_formation	sufBC2DES_pathway_complex
-suf_4fe4s_formation	sufBC2DES_pathway_complex
-isc_2fe2s_formation	iscUS_cyaY_pathway_complex
-isc_4fe4s_formation	iscUS_cyaY_pathway_complex

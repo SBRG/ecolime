@@ -331,8 +331,7 @@ def get_tRNA_modification_procedures():
     correct_mod.pop('trdrd_c')
     correct_mod.pop('trdox_c')
 
-    # no reference for this, but it's free anyways. doesn't make sense to have
-    # it in, and it's probably not real anyways
+    # no reference for this, but it's free anyway
     correct_mod = mod['mnm5s2U_at_34']['carriers']
     correct_mod.pop('trdrd_c')
     correct_mod.pop('trdox_c')
