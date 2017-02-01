@@ -259,4 +259,39 @@ trna_modification = {'D_at_20A': {'machines': ['generic_Dus'],  # fixed
                                               'metabolites': {'nadph_c': -1,
                                                               'h_c': -1,
                                                               'nadp_c': 1}}
-                                               }
+                     }
+
+
+def get_tRNA_modification_procedures():
+
+    mod = trna_modification.copy()
+
+    # flavodoxin fix based off of doi:10.1016/j.febslet.2005.05.047
+    # "Two types of flavodoxins exist in E. coli. Flavodoxin
+    # I is encoded by fldA and is constitutively expressed in
+    # E. coli whereas flavodoxin II is encoded by fldB and is induced
+    # by oxidative stress [18]. Flavodoxin I has been shown
+    # to be an essential gene in E. coli. Flavodoxin II cannot replace
+    # flavodoxin I"
+
+    correct_mod = mod['ms2i6A_at_37']['carriers']
+    correct_mod["FLAVODOXIN1-MONOMER"] = correct_mod.pop('fldrd_c')
+    correct_mod["FLAVODOXIN1-MONOMER_mod_Oxidized"] = correct_mod.pop('fldox_c')
+
+    # iron sulfur clusters do sulfur transferase
+    # no indication that that a separate redox metabolite is needed
+    correct_mod = mod['s2C_at_32']['carriers']
+    correct_mod.pop('trdrd_c')
+    correct_mod.pop('trdox_c')
+
+    # also not needed for this one. PMID 10753862
+    correct_mod = mod['s4U_at_8']['carriers']
+    correct_mod.pop('trdrd_c')
+    correct_mod.pop('trdox_c')
+
+    # no reference for this, but it's free anyway
+    correct_mod = mod['mnm5s2U_at_34']['carriers']
+    correct_mod.pop('trdrd_c')
+    correct_mod.pop('trdox_c')
+
+    return mod

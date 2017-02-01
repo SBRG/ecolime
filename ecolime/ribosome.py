@@ -92,10 +92,10 @@ ribosome_stoich = {'30_S_assembly_1_(215)': {'stoich': {'RpsD_mono': 1,
 
 ribosome_modifications = {'gtp_bound_30S_assembly_factor_phase1':
                           {'enzyme': 'Era_dim',
-                           'stoich': {'gtp_c': 2,
-                                      'h2o_c': 2,
-                                      'h_c': -2,
-                                      'pi_c': -2},
+                           'stoich': {'gtp_c': -2,
+                                      'h2o_c': -2,
+                                      'h_c': 2,
+                                      'pi_c': 2},
                            'num_mods': 1},
 
                           'RbfA_mono_assembly_factor_phase1':
@@ -106,28 +106,8 @@ ribosome_modifications = {'gtp_bound_30S_assembly_factor_phase1':
                           'RimM_mono_assembly_factor_phase1':
                           {'enzyme': 'RimM_mono',
                            'stoich': {},
-                           'num_mods': 1},
-
-                          'Translation_initiation_factor_InfA':
-                          {'enzyme': 'InfA_mono',
-                           'stoich': {},
-                           'num_mods': 1},
-
-                          'Translation_initiation_factor_InfC':
-                          {'enzyme': 'InfC_mono',
-                           'stoich': {},
-                           'num_mods': 1},
-
-                          'Translation_gtp_initiation_factor_InfB':
-                          {'enzyme': 'InfB_mono',
-                           'stoich': {'gtp_c': 1,
-                                      'h2o_c': 1,
-                                      'h_c': -1,
-                                      'pi_c': -1},
-                           'num_mods': 1}}
-
-
-
+                           'num_mods': 1}
+                          }
 
 
 def add_ribosome(me_model, verbose=True):
@@ -151,8 +131,9 @@ def add_ribosome(me_model, verbose=True):
         mod_stoich = mod_dict[mod_id]['stoich']
         mod_enzyme = mod_dict[mod_id]['enzyme']
         num_mods = mod_dict[mod_id]['num_mods']
-        mod = add_modification_data(me_model, mod_id, mod_stoich, mod_enzyme)
-        ribosome_complex.modifications[mod.id] = -num_mods
+        add_modification_data(me_model, mod_id, mod_stoich, mod_enzyme)
+        mod = me_model.modification_data.get_by_id(mod_id)
+        ribosome_complex.modifications[mod.id] = num_mods
 
     ribosome_assembly = ribosome_stoich
     for process in ribosome_assembly:
@@ -169,7 +150,7 @@ rrna_modifications = {
                                                       'ahcys_c': 1,
                                                       'h_c': 1}},
                       'm2G_at_1516': {'machine': None,
-                                      # fixed, but still unknonw, NOT ybiN despite their ecocyc comments, the old 'MeT_16S_1516'
+                                      # fixed, but still unknown, NOT ybiN despite their ecocyc comments, the old 'MeT_16S_1516'
                                       'metabolites': {'amet_c': -1,
                                                       'ahcys_c': 1,
                                                       'h_c': 1}},

@@ -20,6 +20,22 @@ special_tRNA_subreactions = {
                    'generic_tRNA_UGA_cys__L_c': -1,
                    'cys__L_c': -1}}}
 
+initiation_subreactions = {'Translation_initiation_factor_InfA':
+                               {'enzymes': 'InfA_mono',
+                                'stoich': {}},
+
+                           'Translation_initiation_factor_InfC':
+                               {'enzymes': 'InfC_mono',
+                                'stoich': {}},
+
+                           'Translation_gtp_initiation_factor_InfB':
+                               {'enzymes': 'InfB_mono',
+                                'stoich': {'gtp_c': -1,
+                                           'h2o_c': -1,
+                                           'h_c': 1,
+                                           'pi_c': 1}}
+                           }
+
 elongation_subreactions = {'FusA_mono_elongation': {'enzymes': ['FusA_mono'],
                                                     'stoich': {'gtp_c': -1,
                                                                'h2o_c': -1,
@@ -30,15 +46,6 @@ elongation_subreactions = {'FusA_mono_elongation': {'enzymes': ['FusA_mono'],
                            'Tuf_gtp_regeneration': {'enzymes': ['Tsf_mono'],
                                                     'stoich': {}}}
 
-# 1 mRNA_nextRiboComplex + [1 b1211_assumedMonomer (pre-assigned) OR
-#  1 b2891_assumedMonomer (pre-assigned) OR 1 generic_RF (pre-assigned)
-#   depending on sequence ] + 1 b4375_assumedMonomer-gdp_FU.ID +
-#  b0172_assumedMonomer (pre-assigned) + 1 gtp + 2 h2o -->
-#  1 b3340_assumedMonomer-gdp +1 generic_Tuf-gdp + [1 b1211_assumedMonomer (not assigned) OR
-#   1 b2891_assumedMonomer (not assigned) OR 1 generic_RF (not assigned)
-#   depending on sequence] + 1  b4375_assumedMonomer-gdp + 3 h + 3 pi +
-#  1 gdp+ 1 LAST tRNA uncharged + 1 peptide +1  b0172_assumedMonomer
-#  (not assigned) + 1 ribosome (not assigned)
 # TODO Go through and double check elongation/termination ATP usage etc.
 termination_subreactions = {'PrfA_mono_mediated_termination':
                             {'enzymes': ['PrfA_mono'],
@@ -111,6 +118,12 @@ def add_translation_subreactions_to_model(me_model):
 
     # add subreactions associated with termination and postprocessing
     for rxn, info in termination_subreactions.items():
+        data = SubreactionData(rxn, me_model)
+        data.enzyme = info['enzymes']
+        data.stoichiometry = info['stoich']
+
+    # add subreactions associated with translation intiation
+    for rxn, info in initiation_subreactions.items():
         data = SubreactionData(rxn, me_model)
         data.enzyme = info['enzymes']
         data.stoichiometry = info['stoich']
