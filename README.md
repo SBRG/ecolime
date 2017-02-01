@@ -1,14 +1,14 @@
 # Ecolime
 
-Ecolime contains all functions required to read and process all information pertaining to E. coli K-12 MG1655. This includes information such as the subunit/cofactor composition of metabolic enzymes or the stoichiometry for tRNA charging reactions.
+Ecolime contains all the information and building scripts required to construct a ME-model for E. coli K-12 MG1655, *i*LE1675-ME using [COBRAme](https://github.com/sbrg/cobrame) 
 
-The proceesed information is then passed into the COBRAme codebase and integrated into a functional ME-model for E. coli
 
 ## Installation
 
 1. clone the repository
 2. run ```python setup.py develop --user```
-3. Run the latest Jupyter prototype notebook to build an ME-model using COBRAme
+3. Run build_ME_model.py or build_ME_model.ipynb to construct and save *i*LE1675-ME
+4. The saved model can be solved using solve_demo.ipynb
 
 
 codon table source:
