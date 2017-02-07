@@ -1,5 +1,5 @@
 m_name,me_name
-2fe1s_c,
+2fe1s_c,N/A
 3haACP_c,EG50003-MONOMER_mod_pan4p_mod_3ha
 3hcddec5eACP_c,EG50003-MONOMER_mod_pan4p_mod_3hcddec5e
 3hcmrs7eACP_c,EG50003-MONOMER_mod_pan4p_mod_3hcmrs7e
@@ -34,9 +34,9 @@ asntrna_c,N/A
 asptrna_c,N/A
 but2eACP_c,EG50003-MONOMER_mod_pan4p_mod_but2e
 butACP_c,EG50003-MONOMER_mod_pan4p_mod_but
-bwco1gdp_c,
-bwco_c,
-bwcogdp_c,
+bwco1gdp_c,N/A
+bwco_c,N/A
+bwcogdp_c,N/A
 cddec5eACP_c,EG50003-MONOMER_mod_pan4p_mod_cddec5e
 cdec3eACP_c,EG50003-MONOMER_mod_pan4p_mod_cdec3e
 cystrna_c,N/A
@@ -56,7 +56,7 @@ flxr_c,FLAVODOXIN1-MONOMER
 flxso_c,FLAVODOXIN1-MONOMER_mod_Oxidized
 fmettrna_c,N/A
 glntrna_c,N/A
-glutrna_c,N/A
+glutrna_c,generic_tRNA_GAG_glu__L_c
 glytrna_c,N/A
 gmeACP_c,EG50003-MONOMER_mod_pan4p_mod_gme
 grxox_c,GLUTAREDOXIN-MONOMER_mod_Oxidized

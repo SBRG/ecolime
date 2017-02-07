@@ -1,12 +1,15 @@
 from collections import defaultdict
 import pandas as pd
+from sympy import Basic, Symbol
+from os.path import dirname, join, abspath
+
 import cobra.test
 from cobrame import dogma
-from os.path import dirname, join, abspath
 
 ecoli_data_files_dir = dirname(abspath(__file__))
 
 del dirname, abspath
+
 
 def fixpath(filename):
     return join(ecoli_data_files_dir, filename)
@@ -36,7 +39,7 @@ def get_biomass_composition(model, solution=None):
 
 
 def RNA_to_protein_ratio(model, solution=None):
-    composition = model.get_biomass_composition(solution=solution)
+    composition = get_biomass_composition(solution=solution)
     RNA_to_protein = (composition['mRNA'] + composition['tRNA'] +
                       composition['rRNA'] + composition['ncRNA']) / \
                      (composition['Protein'] +
@@ -46,7 +49,7 @@ def RNA_to_protein_ratio(model, solution=None):
 
 def get_RNA_fractions_dict(model, solution=None):
     RNA_fractions = {}
-    composition = model.get_biomass_composition(solution=solution)
+    composition = get_biomass_composition(solution=solution)
 
     tRNA_to_RNA = (composition['tRNA']) / (
         composition['mRNA'] + composition['tRNA'] + composition['rRNA'] +
@@ -136,7 +139,7 @@ def make_composition_piechart(model, kind='Biomass', solution=None):
     summary = {}
     if kind == 'Biomass':
         summary['Biomass composition'] = \
-            model.get_biomass_composition(solution=solution)
+            get_biomass_composition(solution=solution)
         frame = pandas.DataFrame.from_dict(summary) / solution.f
 
     elif kind == 'Inner_Membrane':
@@ -178,6 +181,13 @@ def compare_to_ijo_biomass(model, kind='amino_acid', solution=None):
     biomass_rxn = ijo.reactions.Ec_biomass_iJO1366_core_53p95M
     me_demand = defaultdict(float)
 
+    # These are reactions that incorporate metabolites into biomass
+    skip_list = ['SummaryVariable', 'ComplexFormation',
+                 'TranscriptionReaction', 'TranslationReaction']
+
+    growth_rate = model.solution.x_dict['biomass_dilution']
+    mu = Symbol('mu')
+
     if solution:
         model.solution = solution
 
@@ -190,10 +200,18 @@ def compare_to_ijo_biomass(model, kind='amino_acid', solution=None):
             for mod, num in d.modifications.items():
                 me_demand[mod.replace('mod_', '')] += d.formation.x * num
     else:
-        raise('type must be "amino_acid" "cofactors" or ...')
+        for met_id in biomass_rxn.metabolites:
+            met = model.metabolites.get_by_id(met_id.id)
+            for r in met.reactions:
+                if r.__class__.__name__ not in skip_list:
+                    stoich = r._metabolites[met]
+                    if isinstance(stoich, Basic):
+                        stoich = stoich.subs(mu, growth_rate)
+                    me_demand[met_id.id] += r.x * stoich
+
 
     compare ={}
-    compare['ME_gr_%.2f' % model.solution.x_dict['biomass_dilution']] = me_demand.copy()
+    compare['ME_gr_%.2f' % growth_rate] = me_demand.copy()
     compare['Measured'] = {}
     for met in me_demand:
 

@@ -1,53 +1,24 @@
 from cobrame import (ComplexData, Complex, GenericData, ModificationData,
                      StoichiometricData)
 from cobrame.util import building
+import cobra
 
 # these guys can transfer assembled iron sulfur clusters to the various enzymes
 fes_transfer = {"erpA": "CPLX0-7617", "iscA": "IscA_tetra",
                 "sufA": "CPLX0-7824"}
-fes_synthesizing_complexes = {
-    "sufBC2DES_pathway_complex": {"CPLX0-1341": 1,
-                                  "CPLX0-246_CPLX0-1342_mod_pydx5p": 1},
-
-    "iscUS_cyaY_pathway_complex": {"IscU": 1,
-                                   "IscS_mod_2:pydx5p": 1,
-                                   "EG11653-MONOMER": 1}}
-
-fes_transfer_reactions = {
-    "suf_2fe2s_formation": {"enzyme": "sufBC2DES_pathway_complex",
-                            "stoich": {'2fe2s_c': 1.0,
-                                       'ala__L_c': 2.0,
-                                       'cys__L_c': -2.0,
-                                       'fad_c': 1.0,
-                                       'fadh2_c': -1.0,
-                                       'fe3_c': -2.0,
-                                       'h_c': 6.0}},
-    "suf_4fe4s_formation": {"enzyme": "sufBC2DES_pathway_complex",
-                            "stoich": {'4fe4s_c': 1.0,
-                                       'ala__L_c': 4.0,
-                                       'cys__L_c': -4.0,
-                                       'fad_c': 3.0,
-                                       'fadh2_c': -3.0,
-                                       'fe3_c': -4.0,
-                                       'h_c': 6.0}},
-    'isc_2fe2s_formation': {"enzyme": "iscUS_cyaY_pathway_complex",
-                            "stoich": {'2fe2s_c': 1.0, 'ala__L_c': 2.0,
-                                       'cys__L_c': -2.0, 'fe2_c': -2.0,
-                                       'h_c': 4.0}},
-    'isc_4fe4s_formation': {"enzyme": "iscUS_cyaY_pathway_complex",
-                            "stoich": {'4fe4s_c': 1.0,
-                                       'ala__L_c': 4.0,
-                                       'cys__L_c': -4.0,
-                                       'fad_c': 1.0,
-                                       'fadh2_c': -1.0,
-                                       'fe2_c': -4.0,
-                                       'h_c': 6.0}}}
 
 # Add known specific chaperone
 fes_chaperones = {'CPLX0-1762': 'G6712-MONOMER'}  # FE-S modification
 
 # complexes that can transfer an iron sulfur cluster to an enzyme target
-generic_fes_transfer_complexes = ['CPLX0-7617', 'CPLX0-7824', 'IscA_tetra']
+generic_fes_transfer_complexes = {
+    'generic_2fe2s_transfer_complex': ['CPLX0-7617_mod_1:2fe2s',
+                                       'CPLX0-7824_mod_1:2fe2s',
+                                       'IscA_tetra_mod_1:2fe2s'],
+    'generic_4fe4s_transfer_complex': ['CPLX0-7617_mod_1:4fe4s',
+                                       'CPLX0-7824_mod_1:4fe4s',
+                                       'IscA_tetra_mod_1:4fe4s']
+}
 
 lipoate_modifications = {
     "mod_lipo_c": {"enzyme": 'EG11796-MONOMER',
@@ -71,23 +42,36 @@ bmocogdp_chaperones = {'TMAOREDUCTI-CPLX': 'EG12195-MONOMER',
 
 def add_iron_sulfur_modifications(me_model):
 
-    for i in generic_fes_transfer_complexes:
-        me_model.add_metabolites([Complex(i)])
+    for name, complexes in generic_fes_transfer_complexes.items():
+        generic_fes_transfer = GenericData(name, me_model, complexes)
+        generic_fes_transfer.create_reactions()
 
-    generic_fes_transfer = GenericData("generic_fes_transfer", me_model,
-                                       generic_fes_transfer_complexes)
-    generic_fes_transfer.create_reactions()
+    for fes in ['2fe2s_c', '4fe4s_c']:
+        me_model.add_metabolites([cobra.Metabolite(fes)])
+        for name in fes_transfer.values():
+            rxn = cobra.Reaction('_'.join([name, fes, 'unloading']))
+            me_model.add_reactions([rxn])
+            rxn.add_metabolites({name + '_mod_1:' + fes.replace('_c', '') :-1,
+                                 fes: 1,
+                                 name: 1})
 
     # add fes transfer enzymes to proper modification data
-    me_model.modification_data.mod_2fe2s_c.enzyme = generic_fes_transfer.id
-    me_model.modification_data.mod_2fe2s_c.keff = 65.
-    me_model.modification_data.mod_4fe4s_c.enzyme = generic_fes_transfer.id
-    me_model.modification_data.mod_4fe4s_c.keff = 65.
+    mod_2fe2s = me_model.modification_data.mod_2fe2s_c
+    mod_2fe2s.enzyme = 'generic_2fe2s_transfer_complex'
+    mod_2fe2s.stoichiometry = {'2fe2s_c': -1.}
+
+    mod_4fe4s = me_model.modification_data.mod_4fe4s_c
+    mod_4fe4s.enzyme = 'generic_4fe4s_transfer_complex'
+    mod_4fe4s.stoichiometry = {'4fe4s_c': -1.}
+
+    mod_3fe4s = me_model.modification_data.mod_3fe4s_c
+    mod_3fe4s.enzyme = 'generic_4fe4s_transfer_complex'
+    mod_3fe4s.stoichiometry = {'4fe4s_c': -1., 'fe2_c': 1}
 
     for chaperone in set(fes_chaperones.values()):
         new_mod = ModificationData('mod_2fe2s_c_' + chaperone, me_model)
-        new_mod.enzyme = chaperone
-        new_mod.stoichiometry = {'2fe2s_c': -1}
+        new_mod.enzyme = [chaperone, 'generic_2fe2s_transfer_complex']
+        new_mod.stoichiometry = {'2fe2s_c': -1.}
 
     for cplx_data in me_model.modification_data.get_by_id(
             'mod_2fe2s_c').get_complex_data():
@@ -96,27 +80,6 @@ def add_iron_sulfur_modifications(me_model):
             cplx_data.modifications['mod_2fe2s_c_' + fes_chaperones[
                 cplx_id]] = \
                 cplx_data.modifications.pop('mod_2fe2s_c')
-
-
-def add_iron_sulfur_reactions_and_complexes(me_model):
-    for fes_complex, stoich in fes_synthesizing_complexes.items():
-        complex_data = ComplexData(fes_complex, me_model)
-        complex_data.stoichiometry = stoich
-        complex_data.create_complex_formation()
-
-    for key, values in fes_transfer_reactions.items():
-        # Define stoichiometric data
-        stoich_data = StoichiometricData(key, me_model)
-        stoich_data._stoichiometry = values['stoich']
-        stoich_data.lower_bound = 0.
-        stoich_data.upper_bound = 1000.
-
-        # Create MetabolicReaction and associate stoichiometric data
-        complex_id = values['enzyme']
-        building.add_metabolic_reaction_to_model(me_model, stoich_data.id,
-                                                 'forward',
-                                                 complex_id=complex_id,
-                                                 update=True)
 
 
 def add_lipoate_modifications(me_model):

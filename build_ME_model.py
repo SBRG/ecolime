@@ -1,11 +1,11 @@
 
 # coding: utf-8
 
-# # Build iLE1675-ME
+# # Build *i*LE1678-ME
 
 # We will build an ME model from the NC_000913.2 Genbank file, the iJO1366 M model, and the complex reconstruction from iJL1678-ME
 
-# In[1]:
+# In[ ]:
 
 # python imports
 import re
@@ -35,23 +35,23 @@ from cobrame.solve.symbolic import compile_expressions
 
 
 # ## Part 1: Create minimum solveable ME-model
-# This will include the bare minimum representations of 
+# This will include the bare minimum representations of
 # - Transcription Reactions
 # - Translation Reactions
 # - Complex Formation Reactions
 # - Metabolic Reactions
-# 
+#
 # that still produce a working ME-model
-# 
+#
 # ### 1) Create Model Object and populate its global info
 # This includes important parameters that are used to calculate coupling constraints
 # as well as organism-specific information such as peptide processing types
 
-# In[3]:
+# In[ ]:
 
 # Define Models
 ijo = cobra.io.load_json_model(join(flat_files.ecoli_files_dir, 'iJO1366.json'))
-me = cobrame.MEmodel('iLE1675-ME')
+me = cobrame.MEmodel('iLE1678-ME')
 
 # "Translational capacity" of organism
 me.global_info['kt'] =  4.5 #(in h-1)scott 2010, RNA-to-protein curve fit
@@ -83,7 +83,7 @@ me.global_info["peptide_processing_subreactions"] = {"peptide_deformylase_proces
                                                      "peptide_chain_release": 1,
                                                      "ribosome_recycler": 1}
 me.global_info["translation_elongation_subreactions"] = ['FusA_mono_elongation', 'Tuf_gtp_regeneration']
-me.global_info['translation_start_subreactions'] = ['fmet_addition_at_START', 
+me.global_info['translation_start_subreactions'] = ['fmet_addition_at_START',
                                                     'Translation_initiation_factor_InfA',
                                                     'Translation_initiation_factor_InfC',
                                                     'Translation_gtp_initiation_factor_InfB']
@@ -109,41 +109,41 @@ me.global_info['modification_formulas'] = df.T.to_dict()
 
 # ### 2) Load metabolites and build Metabolic reactions
 # The below reads in:
-# - Required 
+# - Required
 #  * **reaction_matrix.txt** (reaction matrix w/ reactions unlumped, metabolites renamed etc.)
 #  * **metabolites.txt** (metabolite properties)
 #  * **reactions.txt** (info on reversiblity, whether enzyme catalyzed etc.)
-#  
+#  * **m_to_me_mets.csv** (mapping of enzymes/complexes used in M-model to their ME-model compatible ID)
+#  * **protein_complexes.txt** (protein subunit stoichiometry of all complexes, used to identify metabolites as such)
+#
 # It creates a new e coli M-model from this info then incorporates it into the ME-model using *add_m_model_content*. metabolites are added directly reactions are added as StoichiometricData
-# 
+#
 # Metabolite types have different properties in an ME-model so enzyme complexes need added to the model as Complexes not Metabolites. Components in the E. coli M-model that are actually Complexes are compiled in *complex_list*
 
-# In[4]:
+# In[ ]:
 
-m_model = flat_files.get_m_model()
+#m_model = flat_files.get_m_model()
+m_model = flat_files.process_m_model(ijo, 'metabolites.txt', 'm_to_me_mets.csv', 'reactions.txt',
+                                'reaction_matrix.txt', 'protein_complexes.txt',
+                                defer_to_rxn_matrix=['GLUTRR', 'PAPSR2'])
+m_model.reactions.EX_glc_e.id = 'EX_glc__D_e'
+m_model.repair()
 # some of the "metabolites" in iJO1366 "M" model are actually complexes. We pass those in
 # so they get created as complexes, not metabolites.
-complex_list = []
-complex_list.extend(i.id for i in m_model.metabolites if i.id.startswith("CPLX"))
-complex_list.extend(i.id for i in m_model.metabolites if i.id.startswith("EG"))
-complex_list.extend(i.id for i in m_model.metabolites if "-MONOMER" in i.id)
-complex_list.extend(i.id for i in m_model.metabolites if "-CPLX" in i.id)
-complex_list.extend(i.id for i in m_model.metabolites if "_mod_" in i.id)
-# temp fix
-complex_list.extend(i.id for i in m_model.metabolites if i.id.startswith("Isc"))
-complex_list.extend(i.id for i in m_model.metabolites if i.id.startswith("Suf"))
-complex_list = set(complex_list)
-building.add_m_model_content(me, m_model, complex_metabolite_ids=complex_list)
+complexes = flat_files.get_complex_subunit_stoichiometry('protein_complexes.txt').keys()
+complex_set = set([i.id for i in m_model.metabolites if i.id.split('_mod_')[0] in complexes])
+building.add_m_model_content(me, m_model, complex_metabolite_ids=complex_set)
 
 
-#  - Read "The CO and CN− ligands to the active site Fe in [NiFe]-hydrogenase of Escherichia coli have different metabolic origins" for insight into the metabolic origin of the NiFeCoCN2_c group
+# flat_files.get_complex_subunit_stoichiometry('protein_complexes.txt')
 
-# In[5]:
+# In[ ]:
 
 # This adds exchange reactions for metabolites not contained in iJO1366
 # Some of these cannot be produced by the model (C10H805) so they are added here
 exchange_list = [
     'LI_c',
+    'pqq_e',
     'cs_e',
     'tl_c', # added in old ME but not metioned in supplement tables
     'cu_c', # needed for NDH activity. TODO fix this with new reactions
@@ -157,7 +157,7 @@ for met_id in exchange_list:
     r.reaction = met_id + " <=> "
 
 
-# ### 3) Add Transcription and Translation 
+# ### 3) Add Transcription and Translation
 # The below reads in:
 # - Required
 #  * **NC_000913.2.gb** (Genbank sequence annotation)
@@ -165,12 +165,12 @@ for met_id in exchange_list:
 # - Optional
 #  * **TUs_from_ecocyc.txt** (TU definitions, start/stop positions, etc.)
 #  * **ecolime/translation.py** (dictionary of gene to frameshift mutation)
-#  
+#
 # To construct the bare minimimum components of a transcription and translation reactions. For example, transcription reactions at this point include nucleotides and the synthesized RNAs.
 
-# In[6]:
+# In[ ]:
 
-gb_filename = join(flat_files.ecoli_files_dir,'NC_000913.2.gb')                                                                                    
+gb_filename = join(flat_files.ecoli_files_dir,'NC_000913.2.gb')
 TU_df = pandas.read_csv(join(flat_files.ecoli_files_dir,'TUs_from_ecocyc.txt'), delimiter="\t", index_col=0)
 
 building.build_reactions_from_genbank(me, gb_filename, TU_df, verbose=False,
@@ -179,25 +179,26 @@ building.build_reactions_from_genbank(me, gb_filename, TU_df, verbose=False,
 
 
 # ### 4) Add in complex Formation without modifications (for now)
-# 
+#
 # The below reads in:
 # - Required
 #  * **protein_complexes.txt** (Metabolic complexes' protein subunit stoichiometries)
 #  * **protein_modification.txt** (Type and number of modifications for each protein)
 
-# In[7]:
+# In[ ]:
 
 # complex_stoichiometry_dict is a dict of {'complex_id': [{'bnum' : count}]}
-rna_components = {"b3123"} # component id should have 'RNA_ instead' of 'protein_'
+rna_components = {"b3123", "b0455"} # component id should have 'RNA_ instead' of 'protein_'
 # get Metabolic Complex composition from ECOLIme
-complex_stoichiometry_dict, complex_modification_dict = flat_files.get_complex_composition(rna_components)
+complex_stoichiometry_dict = flat_files.get_complex_subunit_stoichiometry('protein_complexes.txt', rna_components)
 # add complexes to model
+complex_modification_dict = flat_files.get_complex_modifications('protein_modification.txt', 'protein_complexes.txt')
 building.add_model_complexes(me, complex_stoichiometry_dict, complex_modification_dict, verbose=False)
 
 # remove modifications. they will be added back in later
 for data in me.complex_data:
     data.modifications = {}
-    
+
 # add formation reactions for each of the ComplexDatas
 for cplx_data in me.complex_data:
     formation = cplx_data.formation
@@ -208,12 +209,12 @@ for cplx_data in me.complex_data:
 
 
 # ### 5) Add dummy reaction to model and unmodeled_protein_fraction
-# 
+#
 # Includes the transcription, translation, complex_formation, and metabolic reaction. Sequence based on prevelance of each codon found in *E. coli*.
 #  - Required
 #      * [**codon_usage.csv**](http://openwetware.org/wiki/Escherichia_coli/Codon_usage) (codon prevelance)
 
-# In[8]:
+# In[ ]:
 
 seq = "ATG"
 codons = pandas.read_csv(join(flat_files.ecoli_files_dir, "codon_usage.csv"), index_col=0)
@@ -233,17 +234,17 @@ rxn.add_metabolites({'protein_biomass': -mass, 'protein_dummy': -1,
                      'dummy_protein_biomass': mass})
 
 
-# ### 6) Assocated Complexes and build Metabolic Reactions 
+# ### 6) Assocated Complexes and build Metabolic Reactions
 # - Required
 #     * **enzyme_reaction_association.txt**
 #     * **reactions.txt** (gives reaction name, reversiblity, source and whether reaction is spontaneous)
-# 
+#
 
-# In[9]:
+# In[ ]:
 
 # associate reaction id with the old ME complex id (including modifications)
 rxn_to_cplx_dict = flat_files.get_reaction_to_complex()
-rxn_info = flat_files.get_reaction_info_frame()
+rxn_info = flat_files.get_reaction_info_frame('reactions.txt')
 
 # Required to add dummy reaction as spontaneous reaction
 rxn_info = rxn_info.append(pandas.Series({'description': 'dummy reaction', 'is_reversible': 0,
@@ -253,17 +254,17 @@ building.add_reactions_from_stoichiometric_data(me, rxn_to_cplx_dict, rxn_info, 
 
 
 # ### 7) Incorporate remaining biomass constituents
-# There are leftover components from the *i*JO1366 biomass equation that either: 
+# There are leftover components from the *i*JO1366 biomass equation that either:
 # 1. have no mechanistic function in the model (glycogen)
 # 2. are cofactors that are regenerated (nad)
-# 
+#
 # Applies demands and coefficients from the *i*JO1366 biomass objective function
 
-# In[10]:
+# In[ ]:
 
-me.ngam = 13.94
-me.gam = 51.2
-me.unmodeled_protein_fraction = .4
+me.ngam = 16.68
+me.gam = 25.40
+me.unmodeled_protein_fraction = .275
 
 biomass_components = {
     "glycogen_c": -.023 / (me.metabolites.glycogen_c.formula_weight / 1000.),
@@ -272,7 +273,7 @@ biomass_components = {
     "udcpdp_c": -5.5e-05,
     "coa_c": -0.000576,
     "ribflv_c": -0.000223,
-    "fad_c": -0.000223,
+    "nadp_c": -0.000447,
     "mlthf_c": -0.000223,
     "thf_c": -0.000223,
     "10fthf_c": -0.000223
@@ -297,7 +298,7 @@ rxn.add_metabolites({met: -1, me._biomass: 1})
 #  #### Lipid components
 #  Metabolites and coefficients from *i*JO1366 biomass objective function
 
-# In[11]:
+# In[ ]:
 
 # Find biomass constituents with 3 numbers followed by a compartment in the BOF
 lipid = re.compile('\d{3}_.')
@@ -305,10 +306,10 @@ lipid_demand = {}
 for key, value in ijo.reactions.Ec_biomass_iJO1366_WT_53p95M.metabolites.items():
     if lipid.search(key.id):
         lipid_demand[key.id] = abs(value)
-                
+
 for met, requirement in lipid_demand.items():
     component_mass = me.metabolites.get_by_id(met).formula_weight / 1000.
-    rxn = cobrame.Reaction('Demand_' + met)
+    rxn = cobrame.SummaryVariable('Demand_' + met)
     me.add_reaction(rxn)
     rxn.add_metabolites({met: -1 * requirement,
                          'component_demand_biomass': component_mass * requirement})
@@ -319,22 +320,19 @@ for met, requirement in lipid_demand.items():
 requirement = 0.01945  # in mmol/gDW
 met = me.metabolites.get_by_id('kdo2lipid4_e')
 component_mass = met.formula_weight / 1000.
-rxn = cobrame.MetabolicReaction('Demand_' + met.id)
+rxn = cobrame.SummaryVariable('Demand_' + met.id)
 me.add_reaction(rxn)
 
-data = cobrame.StoichiometricData(rxn.id,me)
-data.stoichiometry.update({met.id : -1.*requirement,
-                           'component_demand_biomass': component_mass * requirement})
-data.lower_bound = mu
-data.upper_bound = mu
-rxn.stoichiometric_data = data
-rxn.update()
+rxn.add_metabolites({met.id : -1.*requirement,
+                     'component_demand_biomass': component_mass * requirement})
+rxn.lower_bound = mu
+rxn.upper_bound = mu
 
 
 # #### DNA Demand Requirements
 # Added based on growth rate dependent DNA levels as in [O'brien EJ et al 2013](https://www.ncbi.nlm.nih.gov/pubmed/24084808)
 
-# In[12]:
+# In[ ]:
 
 dna_demand_stoich = ecolime.DNA_replication.return_gr_dependent_dna_demand(
     me.global_info['GC_fraction'])
@@ -349,16 +347,16 @@ dna_mw = 0
 for met, value in me.reactions.DNA_replication.metabolites.items():
     if met.id != 'ppi_c':
         dna_mw -= value * dna_mw_no_ppi[met.id.replace('_c','')] / 1000.
-        
+
 DNA_replication.add_metabolites({DNA_biomass: dna_mw})
 DNA_replication.lower_bound = mu
 DNA_replication.upper_bound = mu
 
 
 # **Note: From this point forward, executing every codeblock should result in a solveable ME-model**
-# 
+#
 # ------
-# 
+#
 # ## Part 2: Add metastructures to solving ME-model
 # This includes:
 # 1. ribosome
@@ -367,7 +365,7 @@ DNA_replication.upper_bound = mu
 
 # Sometimes multiple entities can perform the same role. To prevent a combinatorial explosion of possibilities, we can create  "generic" version, where any of those entities can fill in.
 
-# In[13]:
+# In[ ]:
 
 for generic, components in ecoli_k12.generic_dict.items():
     cobrame.GenericData(generic, me, components).create_reactions()
@@ -376,7 +374,7 @@ for generic, components in ecoli_k12.generic_dict.items():
 # ### 1) Add ribosome
 # This uses the ribosome composition definition in **ecolime/ribosome.py**
 
-# In[14]:
+# In[ ]:
 
 ecolime.ribosome.add_ribosome(me, verbose=False)
 
@@ -384,10 +382,10 @@ ecolime.ribosome.add_ribosome(me, verbose=False)
 # ### 2) Add charged tRNA reactions
 
 # The tRNA charging reactions were automatically added when loading the genome from the genbank file. However, the charging reactions still need to be made aware of the tRNA synthetases which are responsible.
-# 
+#
 # Uses **amino_acid_tRNA_synthetase.json**
 
-# In[15]:
+# In[ ]:
 
 with open(join(flat_files.ecoli_files_dir, "amino_acid_tRNA_synthetase.json"), "rb") as infile:
     aa_synthetase_dict = json.load(infile)
@@ -396,10 +394,10 @@ for data in me.tRNA_data:
 
 
 # Generic charged tRNAs are added to translation reactions via SubreactionData below.
-# 
+#
 # All new data added in this block contained in **ecolime/translation.py**
 
-# In[16]:
+# In[ ]:
 
 ecolime.translation.add_charged_tRNA_subreactions(me)
 for data in me.translation_data:
@@ -411,19 +409,19 @@ for data in me.translation_data:
 
     for subreaction in data.translation_termination_subreactions:
         data.subreactions[subreaction] = 1
-        
+
     for subreaction in data.translation_termination_subreactions:
         data.subreactions[subreaction] = 1
 
 
 # ### 3) Add Transcription Metacomplexes
 # #### RNA Polymerase
-# 
+#
 # Data for RNA_polymerase composition fround in **ecolime/transcription**
-# 
+#
 # Uses *TU_df* from **TUs_from_ecocyc.txt**, above
 
-# In[17]:
+# In[ ]:
 
 for met in me.global_info['RNA_polymerase']:
     RNAP_obj = cobrame.RNAP(met)
@@ -442,10 +440,10 @@ for TU_id in TU_df.index:
 
 
 # #### Degradosome (both for RNA degradation and RNA splicing)
-# 
+#
 # All new data contained in **ecolime/ecoli_k12.py**
 
-# In[18]:
+# In[ ]:
 
 data = cobrame.ComplexData('RNA_degradosome', me)
 for subunit, value in ecoli_k12.RNA_degradosome.items():
@@ -457,7 +455,7 @@ data = cobrame.ModificationData('RNA_degradation_machine', me)
 data.enzyme = 'RNA_degradosome'
 
 data = cobrame.ModificationData('RNA_degradation_atp_requirement', me)
-# .25 water equivaltent for atp hydrolysis and 1 h20 equivalent for to 
+# .25 water equivaltent for atp hydrolysis and 1 h20 equivalent for to
 # restore OH group in nucleotide monophosphate during RNA hydrolysis
 data.stoichiometry = {'atp_c': -.25, 'h2o_c': -1.25, 'adp_c': .25,
                       'pi_c': .25, 'h_c': 1.25}
@@ -468,18 +466,18 @@ transcription.add_RNA_splicing(me)
 # ------
 # ## Part 3: Add remaining modifications
 # rRNA modifications handled in *add_ribosome*
-# 
+#
 # ### 1) Add complex modifications
 # *complex_modification_dict* from **protein_modification.text**, above
-# 
+#
 # The rest of the new data contained in **ecolime/modifications.py**
 
-# In[19]:
+# In[ ]:
 
 for complex_id, info in complex_modification_dict.items():
     modifications = {}
     for mod, value in info['modifications'].items():
-        # stoichiometry of modification determined in 
+        # stoichiometry of modification determined in
         # modification_data.stoichiometry
         modifications['mod_' + mod] = abs(value)
     me.complex_data.get_by_id(complex_id).modifications = modifications
@@ -490,9 +488,6 @@ ecolime.modifications.add_lipoate_modifications(me)
 # bmocogdp modifications have multiple selective chaperones that transfer the metabolite
 # to the target complexes
 ecolime.modifications.add_bmocogdp_modifications(me)
-
-# add reactions needed to synthesize iron sulfur clusters
-ecolime.modifications.add_iron_sulfur_reactions_and_complexes(me)
 
 # add ModificationData for iron sulfur clusters
 ecolime.modifications.add_iron_sulfur_modifications(me)
@@ -510,9 +505,9 @@ for cplx_data in me.complex_data:
 # New data from:
 # 1. **ecolime/tRNA_charging.py** (read via *get_tRNA_modification_procedures()*)
 # 2. **post_transcriptional_modification_of_tRNA.txt** (modification types per tRNA)
-# 
+#
 
-# In[20]:
+# In[ ]:
 
 for mod, components in ecolime.tRNA_charging.get_tRNA_modification_procedures().items():
     tRNA_mod = cobrame.ModificationData(mod, me)
@@ -524,7 +519,7 @@ for mod, components in ecolime.tRNA_charging.get_tRNA_modification_procedures().
             if stoich < 0:
                 tRNA_mod.enzyme += [carrier]
             tRNA_mod.stoichiometry[carrier] = stoich
-            
+
 # tRNA_modifications = {tRNA_id: {modifications: count}}
 tRNA_modifications=flat_files.get_tRNA_modification_targets()
 for tRNA in tRNA_modifications:
@@ -537,7 +532,7 @@ for tRNA in tRNA_modifications:
 # ### 1) Add translation related subreactions
 # All new data from **ecolime/translation.py**
 
-# In[21]:
+# In[ ]:
 
 # add the translation subreaction data objects to model
 translation.add_translation_subreactions_to_model(me)
@@ -549,7 +544,7 @@ terminator_dict=translation.translation_stop_dict
 
 for data in me.translation_data:
     data.term_enzyme = terminator_dict.get(data.last_codon)
-    
+
     locus_id = data.id
     if locus_id in methionine_cleaved:
         data.subreactions['N_terminal_methionine_cleavage'] = 1
@@ -558,7 +553,7 @@ for data in me.translation_data:
         if locus_id in folding_dict[folding_type]:
             data.subreactions[folding_type] = 1
 
-    # This block was ran above, but should be ran again to 
+    # This block was ran above, but should be ran again to
     # incorporate any subreactions not added previously
     for subreaction in data.translation_start_subreactions:
         data.subreactions[subreaction] = 1
@@ -576,7 +571,7 @@ for data in me.translation_data:
 # ### 2) Add transcription related subreactions
 # All new data from **ecolime/transcription.py**
 
-# In[22]:
+# In[ ]:
 
 for subreaction in transcription.transcription_subreactions:
     subreaction_data = cobrame.SubreactionData(subreaction, me)
@@ -600,12 +595,12 @@ for transcription_data in me.transcription_data:
 
 # ----
 # ## Part 5: Add in translocation
-# 
+#
 # New data from:
 # 1. **peptide_compartment_and_pathways.txt** (Protein compartment and translocation pathway for each membrane complex)
 # 2. **ecolime/translocation.py** (definitions of each translocation pathway)
 
-# In[23]:
+# In[ ]:
 
 # Add TranslocationData
 transloc = pandas.read_csv(join(flat_files.ecoli_files_dir,"peptide_compartment_and_pathways2.txt"),
@@ -650,7 +645,7 @@ for cplx, stoich in new_stoich.items():
 # ## Part 6: Add Cell Wall Components
 # All new data from **ecolime/translocation.py**
 
-# In[24]:
+# In[ ]:
 
 compartment_dict = {}
 for prot, compartment in transloc.set_index('Protein').Protein_compartment.to_dict().items():
@@ -659,7 +654,7 @@ for prot, compartment in transloc.set_index('Protein').Protein_compartment.to_di
 
 # #### Add lipid modification ModificationData
 
-# In[25]:
+# In[ ]:
 
 lipid_modifications = ecolime.translocation.lipid_modifications
 
@@ -675,14 +670,14 @@ data.enzyme = 'EG10168-MONOMER'
 data = cobrame.ModificationData('mod2_pe160_p', me)
 data.stoichiometry = {'pe160_p': -1, '2agpe160_p': 1}
 data.enzyme = 'EG10168-MONOMER'
-    
-ecolime.translocation.add_lipoprotein_formation(me, compartment_dict, 
+
+ecolime.translocation.add_lipoprotein_formation(me, compartment_dict,
                                                 membrane_constraints=False)
 
 
 # #### Correct complex formation IDs if they contain lipoproteins
 
-# In[26]:
+# In[ ]:
 
 for gene in ecolime.translocation.lipoprotein_precursors.values():
     compartment = compartment_dict.get(gene)
@@ -697,7 +692,7 @@ for gene in ecolime.translocation.lipoprotein_precursors.values():
 # #### Braun's lipoprotein demand
 # Metabolites and coefficients as defined in [Liu et al 2014](http://bmcsystbiol.biomedcentral.com/articles/10.1186/s12918-014-0110-6)
 
-# In[27]:
+# In[ ]:
 
 rxn = cobrame.SummaryVariable('core_structural_demand_brauns')
 met = cobrame.Constraint('component_demand_biomass')
@@ -707,7 +702,7 @@ met1_mass = met1.formula_weight / 1000.
 met2 = me.metabolites.get_by_id('protein_b1677_lipoprotein_Outer_Membrane')
 met2_mass = met2.formula_weight / 1000.
 me.add_reaction(rxn)
-rxn.add_metabolites({met1 : -0.013894, met2: -0.003597, 'component_demand_biomass':(0.013894 * met1_mass + 
+rxn.add_metabolites({met1 : -0.013894, met2: -0.003597, 'component_demand_biomass':(0.013894 * met1_mass +
                                                                                     0.003597 * met2_mass)},
                     combine=False)
 rxn.lower_bound = mu
@@ -716,11 +711,11 @@ rxn.upper_bound = mu
 
 # -----
 # ## Part 7: Set keffs
-# 
+#
 # Either entirely based on SASA or using fit keffs from [Ebrahim et al 2016](https://www.ncbi.nlm.nih.gov/pubmed/27782110?dopt=Abstract)
 # # Set keffs to sasa fluxes centered around 65.
 # me.set_SASA_keffs(65)
-# In[28]:
+# In[ ]:
 
 keff_list = []
 keffs = flat_files.get_reaction_keffs(me, verbose=True)
@@ -756,7 +751,7 @@ me.subreaction_data.UAA_generic_RF_mediated_termination.keff = 1753.423851503457
 # rxn = cobra.Reaction('ndh_flux_split_constraint')
 # me.add_reaction(rxn)
 # rxn.reaction = 'ndh1_constraint + ndh2_constraint ->'
-# In[29]:
+# In[ ]:
 
 # Add reaction subsystems from iJO to model
 for rxn in ijo.reactions:
@@ -768,17 +763,24 @@ for rxn in ijo.reactions:
         r.subsystem = rxn.subsystem
 
 
-# #### "Carriers"
+# #### Add enzymatic coupling for "carriers"
+# These are enzyme complexes that act as metabolites in a metabolic reaction (i.e. are metabolites in iJO1366)
 
-# In[30]:
+# In[ ]:
 
-apoACP = me.metabolites.get_by_id('EG50003-MONOMER_mod_pan4p')
-for reaction in me.metabolites.get_by_id('EG50003-MONOMER_mod_pan4p').reactions:
-    if apoACP in reaction.reactants:
-        reaction.complex_dilution_set = {apoACP.id}
-        reaction.update()
-me.reactions.acp_lipoate_synthase_FWD_SPONT.complex_dilution_set = {'CPLX0-782_mod_2:4fe4s'}
-me.reactions.MOADSUx1_FWD_CPLX_dummy.complex_dilution_set = {'EG11597-MONOMER_mod_amp'}
+for data in me.stoichiometric_data:
+    if data.id == 'dummy_reaction':
+        continue
+
+    for met, value in data.stoichiometry.items():
+        if not isinstance(me.metabolites.get_by_id(met), cobrame.Complex) or value > 0:
+            continue
+
+        subreaction_id = met + '_carrier_activity'
+        if subreaction_id not in me.subreaction_data:
+            sub = cobrame.SubreactionData(met + '_carrier_activity', me)
+            sub.enzyme = met
+        data.subreactions[sub.id] = abs(value)
 
 
 # #### Corrections
@@ -789,10 +791,9 @@ me.reactions.MOADSUx1_FWD_CPLX_dummy.complex_dilution_set = {'EG11597-MONOMER_mo
 for data in me.transcription_data:
     if len(data.RNA_polymerase) == 0:
         data.RNA_polymerase = 'RNAP70-CPLX'
-        
+
 # Newly annotated modification gene (w/ high confidence)
 mod = me.modification_data.get_by_id('mod_acetyl_c')
-#mod.enzyme = 'RimL_mono'
 mod.stoichiometry = {'accoa_c':-1, 'coa_c':1}
 
 # If lower_bound open, model feeds G6P into EDD
@@ -805,15 +806,7 @@ me.reactions.EX_cbl1_e.lower_bound = 0
 me.complex_data.QueG_mono_mod_adocbl.modifications.pop('mod_adocbl_c')
 me.complex_data.QueG_mono_mod_adocbl.formation.update()
 
-# Turn off reactions that throw off results as in iOL
-KO_list = ['DHPTDNR','DHPTDNRN', 'SUCASPtpp','SUCFUMtpp', 'SUCMALtpp', 'SUCTARTtpp', 
-           'CAT', 'FHL', 'SPODM', 'SPODMpp']
-for reaction in KO_list:
-    data = me.stoichiometric_data.get_by_id(reaction)
-    data.lower_bound = 0
-    data.upper_bound = 0
-    
-# this RNAP/sigma factor should not be used to transcribe stable rna   
+# this RNAP/sigma factor should not be used to transcribe stable rna
 for rxn in me.metabolites.get_by_id('RNAP32-CPLX').reactions:
     if rxn.id != 'formation_RNAP32-CPLX' and rxn.transcription_data.codes_stable_rna:
         rxn.upper_bound = 0
@@ -822,11 +815,22 @@ for rxn in me.metabolites.get_by_id('RNAP32-CPLX').reactions:
 # This complex likely doesn't have ATPSYN activity
 me.reactions.get_by_id('formation_ATPSYN-CPLX_EG10106-MONOMER').knock_out()
 
-# add oxidative damage reaction to form 3fe4s 
-# TODO this can be done better
-fes_damage = cobra.Reaction('4fe4s_oxidation')
-me.add_reaction(fes_damage)
-fes_damage.reaction = '4fe4s_c -> fe2_c + 3fe4s_c'
+# This enyzme is involved in catalyzing this reaction
+sub = cobrame.SubreactionData('EG12450-MONOMER_activity', me)
+sub.enzyme = 'EG12450-MONOMER'
+me.stoichiometric_data.NHFRBO.subreactions['EG12450-MONOMER_activity'] = 1
+
+# This reaction was edited based on iJO1366 GPR
+data = cobrame.ComplexData('EG11910-MONOMER_dimer_EG11911-MONOMER', me)
+data.stoichiometry = {'EG11910-MONOMER_dimer': 1, 'EG11911-MONOMER': 1}
+data.create_complex_formation()
+me.reactions.get_by_id('PFL_FWD_EG11910-MONOMER_dimer').remove_from_model()
+building.add_metabolic_reaction_to_model(me, 'PFL', 'forward',
+                                         complex_id='EG11910-MONOMER_dimer_EG11911-MONOMER',
+                                        update=True)
+
+# NGAM reaction is just called ATPM
+me.reactions.ATPM_FWD_SPONT.remove_from_model()
 
 
 # ----
@@ -843,21 +847,19 @@ me.prune()
 me.reactions.dummy_reaction_FWD_SPONT.objective_coefficient = 1.
 me.reactions.EX_glc__D_e.lower_bound = -1000
 me.reactions.EX_o2_e.lower_bound = -16.
-# we can now set the unmodeled protein fraction
-me.unmodeled_protein_fraction = 0.3
-me.ngam = 13.94
-me.gam = 51.2
+me.ngam = 16.68
+me.gam = 25.40
+me.unmodeled_protein_fraction = .275
 
 
 # In[ ]:
 
 n_genes = len(me.metabolites.query(re.compile('RNA_b[0-9]')))
-# 3 genes in iJL1378 unused 
-print("number of genes in the model %d (%.2f%%)" % (n_genes, n_genes * 100. / (1675))) 
+print("number of genes in the model %d (%.2f%%)" % (n_genes, n_genes * 100. / (1678)))
 
 
 # In[ ]:
 
-with open("iLE1675.pickle", "wb") as outfile:
+with open("iLE1678.pickle", "wb") as outfile:
     cPickle.dump(me, outfile)
 
