@@ -10,6 +10,7 @@ branches:
     - devel
 
 install:
+    - pip install -U pip wheel
     - pip install .
     - pip install git+https://github.com/sbrg/cobrame.git@devel
 
