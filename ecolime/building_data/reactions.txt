@@ -1,0 +1,2286 @@
+#name	description	is_reversible	data_source	is_spontaneous
+CSND	Cytosine deaminase	0	iJO1366	0
+ADNt2pp	adenosine transport in via proton symport (periplasm)	0	iJO1366	0
+GTPDPDP	guanosine-5_prime_-triphosphate,3_prime_-diphosphate diphosphatase	0	iJO1366	0
+RNDR1b3	ribonucleoside-diphosphate reductase (ADP) (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+RNDR1b1	ribonucleoside-diphosphate reductase (ADP) (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+RNDR1b4	ribonucleoside-diphosphate reductase (ADP) (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+NTD10	5_prime_-nucleotidase (XMP)	0	iJO1366	0
+NTD11	5_prime_-nucleotidase (IMP)	0	iJO1366	0
+NTD12	5_prime_-nucleotidase (dIMP)	0	iJO1366	0
+RNDR1b2	ribonucleoside-diphosphate reductase (ADP) (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+XTSNH	Xanthosine hydrolase	0	iJO1366	0
+DDPA	3-deoxy-D-arabino-heptulosonate 7-phosphate synthetase	0	iJO1366	0
+Htex	proton transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+P5CD	1-pyrroline-5-carboxylate dehydrogenase	0	iJO1366	0
+2DGULRy	2-dehydro-L-gulonate reductase (NADPH)	0	iJO1366	0
+2DGULRx	2-dehydro-L-gulonate reductase (NADH)	0	iJO1366	0
+3OAR401	3-oxoacyl-[acyl-carrier-protein] reductase (n-C4:0)	1	iJO1366_genetic_unlumping	0
+GAMptspp	D-glucosamine transport via PEP:Pyr PTS (periplasm)	0	iJO1366	0
+P5CR	pyrroline-5-carboxylate reductase	0	iJO1366	0
+ACPPAT1201	acyl-(acyl carrier protein):phosphate acyltransferase (C12:0)	0	iJO1366_genetic_unlumping	0
+3OAS1401	3-oxoacyl-[acyl-carrier-protein] synthase (n-C14:0)	0	iJO1366_genetic_unlumping	0
+GTHOr	glutathione oxidoreductase	1	iJO1366	0
+ULA4Ntppi	transport (cytoplasm to periplasm)	0	iJO1366	0
+GLCtexi	D-glucose transport via diffusion (extracellular to periplasm) irreversible	0	iJO1366	0
+MSAR	malonic semialdehyde reductase	0	iJO1366	0
+AGM4Pt2pp	GlcNAc-anhMurNAc tetrapeptide transport in via proton symport (periplasm)	0	iJO1366	0
+AOXSr21	8-amino-7-oxononanoate synthase	0	iJO1366_genetic_unlumping	0
+HBZOPT	Hydroxybenzoate octaprenyltransferase	0	iJO1366	0
+LEUtex	L-leucine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+G5SADs	L-glutamate 5-semialdehyde dehydratase (spontaneous)	0	iJO1366	1
+ALAALAtex	D-alanyl-D-alanine (DalaDala) transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FMNAT	FMN adenylyltransferase	0	iJO1366	0
+ORNtex	ornithine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+2AGPG141tipp	2-Acyl-sn-glycero-3-phosphoglycerol (n-C14:1) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+RHAT1	rhamnosyltransferase I (LPS core biosynthesis)	0	iJO1366	0
+OMMBLHX	2-Octaprenyl-3-methyl-6-methoxy-1,4-benzoquinol hydroxylase	0	iJO1366	0
+OMPHHX	2-octaprenyl-6-methoxyphenol hydroxylase	0	iJO1366	0
+PANTS	pantothenate synthase	0	iJO1366	0
+E4PD	Erythrose 4-phosphate dehydrogenase	1	iJO1366	0
+PLIPA2A180pp	Phospholipase A2 (phosphatidate, n-C18:0) (periplasm)	0	iJO1366	0
+TREHpp	alpha,alpha-trehalase (periplasm)	0	iJO1366	0
+G3PSabcpp	sn-glycerol-3-phosphoserine transport via ABC system (periplasm)	0	iJO1366	0
+CTBTCAL2	Crotonobetaine-CoA Ligase	0	iJO1366	0
+ACOAD1f	acyl-CoA dehydrogenase (butanoyl-CoA)	1	iJO1366	0
+ACLS	acetolactate synthase	0	iJO1366	0
+PUNP5	purine-nucleoside phosphorylase (Inosine)	1	iJO1366	0
+GLYCTO4	Glycolate oxidase	0	iJO1366	0
+LPLIPAL2ATG120	Lysophospholipase L2 (acyltransferase, 2-acyl-glycerophosphoglycerol, n-C12:0)	0	iJO1366	0
+GLYCTO3	Glycolate oxidase	0	iJO1366	0
+GLYCTO2	Glycolate oxidase	0	iJO1366	0
+O2Stex	superoxide anion transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+LYXt2pp	L-Lyxose transport via proton symport (periplasm)	0	iJO1366	0
+SufBCD_mod_1:2Fe2S_mod_1:fe2atp_mediated_FE_loading	SufBCD_mod_1:2Fe2S_mod_1:fe2atp_mediated_FE_loading	0	M_protein_recon	0
+LPLIPAL1A180pp	Lysophospholipase L1 (2-acylglycerophosphotidate, n-C18:0) (periplasm)	0	iJO1366	0
+2AGPEAT181	2-acyl-glycerophospho-ethanolamine acyltransferase (n-C18:1)	0	iJO1366	0
+2AGPEAT180	2-acyl-glycerophospho-ethanolamine acyltransferase (n-C18:0)	0	iJO1366	0
+5MTRtpp	5-Methylthio-D-ribose transport via proton symport (periplasm)	0	iJO1366	0
+DAPAL	2,3-diaminopropionate amonnia lyase	0	iJO1366	0
+ARBTNtex	aerobactin secretion (to extracellular)	0	iJO1366	0
+PAPA181pp	Phosphatidate phosphatase (periplasmic, n-C18:1)	0	iJO1366	0
+COBALT2abcpp	Cobalt (Co+2) ABC transporter (periplasm)	0	iJO1366	0
+CYTBO3_4pp	cytochrome oxidase bo3 (ubiquinol-8: 4 protons) (periplasm)	0	iJO1366	0
+UMPtex	UMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GALCTt2rpp	D-galactarte transport via proton symport, reversible (periplasm)	1	iJO1366	0
+LPLIPAL2G140	Lysophospholipase L2 (2-acylglycerophosphoglycerol, n-C14:0)	0	iJO1366	0
+LPLIPAL2G141	Lysophospholipase L2 (2-acylglycerophosphoglycerol, n-C14:1)	0	iJO1366	0
+MTRPOX	N-methyltryptophan oxidase	0	iJO1366	0
+ADSL2r	adenylosuccinate lyase	1	iJO1366	0
+DSERt2pp	D-serine transport in via proton symport (periplasm)	0	iJO1366	0
+ACONIs	aconitate isomerase (spontaneous)	1	iJO1366	1
+UAGPT3	UDP-N-acetylglucosamine-N-acetylmuramyl-(pentapeptide)pyrophosphoryl-undecaprenol N-acetylglucosamine transferase	0	iJO1366	0
+ASPTA	aspartate transaminase	1	iJO1366	0
+GART	GAR transformylase-T	0	iJO1366	0
+CYSDDS	D-cysteine desulfhydrase	0	iJO1366	0
+DHPTDNRN	dihydropteridine reductase (NADH)	1	iJO1366	0
+GAMAN6Ptex	D-glucosamine 6-phosphate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+DHCIND	2,3-dihydroxycinnamate dehydrogenase	0	iJO1366	0
+UDCPPtppi	undecaprenyl phosphate transport (cytoplasm to periplasm)	0	iJO1366	0
+ASPO4	L-aspartate oxidase	0	iJO1366	0
+OPMEACPS1	3-Oxo-pimeloyl-[ACP] methyl ester synthase	0	iJO1366_genetic_unlumping	0
+CTBTt2rpp	cronobetaine outward transport (H+ antiport)	1	iJO1366	0
+MDDCP2pp	murein D,D-carboxypeptidase (murein5px4px4p) (periplasm)	0	iJO1366	0
+UDPACGALtex	UDP-N-acetyl-D-galactosamine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+INDOLEtex	Indole transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+23DAPPAt2pp	2,3-diaminopropionate transport in via proton symport	0	iJO1366	0
+LEUTAi	leucine transaminase (irreversible)	0	iJO1366	0
+FHL	Formate-hydrogen lyase	0	iJO1366	0
+3AMPtex	3AMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+XANtex	xanthine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FCLK	L-fuculokinase	0	iJO1366	0
+MALDDH	malate decarboxylating oxidoreductase (decarboxylating)	0	iJO1366	0
+IPPMIa	3-isopropylmalate dehydratase	1	iJO1366	0
+2AGPG120tipp	2-Acyl-sn-glycero-3-phosphoglycerol (n-C12:0) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+3HAD1211	3-hydroxyacyl-[acyl-carrier-protein] dehydratase (n-C12:1)	0	iJO1366_genetic_unlumping	0
+CYNTt2pp	Cyanate transport via proton symport (periplasm)	0	iJO1366	0
+FACOAL160t2pp	fatty-acid-CoA ligase (hexadecanoate transport via vectoral Co-A coupling)	0	iJO1366	0
+MOHMT	3-methyl-2-oxobutanoate hydroxymethyltransferase	0	iJO1366	0
+CYSDtex	D-cysteine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+DHDPS	dihydrodipicolinate synthase	0	iJO1366	0
+ACtex	Acetate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+CFAS180E	cyclopropane fatty acid synthase (Phosphatidylethanolamine, n-C18:0)	0	iJO1366	0
+ALATA_D2	D-alanine transaminase	0	iJO1366	0
+NI2t3pp	nickle (Ni+2) transport out via proton antiport (periplasm)	0	iJO1366	0
+G1SAT	glutamate-1-semialdehyde aminotransferase	1	iJO1366	0
+3OAR1611	3-oxoacyl-[acyl-carrier-protein] reductase (n-C16:1)	0	iJO1366_genetic_unlumping	0
+EDA	2-dehydro-3-deoxy-phosphogluconate aldolase	0	iJO1366	0
+EDD	6-phosphogluconate dehydratase	0	iJO1366	0
+FRUK	fructose-1-phosphate kinase	0	iJO1366	0
+GALBDtex	beta D-galactose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+Fe_transfer_CyaY_mod_1:fe2_to_IscU_mod_1:fe2	Fe_transfer_CyaY_mod_1:fe2_to_IscU_mod_1:fe2	0	M_protein_recon	0
+GTHRDHpp	glutathione hydralase (periplasmic)	0	iJO1366	0
+PRPPS	phosphoribosylpyrophosphate synthetase	1	iJO1366	0
+23PDE9pp	2_prime_,3_prime_-cyclic-nucleotide phosphodiesterase (GMP) (periplasm)	0	iJO1366	0
+MALTTTRabcpp	maltotetraose transport via ABC system (periplasm)	0	iJO1366	0
+DPR	2-dehydropantoate 2-reductase	0	iJO1366	0
+MLTGY3pp	murein lytic transglycosylase (murein3p3p) (periplasm)	0	iJO1366	0
+FTHFD	formyltetrahydrofolate deformylase	0	iJO1366	0
+XTSNtex	xanthosine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+VALabcpp	L-valine transport via ABC system (periplasm)	0	iJO1366	0
+THMtex	Thiamine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GLUPRT	glutamine phosphoribosyldiphosphate amidotransferase	0	iJO1366	0
+PGPP180pp	phosphatidylglycerol phosphate phosphatase (periplasm, n-C18:0)	0	iJO1366	0
+3OAS801	3-oxoacyl-[acyl-carrier-protein] synthase (n-C8:0)	0	iJO1366_genetic_unlumping	0
+EAR120y1	enoyl-[acyl-carrier-protein] reductase (NADPH) (n-C12:0)	0	iJO1366_genetic_unlumping	0
+DHNPA2r	dihydroneopterin aldolase reversible	1	iJO1366	0
+KDOPP	3-deoxy-manno-octulosonate-8-phosphatase	0	iJO1366	0
+2AGPG181tipp	2-Acyl-sn-glycero-3-phosphoglycerol (n-C18:1) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+OCBT	ornithine carbamoyltransferase	1	iJO1366	0
+DHORD2	dihydoorotic acid dehydrogenase (quinone8)	0	iJO1366	0
+DHORD5	dihydroorotic acid (menaquinone-8)	0	iJO1366	0
+CPGNexs	coprogen Fe-loading reaction (spontaneaous)	0	iJO1366	1
+U23GAAT1	UDP-3-O-(3-hydroxymyristoyl)glucosamine acyltransferase	0	iJO1366_genetic_unlumping	0
+AGM4PH	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramyl-tetrapeptide beta -1,4-N-acetylglucosaminidase	0	iJO1366	0
+FE3HOXR2	Fe(III)hydroxamate reductase	0	iJO1366	0
+ARBTNexs	aerobactin Fe-loading reaction (spontaneous)	0	iJO1366	1
+AGM4PA	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramyl-tetrapeptide amidase	0	iJO1366	0
+GMPS2	GMP synthase	0	iJO1366	0
+MELIBt3ipp	melibiose transport in via antiport (periplasm)	0	iJO1366	0
+HPYRI	hydroxypyruvate isomerase	1	iJO1366	0
+ADEt2rpp	adenine transport via proton symport (reversible) (periplasm)	1	iJO1366	0
+4PEPTabcpp	tetrapeptide (LalaDgluMdapDala) transport via ABC system (periplasm)	0	iJO1366	0
+GALt2pp	D-galactose transport in via proton symport (periplasm)	0	iJO1366	0
+LPLIPAL1E161pp	Lysophospholipase L1 (2-acylglycerophosphoethanolamine, n-C16:1) (periplasm)	0	iJO1366	0
+AGMH	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramyl beta -1,4-N-acetylglucosaminidase	0	iJO1366	0
+AGMT	agmatinase	0	iJO1366	0
+GALabcpp	D-galactose transport via ABC system (periplasm)	0	iJO1366	0
+FA120ACPHi1	fatty-acyl-ACP hydrolase	0	iJO1366_genetic_unlumping	0
+THMDt2pp	thymidine transport in via proton symport (periplasm)	0	iJO1366	0
+SERtex	L-serine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+CRNtex	L-carnitine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+HMPK1	hydroxymethylpyrimidine kinase (ATP)	0	iJO1366	0
+GLCURt2rpp	D-glucuronate transport via proton symport, reversible (periplasm)	1	iJO1366	0
+SO4tex	sulfate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+TAUDO	Taurine dioxygenase	0	iJO1366	0
+IDOND2	L-indonate 5-dehydrogenase (NADP)	0	iJO1366	0
+ACOAD2f	acyl-CoA dehydrogenase (hexanoyl-CoA)	1	iJO1366	0
+FE3Ri	Fe(III) reduction	0	iJO1366	0
+DDGLK	2-dehydro-3-deoxygluconokinase	0	iJO1366	0
+3AMACHYD	3-aminoacrylate hydrolase	0	iJO1366	0
+ACONTa	aconitase (half-reaction A, Citrate hydro-lyase)	1	iJO1366	0
+ACONTb	aconitase (half-reaction B, Isocitrate hydro-lyase)	1	iJO1366	0
+DMSOR2	Dimethyl sulfoxide reductase (Demethylmenaquinol 8)	0	iJO1366	0
+BUTCT	Acetyl-CoA:butyrate-CoA transferase	0	iJO1366	0
+ASNabcpp	L-asparagine transport via ABC system (periplasm)	0	iJO1366	0
+PLIPA1G160pp	Phospholipase A1 (phosphatidylglycerol, n-C16:0) (periplasm)	0	iJO1366	0
+3HAD601	3-hydroxyacyl-[acyl-carrier-protein] dehydratase (n-C6:0)	0	iJO1366_genetic_unlumping	0
+DADNt2pp	deoxyadenosine transport in via proton symport (periplasm)	0	iJO1366	0
+PSCVT	3-phosphoshikimate 1-carboxyvinyltransferase	1	iJO1366	0
+ETHAtex	ethanolamine transport via diffusion (extracellular)	1	iJO1366	0
+3HAD1611	3-hydroxyacyl-[acyl-carrier-protein] dehydratase (n-C16:1)	0	iJO1366_genetic_unlumping	0
+ASPt2pp	L-aspartate transport in via proton symport (periplasm)	0	iJO1366	0
+ADNK1	adenosine kinase	0	iJO1366	0
+23CGMPtex	23cGMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+CLtex	chloride (Cl-1) transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+TTDCEAtexi	Tetradecenoate transport via facilitated irreversible diffusion (extracellular to periplasm)	0	iJO1366	0
+CRNCAR	carnitine-CoA racemase	1	iJO1366	0
+DXPS	1-deoxy-D-xylulose 5-phosphate synthase	0	iJO1366	0
+ACSERtex	O-Acetyl-L-serine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FORt2pp	formate transport via proton symport (uptake only, periplasm)	0	iJO1366	0
+PLIPA2E120pp	Phospholipase A2 (phosphatidylethanolamine, n-C12:0) (periplasm)	0	iJO1366	0
+42A12BOOXpp	4-(2-Aminoethyl)-1,2-benzenediol:oxygen oxidoreductase(deaminating)(flavin-containing)	0	iJO1366	0
+SUCRtex	sucrose transport transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+O16A4Lpp	O16 anitgen (x4) ligase (periplasm)	0	iJO1366	0
+UPP3MT	uroporphyrinogen methyltransferase	0	iJO1366	0
+METSOX2tex	L-methionine R-oxide diffusion (extracellular)	1	iJO1366	0
+MLTP1	Maltodextrin phosphorylase (maltopentaose)	1	iJO1366	0
+MLTP2	Maltodextrin phosphorylase (maltohexaose)	1	iJO1366	0
+MLTP3	Maltodextrin phosphorylase (maltoheptaose)	1	iJO1366	0
+UDPG4E	UDPglucose 4-epimerase	1	iJO1366	0
+CDGR	7-cyano-7-deazaguanine reductase	0	iJO1366	0
+TTRCYCtex	Tetracycline transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+26DAHtex	meso-2,6-Diaminoheptanedioate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+AM3PA	anhydrous-N-Acetylmuramyl-tripeptide amidase	0	iJO1366	0
+FA141ACPHi1	fatty-acyl-ACP hydrolase	0	iJO1366_genetic_unlumping	0
+ACMANAtex	N-acetyl-D-mannosamine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+NOtex	nitric oxide transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+LPLIPAL2E160	Lysophospholipase L2 (2-acylglycerophosphoethanolamine, n-C16:0)	0	iJO1366	0
+LPLIPAL2E161	Lysophospholipase L2 (2-acylglycerophosphoethanolamine, n-C16:1)	0	iJO1366	0
+CITt3pp	citrate transport out via proton antiport (periplasm)	0	iJO1366	0
+SHCHF	sirohydrochlorin ferrochelatase	0	iJO1366	0
+Fe_transfer_CyaY_mod_1:fe2_to_IscU_mod_1:2Fe2S_mod_1:fe2	Fe_transfer_CyaY_mod_1:fe2_to_IscU_mod_1:2Fe2S_mod_1:fe2	0	M_protein_recon	0
+THRt2rpp	L-threonine reversible transport via proton symport (periplasm)	1	iJO1366	0
+UM4PCP	UDP-N-acetylmuramoyl-L-alanyl-D-gamma-glutamyl-meso-2,6-diaminopimelate-D-alanine L,D-carboxypeptidase	0	iJO1366	0
+GTHS	glutathione synthetase	0	iJO1366	0
+OROTt2_2pp	Orotate transport via proton symport (2 H) (periplasm)	0	iJO1366	0
+ECAP3pp	enterobacterial common antigen polymerase (periplasm)	0	iJO1366	0
+UPP3S	uroporphyrinogen-III synthase	0	iJO1366	0
+DSBDR1	DsbD reductase	0	iJO1366_genetic_unlumping	0
+DSBDR2	DsbD reductase	0	iJO1366_genetic_unlumping	0
+GLUN	glutaminase	0	iJO1366	0
+ETHSO3abcpp	ethanesulfonate transport via ABC system (periplasm)	0	iJO1366	0
+DGSNtex	deoxyguanosine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+12DGR160tipp	1,2 diacylglycerol transport via flipping (periplasm to cytoplasm, n-C16:0)	0	iJO1366	0
+D__LACtex	D-lactate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PSP_L	phosphoserine phosphatase (L-serine)	0	iJO1366	0
+IGPS	indole-3-glycerol-phosphate synthase	0	iJO1366	0
+PYDXK	pyridoxal kinase	0	iJO1366	0
+PGPP161pp	phosphatidylglycerol phosphate phosphatase (periplasm, n-C16:1)	0	iJO1366	0
+LDH_D2	D-lactate dehydrogenase	0	iJO1366	0
+12DGR161tipp	1,2 diacylglycerol transport via flipping (periplasm to cytoplasm, n-C16:1)	0	iJO1366	0
+3HPPtpp	3-hydroxypropionate transport via proton symport (periplasm)	0	iJO1366	0
+OPMEACPR1	3-Oxo-pimeloyl-[ACP] methyl ester reductase	0	iJO1366_genetic_unlumping	0
+OXCDC	Oxalyl-CoA decarboxylase	0	iJO1366	0
+UDPGtex	UDPglucose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+RMK	rhamnulokinase	0	iJO1366	0
+RMI	L-rhamnose isomerase	1	iJO1366	0
+G3PEabcpp	sn-glycerol-3-phosphoethanolamine transport via ABC system (periplasm)	0	iJO1366	0
+MCITL2	methylisocitrate lyase	1	iJO1366	0
+NO3R2pp	Nitrate reductase (Menaquinol-8) (periplasm)	0	iJO1366	0
+FFSD	beta-fructofuranosidase	0	iJO1366	0
+TRPAS2	Tryptophanase (L-tryptophan)	1	iJO1366	0
+UDPGALPpp	UDPgalactose pyrophosphohydrolase	0	iJO1366	0
+CYSDS	Cysteine Desulfhydrase	0	iJO1366	0
+23DAPPAtex	2,3-diaminopropionate transport via diffusion	1	iJO1366	0
+GLYCtex	glycerol transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+EAR60x1	enoyl-[acyl-carrier-protein] reductase (NADH) (n-C6:0)	0	iJO1366_genetic_unlumping	0
+PLIPA1G120pp	Phospholipase A1 (phosphatidylglycerol, n-C12:0) (periplasm)	0	iJO1366	0
+INDOLEt2pp	Indole transport via proton symport, irreversible (periplasm)	0	iJO1366	0
+DMSOtex	Dimethyl sulfoxide transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+2MAHMP	2-Methyl-4-amino-5-hydroxymethylpyrimidine diphosphatase	0	iJO1366	0
+FEENTERtonex	Fe-enterobactin transport via ton system (extracellular)	0	iJO1366	0
+MANGLYCtex	2-O-alpha-mannosyl-D-glycerate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GLCt2pp	D-glucose transport in via proton symport (periplasm)	0	iJO1366	0
+12PPDStex	(S)-Propane-1,2-diol transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+AMAOTr	adenosylmethionine-8-amino-7-oxononanoate transaminase	1	iJO1366	0
+GALURtex	D-galacturonate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PPCSCT	Propanoyl-CoA: succinate CoA-transferase	0	iJO1366	0
+LIPATPT	Lipoate-ATP adenylate transferase	0	iJO1366	0
+ALAt2rpp	L-alanine reversible transport via proton symport (periplasm)	1	iJO1366	0
+23CAMPtex	23cAMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+POX	pyruvate oxidase	0	iJO1366	0
+EPMEACPR1	Enoylpimeloyl-[ACP] methyl ester reductase	0	iJO1366_genetic_unlumping	0
+MALTTRabcpp	Maltotriose transport via ABC system (periplasm)	0	iJO1366	0
+CRNt7pp	Carnitine/butyrobetaine antiporter (periplasm)	0	iJO1366	0
+DGMPtex	dGMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+HPPK2	6-hydroxymethyl-dihydropterin pyrophosphokinase	0	iJO1366	0
+ACACT1r	acetyl-CoA C-acetyltransferase	1	iJO1366	0
+DTMPK	dTMP kinase	1	iJO1366	0
+PFK_3	phosphofructokinase (s7p)	0	iJO1366	0
+PFK_2	Phosphofructokinase	0	iJO1366	0
+F6Ptex	fructose 6-phosphate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FE3HOXUtpp	Fe(III)hydroxamate unloaded secretion (extracellular)	0	iJO1366	0
+GSNt2pp	guanosine transport in via proton symport (periplasm)	0	iJO1366	0
+FACOAL140t2pp	fatty-acid-CoA ligase (tetradecanoate transport via vectoral Co-A coupling)	0	iJO1366	0
+MALTHXtexi	maltohexaose transport via diffusion (extracellular to periplasm) irreversible	0	iJO1366	0
+UACGAMPpp	UDP-N-acetyl-D-glucosamine pyrophosphohydrolase (periplasm)	0	iJO1366	0
+PSD140	Phosphatidylserine decarboxylase (n-C14:0)	0	iJO1366	0
+PSD141	Phosphatidylserine decarboxylase (n-C14:1)	0	iJO1366	0
+GLYK	glycerol kinase	0	iJO1366	0
+2AGPE181tipp	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C18:1) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+GUAtex	Guanine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+SCYSDS1	SUF Cysteine desulfuration	0	iJO1366_genetic_unlumping	0
+AACPS91	acyl-[acyl-carrier-protein] synthetase  (n-C8:0)	0	iJO1366_genetic_unlumping	0
+EAR120x1	enoyl-[acyl-carrier-protein] reductase (NADH) (n-C12:0)	0	iJO1366_genetic_unlumping	0
+MLDCP3App	murein L,D-carboxypeptidase (murein5px3p) (periplasm)	0	iJO1366	0
+HDCEAtexi	Hexadecenoate transport via facilitated irreversible diffusion (extracellular to periplasm)	0	iJO1366	0
+DATPHs	dATP amine hydrolysis (spontaneous)	0	iJO1366	1
+PGSA160	Phosphatidylglycerol synthase (n-C16:0)	0	iJO1366	0
+S_transfer_to_SufBCD_mod_1:2Fe1S	S_transfer_to_SufBCD_mod_1:2Fe1S	0	M_protein_recon	0
+UPPDC1	uroporphyrinogen decarboxylase (uroporphyrinogen III)	0	iJO1366	0
+MANptspp	D-mannose transport via PEP:Pyr PTS (periplasm)	0	iJO1366	0
+DHQTi	3-dehydroquinate dehydratase, irreversible	0	iJO1366	0
+PERD	Erythronate 4-phosphate (4per) dehydrogenase	1	iJO1366	0
+THRD	L-threonine dehydrogenase	0	iJO1366	0
+RBFSb	riboflavin synthase	0	iJO1366	0
+GSNtex	guanosine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+RBFSa	riboflavin synthase	0	iJO1366	0
+GLDBRAN2	glycogen debranching enzyme (bglycogen -> glycogen)	0	iJO1366	0
+LEUt2rpp	L-leucine reversible transport via proton symport (periplasm)	1	iJO1366	0
+THRS	threonine synthase	0	iJO1366	0
+AGPAT1601	1-hexadecanoyl-sn-glycerol 3-phosphate O-acyltransferase (n-C16:0)	0	iJO1366_genetic_unlumping	0
+DDGLCNt2rpp	2-dehydro-3-deoxy-D-gluconate transport via proton symport, reversible (periplasm)	1	iJO1366	0
+BALAt2pp	beta-alanine transport in via proton symport (periplasm)	0	iJO1366	0
+QULNS	quinolinate synthase	0	iJO1366	0
+ASNS2	asparagine synthetase	0	iJO1366	0
+ASNS1	asparagine synthase (glutamine-hydrolysing)	0	iJO1366	0
+LPLIPAL1E120pp	Lysophospholipase L1 (2-acylglycerophosphoethanolamine, n-C12:0) (periplasm)	0	iJO1366	0
+PSSA120	Phosphatidylserine syntase (n-C12:0)	0	iJO1366	0
+LCTStpp	Lactose transport via proton symport (periplasm)	1	iJO1366	0
+THYMtex	thymine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GLYBtex	Glycine betaine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FACOAL120t2pp	fatty-acid-CoA ligase (dodecanoate transport via vectoral Co-A coupling)	0	iJO1366	0
+Kt2pp	potassium transport in via proton symport (periplasm)	0	iJO1366	0
+NADPPPS	NADP phosphatase	0	iJO1366	0
+CITLY-CPLX_2tpr3dpcoa	CITLY-CPLX_2tpr3dpcoa	0	M_protein_recon	0
+HCINNMt2rpp	3-hydroxycinnamic acid transport via proton symport, reversible (periplasm)	1	iJO1366	0
+FECRMabcpp	ferrichrome transport via ABC system (periplasm)	0	iJO1366	0
+LALADGLUtex	L-alanyl-D-glutamate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ACGAM1PPpp	N-acetyl-D-glucosamine 1-phosphatase (periplasm)	0	iJO1366	0
+ARBTtex	arbutin transport via diffusion (extracellular to periplasm)	0	iJO1366	0
+GTHRDabc2pp	glutathione export via ABC system (cytoplasm to periplasm)	0	iJO1366	0
+DCYTtex	deoxycytidine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+CPGNUtex	coprogen unloaded secretion (extracellular)	0	iJO1366	0
+PE160abcpp	phosphatidylethanolamine transport via ABC system (n-C16:0, periplasm)	0	iJO1366	0
+PGSA181	Phosphatidylglycerol synthase (n-C18:1)	0	iJO1366	0
+PGSA180	Phosphatidylglycerol synthase (n-C18:0)	0	iJO1366	0
+GLCNtex	D-gluconate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+UDPGALM	UDPgalactopyranose mutase	0	iJO1366	0
+3HPPPNH	3-(3-hydroxy-phenyl)propionate hydroxylase	0	iJO1366	0
+3HAD1601	3-hydroxyacyl-[acyl-carrier-protein] dehydratase (n-C16:0)	0	iJO1366_genetic_unlumping	0
+G3PAT1801	glycerol-3-phosphate acyltransferase (C18:0)	0	iJO1366_genetic_unlumping	0
+FE2tex	iron (II) transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PPND	prephenate dehydrogenase	0	iJO1366	0
+2AGPE120tipp	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C12:0) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+TARTRt7pp	Tartrate/succinate antiporter (periplasm)	1	iJO1366	0
+2AGPA161tipp	2-Acyl-sn-glycero-3-phosphatidate (n-C16:1) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+FA80ACPHi1	fatty-acyl-ACP hydrolase	0	iJO1366_genetic_unlumping	0
+CLPNH141pp	cardiolipin hydrolase (periplasm, n-C14:1)	0	iJO1366	0
+LSERDHr	L-serine dehydrogenase	1	iJO1366	0
+UMPK	UMP kinase	1	iJO1366	0
+G1PPpp	Glucose-1-phosphatase	0	iJO1366	0
+MOX	malate oxidase	1	iJO1366	0
+ICHORSi	Isochorismate Synthase	0	iJO1366	0
+URIH	Uridine hydrolase	0	iJO1366	0
+5MTRtex	5-Methylthio-D-ribose transport via proton diffusion (extracellular to periplasm)	1	iJO1366	0
+AMPTASEPG	aminopeptidase (pro-gly)	0	iJO1366	0
+DMPPS	1-hydroxy-2-methyl-2-(E)-butenyl 4-diphosphate reductase (dmpp)	0	iJO1366	0
+ECOAH1	3-hydroxyacyl-CoA dehydratase (3-hydroxybutanoyl-CoA)	1	iJO1366	0
+GLYBt2pp	Glycine betaine transport via proton symport (periplasm)	0	iJO1366	0
+NTD3pp	5_prime_-nucleotidase (dCMP)	0	iJO1366	0
+ACOAD3f	acyl-CoA dehydrogenase (octanoyl-CoA)	1	iJO1366	0
+12PPDRtex	(R)-Propane-1,2-diol transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+MLDCP2Bpp	murein L,D-carboxypeptidase (murein4p3p) (periplasm)	0	iJO1366	0
+CRNDabcpp	D-carnitine transport via ABC system (periplasm)	0	iJO1366	0
+LACZpp	b-galactosidase	0	iJO1366	0
+DHNCOAS	1,4-dihydroxy-2-napthoyl-CoA synthase	0	iJO1366	0
+UAGCVT	UDP-N-acetylglucosamine 1-carboxyvinyltransferase	0	iJO1366	0
+NTD2pp	5_prime_-nucleotidase (UMP)	0	iJO1366	0
+URIC	uricase	0	iJO1366	0
+PYDXNtex	pyridoxine transport via diffusion (extracellular)	1	iJO1366	0
+ACHBS	2-aceto-2-hydroxybutanoate synthase	0	iJO1366	0
+GLUNpp	glutaminase	0	iJO1366	0
+DALAtex	D-Alanine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ALLPI	Allose 6-phosphate isomerase	1	iJO1366	0
+HADPCOADH3	3-hydroxyadipyl-CoA dehydrogenase (NAD+)	1	iJO1366	0
+CTPS2	CTP synthase (glutamine)	0	iJO1366	0
+URIt2pp	uridine transport in via proton symport (periplasm)	0	iJO1366	0
+GTHRDabcpp	Reduced glutathione via ABC system (periplasm)	0	iJO1366	0
+PGPP181	phosphatidylglycerol phosphate phosphatase (n-C18:1)	0	iJO1366	0
+PGPP180	phosphatidylglycerol phosphate phosphatase (n-C18:0)	0	iJO1366	0
+FE3DHBZR	release of Fe(III) from ferric 2,3-dihydroxybenzoylserine	0	iJO1366	0
+GALTptspp	Galactitol transport via PEP:Pyr PTS (periplasm)	0	iJO1366	0
+PHEt2rpp	L-phenylalanine reversible transport via proton symport (periplasm)	1	iJO1366	0
+CPGNtonex	Coprogen transport via ton system (extracellular)	0	iJO1366	0
+ACGAptspp	N-Acetyl-D-glucosamine transport via PEP:Pyr PTS  (periplasm)	0	iJO1366	0
+CS	citrate synthase	0	iJO1366	0
+GLYCtpp	glycerol transport via channel (periplasm)	1	iJO1366	1
+SFGTHi	S-Formylglutathione hydralase	0	iJO1366	0
+ALAtex	L-alanine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+SufBCD_mod_1:2Fe2Satp_mediated_FE_loading	SufBCD_mod_1:2Fe2Satp_mediated_FE_loading	0	M_protein_recon	0
+SufBCD_2:2fe2s_to_SufBCD_1:4fe4s	SufBCD_2:2fe2s_to_SufBCD_1:4fe4s	0	M_protein_recon	0
+GP4GH	Gp4G hydrolase	0	iJO1366	0
+COLIPAPabctex	core oligosaccharide lipid A diphosphate transport via ABC system (periplasm to extracellular)	0	iJO1366	0
+HCINNMtex	3-hydroxycinnamic acid transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+NMNN	NMN nucleosidase	0	iJO1366	0
+CPPPGO2	Oxygen Independent coproporphyrinogen-III oxidase	0	iJO1366	0
+TDSK	Tetraacyldisaccharide 4_prime_kinase	0	iJO1366	0
+PAPSR24	phosphoadenylyl-sulfate reductase (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+PAPSR21	phosphoadenylyl-sulfate reductase (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+CD2tpp	cadmium (+2) transport in via permease (no H+)	0	iJO1366	0
+FE3HOXabcpp	ferric-dicitrate transport via ABC system (periplasm)	0	iJO1366	0
+PAPSR22	phosphoadenylyl-sulfate reductase (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+METOX1s	methionine oxidation (spontaneous)	0	iJO1366	1
+ACMUMptspp	N-acetylmuramate transport via PEP:Pyr PTS (periplasm)	0	iJO1366	0
+FEOXAMUtpp	ferroxamine (minus Fe3) secretion (to periplasm)	0	iJO1366	0
+DURIK1	deoxyuridine kinase (ATP:Deoxyuridine)	0	iJO1366	0
+ACGAL1Ptex	N-acetyl-D-galactosamine 1-phosphate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GLU5K	glutamate 5-kinase	0	iJO1366	0
+TSULtex	thiosulfate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+3NTD9pp	3_prime_-nucleotidase (GMP) (periplasm)	0	iJO1366	0
+ACACT2r	acetyl-CoA C-acyltransferase (butanoyl-CoA) (r)	1	iJO1366	0
+FE3HOXR1	Fe(III)hydroxamate reductase	0	iJO1366	0
+TARTD	L(+)-tartrate dehydratase	0	iJO1366	0
+FE3HOXR3	Fe(III)hydroxamate reductase	0	iJO1366	0
+EAR60y1	enoyl-[acyl-carrier-protein] reductase (NADPH) (n-C6:0)	0	iJO1366_genetic_unlumping	0
+PYDAMK	pyridoxamine kinase	0	iJO1366	0
+GLCabcpp	D-glucose transport via ABC system (periplasm)	0	iJO1366	0
+PA181abcpp	phosphatidate transport via ABC system (n-C18:1, periplasm)	0	iJO1366	0
+FUSAtex	Fusidic acid transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ACGAL1PPpp	N-acetyl-D-galactosamine 1-phosphatase (periplasm)	0	iJO1366	0
+SHCHCS3	2-succinyl-6-hydroxy-2,4-cyclohexadiene 1-carboxylate synthase	0	iJO1366	0
+HKNTDH	2-hydroxy-6-ketononotrienedioate hydrolase	0	iJO1366	0
+12DGR120tipp	1,2 diacylglycerol transport via flipping (periplasm to cytoplasm, n-C12:0)	0	iJO1366	0
+PTRCt2pp	putrescine transport in via proton symport	0	iJO1366	0
+FEENTERR2	Fe-enterobactin reduction (Fe(III)-unloading)	0	iJO1366	0
+LPLIPAL2G180	Lysophospholipase L2 (2-acylglycerophosphoglycerol, n-C18:0)	0	iJO1366	0
+LPLIPAL2G181	Lysophospholipase L2 (2-acylglycerophosphoglycerol, n-C18:1)	0	iJO1366	0
+GUI2	glucuronate isomerase (D-galacturonate)	1	iJO1366	0
+GUI1	glucuronate isomerase (D-glucuronate)	1	iJO1366	0
+MCTP2App	murein crosslinking transpeptidase 1A:(A2pm->D-ala) (periplasm)	0	iJO1366	0
+GLUtex	L-glutamate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+THMDtex	thymidine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+NMNt7pp	NMN transport via NMN glycohydrolase (periplasm)	0	iJO1366	0
+HYXNtpp	Hypoxanthine transport (periplasm)	1	iJO1366	0
+X5PL3E	L-xylulose 5-phosphate 3-epimerase	0	iJO1366	0
+GALTtex	Galactitol transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GLNS	glutamine synthetase	0	iJO1366	0
+RNDR2b1	ribonucleoside-diphosphate reductase (GDP) (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+RNDR2b3	ribonucleoside-diphosphate reductase (GDP) (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+RNDR2b2	ribonucleoside-diphosphate reductase (GDP) (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+RNDR2b4	ribonucleoside-diphosphate reductase (GDP) (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+PPALtpp	propanal transport via channel (periplasm)	1	iJO1366	0
+ALLK	Allose kinase	0	iJO1366	0
+LALDO3	L-Lactaldehyde:NADP+ 1-oxidoreductase	0	iJO1366	0
+SLNTtpp	selenite transport via proton symport (periplasm)	0	iJO1366	0
+MNt2pp	manganese (Mn+2) transport in via proton symport (periplasm)	0	iJO1366	0
+PLIPA1E160pp	Phospholipase A1 (phosphatidylethanolamine, n-C16:0) (periplasm)	0	iJO1366	0
+RBFK	riboflavin kinase	0	iJO1366	0
+OPHHX	2-Octaprenylphenol hydroxylase	0	iJO1366	0
+GGPTRCO	gamma glutamyl putrescine oxidase	0	iJO1366	0
+ACNAMtex	N-acetylneuraminate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+CGLYtex	L-Cysteinylglycine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+DSBAO11	DsbA protein reoxidation reaction (aerobic)	0	iJO1366_genetic_unlumping	0
+Zn2tex	zinc (Zn+2) transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+BSORy	Biotin sulfoxide reductase	0	iJO1366	0
+CPH4S	6-carboxy-5,6,7,8-tetrahydropterin synthase	0	iJO1366	0
+HYD1pp	hydrogenase (ubiquinone-8: 2 protons) (periplasm)	0	iJO1366	0
+BSORx	Biotin sulfoxide reductase	0	iJO1366	0
+4Fe4S_to_ErpA_by_IscU	4Fe4S_to_ErpA_by_IscU	0	M_protein_recon	0
+CBItonex	Cobinamide transport via ton system (extermal)	0	iJO1366	0
+2DGULRGy	2-Dehydro-L-gulonate reductase to gluconate (NADPH)	0	iJO1366	0
+2DGULRGx	2-Dehydro-L-gulonate reductase to gluconate (NADH)	0	iJO1366	0
+DOPAtex	dopamine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+2AGPG180tipp	2-Acyl-sn-glycero-3-phosphoglycerol (n-C18:0) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+AGPAT1611	1-hexadec-7-enoyl-sn-glycerol 3-phosphate O-acyltransferase (n-C16:1)	0	iJO1366_genetic_unlumping	0
+ADOCBLabcpp	Adenosylcobalamin transport via ABC system (periplasm)	0	iJO1366	0
+FUMt2_2pp	Fumarate transport via proton symport (2 H) (periplasm)	0	iJO1366	0
+AGMtex	agmatine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+METS	methionine synthase	0	iJO1366	0
+KDOCT2	3-deoxy-manno-octulosonate cytidylyltransferase	0	iJO1366	0
+O16AP1pp	O16 antigen polymerase (periplasm)	0	iJO1366	0
+ACOLIPAabctex	arabinose modified core oligosaccharide lipid A transport via ABC system (periplasm to extracellular)	0	iJO1366	0
+PROD2	Proline dehydrogenase	0	iJO1366	0
+REPHACCOAI	ring 1,2-epoxyphenylacetyl-CoA isomerase (oxepin-CoA forming)	1	iJO1366	0
+G3PStex	glycerophosphserine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ENLIPAabctex	phosphoethanolamine lipid A transport via ABC system (periplasm to extracellular)	0	iJO1366	0
+PSCLYStex	psicoselysine transporter via diffusion (extracellular)	1	iJO1366	0
+HOMtex	L-homoserine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+XYLabcpp	D-xylose transport via ABC system (periplasm)	0	iJO1366	0
+PE120abcpp	phosphatidylethanolamine transport via ABC system (n-C12:0, periplasm)	0	iJO1366	0
+TAGURr	tagaturonate reductase	1	iJO1366	0
+GBBTNtex	gamma-butyrobetaine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+3OAS1211	3-oxoacyl-[acyl-carrier-protein] synthase (n-C12:1)	0	iJO1366_genetic_unlumping	0
+GLYCDx	Glycerol dehydrogenase	0	iJO1366	0
+RBP4E	L-ribulose-phosphate 4-epimerase	1	iJO1366	0
+CHTBStex	chitobiose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ARBTNabcpp	aerobactin transport via ABC system (periplasm)	0	iJO1366	0
+12DGR181tipp	1,2 diacylglycerol transport via flipping (periplasm to cytoplasm, n-C18:1)	0	iJO1366	0
+GALS3	a-galactosidase (melibiose)	0	iJO1366	0
+DMStex	Dimethyl sulfide transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+S_transfer_to_IscU_mod_1:2Fe2S_mod_2:fe2	S_transfer_to_IscU_mod_1:2Fe2S_mod_2:fe2	0	M_protein_recon	0
+SUCTARTtpp	succinate:D-tartrate antiporter (periplasm)	1	iJO1366	0
+URAt2rpp	uracil transport in via proton symport, reversible (periplasm)	1	iJO1366	0
+AMPN	AMP nucleosidase	0	iJO1366	0
+FE3HOXexs	Fe(III) hydroxamate Fe-loading reaction (spontaneaous)	0	iJO1366	1
+DXYLK	1-Deoxy-D-xylulose kinase	0	iJO1366	0
+PAPPT3	phospho-N-acetylmuramoyl-pentapeptide-transferase (meso-2,6-diaminopimelate)	0	iJO1366	0
+G3PAT1811	glycerol-3-phosphate acyltransferase (C18:1)	0	iJO1366_genetic_unlumping	0
+3HCINNMH	3-hydroxycinnamate hydroxylase	0	iJO1366	0
+ORNabcpp	ornithine transport via ABC system (periplasm)	0	iJO1366	0
+PMEACPE1	Pimeloyl-[ACP] methyl ester esterase	0	iJO1366_genetic_unlumping	0
+FLVR	flavin reductase	0	iJO1366	0
+NADPHQR3	NADPH Quinone Reductase (Menaquinone-8)	0	iJO1366	0
+NADPHQR4	NADPH Quinone Reductase (2-Demethylmenaquinone-8)	0	iJO1366	0
+ADOCBLS	Adenosylcobalamin 5_prime_-phosphate synthase	0	iJO1366	0
+PG180abcpp	phosphatidylglycerol transport via ABC system (n-C18:0, periplasm)	0	iJO1366	0
+LADGMDH	L-alanyl-gamma-D-glutamyl-meso-diaminopimelate hydrolase	0	iJO1366	0
+DDGALK	2-dehydro-3-deoxygalactonokinase	0	iJO1366	0
+CPGNabcpp	coprogen transport via ABC system (periplasm)	0	iJO1366	0
+Cs_cyto_import	Cs_cyto_import	0	M_protein_recon	0
+ECAP1pp	enterobacterial common antigen polymerase (periplasm)	0	iJO1366	0
+3HAD1411	3-hydroxyacyl-[acyl-carrier-protein] dehydratase (n-C14:1)	0	iJO1366_genetic_unlumping	0
+ORNDC	Ornithine Decarboxylase	0	iJO1366	0
+PItex	phosphate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+DCYTD	deoxycytidine deaminase	0	iJO1366	0
+SELGTHR	selenate glutathione reductase	0	iJO1366	0
+RNTR1c21	ribonucleoside-triphosphate reductase (ATP) (flavodoxin)	0	iJO1366_genetic_unlumping	0
+RNTR1c22	ribonucleoside-triphosphate reductase (ATP) (flavodoxin)	0	iJO1366_genetic_unlumping	0
+AP5AH	Ap5A hydrolase	0	iJO1366	0
+MGSA	methylglyoxal synthase	0	iJO1366	0
+MOCOS	molybdenum cofactor synthase	0	iJO1366	0
+DTARTD	D(-)-tartrate dehydratase	0	iJO1366	0
+AB6PGH	Arbutin 6-phosphate glucohydrolase	0	iJO1366	0
+EAR100x1	enoyl-[acyl-carrier-protein] reductase (NADH) (n-C10:0)	0	iJO1366_genetic_unlumping	0
+TYRtex	L-tyrosine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+HDCAtexi	Hexadecanoate transport via facilitated irreversible diffusion (extracellular to periplasm)	0	iJO1366	0
+SBTptspp	D-sorbitol transport via PEP:Pyr PTS (periplasm)	0	iJO1366	0
+MOBDtex	molybdate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FACOAE100	fatty-acid-CoA thioesterase (decanoate)	0	iJO1366	0
+ADD	adenine deaminase	0	iJO1366	0
+TYRPpp	phospho-L-tyrosine phosphatase (periplasmic)	0	iJO1366	0
+MDDEP2pp	murein D,D-endopeptidase (murein3px4p) (periplasm)	0	iJO1366	0
+GLCDpp	Glucose dehydrogenase (ubiquinone-8 as acceptor) (periplasm)	0	iJO1366	0
+FDH4pp	formate dehydrogenase (quinone-8) (periplasm)	0	iJO1366	0
+RNDR22	ribonucleoside-diphosphate reductase (GDP)	0	iJO1366_genetic_unlumping	0
+ALTRH	altronate hydrolase	0	iJO1366	0
+RNDR21	ribonucleoside-diphosphate reductase (GDP)	0	iJO1366_genetic_unlumping	0
+LALALGLUtex	L-alanyl-L-glutamate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+OPHBDC	Octaprenyl-hydroxybenzoate decarboxylase	0	iJO1366	0
+CYSTL	cystathionine b-lyase	0	iJO1366	0
+GTHPi	glutathione peridoxase	0	iJO1366	0
+FE3DHBZStonex	ferric 2,3-dihydroxybenzoylserine transport via ton system (extracellular)	0	iJO1366	0
+Kt3pp	potassium transport out via proton antiport (periplasm)	0	iJO1366	0
+UAGDP	UDP-N-acetylglucosamine diphosphorylase	0	iJO1366	0
+TRSARr	tartronate semialdehyde reductase	1	iJO1366	0
+PDX5POi	pyridoxine 5_prime_-phosphate oxidase	0	iJO1366	0
+R5PPpp	ribose 5-phosphate phosphatase	0	iJO1366	0
+HPPPNt2rpp	3-(3-hydroxyphenyl)propionate transport via proton symport, reversible (periplasm)	1	iJO1366	0
+SUCCtex	succinate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ALAt4pp	L-alanine transport in via sodium symport (periplasm)	0	iJO1366	0
+ASPt2_3pp	L-asparate transport via proton symport (3 H) (periplasm)	0	iJO1366	0
+ACGALtex	N-acetyl-D-galactosamine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ECA4COLIPAabctex	enterobacterial common antigen (x4) core oligosaccharide lipid A transport via ABC system (periplasm to extracellular)	0	iJO1366	0
+SUCCt3pp	succinate transport out via proton antiport (periplasm)	0	iJO1366	0
+OXAMTC	oxamate transcarbamoylase	0	iJO1366	0
+SPODM	superoxide dismutase	0	iJO1366	0
+GLUabcpp	L-glutamate transport via ABC system (periplasm)	0	iJO1366	0
+TPRDCOAS	triphosphoribosyl-dephospho-CoA synthase	0	iJO1366	0
+4Fe4S_to_ErpA_by_SufA	4Fe4S_to_ErpA_by_SufA	0	M_protein_recon	0
+NTD9	5_prime_-nucleotidase (GMP)	0	iJO1366	0
+NTD6	5_prime_-nucleotidase (dAMP)	0	iJO1366	0
+NTD7	5_prime_-nucleotidase (AMP)	0	iJO1366	0
+NTD4	5_prime_-nucleotidase (CMP)	0	iJO1366	0
+NTD5	5_prime_-nucleotidase (dTMP)	0	iJO1366	0
+NTD2	5_prime_-nucleotidase (UMP)	0	iJO1366	0
+NTD3	5_prime_-nucleotidase (dCMP)	0	iJO1366	0
+NTD1	5_prime_-nucleotidase (dUMP)	0	iJO1366	0
+THMDt2rpp	thymidine transport in via proton symport, reversible (periplasm)	1	iJO1366	0
+NAtex	sodium transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+METAT	methionine adenosyltransferase	0	iJO1366	0
+2AGPG140tipp	2-Acyl-sn-glycero-3-phosphoglycerol (n-C14:0) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+INStex	inosine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+DOXRBCNtpp	Doxorubicin transport via TolC system	0	iJO1366	0
+RHCCE	S-ribosylhomocysteine cleavage enzyme	0	iJO1366	0
+PPCK	phosphoenolpyruvate carboxykinase	0	iJO1366	0
+ARBTNR3	aerobactin reductase	0	iJO1366	0
+CTECOAI6	3-cis-2-trans-enoyl-CoA isomerase	1	iJO1366	0
+CTECOAI7	3-cis-2-trans-enoyl-CoA isomerase	1	iJO1366	0
+ADSL1r	adenylsuccinate lyase	1	iJO1366	0
+PACALDtex	phenethylacetaldehyde transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+CTECOAI8	3-cis-2-trans-enoyl-CoA isomerase	1	iJO1366	0
+G6PDH2r	glucose 6-phosphate dehydrogenase	1	iJO1366	0
+HCYSMT	homocysteine S-methyltransferase	0	iJO1366	0
+Kabcpp	Potassium ABC transporter (periplasm)	0	iJO1366	0
+MELIBt2pp	melibiose transport in via symport (periplasm)	0	iJO1366	0
+NTP11	nucleoside-triphosphatase (dITP)	0	iJO1366	0
+NACODA	N-acetylornithine deacetylase	0	iJO1366	0
+DSERtex	D-serine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+HG2t3pp	mercury (Hg+2) transport out via proton antiport (periplasm)	0	iJO1366	0
+CFAS180G	cyclopropane fatty acid synthase (Phosphatidylglycerol, n-C18:0)	0	iJO1366	0
+GDPMNH	GDP-mannose mannosyl hydrolase	0	iJO1366	0
+BMOCOS	bis-molybdenum cofactor synthase	0	iJO1366	0
+UM4PL	UDP-N-acetylmuramate:L-alanyl-gamma-D-glutamyl-meso-diaminopimelate-D-alanine ligase	0	iJO1366	0
+ACMUMtex	N-acetylmuramate transport via diffusion (extracellular to periplasm)	0	iJO1366	0
+LPLIPAL1A120pp	Lysophospholipase L1 (2-acylglycerophosphotidate, n-C12:0) (periplasm)	0	iJO1366	0
+GDPMNP	GDP-mannose phyrophosphatase	0	iJO1366	0
+MMETt2pp	S-methylmethionine permease (periplasm)	0	iJO1366	0
+DHACOAH	2,3-dehydroadipyl-CoA hydratase	1	iJO1366	0
+EAR160x1	enoyl-[acyl-carrier-protein] reductase (NADH) (n-C16:0)	0	iJO1366_genetic_unlumping	0
+MN2tpp	manganese transport in via permease (no H+)	0	iJO1366	0
+PE180abcpp	phosphatidylethanolamine transport via ABC system (n-C18:0, periplasm)	0	iJO1366	0
+FOMETRi	Aminomethyltransferase	0	iJO1366	0
+ARBt2rpp	L-arabinose transport via proton symport (periplasm)	1	iJO1366	0
+PAPA160	Phosphatidate phosphatase (n-C16:0)	0	iJO1366	0
+PAPA161	Phosphatidate phosphatase (n-C16:1)	0	iJO1366	0
+AGPAT1811	1-octadec-7-enoyl-sn-glycerol 3-phosphate O-acyltransferase (n-C18:1)	0	iJO1366_genetic_unlumping	0
+MALTPTabcpp	maltopentaose transport via ABC system (periplasm)	0	iJO1366	0
+ACACT3r	acetyl-CoA C-acyltransferase (hexanoyl-CoA) (r)	1	iJO1366	0
+MINOHPtexi	myo-inositol phosphate transport via diffusion (extracellular to periplasm)	0	iJO1366	0
+PGPP120pp	phosphatidylglycerol phosphate phosphatase (periplasm, n-C14:0)	0	iJO1366	0
+PHETA1	phenylalanine transaminase	1	iJO1366	0
+GPDDA3pp	Glycerophosphodiester phosphodiesterase (Glycerophosphoserine)	0	iJO1366	0
+PTRCORNt7pp	putrescine/ornithine antiporter (periplasm)	1	iJO1366	0
+ACOAD4f	acyl-CoA dehydrogenase (decanoyl-CoA)	1	iJO1366	0
+ATPHs	ATP amine hydrolysis (spontaneous)	0	iJO1366	1
+NTPP9	Nucleoside triphosphate pyrophosphorylase (itp)	0	iJO1366	0
+NTPP8	Nucleoside triphosphate pyrophosphorylase (utp)	0	iJO1366	0
+NTPP7	Nucleoside triphosphate pyrophosphorylase (dttp)	0	iJO1366	0
+NTPP6	Nucleoside triphosphate pyrophosphorylase (atp)	0	iJO1366	0
+NTPP5	Nucleoside triphosphate pyrophosphorylase (datp)	0	iJO1366	0
+NTPP4	Nucleoside triphosphate pyrophosphorylase (ctp)	0	iJO1366	0
+NTPP3	Nucleoside triphosphate pyrophosphorylase (dctp)	0	iJO1366	0
+NTPP2	Nucleoside triphosphate pyrophosphorylase (gtp)	0	iJO1366	0
+NTPP1	Nucleoside triphosphate pyrophosphorylase (dgtp)	0	iJO1366	0
+GUR1PPpp	Glucuronate 1-phosphate phosphatase (periplasm)	0	iJO1366	0
+OGMEACPD1	3-Oxo-glutaryl-[ACP] methyl ester dehydratase	0	iJO1366_genetic_unlumping	0
+OGMEACPR1	3-Oxo-glutaryl-[ACP] methyl ester reductase	0	iJO1366_genetic_unlumping	0
+FCLPA	L-fuculose 1-phosphate aldolase	1	iJO1366	0
+F6Pt6_2pp	Fructose-6-phosphate transport via phosphate antiport (periplasm)	0	iJO1366	0
+RNTR3c22	ribonucleoside-triphosphate reductase (CTP) (flavodoxin)	0	iJO1366_genetic_unlumping	0
+MAN6PI	mannose-6-phosphate isomerase	1	iJO1366	0
+RNTR3c21	ribonucleoside-triphosphate reductase (CTP) (flavodoxin)	0	iJO1366_genetic_unlumping	0
+PDX5PS1	PDX5PS1	0	M_protein_recon	0
+PDX5PS2	PDX5PS2	0	M_protein_recon	0
+PPALtex	propanal transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+HPPPNDO	2,3-dihydroxypheylpropionate 1,2-dioxygenase	0	iJO1366	0
+AMPMS2	4-amino-2-methyl-5-phosphomethylpyrimidine synthetase	0	iJO1366	0
+DMSOR2pp	Dimethyl sulfoxide reductase (Demethylmenaquinol 8) (periplasm)	0	iJO1366	0
+LCADi	lactaldehyde dehydrogenase	0	iJO1366	0
+CHLt2pp	choline transport via proton symport (periplasm)	0	iJO1366	0
+MCITS	2-methylcitrate synthase	0	iJO1366	0
+RNTR2c21	ribonucleoside-triphosphate reductase (GTP) (flavodoxin)	0	iJO1366_genetic_unlumping	0
+RNTR2c22	ribonucleoside-triphosphate reductase (GTP) (flavodoxin)	0	iJO1366_genetic_unlumping	0
+MCITD	2-methylcitrate dehydratase	0	iJO1366	0
+HIStex	L-histidine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PA160abcpp	phosphatidate transport via ABC system (n-C16:0, periplasm)	0	iJO1366	0
+IG3PS	Imidazole-glycerol-3-phosphate synthase	0	iJO1366	0
+DINStex	deoxyinosine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+EAR161x1	enoyl-[acyl-carrier-protein] reductase (NADH) (n-C16:1)	0	iJO1366_genetic_unlumping	0
+DNMPPA	Dihydroneopterin monophosphate dephosphorylase	0	iJO1366	0
+PSSA181	Phosphatidylserine syntase (n-C18:1)	0	iJO1366	0
+PSSA180	Phosphatidylserine syntase (n-C18:0)	0	iJO1366	0
+S_transfer_to_IscU_mod_2:fe2	S_transfer_to_IscU_mod_2:fe2	0	M_protein_recon	0
+SULFACtex	sulfoaceate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+DRPA	deoxyribose-phosphate aldolase	0	iJO1366	0
+CLPNH140pp	cardiolipin hydrolase (periplasm, n-C14:0)	0	iJO1366	0
+OCTAtex	Octanoate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PAPSR23	phosphoadenylyl-sulfate reductase (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+3OAS1201	3-oxoacyl-[acyl-carrier-protein] synthase (n-C12:0)	0	iJO1366_genetic_unlumping	0
+G1PTT	glucose-1-phosphate thymidylyltransferase	0	iJO1366	0
+CD2tex	cadmium (Cd+2) transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GALT1	galactosyltransferase I (LPS core synthesis)	0	iJO1366	0
+URAtex	uracil transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+TYRL	tyrosine lyase	0	iJO1366	0
+NNATr	nicotinate-nucleotide adenylyltransferase	1	iJO1366	0
+PE161abcpp	phosphatidylethanolamine transport via ABC system (n-C16:1, periplasm)	0	iJO1366	0
+SDPDS	succinyl-diaminopimelate desuccinylase	0	iJO1366	0
+CRNCAL2	Carnitine-CoA Ligase	0	iJO1366	0
+PPBNGS	porphobilinogen synthase	0	iJO1366	0
+SULFACabcpp	sulfoacetate transport via ABC system (periplasm)	0	iJO1366	0
+LPLIPAL1G161pp	Lysophospholipase L1 (2-acylglycerophosphoglycerol, n-C16:1) (periplasm)	0	iJO1366	0
+LPLIPAL2ATG181	Lysophospholipase L2 (acyltransferase, 2-acyl-glycerophosphoglycerol, n-C18:1)	0	iJO1366	0
+LPLIPAL2ATG180	Lysophospholipase L2 (acyltransferase, 2-acyl-glycerophosphoglycerol, n-C18:0)	0	iJO1366	0
+3HAD1401	3-hydroxyacyl-[acyl-carrier-protein] dehydratase (n-C14:0)	0	iJO1366_genetic_unlumping	0
+CBPS	carbamoyl-phosphate synthase (glutamine-hydrolysing)	0	iJO1366	0
+MALDt2_2pp	D-Malate transport via proton symport (2 H) (periplasm)	0	iJO1366	0
+AGM3PA	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramyl-tripeptide amidase	0	iJO1366	0
+AGM3PH	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramyl-tripeptide beta -1,4-N-acetylglucosaminidase	0	iJO1366	0
+ACPPAT1801	acyl-(acyl carrier protein):phosphate acyltransferase (C18:0)	0	iJO1366_genetic_unlumping	0
+TMDK1	thymidine kinase (ATP:thymidine)	0	iJO1366	0
+LPLIPAL1A160pp	Lysophospholipase L1 (2-acylglycerophosphotidate, n-C16:0) (periplasm)	0	iJO1366	0
+PGP140abcpp	phosphatidylglycerophosphate transport via ABC system (n-C14:0, periplasm)	0	iJO1366	0
+12DGR141tipp	1,2 diacylglycerol transport via flipping (periplasm to cytoplasm, n-C14:1)	0	iJO1366	0
+I4FE4SR1	ISC [4Fe-4S] Reduction	0	iJO1366_genetic_unlumping	0
+LPLIPAL2ATG160	Lysophospholipase L2 (acyltransferase, 2-acyl-glycerophosphoglycerol, n-C16:0)	0	iJO1366	0
+GLYC3Pabcpp	sn-Glycerol 3-phosphate transport via ABC system (periplasm)	0	iJO1366	0
+ACOAD5f	acyl-CoA dehydrogenase (dodecanoyl-CoA)	1	iJO1366	0
+ILEtex	L-isoleucine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+HOMt2pp	L-homoserineserine efflux via proton symport	0	iJO1366	0
+TSULabcpp	thiosulfate transport via ABC system (periplasm)	0	iJO1366	0
+LPLIPAL2ATE181	Lysophospholipase L2 (acyltransferase, 2-acyl-glycerophosphoethanolamine, n-C18:1)	0	iJO1366	0
+DHFS	dihydrofolate synthase	0	iJO1366	0
+SUCMALtpp	succinate:malate antiporter (periplasm)	1	iJO1366	0
+NH4tpp	ammonia reversible transport (periplasm)	1	iJO1366	1
+VALTA	valine transaminase	1	iJO1366	0
+TMAOR1	Trimethylamine N-oxide reductase (menaquinol 8)	0	iJO1366	0
+R5PP	ribose 5-phosphate phosphatase	0	iJO1366	0
+PG160abcpp	phosphatidylglycerol transport via ABC system (n-C16:0, periplasm)	0	iJO1366	0
+LPLIPAL2A120	Lysophospholipase L2 (2-acylglycerophosphotidate, n-C12:0)	0	iJO1366	0
+RNDR31	ribonucleoside-diphosphate reductase (CDP)	0	iJO1366_genetic_unlumping	0
+CFAS160G	cyclopropane fatty acid synthase (Phosphatidylglycerol, n-C16:0)	0	iJO1366	0
+CFAS160E	cyclopropane fatty acid synthase (Phosphatidylethanolamine, n-C16:0)	0	iJO1366	0
+ICHORS	isochorismate synthase	1	iJO1366	0
+ADK4	adentylate kinase (ITP)	1	iJO1366	0
+ADK3	adentylate kinase (GTP)	1	iJO1366	0
+Fe_transfer_CyaY_mod_1:fe2_to_IscU_mod_1:2Fe2S	Fe_transfer_CyaY_mod_1:fe2_to_IscU_mod_1:2Fe2S	0	M_protein_recon	0
+ICHORT	isochorismatase	0	iJO1366	0
+PLIPA2E141pp	Phospholipase A2 (phosphatidylethanolamine, n-C14:1) (periplasm)	0	iJO1366	0
+GLYALDtpp	Glyceraldehyde facilitated diffusion (periplasm)	1	iJO1366	0
+FEROpp	ferroxidase	0	iJO1366	0
+AACPS21	acyl-[acyl-carrier-protein] synthetase  (n-C14:1)	0	iJO1366_genetic_unlumping	0
+PLIPA1G161pp	Phospholipase A1 (phosphatidylglycerol, n-C16:1) (periplasm)	0	iJO1366	0
+APG3PAT181	acyl-phosphate:glycerol-3-phosphate acyltransferase (C18:1)	0	iJO1366	0
+APG3PAT180	acyl-phosphate:glycerol-3-phosphate acyltransferase (C18:0)	0	iJO1366	0
+SADH	Succinylarginine dihydrolase	0	iJO1366	0
+LALALGLUtpp	L-alanyl-L-glutamate transport in via proton symport (periplasm)	0	iJO1366	0
+PA161abcpp	phosphatidate transport via ABC system (n-C16:1, periplasm)	0	iJO1366	0
+CRNCDH	Carnityl-CoA dehydratse	1	iJO1366	0
+PGPP141	phosphatidylglycerol phosphate phosphatase (n-C14:1)	0	iJO1366	0
+PGPP140	phosphatidylglycerol phosphate phosphatase (n-C14:0)	0	iJO1366	0
+CYTDt2rpp	cytidine transport in via proton symport, reversible (periplasm)	1	iJO1366	0
+AMMQLT8	S-adenosylmethione:2-demthylmenaquinole methyltransferase (menaquinone 8)	0	iJO1366	0
+USHD	UDP-sugar hydrolase	0	iJO1366	0
+UAAGDS	UDP-N-acetylmuramoyl-L-alanyl-D-glutamyl-meso-2,6-diaminopimelate synthetase	0	iJO1366	0
+GLCP2	glycogen phosphorylase	0	iJO1366	0
+MPTS1	molybdopterin synthase	0	iJO1366_genetic_unlumping	0
+M1PD	mannitol-1-phosphate 5-dehydrogenase	1	iJO1366	0
+G3PCabcpp	sn-glycerol-3-phosphocholine transport via ABC system (periplasm)	0	iJO1366	0
+ACONMT	Trans-aconitate methyltransferase	0	iJO1366	0
+DUTPDP	dUTP diphosphatase	0	iJO1366	0
+TREptspp	trehalose transport via PEP:Pyr PTS (periplasm)	0	iJO1366	0
+FA160ACPHi1	fatty-acyl-ACP hydrolase	0	iJO1366_genetic_unlumping	0
+GALCTtex	D-galactarte transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ALR2	aldose reductase (methylglyoxal)	0	iJO1366	0
+ENTERES	Enterochelin Esterase	0	iJO1366	0
+TUNGStex	tungstate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ACNAMt2pp	N-acetylneuraminate proton symport (periplasm)	0	iJO1366	0
+FMNRx2	FMN reductase	0	iJO1366	0
+DHDPRy	dihydrodipicolinate reductase (NADPH)	0	iJO1366	0
+DSBGGT1	DsbG:glutathione thiotransferase	0	iJO1366_genetic_unlumping	0
+O16AT	rhamanosyl-N-acetylglucosamyl-undecaprenyl diphosphate O-acetyltransferase (LPS O16 antigen biosynthesis)	0	iJO1366	0
+DTMPtex	dTMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+MINCYCtex	Minocycline transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+SO3tex	sulfite transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PGCD	phosphoglycerate dehydrogenase	0	iJO1366	0
+3OXCOAT	3-oxoadipyl-CoA thiolase	0	iJO1366	0
+2AGPA141tipp	2-Acyl-sn-glycero-3-phosphatidate (n-C14:1) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+PLIPA1E161pp	Phospholipase A1 (phosphatidylethanolamine, n-C16:1) (periplasm)	0	iJO1366	0
+LIPACabcpp	lipid (cold) A transport via ABC system (periplasm)	0	iJO1366	0
+2AGPE161tipp	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C16:1) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+METDtex	D-methionine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+TMAOtex	Trimethylamine N-oxide transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+CYANtex	Cyanide transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+EAR80x1	enoyl-[acyl-carrier-protein] reductase (NADH) (n-C8:0)	0	iJO1366_genetic_unlumping	0
+APG3PAT161	acyl-phosphate:glycerol-3-phosphate acyltransferase (C16:1)	0	iJO1366	0
+APG3PAT160	acyl-phosphate:glycerol-3-phosphate acyltransferase (C16:0)	0	iJO1366	0
+CYTDt2pp	cytidine transport in via proton symport (periplasm)	0	iJO1366	0
+4Fe4S_to_IscA_by_IscU	4Fe4S_to_IscA_by_IscU	0	M_protein_recon	0
+FEENTERabcpp	Fe-enterobactin transport via ABC system (periplasm)	0	iJO1366	0
+URACPAH	peroxyureidoacrylate hydrolase	0	iJO1366	0
+ME1	malic enzyme (NAD)	0	iJO1366	0
+PDE4	3_prime_,5_prime_-cyclic-nucleotide phosphodiesterase	0	iJO1366	0
+PDE1	3_prime_,5_prime_-cyclic-nucleotide phosphodiesterase	0	iJO1366	0
+O16A4COLIPAabctex	O16 antigen (x4) core oligosaccharide lipid A transport via ABC system (periplasm to extracellular)	0	iJO1366	0
+CYTK1	cytidylate kinase (CMP)	1	iJO1366	0
+CYTK2	cytidylate kinase (dCMP)	1	iJO1366	0
+L__LACD2	L-Lactate dehydrogenase (ubiquinone)	0	iJO1366	0
+L__LACD3	L-Lactate dehydrogenase (menaquinone)	0	iJO1366	0
+PHEtex	L-phenylalanine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ME2	malic enzyme (NADP)	0	iJO1366	0
+ECA4OALpp	enterobacterial common antigen (x4) O-antigen ligase (periplasm)	0	iJO1366	0
+O16AP2pp	O16 antigen polymerase (periplasm)	0	iJO1366	0
+MECDPDH52	2C-methyl-D-erythritol 2,4 cyclodiphosphate dehydratase	0	iJO1366_genetic_unlumping	0
+NODOy	nitric oxide dioxygenase	0	iJO1366	0
+2AGPE160tipp	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C16:0) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+KDOPS	3-deoxy -D-manno-octulosonic -acid 8-phosphate synthase	0	iJO1366	0
+GLUt4pp	Na+/glutamate symport (periplasm)	0	iJO1366	0
+SERt2rpp	L-serine reversible transport via proton symport (periplasm)	1	iJO1366	0
+DCTPD	dCTP deaminase	0	iJO1366	0
+ZN2tpp	zinc transport in via permease (no H+)	0	iJO1366	0
+CLPNS140pp	cardiolipin synthase (periplasmic, n-C14:0)	1	iJO1366	0
+GLYC2Pabcpp	sn-Glycerol 2-phosphate transport via ABC system (periplasm)	0	iJO1366	0
+GDMANE	GDP-4-dehydro-6-deoxy-D-mannose epimerase	0	iJO1366	0
+UAGAAT1	UDP-N-acetylglucosamine acyltransferase	1	iJO1366_genetic_unlumping	0
+OGMEACPS1	3-Oxo-glutaryl-[ACP] methyl ester synthase	0	iJO1366_genetic_unlumping	0
+CD2abcpp	Cadmium (Cd+2) ABC transporter (periplasm)	0	iJO1366	0
+ENO	enolase	1	iJO1366	0
+DHMPTR	Dihydromonapterin reductase	0	iJO1366	0
+2AGPG160tipp	2-Acyl-sn-glycero-3-phosphoglycerol (n-C16:0) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+4Fe4S_to_IscA_by_SufBCD	4Fe4S_to_IscA_by_SufBCD	0	M_protein_recon	0
+3OAR1401	3-oxoacyl-[acyl-carrier-protein] reductase (n-C14:0)	1	iJO1366_genetic_unlumping	0
+ARGAGMt7pp	Arginine/agmatine antiport (periplasm)	1	iJO1366	0
+2Fe2S_to_IscA_by_IscU	2Fe2S_to_IscA_by_IscU	0	M_protein_recon	0
+D__LACt2pp	D-lactate transport via proton symport (periplasm)	1	iJO1366	0
+MSO3tex	methanesulfonate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GRXR2	glutaredoxin reductase	0	iJO1366_genetic_unlumping	0
+MCTP1App	murein crosslinking transpeptidase 1A:(A2pm->D-ala) (periplasm)	0	iJO1366	0
+FTHFLi	formate-tetrahydrofolate ligase	0	iJO1366	0
+GRXR3	glutaredoxin reductase	0	iJO1366_genetic_unlumping	0
+12DGR140tipp	1,2 diacylglycerol transport via flipping (periplasm to cytoplasm, n-C14:0)	0	iJO1366	0
+ACOAD6f	acyl-CoA dehydrogenase (tetradecanoyl-CoA)	1	iJO1366	0
+IDONtex	L-idonate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FDMO4	FMNH2-dependent monooxygenase (butanesulfonate)	0	iJO1366	0
+MNNH	D-mannonate hydrolyase	0	iJO1366	0
+G5SD	glutamate-5-semialdehyde dehydrogenase	0	iJO1366	0
+PGPP160pp	phosphatidylglycerol phosphate phosphatase (periplasm, n-C16:0)	0	iJO1366	0
+DNTPPA	Dihydroneopterin triphosphate pyrophosphatase	0	iJO1366	0
+S7PI	sedoheptulose 7-phosphate isomerase	0	iJO1366	0
+XYLt2pp	D-xylose transport in via proton symport (periplasm)	0	iJO1366	0
+PETNT161pp	phosphoethanolamine transferase (c-C16:1)	0	iJO1366	0
+RBK_L1	L-ribulokinase (L-ribulose)	0	iJO1366	0
+SBTPD	sorbitol-6-phosphate dehydrogenase	1	iJO1366	0
+LYSDC	lysine decarboxylase	0	iJO1366	0
+RNDR42	ribonucleoside-diphosphate reductase (UDP)	0	iJO1366_genetic_unlumping	0
+ADNCYC	adenylate cyclase	0	iJO1366	0
+QUIN2tpp	Quinate transport (periplasm)	1	iJO1366	0
+PA141abcpp	phosphatidate transport via ABC system (n-C14:1, periplasm)	0	iJO1366	0
+GALCTNLtex	L-galactonate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+AMPTASECG	alanyl aminopeptidase (cys-gly)	0	iJO1366	0
+PDH	pyruvate dehydrogenase	0	iJO1366	0
+ALLtex	Allose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GAM6Pt6_2pp	D-Glucosamine 6-phosphate transport via phosphate antiport (periplasm)	0	iJO1366	0
+GALUi	UTP-glucose-1-phosphate uridylyltransferase (irreversible)	0	iJO1366	0
+PYRtex	pyruvate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+CLPNH181pp	cardiolipin hydrolase (periplasm, n-C18:1)	0	iJO1366	0
+NI2tpp	nickel (+2) transport in via permease (no H+)	0	iJO1366	0
+SELtex	selenate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+THRA2i	L-allo-Threonine Aldolase	0	iJO1366	0
+EAR161y1	enoyl-[acyl-carrier-protein] reductase (NADPH) (n-C16:1)	0	iJO1366_genetic_unlumping	0
+CYSabc2pp	L-cysteine export via ABC system (cytoplasm to periplasm)	0	iJO1366	0
+ACPPAT1811	acyl-(acyl carrier protein):phosphate acyltransferase (C18:1)	0	iJO1366_genetic_unlumping	0
+LPLIPAL1G180pp	Lysophospholipase L1 (2-acylglycerophosphoglycerol, n-C18:0) (periplasm)	0	iJO1366	0
+O16AP3pp	O16 antigen polymerase (periplasm)	0	iJO1366	0
+NADH17pp	NADH dehydrogenase (menaquinone-8 & 3 protons) (periplasm)	0	iJO1366	0
+UPPRT	uracil phosphoribosyltransferase	0	iJO1366	0
+NTD1pp	5_prime_-nucleotidase (dUMP)	0	iJO1366	0
+FEENTERR1	Fe-enterobactin reduction (Fe(III)-unloading)	0	iJO1366	0
+UPLA4FNT	undecaprenyl phosphate-L-Ara4FN transferase	0	iJO1366	0
+FEENTERR3	Fe-enterobactin reduction (Fe(III)-unloading)	0	iJO1366	0
+FECRMR1	Ferrichrome reductase	0	iJO1366	0
+FECRMR2	Ferrichrome reductase	0	iJO1366	0
+FECRMR3	Ferrichrome reductase	0	iJO1366	0
+APH180	acylphosphatase (C18:0)	0	iJO1366	0
+APH181	acylphosphatase (C18:1)	0	iJO1366	0
+23PDE2pp	2_prime_,3_prime_-cyclic-nucleotide phosphodiesterase (UMP) (periplasm)	0	iJO1366	0
+UPLA4FNF	undecaprenyl phosphate-L-Ara4FN formylase	0	iJO1366	0
+KG6PDC	3-keto-L-gulonate 6-phosphate decarboxylase	0	iJO1366	0
+SUCptspp	sucrose transport via PEP:Pyr  (periplasm)	0	iJO1366	0
+UDPGPpp	UDPglucose pyrophosphohydrolase	0	iJO1366	0
+DSBCGT1	DsbC:glutathione thiotransferase	0	iJO1366_genetic_unlumping	0
+POAACR	peroxyaminoacrylate reductase	0	iJO1366	0
+PLIPA1A120pp	Phospholipase A1 (phosphatidate, n-C12:0) (periplasm)	0	iJO1366	0
+APH160	acylphosphatase (C16:0)	0	iJO1366	0
+APH161	acylphosphatase (C16:1)	0	iJO1366	0
+BUTtex	Butyrate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+KAS141	beta-ketoacyl-ACP synthase	0	iJO1366_genetic_unlumping	0
+HG2tex	mercury (Hg+2) transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+MPTSS1	molybdopterin synthase sulfurylase	0	iJO1366_genetic_unlumping	0
+LPLIPAL2E120	Lysophospholipase L2 (2-acylglycerophosphoethanolamine, n-C12:0)	0	iJO1366	0
+FACOAE120	fatty-acid-CoA thioesterase (dodecanoate)	0	iJO1366	0
+BTS6	BTS6	0	M_protein_recon	0
+XMPtex	XMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GALCTLO	L-galactonate oxidoreductase	0	iJO1366	0
+ACCOAL	acetate-CoA ligase (ADP-forming)	0	iJO1366	0
+CITL	Citrate lyase	0	iJO1366	0
+FORtppi	formate transport via diffusion (cytoplasm to periplasm)	0	iJO1366	0
+ACCOAC	acetyl-CoA carboxylase	0	iJO1366	0
+AACPS31	acyl-[acyl-carrier-protein] synthetase  (n-C16:0)	0	iJO1366_genetic_unlumping	0
+NMNAT	nicotinamide-nucleotide adenylyltransferase	0	iJO1366	0
+AKGDH	2-Oxogluterate dehydrogenase	0	iJO1366	0
+ADA	Adenosine deaminase	0	iJO1366	0
+MANPGH	2-O-alpha-mannosyl-6-phosphate-D-glycerate hydrolase	0	iJO1366	0
+Fe_transfer_CyaY_mod_1:fe2_to_IscU	Fe_transfer_CyaY_mod_1:fe2_to_IscU	0	M_protein_recon	0
+GALCTND	galactonate dehydratase	0	iJO1366	0
+TYRt2rpp	L-tyrosine reversible transport via proton symport (periplasm)	1	iJO1366	0
+NADH18pp	NADH dehydrogenase (demethylmenaquinone-8 & 3 protons) (periplasm)	0	iJO1366	0
+UDCPDPS	Undecaprenyl diphosphate synthase	0	iJO1366	0
+Cs_peri_import	Cs_peri_import	0	M_protein_recon	0
+COLIPAKpp	Lipid A core kinase (periplasm)	0	iJO1366	0
+HSK	homoserine kinase	0	iJO1366	0
+METSOX2abcpp	L-methionine R-oxide transport via ABC system (periplasm)	0	iJO1366	0
+S_transfer_to_IscU_mod_1:2Fe2S_mod_1:2Fe1S	S_transfer_to_IscU_mod_1:2Fe2S_mod_1:2Fe1S	0	M_protein_recon	0
+RMNtpp	L-rhamnose transport via proton symport (periplasm)	0	iJO1366	0
+G2PP	glycerol-2-phosphate phosphatase	0	iJO1366	0
+PPGPPDP	guanosine-3_prime_,5_prime_-bis(diphosphate) 3_prime_-diphosphatase	0	iJO1366	0
+ALAt2pp	L-alanine transport in via proton symport (periplasm)	0	iJO1366	0
+RFAMPtex	Rifampin transport via diffusion (extracellular to periplasm)	1	iJO1366	1
+OCTDPS	Octaprenyl pyrophosphate synthase	0	iJO1366	0
+H2Otex	H2O transport via diffusion (extracellular to periplasm)	1	iJO1366	1
+LIPAHT2ex	core oligosaccharide lipid A:hexadecanoate transferase (n-C16:0) (extracellular membrane)	0	iJO1366	0
+OPMEACPD1	3-Oxo-pimeloyl-[ACP] methyl ester dehydratase	0	iJO1366_genetic_unlumping	0
+EAR121x1	enoyl-[acyl-carrier-protein] reductase (NADH) (n-C12:1)	0	iJO1366_genetic_unlumping	0
+MALTPTtexi	maltopentaoseMaltotriose transport via diffusion (extracellular to periplasm) irreversible	0	iJO1366	0
+DHAtpp	Dihydroxyacetone transport via facilitated diffusion (periplasm)	1	iJO1366	0
+MECDPDH51	2C-methyl-D-erythritol 2,4 cyclodiphosphate dehydratase	0	iJO1366_genetic_unlumping	0
+GPDDA2pp	Glycerophosphodiester phosphodiesterase (Glycerophosphoethanolamine)	0	iJO1366	0
+O16GALFT	galactofuranosyltransferase (LPS O16 antigen biosynthesis)	0	iJO1366	0
+CPGNUtpp	coprogen unloaded secretion	0	iJO1366	0
+S_transfer_to_SufBCD_mod_1:2Fe2S_mod_1:2Fe1S	S_transfer_to_SufBCD_mod_1:2Fe2S_mod_1:2Fe1S	0	M_protein_recon	0
+CyaY_Fe_loading	CyaY_Fe_loading	0	M_protein_recon	0
+PRAIi	phosphoribosylanthranilate isomerase (irreversible)	0	iJO1366	0
+3PEPTabcpp	tripeptide (LalaDgluMdap) transport via ABC system (periplasm)	0	iJO1366	0
+EAR80y1	enoyl-[acyl-carrier-protein] reductase (NADPH) (n-C8:0)	0	iJO1366_genetic_unlumping	0
+GLYCLTt4pp	glycolate transport via sodium symport (periplasm)	0	iJO1366	0
+FBA3	Sedoheptulose 1,7-bisphosphate D-glyceraldehyde-3-phosphate-lyase	1	iJO1366	0
+MDDCP1pp	murein D,D-carboxypeptidase (murein5px4p) (periplasm)	0	iJO1366	0
+FACOAL60t2pp	fatty-acid-CoA ligase (hexanoate transport via vectoral Co-A coupling)	0	iJO1366	0
+ULA4NFT	UDP-L-Ara4N formyltransferase	0	iJO1366	0
+UDPKAAT	UDP-4_prime__prime_-ketopentose:UDP-4-amino-4-deoxy-L-arabinose aminotransferase	1	iJO1366	0
+CYNTAH	Cyanate aminohydrolase	0	iJO1366	0
+CYTDH	Cytidine hydrolase	0	iJO1366	0
+TRPtex	L-tryptophan transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+AGM4PCPpp	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramyl-tetrapeptide L,D-carboxypeptidase (periplasmic)	0	iJO1366	0
+CU2tpp	copper transport in via permease (no H+)	0	iJO1366	0
+PAPA140	Phosphatidate phosphatase (n-C14:0)	0	iJO1366	0
+PAPA141	Phosphatidate phosphatase (n-C14:1)	0	iJO1366	0
+POR51	pyruvate synthase	1	iJO1366_genetic_unlumping	0
+5DGLCNtex	5-Dehydro-D-gluconate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ALLTNtex	allantoin transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+POR52	pyruvate synthase	1	iJO1366_genetic_unlumping	0
+G3PCtex	glycero-3-phosphocholine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+NI2uabcpp	nickel transport via ABC system (uptake, periplasm)	0	iJO1366	0
+QMO3	quinol monooxygenase (menaquinol 8)	0	iJO1366	0
+QMO2	quinol monooxygenase (Ubiquinol-8)	0	iJO1366	0
+PAPA120pp	Phosphatidate phosphatase (periplasmic, n-C12:0)	0	iJO1366	0
+2AGPEAT160	2-acyl-glycerophospho-ethanolamine acyltransferase (n-C16:0)	0	iJO1366	0
+SELNPS	Selenophosphate synthase	0	iJO1366	0
+ANPRT	anthranilate phosphoribosyltransferase	0	iJO1366	0
+PSD180	Phosphatidylserine decarboxylase (n-C18:0)	0	iJO1366	0
+PSD181	Phosphatidylserine decarboxylase (n-C18:1)	0	iJO1366	0
+FORtex	formate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ARGDCpp	arginine decarboxylase	0	iJO1366	0
+DAGK120	diacylglycerol kinase (n-C12:0)	0	iJO1366	0
+PYDXtpp	pyridoxal import	0	iJO1366	0
+CSNt2pp	cytosine transport in via proton symport (periplasm)	0	iJO1366	0
+SUCCt2_2pp	succinate transport via proton symport (2 H) (periplasm)	0	iJO1366	0
+3OAR1411	3-oxoacyl-[acyl-carrier-protein] reductase (n-C14:1)	0	iJO1366_genetic_unlumping	0
+DSBAO21	DsbA protein reoxidation reaction (anaerobic)	0	iJO1366_genetic_unlumping	0
+NTD5pp	5_prime_-nucleotidase (dTMP)	0	iJO1366	0
+PAPA160pp	Phosphatidate phosphatase (periplasmic, n-C16:0)	0	iJO1366	0
+S_transfer_to_SufBCD_mod_2:fe2	S_transfer_to_SufBCD_mod_2:fe2	0	M_protein_recon	0
+THRAi	Threonine aldolase	0	iJO1366	0
+GARFT	phosphoribosylglycinamide formyltransferase	1	iJO1366	0
+G3PT	glycerol-3-phosphatase	0	iJO1366	0
+SufBCD_mod_1:fe2atp_mediated_FE_loading	SufBCD_mod_1:fe2atp_mediated_FE_loading	0	M_protein_recon	0
+GLYCAtex	D-glycerate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ADOCBIK	Adenosyl cobinamide kinase	0	iJO1366	0
+MALTHXabcpp	maltohexaose transport via ABC system (periplasm)	0	iJO1366	0
+GGGABADr	gamma-glutamyl-gamma aminobutyric acid dehydrogenase	1	iJO1366	0
+2AGPG161tipp	2-Acyl-sn-glycero-3-phosphoglycerol (n-C16:1) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+TARTRDtex	D-tartrate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GDPDPK	GDP diphosphokinase	0	iJO1366	0
+GLCP	glycogen phosphorylase	0	iJO1366	0
+DDPGALA	2-dehydro-3-deoxy-6-phosphogalactonate aldolase	1	iJO1366	0
+ARBabcpp	L-arabinose transport via ABC system (periplasm)	0	iJO1366	0
+ASPt2rpp	L-aspartate transport in via proton symport (periplasm) reversible	1	iJO1366	0
+PLIPA2G141pp	Phospholipase A2 (phosphatidylglycerol, n-C14:1) (periplasm)	0	iJO1366	0
+G3PEtex	glycero-3-phosphoethanolamine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+LPLIPAL1A161pp	Lysophospholipase L1 (2-acylglycerophosphotidate, n-C16:1) (periplasm)	0	iJO1366	0
+CYStex	L-cysteine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FACOAL161t2pp	fatty-acid-CoA ligase (hexadecenoate transport via vectoral Co-A coupling)	0	iJO1366	0
+UACMAMO	UDP-N-acetyl-D-mannosamine oxidoreductase	0	iJO1366	0
+O2tpp	o2 transport via diffusion (periplasm)	1	iJO1366	1
+ARBTNtonex	aerobactin transport via ton system (extracellular)	0	iJO1366	0
+ASO3tex	arsenite transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+INSH	Inosine hydrolase	0	iJO1366	0
+PLIPA2A120pp	Phospholipase A2 (phosphatidate, n-C12:0) (periplasm)	0	iJO1366	0
+INSK	insosine kinase	0	iJO1366	0
+MALCOAMT	Malonyl-CoA methyltransferase	0	iJO1366	0
+PYRt2rpp	pyruvate reversible transport via proton symport (periplasm)	1	iJO1366	0
+AMANAPEr	N-acetylmannosamine 6-phosphate epimerase	1	iJO1366	0
+GND	phosphogluconate dehydrogenase	0	iJO1366	0
+GNK	gluconokinase	0	iJO1366	0
+NADH10	NADH dehydrogenase (menaquinone-8 & 0 protons)	0	iJO1366	0
+GLCNt2rpp	D-gluconate transport via proton symport, reversible (periplasm)	1	iJO1366	0
+LYSabcpp	L-lysine transport via ABC system (periplasm)	0	iJO1366	0
+CLPNS180pp	cardiolipin synthase (periplasmic, n-C18:0)	1	iJO1366	0
+PLIPA2A161pp	Phospholipase A2 (phosphatidate, n-C16:1) (periplasm)	0	iJO1366	0
+QUIN2tex	Quinate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PLIPA2E140pp	Phospholipase A2 (phosphatidylethanolamine, n-C14:0) (periplasm)	0	iJO1366	0
+PYAM5PO	pyridoxamine 5_prime_-phosphate oxidase	0	iJO1366	0
+G3PAT1201	glycerol-3-phosphate acyltransferase (C12:0)	0	iJO1366_genetic_unlumping	0
+3OAR801	3-oxoacyl-[acyl-carrier-protein] reductase (n-C8:0)	1	iJO1366_genetic_unlumping	0
+SELtpp	selenate transport via proton symport (periplasm)	0	iJO1366	0
+ALAALAD	D-alanine-D-alanine dipeptidase	0	iJO1366	0
+DADK	deoxyadenylate kinase	1	iJO1366	0
+2AGPE140tipp	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C14:0) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+OMMBLHX3	2-Octaprenyl-3-methyl-6-methoxy-1,4-benzoquinol hydroxylase (anaerobic)	0	iJO1366	0
+LPLIPAL2ATG140	Lysophospholipase L2 (acyltransferase, 2-acyl-glycerophosphoglycerol, n-C14:0)	0	iJO1366	0
+DADA	Deoxyadenosine deaminase	0	iJO1366	0
+ALAALAr	D-alanine-D-alanine ligase (reversible)	1	iJO1366	0
+PSSA141	Phosphatidylserine syntase (n-C14:1)	0	iJO1366	0
+PSSA140	Phosphatidylserine syntase (n-C14:0)	0	iJO1366	0
+3OAS1001	3-oxoacyl-[acyl-carrier-protein] synthase (n-C10:0)	0	iJO1366_genetic_unlumping	0
+2AGPEAT120	2-acyl-glycerophospho-ethanolamine acyltransferase (n-C12:0)	0	iJO1366	0
+PA180abcpp	phosphatidate transport via ABC system (n-C18:0, periplasm)	0	iJO1366	0
+2AGPA140tipp	2-Acyl-sn-glycero-3-phosphatidate (n-C14:0) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+MALt2_2pp	Malate transport via proton symport (2 H) (periplasm)	0	iJO1366	0
+NTPP10	Nucleoside triphosphate pyrophosphorylase (ditp)	0	iJO1366	0
+KAS151	beta-ketoacyl-ACP synthase (2)	0	iJO1366_genetic_unlumping	0
+NOVBCNtex	Novobiocin transport via diffusion (extracellular to periplasm)	1	iJO1366	1
+GLYBabcpp	Glycine betaine transport via ABC system (periplasm)	0	iJO1366	0
+EDTXS21	Endotoxin Synthesis (myristoyl transferase)	0	iJO1366_genetic_unlumping	0
+THZPSN31	thiazole phosphate synthesis	0	iJO1366_genetic_unlumping	0
+LPLIPAL2A140	Lysophospholipase L2 (2-acylglycerophosphotidate, n-C14:0)	0	iJO1366	0
+PLIPA1A160pp	Phospholipase A1 (phosphatidate, n-C16:0) (periplasm)	0	iJO1366	0
+GLCRD	glucarate dehydratase	0	iJO1366	0
+NO3tex	nitrate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+TYMtex	tyramine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+RNDR12	ribonucleoside-diphosphate reductase (ADP)	0	iJO1366_genetic_unlumping	0
+ALLTN	allantoinase	0	iJO1366	0
+DASYN180	CDP-diacylglycerol synthetase (n-C18:0)	0	iJO1366	0
+ALAALAabcpp	D-alanyl-D-alanine (DalaDala) transport via ABC system (periplasm)	0	iJO1366	0
+PG141abcpp	phosphatidylglycerol transport via ABC system (n-C14:1, periplasm)	0	iJO1366	0
+NTD4pp	5_prime_-nucleotidase (CMP)	0	iJO1366	0
+HKNDDH	2-hydroxy-6-ketonona-2,4-dienedioic acid hydrolase	0	iJO1366	0
+TRPt2rpp	L-tryptophan reversible transport via proton symport (periplasm)	1	iJO1366	0
+PNTOtex	Pantothenate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ASCBPL	L-ascorbate 6-phosphate lactonase	0	iJO1366	0
+CRNDtex	D-carnitine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ASCBptspp	L-ascorbate transport via PEP:Pyr PTS (periplasm)	0	iJO1366	0
+PGPP161	phosphatidylglycerol phosphate phosphatase (n-C16:1)	0	iJO1366	0
+PGPP160	phosphatidylglycerol phosphate phosphatase (n-C16:0)	0	iJO1366	0
+PRFGS	phosphoribosylformylglycinamidine synthase	0	iJO1366	0
+PG120abcpp	phosphatidylglycerol transport via ABC system (n-C12:0, periplasm)	0	iJO1366	0
+ETOHtex	ethanol transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+MG2tex	magnesium (Mg+2) transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+DASYN160	CDP-diacylglycerol synthetase (n-C16:0)	0	iJO1366	0
+DASYN161	CDP-diacylglycerol synthetase (n-C16:1)	0	iJO1366	0
+AGM3PApp	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramyl-tripeptide amidase (periplasm)	0	iJO1366	0
+XTSNt2rpp	Xanthosine transport via proton symport (periplasm)	1	iJO1366	0
+PLIPA2G140pp	Phospholipase A2 (phosphatidylglycerol, n-C14:0) (periplasm)	0	iJO1366	0
+VPAMTr	Valine-pyruvate aminotransferase	1	iJO1366	0
+MALTTRtexi	Maltotriose transport via diffusion (extracellular to periplasm) irreversible	0	iJO1366	0
+ARGtex	L-arginine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+MTHTHFSs	(2R,4S)-2-methyl-2,3,3,4-tetrahydroxytetrahydrofuran synthesis (spontaneous)	0	iJO1366	1
+GMAND	GDP-D-mannose dehydratase	0	iJO1366	0
+PDXPP	Pyridoxine 5-phosphate phosphatase	0	iJO1366	0
+GALCTNLt2pp	L-galactonate transport via proton symport (periplasm)	0	iJO1366	0
+2AGPA160tipp	2-Acyl-sn-glycero-3-phosphatidate (n-C16:0) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+K2L4Aabcpp	KDO(2)-lipid IV A transport via ABC system (periplasm)	0	iJO1366	0
+DC6PH	diacetylchitobiose-6-phosphate hydrolase	0	iJO1366	0
+CHLabcpp	choline transport via ABC system (periplasm)	0	iJO1366	0
+GLYC3Pt6pp	Glycerol-3-phosphate : phosphate antiporter (periplasm)	0	iJO1366	0
+SPMDtex	spermidine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+EAR121y1	enoyl-[acyl-carrier-protein] reductase (NADPH) (n-C12:1)	0	iJO1366_genetic_unlumping	0
+PGPP141pp	phosphatidylglycerol phosphate phosphatase (periplasm, n-C14:1)	0	iJO1366	0
+CYSDabcpp	D-cysteine uptake via ABC system (periplasm)	0	iJO1366	0
+NTD8	5_prime_-nucleotidase (dGMP)	0	iJO1366	0
+PSSA160	Phosphatidylserine syntase (n-C16:0)	0	iJO1366	0
+GDPtex	GDP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FACOAL180t2pp	fatty-acid-CoA ligase (octadecanoate transport via vectoral Co-A coupling)	0	iJO1366	0
+LPLIPAL2ATE140	Lysophospholipase L2 (acyltransferase, 2-acyl-glycerophosphoethanolamine, n-C14:0)	0	iJO1366	0
+RFAMPtpp	Rifampin transport via TolC system	0	iJO1366	0
+CLPNS181pp	cardiolipin synthase (periplasmic, n-C18:1)	1	iJO1366	0
+LA4NTpp	4-amino-4-deoxy-L-arabinotransferase (LPS lipid A modification, periplasmic face of membrane))	0	iJO1366	0
+CHOLD	choline dehydrogenase	0	iJO1366	0
+PLIPA2A160pp	Phospholipase A2 (phosphatidate, n-C16:0) (periplasm)	0	iJO1366	0
+AM4PCP	anhydrous-N-Acetylmuramyl-tetrapeptide L,D-carboxypeptidase	0	iJO1366	0
+FRUpts2pp	Fructose transport via PEP:Pyr PTS (f6p generating) (periplasm)	0	iJO1366	0
+BUTSO3abcpp	butanesulfonate transport via ABC system (periplasm)	0	iJO1366	0
+ALPATG160pp1	apolipoprotein N-acyltransferase (phosphatidylglycerol, periplasm)	0	iJO1366_genetic_unlumping	0
+PDX5PO2	pyridoxine 5_prime_-phosphate oxidase (anaerboic	0	iJO1366	0
+DPCOAK	dephospho-CoA kinase	0	iJO1366	0
+APG3PAT141	acyl-phosphate:glycerol-3-phosphate acyltransferase (C14:1)	0	iJO1366	0
+APG3PAT140	acyl-phosphate:glycerol-3-phosphate acyltransferase (C14:0)	0	iJO1366	0
+NADH5	NADH dehydrogenase (ubiquinone-8 )	0	iJO1366	0
+NADH9	NADH dehydrogenase (demethylmenaquinone-8 & 0 protons)	0	iJO1366	0
+CHORM	chorismate mutase	0	iJO1366	0
+BALAtex	beta-alanine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PLIPA1E120pp	Phospholipase A1 (phosphatidylethanolamine, n-C12:0) (periplasm)	0	iJO1366	0
+CHORS	chorismate synthase	0	iJO1366	0
+FRULYStex	fructoselysine transporter via diffusion (extracellular)	1	iJO1366	0
+MCTP1Bpp	murein crosslinking transpeptidase 1B:(A2pm->A2pm) (periplasm)	0	iJO1366	0
+HCO3E	HCO3 equilibration reaction	1	iJO1366	0
+ADCS	4-amino-4-deoxychorismate synthase	0	iJO1366	0
+CHTBSptspp	chitobiose transport via PEP:Pyr PTS (periplasm)	0	iJO1366	0
+2AGPE180tipp	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C18:0) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+PFL_act	PFL_act	0	M_protein_recon	0
+AM4PA	anhydrous-N-Acetylmuramyl-tetrapeptide amidase	0	iJO1366	0
+AMANK	N-acetyl-D-mannosamine kinase	0	iJO1366	0
+3NTD7pp	3_prime_-nucleotidase (AMP) (periplasm)	0	iJO1366	0
+TARTRtex	Tartrate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+DMATT	dimethylallyltranstransferase	0	iJO1366	0
+LPLIPAL1G140pp	Lysophospholipase L1 (2-acylglycerophosphoglycerol, n-C14:0) (periplasm)	0	iJO1366	0
+THRt2pp	L-threonine efflux transport via proton antiport (periplasm)	0	iJO1366	0
+3GMPtex	3GMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+3HAD801	3-hydroxyacyl-[acyl-carrier-protein] dehydratase (n-C8:0)	0	iJO1366_genetic_unlumping	0
+ACACT8r	acetyl-CoA acyltransferase (hexadecanoyl-CoA), (r)	1	iJO1366	0
+SufBCDatp_mediated_FE_loading	SufBCDatp_mediated_FE_loading	0	M_protein_recon	0
+MNLtex	mannitol transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ICDHyr	isocitrate dehydrogenase (NADP)	1	iJO1366	0
+SUCFUMtpp	succinate:fumarate antiporter (periplasm)	1	iJO1366	0
+THRabcpp	L-threonine transport via ABC system (periplasm)	0	iJO1366	0
+PHEMEtiex	protoheme transport irreversible out via diffusion (periplasm to extracellular)	0	iJO1366	0
+DCMPtex	dCMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FBP	fructose-bisphosphatase	0	iJO1366	0
+HISabcpp	L-histidine transport via ABC system (periplasm)	0	iJO1366	0
+LPLIPAL1E180pp	Lysophospholipase L1 (2-acylglycerophosphoethanolamine, n-C18:0) (periplasm)	0	iJO1366	0
+FEENTERtpp	enterochelin transport (secretion)	0	iJO1366	0
+COBALT2tpp	cobalt transport in via permease (no H+)	0	iJO1366	0
+G3PAT1601	glycerol-3-phosphate acyltransferase (C16:0)	0	iJO1366_genetic_unlumping	0
+XYLK	xylulokinase	0	iJO1366	0
+3OAS601	3-oxoacyl-[acyl-carrier-protein] synthase (n-C6:0)	0	iJO1366_genetic_unlumping	0
+2AGPE141tipp	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C14:1) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+CBIAT	Cobinamide adenyltransferase	1	iJO1366	0
+LPLIPAL1E140pp	Lysophospholipase L1 (2-acylglycerophosphoethanolamine, n-C14:0) (periplasm)	0	iJO1366	0
+AMPtex	AMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PPCDC	phosphopantothenoylcysteine decarboxylase	0	iJO1366	0
+ACGAtex	N-Acetyl-D-glucosamine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ACOAD8f	acyl-CoA dehydrogenase (octadecanoyl-CoA)	1	iJO1366	0
+METSOXR21	L-methionine-R-sulfoxide reductase	0	iJO1366_genetic_unlumping	0
+MDDEP4pp	murein D,D-endopeptidase (murein4px4px4p) (periplasm)	0	iJO1366	0
+METSOXR22	L-methionine-R-sulfoxide reductase	0	iJO1366_genetic_unlumping	0
+ACACtex	acetoacetate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+LPLIPAL1G181pp	Lysophospholipase L1 (2-acylglycerophosphoglycerol, n-C18:1) (periplasm)	0	iJO1366	0
+LALADGLUtpp	L-alanyl-D-glutamate transport in via proton symport (periplasm)	0	iJO1366	0
+GUAt2pp	guanine transport in via proton symport (periplasm)	0	iJO1366	0
+PRMICI	1-(5-phosphoribosyl)-5-[(5-phosphoribosylamino)methylideneamino)imidazole-4-carboxamide isomerase	1	iJO1366	0
+TUNGSabcpp	tungstate transport via ABC system (periplasm)	0	iJO1366	0
+PLIPA2G181pp	Phospholipase A2 (phosphatidylglycerol, n-C18:1) (periplasm)	0	iJO1366	0
+ABUTD	Aminobutyraldehyde dehydrogenase	0	iJO1366	0
+ICL	Isocitrate lyase	0	iJO1366	0
+DGK1	deoxyguanylate kinase (dGMP:ATP)	1	iJO1366	0
+ALAabcpp	L-alanine transport via ABC system (periplasm)	0	iJO1366	0
+UREAtpp	Urea transport via facilitate diffusion (periplasm)	1	iJO1366	0
+FALDtex	formaldehyde transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PFK	phosphofructokinase	0	iJO1366	0
+3OAR1201	3-oxoacyl-[acyl-carrier-protein] reductase (n-C12:0)	1	iJO1366_genetic_unlumping	0
+PFL	pyruvate formate lyase	0	iJO1366	0
+PEAMNtex	phenethylamine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FUCtpp	L-fucose transport via proton symport (periplasm)	1	iJO1366	0
+GLUt2rpp	L-glutamate transport via proton symport, reversible (periplasm)	1	iJO1366	0
+ALLULPE	Allulose 6-phosphate epimerase	1	iJO1366	0
+SO2tpp	SO2 transport via diffusion (periplasm)	1	iJO1366	1
+DBTS	dethiobiotin synthase	0	iJO1366	0
+MACPD1	Malonyl-ACP decarboxylase	0	iJO1366_genetic_unlumping	0
+AADDGT	dTDP-N-4-acetamido-4,6-dideoxy-D-galactose transferase	0	iJO1366	0
+GUAPRT	guanine phosphoribosyltransferase	0	iJO1366	0
+ARBTNtpp	aerobactin secretion (to periplasm)	0	iJO1366	0
+FORCT	Formyl-CoA Transferase	1	iJO1366	0
+ATPM	ATP maintenance requirement	0	iJO1366	1
+3NTD4pp	3_prime_-nucleotidase (CMP) (periplasm)	0	iJO1366	0
+UDPGALtex	UDPgalactose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+APH140	acylphosphatase (C14:0)	0	iJO1366	0
+APH141	acylphosphatase (C14:1)	0	iJO1366	0
+3OAS1611	3-oxoacyl-[acyl-carrier-protein] synthase (n-C16:1)	0	iJO1366_genetic_unlumping	0
+FACOAE141	fatty-acid-CoA thioesterase (tetradecenoate)	0	iJO1366	0
+FACOAE140	fatty-acid-CoA thioesterase (tetradecanoate)	0	iJO1366	0
+2Fe2S_to_IscA_by_SufBCD	2Fe2S_to_IscA_by_SufBCD	0	M_protein_recon	0
+FACOAL100t2pp	fatty-acid-CoA ligase (decanoate transport via vectoral Co-A coupling)	0	iJO1366	0
+EDTXS31	Endotoxin Synthesis (palmitoleoyl ACP)	0	iJO1366_genetic_unlumping	0
+GLCRAL	5-dehydro-4-deoxyglucarate aldolase	0	iJO1366	0
+NNDMBRT	Nicotinate-nucleotide dimethylbenzimidazole phosphoribosyltransferase	0	iJO1366	0
+DINSt2pp	deoxyinosine transport in via proton symport (periplasm)	0	iJO1366	0
+AACPS11	acyl-[acyl-carrier-protein] synthetase (n-C14:0)	0	iJO1366_genetic_unlumping	0
+PYNP2r	pyrimidine-nucleoside phosphorylase (uracil)	1	iJO1366	0
+ISETACabcpp	isethionate transport via ABC system (periplasm)	0	iJO1366	0
+CDGS	7-deaza-7-carboxyguanine synthase	0	iJO1366	0
+DHNAOT4	1,4-dihydroxy-2-naphthoate octaprenyltransferase	0	iJO1366	0
+ACODA	acetylornithine deacetylase	0	iJO1366	0
+LALDO2x	D-Lactaldehyde:NAD+ 1-oxidoreductase	0	iJO1366	0
+2AGPGAT120	2-acyl-glycerophospho-glycerol acyltransferase (n-C12:0)	0	iJO1366	0
+DKGLCNR2x	2,5-diketo-D-gluconate reductase (NADH)	0	iJO1366	0
+DKGLCNR2y	2,5-diketo-D-gluconate reductase (NADPH)	0	iJO1366	0
+GLCS1	glycogen synthase (ADPGlc)	0	iJO1366	0
+PPAtex	propionate transport via diffusion	1	iJO1366	0
+GPDDA5pp	Glycerophosphodiester phosphodiesterase (Glycerophosphoinositol)	0	iJO1366	0
+PROtex	L-proline transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+MNLptspp	mannitol transport via PEP:Pyr PTS (periplasm)	0	iJO1366	0
+NAt3_2pp	sodium proton antiporter (H:NA is 2) (periplasm)	0	iJO1366	0
+GTPDPK	GTP diphosphokinase	0	iJO1366	0
+UGLT	UDPglucose--hexose-1-phosphate uridylyltransferase	1	iJO1366	0
+NMNtex	NMN transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ADNUC	adenosine hydrolase	0	iJO1366	0
+UAG2E	UDP-N-acetylglucosamine 2-epimerase	1	iJO1366	0
+DHNCOAT	1,4-dihydroxy-2-napthoyl-CoA thioesterase	0	iJO1366	0
+MICITDr	2-methylisocitrate dehydratase	1	iJO1366	0
+PEAMNOpp	Phenethylamine oxidase	0	iJO1366	0
+FRULYSt2pp	Fructoselysine transport via proton symport (periplasm)	0	iJO1366	0
+GGGABAH	gamma-glutamyl-gamma-aminobutyric acid hydrolase	0	iJO1366	0
+MG2uabcpp	Magnesium (Mg+2) ABC transporter (ubtake, periplasm)	0	iJO1366	0
+G6Pt6_2pp	Glucose-6-phosphate transport via phosphate antiport (periplasm)	0	iJO1366	0
+THD2pp	NAD(P) transhydrogenase (periplasm)	0	iJO1366	0
+PPK2r	polyphosphate kinase	1	iJO1366	0
+MANGLYCptspp	2-O-alpha-mannosyl-D-glycerate transport via PEP:Pyr PTS (periplasm)	0	iJO1366	0
+DMSOtpp	Dimethyl sulfoxide transport via diffusion (periplasm)	1	iJO1366	1
+PAPA141pp	Phosphatidate phosphatase (periplasmic, n-C14:1)	0	iJO1366	0
+ABTA	4-aminobutyrate transaminase	0	iJO1366	0
+CADVtpp	Lysine/Cadaverine antiporter (periplasm)	0	iJO1366	0
+LPLIPAL1G160pp	Lysophospholipase L1 (2-acylglycerophosphoglycerol, n-C16:0) (periplasm)	0	iJO1366	0
+DHPPD	2,3-dihydroxyphenylpropionate dehydrogenase	0	iJO1366	0
+GTHRDtex	glutathione transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+MLDEP1pp	murein L,D-endopeptidase (murein3px3p) (periplasm)	0	iJO1366	0
+TRDR1	thioredoxin reductase (NADPH)	0	iJO1366_genetic_unlumping	0
+TRDR2	thioredoxin reductase (NADPH)	0	iJO1366_genetic_unlumping	0
+HMBS	hydroxymethylbilane synthase	0	iJO1366	0
+GTPCI	GTP cyclohydrolase I	0	iJO1366	0
+SUCCt2_3pp	Succintate transport via proton symport (3 H) (periplasm)	0	iJO1366	0
+THYMt3pp	thymine transport out via proton antiport (periplasm)	0	iJO1366	0
+PPTtex	Phosphonate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PPPGO3	protoporphyrinogen oxidase (anaerobic)	0	iJO1366	0
+PAPA161pp	Phosphatidate phosphatase (periplasmic, n-C16:1)	0	iJO1366	0
+PG161abcpp	phosphatidylglycerol transport via ABC system (n-C16:1, periplasm)	0	iJO1366	0
+ASPtex	L-aspartate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+2AGPGAT180	2-acyl-glycerophospho-glycerol acyltransferase (n-C18:0)	0	iJO1366	0
+FCI	L-fucose isomerase	1	iJO1366	0
+HXAtex	Hexanoate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+EAR180y1	enoyl-[acyl-carrier-protein] reductase (NADPH) (n-C18:0)	0	iJO1366_genetic_unlumping	0
+TMAOR1pp	Trimethylamine N-oxide reductase (menaquinol 8) (periplasm)	0	iJO1366	0
+LIPOt2pp	Lipoate transport via proton symport (periplasm)	0	iJO1366	0
+SADT2	Sulfate adenyltransferase	0	iJO1366	0
+IscU_mod_1:fe2_Fe_loading	IscU_mod_1:fe2_Fe_loading	0	M_protein_recon	0
+DAMPtex	dAMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+TYRPtex	phopho-L-tyrosine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+UDCPDP	undecaprenyl-diphosphatase	0	iJO1366	0
+NTP10	nucleoside-triphosphatase (ITP)	0	iJO1366	0
+DAPabcpp	M-diaminopimelic acid ABC transport (periplasm)	0	iJO1366	0
+NTP12	nucleoside-triphosphatase (XTP)	0	iJO1366	0
+BTNt2ipp	Biotin transport via proton symport (periplasm)	0	iJO1366	0
+DHAD1	dihydroxy-acid dehydratase (2,3-dihydroxy-3-methylbutanoate)	0	iJO1366	0
+DHAD2	Dihydroxy-acid dehydratase (2,3-dihydroxy-3-methylpentanoate)	0	iJO1366	0
+ADPT	adenine phosphoribosyltransferase	0	iJO1366	0
+SKMtex	shikimate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+MNtex	Manganese (Mn+2) transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GLTPD	Galactitol-1-phosphate dehydrogenase	1	iJO1366	0
+HACD6	3-hydroxyacyl-CoA dehydrogenase (3-oxotetradecanoyl-CoA)	1	iJO1366	0
+AGPAT1401	1-tetradecanoyl-sn-glycerol 3-phosphate O-acyltransferase (n-C14:0)	0	iJO1366_genetic_unlumping	0
+GLYt2pp	glycine transport in via proton symport (periplasm)	0	iJO1366	0
+TREtex	trehalose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+CO2tex	CO2 transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+TCYNTtex	Thiocyanate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+THFAT	Tetrahydrofolate aminomethyltransferase	0	iJO1366	0
+PROGLYtex	L-Prolinylglycine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ARGDC	arginine decarboxylase	0	iJO1366	0
+CAT	catalase	0	iJO1366	0
+PHYTSpp	Phytase (periplasm)	0	iJO1366	0
+GLCTR1	glucosyltransferase I (LPS core synthesis)	0	iJO1366	0
+GLCTR2	glucosyltransferase II (LPS core synthesis)	0	iJO1366	0
+GLCTR3	glucosyltransferase III (LPS core synthesis)	0	iJO1366	0
+HEX1	hexokinase (D-glucose:ATP)	0	iJO1366	0
+DAGK141	diacylglycerol kinase (n-C14:1)	0	iJO1366	0
+DAGK140	diacylglycerol kinase (n-C14:0)	0	iJO1366	0
+HEX4	hexokinase (D-mannose:ATP)	0	iJO1366	0
+HEX7	hexokinase (D-fructose:ATP)	0	iJO1366	0
+PPNDH	prephenate dehydratase	0	iJO1366	0
+NO2t2rpp	nitrite transport in via proton symport, reversible (periplasm)	1	iJO1366	0
+PGL	6-phosphogluconolactonase	0	iJO1366	0
+PGM	phosphoglycerate mutase	1	iJO1366	0
+PGK	phosphoglycerate kinase	1	iJO1366	0
+PGI	glucose-6-phosphate isomerase	1	iJO1366	0
+HEPT4	heptosyltransferase IV (LPS core synthesis)	0	iJO1366	0
+DMSOR1pp	Dimethyl sulfoxide reductase (Menaquinol 8) (periplasm)	0	iJO1366	0
+HEPT3	heptosyltransferase III (LPS core synthesis)	0	iJO1366	0
+HEPT1	heptosyltransferase I (LPS core synthesis)	0	iJO1366	0
+VALt2rpp	L-valine reversible transport via proton symport (periplasm)	1	iJO1366	0
+ETOHtrpp	ethanol reversible transport via diffusion (periplasm)	1	iJO1366	1
+CAt6pp	calcium / sodium antiporter (1:1)	1	iJO1366	0
+EAR40x1	enoyl-[acyl-carrier-protein] reductase (NADH) (n-C4:0)	0	iJO1366_genetic_unlumping	0
+FDMO3	FMNH2-dependent monooxygenase (ethanesulfonate)	0	iJO1366	0
+FDMO2	FMNH2-dependent monooxygenase (methanesulfonate)	0	iJO1366	0
+FADRx	FAD reductase	0	iJO1366	0
+MALtex	Malate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FDMO6	FMNH2-dependent monooxygenase (sulfoacetate)	0	iJO1366	0
+TMAtex	Trimethylamine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FEENTERtex	enterochelin transport (secretion periplasm)	0	iJO1366	0
+AAMYLpp	alpha-amylase (periplasm)	0	iJO1366	0
+OHPBAT	O-Phospho-4-hydroxy-L-threonine:2-oxoglutarate aminotransferase	1	iJO1366	0
+UDCPDPpp	undecaprenyl-diphosphatase (periplasm)	0	iJO1366	0
+MN6PP	mannose 6-phosphate phosphatase	0	iJO1366	0
+23bpg_generation	23bpg_generation	0	M_protein_recon	0
+CBL1abcpp	Cob(1)alamin transport via ABC system (periplasm)	0	iJO1366	0
+PAPA180	Phosphatidate phosphatase (n-C18:0)	0	iJO1366	0
+PAPA181	Phosphatidate phosphatase (n-C18:1)	0	iJO1366	0
+3OAS1801	3-oxoacyl-[acyl-carrier-protein] synthase (n-C18:0)	0	iJO1366_genetic_unlumping	0
+MALt2_3pp	Malate transport via proton symport (3 H) (periplasm)	0	iJO1366	0
+GLCUR1Ptex	D-glucuronate 1-phosphate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ALDD3y	aldehyde dehydrogenase (propanal, NADP)	0	iJO1366	0
+BMOGDS1	bis-molybdopterin guanine dinucleotide synthase (single GDP)	0	iJO1366	0
+5DOAN	5_prime_-deoxyadenosine nuclosidase	0	iJO1366	0
+BMOGDS2	bis-molybdopterin guanine dinucleotide synthase	0	iJO1366	0
+PLIPA1A161pp	Phospholipase A1 (phosphatidate, n-C16:1) (periplasm)	0	iJO1366	0
+PRAIS	phosphoribosylaminoimidazole synthase	0	iJO1366	0
+ALR4x	aldose reductase (acetol)	0	iJO1366	0
+MPTAT	molybdopterin adenylyltransferase	0	iJO1366	0
+SELGTHR3	selenate glutathione reductase III	0	iJO1366	0
+SELGTHR2	selenate glutathione reductase II	0	iJO1366	0
+3OAR1211	3-oxoacyl-[acyl-carrier-protein] reductase (n-C12:1)	0	iJO1366_genetic_unlumping	0
+UREAtex	Urea transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FACOAL141t2pp	fatty-acid-CoA ligase (tetradecenoate transport via vectoral Co-A coupling)	0	iJO1366	0
+NTD7pp	5_prime_-nucleotidase (AMP)	0	iJO1366	0
+RNDR4b3	ribonucleoside-diphosphate reductase (UDP) (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+FEOXAMtonex	ferroxamine transport via ton system (extracellular)	0	iJO1366	0
+DAPtex	1,5-Diaminopentane transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GLNtex	L-glutamine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+TTRCYCtpp	Tetracycline transport via TolC system	0	iJO1366	0
+CSNtex	cytosine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PTRCtex	putrescine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+NTRIR3pp	nitrite Reductase (Ubiquinole-8, periplasm)	0	iJO1366	0
+HXCT	Acetyl-CoA:hexanoate-CoA transferase	0	iJO1366	0
+AGDC	N-acetylglucosamine-6-phosphate deacetylase	0	iJO1366	0
+GLCptspp	D-glucose transport via PEP:Pyr PTS (periplasm)	0	iJO1366	0
+METSOXR11	L-methionine-S-oxide reductase	0	iJO1366_genetic_unlumping	0
+PSSA161	Phosphatidylserine syntase (n-C16:1)	0	iJO1366	0
+ACPPAT1601	acyl-(acyl carrier protein):phosphate acyltransferase (C16:0)	0	iJO1366_genetic_unlumping	0
+PYK	pyruvate kinase	0	iJO1366	0
+ATHRDHr	L-allo-threonine dehydrogenase	1	iJO1366	0
+3HAD1201	3-hydroxyacyl-[acyl-carrier-protein] dehydratase (n-C12:0)	0	iJO1366_genetic_unlumping	0
+hemeD_synthesis	hemeD_synthesis	0	M_protein_recon	0
+LCARS	lacaldehyde reductase (S-propane-1,2-diol forming)	1	iJO1366	0
+LCARR	lacaldehyde reductase (R-propane-1,2-diol forming)	1	iJO1366	0
+PPA2	inorganic triphosphatase	0	iJO1366	0
+XYLtex	D-xylose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GUAtpp	Guanine transport via diffusion (periplasm)	1	iJO1366	0
+3OAS1601	3-oxoacyl-[acyl-carrier-protein] synthase (n-C16:0)	0	iJO1366_genetic_unlumping	0
+SPMDAT1	Spermidine acetyltransferase	0	iJO1366	0
+SPMDAT2	Spermidine acetyltransferase (N8)	0	iJO1366	0
+LPLIPAL2A160	Lysophospholipase L2 (2-acylglycerophosphotidate, n-C16:0)	0	iJO1366	0
+LPLIPAL2A161	Lysophospholipase L2 (2-acylglycerophosphotidate, n-C16:1)	0	iJO1366	0
+PYDAMtex	pyridoxamine transport via diffusion (extracellular)	1	iJO1366	0
+ACOAD7f	acyl-CoA dehydrogenase (hexadecanoyl-CoA)	1	iJO1366	0
+OPHHX3	2-Octaprenylphenol hydroxylase (anaerobic)	0	iJO1366	0
+FRUptspp	D-fructose transport via PEP:Pyr PTS (periplasm)	0	iJO1366	0
+AACPS61	acyl-[acyl-carrier-protein] synthetase  (n-C18:0)	0	iJO1366_genetic_unlumping	0
+CRNBTCT	gamma-butyrobetainyl-CoA: carnitine CoA transferase	1	iJO1366	0
+O2tex	oxygen transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+DHBD	2,3-dihydro-2,3-dihydroxybenzoate dehydrogenase	1	iJO1366	0
+CBL1tonex	Cob(1)alamin transport via ton system (extermal)	0	iJO1366	0
+2Fe2S_to_ErpA_by_SufA	2Fe2S_to_ErpA_by_SufA	0	M_protein_recon	0
+KARA1	ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate)	1	iJO1366	0
+KARA2	ketol-acid reductoisomerase (2-Acetolactate)	1	iJO1366	0
+ILETA	isoleucine transaminase	1	iJO1366	0
+DHBS	2,3-dihydroxybenzoate adenylate synthase	0	iJO1366	0
+TDSR11	thiol:disulfide reductase (DsbC)	0	iJO1366_genetic_unlumping	0
+CDAPPA141	CDP-Diacylglycerol pyrophostatase (n-C14:1)	0	iJO1366	0
+CDAPPA140	CDP-Diacylglycerol pyrophostatase (n-C14:0)	0	iJO1366	0
+G3PAT1401	glycerol-3-phosphate acyltransferase (C14:0)	0	iJO1366_genetic_unlumping	0
+DASYN140	CDP-diacylglycerol synthetase (n-C14:0)	0	iJO1366	0
+DASYN141	CDP-diacylglycerol synthetase (n-C14:1)	0	iJO1366	0
+HACD1	3-hydroxyacyl-CoA dehydrogenase (acetoacetyl-CoA)	1	iJO1366	0
+HACD3	3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA)	1	iJO1366	0
+HACD2	3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA)	1	iJO1366	0
+HACD5	3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA)	1	iJO1366	0
+HACD4	3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA)	1	iJO1366	0
+HACD7	3-hydroxyacyl-CoA dehydrogenase (3-oxohexadecanoyl-CoA)	1	iJO1366	0
+SOTA	Succinylornithine transaminase	0	iJO1366	0
+HACD8	3-hydroxyacyl-CoA dehydrogenase (3-oxooctadecanoyl-CoA), peroxisomal	1	iJO1366	0
+AMALT4	Amylomaltase (maltohexaose)	0	iJO1366	0
+AMALT3	Amylomaltase (maltopentaose)	0	iJO1366	0
+AMALT2	Amylomaltase (maltotetraose)	0	iJO1366	0
+AMALT1	Amylomaltase (maltotriose)	0	iJO1366	0
+GLCRt2rpp	D-glucarate transport via proton symport, reversible (periplasm)	1	iJO1366	0
+3OAR601	3-oxoacyl-[acyl-carrier-protein] reductase (n-C6:0)	1	iJO1366_genetic_unlumping	0
+FALDH2	formaldehyde dehydrogenase	1	iJO1366	0
+2AGPA181tipp	2-Acyl-sn-glycero-3-phosphatidate (n-C18:1) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+SPMDt3pp	spermidine transport out via proton antiport (periplasm)	0	iJO1366	0
+DOGULNR	2,3 dioxo-L-gulonate reductase	0	iJO1366	0
+ADSS	adenylosuccinate synthase	0	iJO1366	0
+GLYtex	Glycine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+MALTtexi	maltoseMaltotriose transport via diffusion (extracellular to periplasm) irreversible	0	iJO1366	0
+SHSL1	O-succinylhomoserine lyase (L-cysteine)	0	iJO1366	0
+G2PPpp	glycerol 2-phosphate phosphatase (periplasmic)	0	iJO1366	0
+PSCLYSt2pp	psicoselysine transport via proton symport (periplasm)	0	iJO1366	0
+MTHFR2	5,10-methylenetetrahydrofolate reductase (NADH)	0	iJO1366	0
+ADSK	adenylyl-sulfate kinase	0	iJO1366	0
+ACSERtpp	O-Acetyl-L-serine export via facilitated transport	0	iJO1366	0
+G3PGtex	glycerophoglycerol transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+CLPNH161pp	cardiolipin hydrolase (periplasm, n-C16:1)	0	iJO1366	0
+LPLIPAL2ATE161	Lysophospholipase L2 (acyltransferase, 2-acyl-glycerophosphoethanolamine, n-C16:1)	0	iJO1366	0
+LPLIPAL2ATE160	Lysophospholipase L2 (acyltransferase, 2-acyl-glycerophosphoethanolamine, n-C16:0)	0	iJO1366	0
+GSPMDA	Glutathionylspermidine amidase	0	iJO1366	0
+HEPK2	LPS heptose kinase II (LPS core synthesis)	0	iJO1366	0
+HEPK1	LPS heptose kinase I (LPS core synthesis)	0	iJO1366	0
+ALATA_L	L-alanine transaminase	1	iJO1366	0
+LPLIPAL1G141pp	Lysophospholipase L1 (2-acylglycerophosphoglycerol, n-C14:1) (periplasm)	0	iJO1366	0
+MALTabcpp	maltose transport via ABC system (periplasm)	0	iJO1366	0
+GSPMDS	Glutathionylspermidine synthetase	0	iJO1366	0
+LPLIPAL2A180	Lysophospholipase L2 (2-acylglycerophosphotidate, n-C18:0)	0	iJO1366	0
+LPLIPAL2A181	Lysophospholipase L2 (2-acylglycerophosphotidate, n-C18:1)	0	iJO1366	0
+PACCOAL	phenylacetate-CoA ligase	0	iJO1366	0
+AIRC3	phosphoribosylaminoimidazole carboxylase (mutase rxn)	1	iJO1366	0
+DB4PS	3,4-Dihydroxy-2-butanone-4-phosphate synthase	0	iJO1366	0
+MOCDS	molybdopterin cytidine dinucleotide synthase	0	iJO1366	0
+NTD6pp	5_prime_-nucleotidase (dAMP)	0	iJO1366	0
+PACCOAE	ring 1,2-phenylacetyl-CoA epoxidase (NADPH)	0	iJO1366	0
+SLNTtex	selenite transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+MPTG	murein polymerizing transglycosylase	0	iJO1366	0
+GLYCK	glycerate kinase	0	iJO1366	0
+TMDS	thymidylate synthase	0	iJO1366	0
+LPLIPAL2G120	Lysophospholipase L2 (2-acylglycerophosphoglycerol, n-C12:0)	0	iJO1366	0
+GLYCL	Glycine Cleavage System	0	iJO1366	0
+HISTD	histidinol dehydrogenase	0	iJO1366	0
+MLDCP1App	murein L,D-carboxypeptidase (murein5px4p) (periplasm)	0	iJO1366	0
+ASP1DC	aspartate 1-decarboxylase	0	iJO1366	0
+3PEPTtex	LalaDgluMdap (tripeptide) transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+CGLYabcpp	L-Cysteinylglycine (Cys-Gly) transport via ABC system (periplasm)	0	iJO1366	0
+FE3HOXUtex	Fe(III)hydroxamate unloaded secretion	0	iJO1366	0
+XYLI1	xylose isomerase	1	iJO1366	0
+XYLI2	xylose isomerase	1	iJO1366	0
+SSALx	succinate-semialdehyde dehydrogenase (NAD)	0	iJO1366	0
+CRNDCAL2	D-Carnitine-CoA Ligase	0	iJO1366	0
+LPLIPAL1E181pp	Lysophospholipase L1 (2-acylglycerophosphoethanolamine, n-C18:1) (periplasm)	0	iJO1366	0
+COLIPAabcpp	core oligosaccharide lipid A transport via ABC system (periplasm)	0	iJO1366	0
+PGPP140pp	phosphatidylglycerol phosphate phosphatase (periplasm, n-C14:0)	0	iJO1366	0
+CLPNS141pp	cardiolipin synthase (periplasmic, n-C14:1)	1	iJO1366	0
+LPLIPAL2ATG141	Lysophospholipase L2 (acyltransferase, 2-acyl-glycerophosphoglycerol, n-C14:1)	0	iJO1366	0
+SEPHCHCS	2-succinyl-5-enolpyruvyl-6-hydroxy-3-cyclohexene-1-carboxylate synthase	0	iJO1366	0
+VALtex	L-valine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ACBIPGT	Adenosyl cobinamide phosphate guanyltransferase	0	iJO1366	0
+ALATA_L2	alanine transaminase	0	iJO1366	0
+PPPGO	protoporphyrinogen oxidase (aerobic)	0	iJO1366	0
+FEOXAMabcpp	ferroxamine transport via ABC system (periplasm)	0	iJO1366	0
+DHORDfum	Fumarate dependent DHORD	0	iJO1366	0
+AKGtex	alpha-ketoglutarate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PTHRpp	phospho-L-threonine phosphatase (periplasmic)	0	iJO1366	0
+CLt3_2pp	chloride transport out via proton antiport (2:1) (periplasm)	0	iJO1366	0
+HEPT2	heptosyltransferase II (LPS core synthesis)	0	iJO1366	0
+NTD12pp	5_prime_-nucleotidase (dIMP) (periplasm)	0	iJO1366	0
+METtex	L-methionine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PRASCSi	phosphoribosylaminoimidazolesuccinocarboxamide synthase	0	iJO1366	0
+AGPAT1411	1-tetradec-7-enoyl-sn-glycerol 3-phosphate O-acyltransferase (n-C14:1)	0	iJO1366_genetic_unlumping	0
+SUCASPtpp	succinate:aspartate antiporter (periplasm)	1	iJO1366	0
+RPE	ribulose 5-phosphate 3-epimerase	1	iJO1366	0
+CMPN	CMP nucleosidase	0	iJO1366	0
+BETALDHx	betaine-aldehyde dehydrogenase	0	iJO1366	0
+BETALDHy	betaine-aldehyde dehydrogenase	0	iJO1366	0
+RPI	ribose-5-phosphate isomerase	1	iJO1366	0
+PLIPA2G180pp	Phospholipase A2 (phosphatidylglycerol, n-C18:0) (periplasm)	0	iJO1366	0
+CYStpp	L-cysteine export via facilitated transport	0	iJO1366	0
+TARTt2_3pp	D-tartrate transport via proton symport (3 H) (periplasm)	0	iJO1366	0
+G3PD2	glycerol-3-phosphate dehydrogenase (NADP)	1	iJO1366	0
+CO2tpp	CO2 transporter via diffusion (periplasm)	1	iJO1366	1
+G3PD7	glycerol-3-phosphate dehydrogenase (demethylmenaquinone-8)	0	iJO1366	0
+G3PD6	glycerol-3-phosphate dehydrogenase (menaquinone-8)	0	iJO1366	0
+G3PD5	glycerol-3-phosphate dehydrogenase (ubiquinone-8)	0	iJO1366	0
+CRNt8pp	L-carnitine/D-carnitine antiporter (periplasm)	0	iJO1366	0
+ASCBtex	L-ascorbate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+RMPA	Rhamnulose-1-phosphate aldolase	1	iJO1366	0
+MDDEP3pp	murein D,D-endopeptidase (murein5px4p) (periplasm)	0	iJO1366	0
+PYDXNK	pyridoxine kinase	0	iJO1366	0
+MOAT3C	3-deoxy-D-manno-octulosonic acid transferase III (LPS core biosynthesis)	0	iJO1366	0
+GLYCLTDy	Glycolate dehydrogenase (NADP)	0	iJO1366	0
+GLYCLTDx	Glycolate dehydrogenase (NAD)	0	iJO1366	0
+LYXI	Lyxose isomerase	0	iJO1366	0
+CU1Opp	Cuprous Oxidase (Cu+1)	0	iJO1366	0
+12PPDStpp	(S)-Propane-1,2-diol facilitated transport (periplasm)	1	iJO1366	0
+EAR40y1	enoyl-[acyl-carrier-protein] reductase (NADPH) (n-C4:0)	0	iJO1366_genetic_unlumping	0
+CLPNH180pp	cardiolipin hydrolase (periplasm, n-C18:0)	0	iJO1366	0
+PG140abcpp	phosphatidylglycerol transport via ABC system (n-C14:0, periplasm)	0	iJO1366	0
+GLYt2rpp	glycine reversible transport via proton symport (periplasm)	1	iJO1366	0
+NAMNPP	nicotinic acid mononucleotide pyrophosphorylase	0	iJO1366	0
+SBTtex	D-sorbitol transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+NTPP11	Nucleoside triphosphate pyrophosphorylase (xtp)	0	iJO1366	0
+ACOTA	acetylornithine transaminase	1	iJO1366	0
+DAAD	D-Amino acid dehydrogenase	0	iJO1366	0
+FALGTHLs	formaldehyde glutathione ligase (spontaneous)	1	iJO1366	1
+INSt2pp	inosine transport in via proton symport (periplasm)	0	iJO1366	0
+ALCD2x	alcohol dehydrogenase (ethanol)	1	iJO1366	0
+HSTPT	histidinol-phosphate transaminase	0	iJO1366	0
+ECAP2pp	enterobacterial common antigen polymerase (periplasm)	0	iJO1366	0
+CRNabcpp	L-carnitine transport via ABC system (periplasm)	0	iJO1366	0
+ACANTHAT	acetyl-CoA:anthranilate acetyltransferase	0	iJO1366	0
+ATPPRT	ATP phosphoribosyltransferase	0	iJO1366	0
+EAR100y1	enoyl-[acyl-carrier-protein] reductase (NADPH) (n-C10:0)	0	iJO1366_genetic_unlumping	0
+GLNabcpp	L-glutamine transport via ABC system (periplasm)	0	iJO1366	0
+APG3PAT120	acyl-phosphate:glycerol-3-phosphate acyltransferase (C12:0)	0	iJO1366	0
+PE140abcpp	phosphatidylethanolamine transport via ABC system (n-C14:0, periplasm)	0	iJO1366	0
+HISTP	histidinol-phosphatase	0	iJO1366	0
+FALDtpp	formaldehyde transport via diffusion (periplasm)	1	iJO1366	1
+HG2abcpp	Mercury (Hg+2) ABC transporter (periplasm)	0	iJO1366	0
+LYSt3pp	L-lysine transport out via proton antiport (cytoplasm to periplasm)	0	iJO1366	0
+3CMPtex	3CMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+DHQS	3-dehydroquinate synthase	0	iJO1366	0
+ACGS	N-acetylglutamate synthase	0	iJO1366	0
+PGP141abcpp	phosphatidylglycerophosphate transport via ABC system (n-C14:1, periplasm)	0	iJO1366	0
+UACGALPpp	UDP-N-acetyl-D-galactosamine pyrophosphohydrolase (periplasm)	0	iJO1366	0
+DADNtex	deoxyadenosine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GLYC2Ptex	Glycerol-2-phosphate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+LPLIPAL2A141	Lysophospholipase L2 (2-acylglycerophosphotidate, n-C14:1)	0	iJO1366	0
+OXCOAHDH	oxepin-CoA hydrolase/ 3-oxo-5,6-dehydrosuberyl-CoA semialdehyde dehydrogenase (NADP+)	0	iJO1366	0
+ACGK	acetylglutamate kinase	0	iJO1366	0
+SSALy	succinate-semialdehyde dehydrogenase (NADP)	0	iJO1366	0
+TGBPA	Tagatose-bisphosphate aldolase	1	iJO1366	0
+EAR180x1	enoyl-[acyl-carrier-protein] reductase (NADH) (n-C18:0)	0	iJO1366_genetic_unlumping	0
+ENTERES2	Enterochelin Esterase (Fe containing)	0	iJO1366	0
+GPDDA4pp	Glycerophosphodiester phosphodiesterase (Glycerophosphoglycerol)	0	iJO1366	0
+PYDXNtpp	pyridoxine import	0	iJO1366	0
+GK1	guanylate kinase (GMP:ATP)	1	iJO1366	0
+SGSAD	Succinylglutamic semialdehyde dehydrogenase	0	iJO1366	0
+OCDCEAtexi	Octadecenoate (n-C18:1) transport via facilitated irreversible diffusion (extracellular to periplasm)	0	iJO1366	0
+ACPPAT1611	acyl-(acyl carrier protein):phosphate acyltransferase (C16:1)	0	iJO1366_genetic_unlumping	0
+FECRMUtex	ferrichrome (minus Fe) secretion (to extracellular)	0	iJO1366	0
+HYD2pp	Hydrogenase (menaquinone8: 2 protons) (periplasm)	0	iJO1366	0
+FLVRx	flavin reductase (NAD)	0	iJO1366	0
+SERD_D	D-serine deaminase	0	iJO1366	0
+FACOAE161	fatty-acid-CoA thioesterase (hexadecenoate)	0	iJO1366	0
+FACOAE160	fatty-acid-CoA thioesterase (hexadecanoate)	0	iJO1366	0
+DXPRIi	1-deoxy-D-xylulose reductoisomerase	0	iJO1366	0
+APH120	acylphosphatase (C12:0)	0	iJO1366	0
+GLYALDtex	Glyceraldehyde transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FECRMtonex	ferrichrome transport via ton system (extracellular)	0	iJO1366	0
+ALDD2y	aldehyde dehydrogenase (acetaldehyde, NADP)	0	iJO1366	0
+ALDD2x	aldehyde dehydrogenase (acetaldehyde, NAD)	0	iJO1366	0
+RNDR41	ribonucleoside-diphosphate reductase (UDP)	0	iJO1366_genetic_unlumping	0
+G6Ptex	glucose 6-phosphate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+NO2tex	nitrite transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+EDTXS11	Endotoxin Synthesis (lauroyl transferase)	0	iJO1366_genetic_unlumping	0
+AACPS71	acyl-[acyl-carrier-protein] synthetase  (n-C12:0)	0	iJO1366_genetic_unlumping	0
+GCALDD	Glycolaldehyde dehydrogenase	0	iJO1366	0
+23PDE4pp	2_prime_,3_prime_-cyclic-nucleotide phosphodiesterase (CMP) (periplasm)	0	iJO1366	0
+PSERtex	phospho-L-serine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+SERD_L	L-serine deaminase	0	iJO1366	0
+FA100ACPHi1	fatty-acyl-ACP hydrolase	0	iJO1366_genetic_unlumping	0
+ALLTNt2rpp	allantoin transport in via proton symport (periplasm)	1	iJO1366	0
+3OAR1001	3-oxoacyl-[acyl-carrier-protein] reductase (n-C10:0)	1	iJO1366_genetic_unlumping	0
+S_transfer_to_IscU_mod_1:2Fe1S	S_transfer_to_IscU_mod_1:2Fe1S	0	M_protein_recon	0
+CYTDtex	cytidine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+NADK	NAD kinase	0	iJO1366	0
+2AGPGAT141	2-acyl-glycerophospho-glycerol acyltransferase (n-C14:1)	0	iJO1366	0
+2AGPGAT140	2-acyl-glycerophospho-glycerol acyltransferase (n-C14:0)	0	iJO1366	0
+CU2abcpp	Copper (Cu+2) ABC transporter (periplasm)	0	iJO1366	0
+H2tex	hydrogen transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+MELIBtex	melibiose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+METabcpp	L-methionine transport via ABC system (periplasm)	0	iJO1366	0
+GUAD	guanine deaminase	0	iJO1366	0
+RNDR11	ribonucleoside-diphosphate reductase (ADP)	0	iJO1366_genetic_unlumping	0
+NO3R2bpp	Nitrate reductase (Menaquinol-8) (periplasm)	0	iJO1366	0
+TMK	thiamine kinase	0	iJO1366	0
+FUMt2_3pp	Fumarate transport via proton symport (3 H) (periplasm)	0	iJO1366	0
+DHPTDCs2	4,5-dihydroxy-2,3-pentanedione cyclization (spontaneous)	0	iJO1366	1
+GLUCYS	gamma-glutamylcysteine synthetase	0	iJO1366	0
+DUMPtex	dUMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+NTRIR2x	nitrite Reductase (NADH)	0	iJO1366	0
+FUSAtpp	Fusidic acid transport via TolC system	0	iJO1366	0
+DASYN181	CDP-diacylglycerol synthetase (n-C18:1)	0	iJO1366	0
+TALA	transaldolase	1	iJO1366	0
+MEOHtrpp	Methanol reversible transport via diffusion (periplasm)	1	iJO1366	1
+GOFUCR	GDP-4-oxo-L-fucose reductase	0	iJO1366	0
+NADH16pp	NADH dehydrogenase (ubiquinone-8 & 3 protons) (periplasm)	0	iJO1366	0
+ARGt3pp	L-arginine transport out via proton antiport (cytoplasm to periplasm)	0	iJO1366	0
+HSST	homoserine O-succinyltransferase	0	iJO1366	0
+TMAOR2pp	Trimethylamine N-oxide reductase (demethylmenaquinol 8) (periplasm)	0	iJO1366	0
+LYXtex	L-Lyxose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+DCYTt2pp	deoxycytidine transport in via proton symport (periplasm)	0	iJO1366	0
+PAPSR2	phosphoadenylyl-sulfate reductase (thioredoxin)	0	iJO1366_genetic_unlumping	0
+PAPSR1	phosphoadenylyl-sulfate reductase (thioredoxin)	0	iJO1366_genetic_unlumping	0
+PUNP4	purine-nucleoside phosphorylase (Deoxyguanosine)	1	iJO1366	0
+IDONt2rpp	L-idonate transport via proton symport, reversible (periplasm)	1	iJO1366	0
+PUNP6	purine-nucleoside phosphorylase (Deoxyinosine)	1	iJO1366	0
+PUNP7	purine-nucleoside phosphorylase (Xanthosine)	1	iJO1366	0
+PUNP1	purine-nucleoside phosphorylase (Adenosine)	1	iJO1366	0
+PUNP2	purine-nucleoside phosphorylase (Deoxyadenosine)	1	iJO1366	0
+PUNP3	purine-nucleoside phosphorylase (Guanosine)	1	iJO1366	0
+LPLIPAL2E180	Lysophospholipase L2 (2-acylglycerophosphoethanolamine, n-C18:0)	0	iJO1366	0
+LPLIPAL2E181	Lysophospholipase L2 (2-acylglycerophosphoethanolamine, n-C18:1)	0	iJO1366	0
+SO4t2pp	sulfate transport in via proton symport (periplasm to cytoplasm)	0	iJO1366	0
+PMPK	phosphomethylpyrimidine kinase	0	iJO1366	0
+PPPNtex	3-phenylpropionate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+34dhpactex	dihydroxyphenylacetaldehyde transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ASPO5	L-aspartate oxidase	0	iJO1366	0
+ASPO6	L-aspartate oxidase	0	iJO1366	0
+GLYt4pp	glycine transport in via sodium symport (periplasm)	0	iJO1366	0
+23PDE7pp	2_prime_,3_prime_-cyclic-nucleotide phosphodiesterase (AMP) (periplasm)	0	iJO1366	0
+CPMPS	cyclic pyranopterin monophosphate synthase	0	iJO1366	0
+MDH3	Malate dehydrogenase (menaquinone 8 as acceptor)	0	iJO1366	0
+MDH2	Malate dehydrogenase (ubiquinone 8 as acceptor)	0	iJO1366	0
+PTRCabcpp	putrescine transport via ABC system (periplasm)	0	iJO1366	0
+ASPt2_2pp	Aspartate transport via proton symport (2 H) (periplasm)	0	iJO1366	0
+R5Ptex	Ribose 5-phosphate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PGLYCP	Phosphoglycolate phosphatase	0	iJO1366	0
+DMSOR1	Dimethyl sulfoxide reductase (Menaquinol 8)	0	iJO1366	0
+HEMEOS	Heme O synthase	0	iJO1366	0
+NADTRHD	NAD transhydrogenase	0	iJO1366	0
+IPPS	2-isopropylmalate synthase	0	iJO1366	0
+COBALT2t3pp	cobalt (Co+2) transport out via proton antiport (periplasm)	0	iJO1366	0
+PGP160abcpp	phosphatidylglycerophosphate transport via ABC system (n-C16:0, periplasm)	0	iJO1366	0
+ARBtex	L-arabinose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PG181abcpp	phosphatidylglycerol transport via ABC system (n-C18:1, periplasm)	0	iJO1366	0
+GAL1Ptex	D-galactose 1-phosphate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+AGM3Pt2pp	GlcNAc-anhMurNAc tripeptide transport in via proton symport (periplasm)	0	iJO1366	0
+3KGK	3-keto-L-gulonate kinase	0	iJO1366	0
+FRUURtex	D-fructuronate transport via diffusion (extracellular)	1	iJO1366	0
+MMCD	Methylmalonyl-CoA decarboxylase	0	iJO1366	0
+GAL1PPpp	D-galactose 1-phosphatase	0	iJO1366	0
+NTPTP1	Nucleoside triphosphate tripolyhydrolase	0	iJO1366	0
+NTPTP2	Nucleoside triphosphate tripolyhydrolase	0	iJO1366	0
+DAGK161	diacylglycerol kinase (n-C16:1)	0	iJO1366	0
+DAGK160	diacylglycerol kinase (n-C16:0)	0	iJO1366	0
+PSD120	Phosphatidylserine decarboxylase (n-C12:0)	0	iJO1366	0
+FEOXAMUtex	ferroxamine (minus Fe3) secretion (to extracellular)	0	iJO1366	0
+CDAPPA120	CDP-Diacylglycerol pyrophostatase (n-C12:0)	0	iJO1366	0
+ZN2abcpp	Zinc (Zn+2) ABC transporter, efflux (periplasm)	0	iJO1366	0
+PSERT	phosphoserine transaminase	0	iJO1366	0
+CUt3	copper transport out via proton antiport	0	iJO1366	0
+METSOX1tex	L-methionine S-oxide diffusion (extracellular)	1	iJO1366	0
+H2Otpp	H2O transport via diffusion (periplasm)	1	iJO1366	1
+AICART	phosphoribosylaminoimidazolecarboxamide formyltransferase	1	iJO1366	0
+TAURtex	taurine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+BTNtex	Biotin transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+NNDPR	nicotinate-nucleotide diphosphorylase (carboxylating)	0	iJO1366	0
+ACNML	N-Acetylneuraminate lyase	0	iJO1366	0
+GALCTD	galactarate dehydratase	0	iJO1366	0
+METSOXR12	L-methionine-S-oxide reductase	0	iJO1366_genetic_unlumping	0
+RIBabcpp	D-ribose transport via ABC system (periplasm)	0	iJO1366	0
+SPMDabcpp	spermidine transport via ABC system (periplasm)	0	iJO1366	0
+ALDD4	aldehyde dehydrogenase (butanal, NAD)	0	iJO1366	0
+LIPAabctex	lipid A transport via ABC system (periplasm to extracellular)	0	iJO1366	0
+PTPATi	pantetheine-phosphate adenylyltransferase	0	iJO1366	0
+AHCYSNS	S-adenosylhomocysteine nucleosidase	0	iJO1366	0
+CMtex	Chloramphenicol transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+AIRC2	phosphoribosylaminoimidazole carboxylase	0	iJO1366	0
+4PCP	tetrapeptide L,D-carboxypeptidase	0	iJO1366	0
+GLGC	glucose-1-phosphate adenylyltransferase	0	iJO1366	0
+TKT2	transketolase	1	iJO1366	0
+TKT1	transketolase	1	iJO1366	0
+HYXNtex	Hypoxanthine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GLCATr	D-glucose O-acetyltransferase	1	iJO1366	0
+PNTK	pantothenate kinase	0	iJO1366	0
+FE2t2pp	iron (II) transport in via proton symport (periplasm)	0	iJO1366	0
+AGPAT1201	1-tetradecanoyl-sn-glycerol 3-phosphate O-acyltransferase (n-C12:0)	0	iJO1366_genetic_unlumping	0
+GGPTRCS	gamma glutamyl putrescine synthase	0	iJO1366	0
+NTRIR4pp	nitrite Reductase (Menaquinole-8, periplasm)	0	iJO1366	0
+SERAT	serine O-acetyltransferase	1	iJO1366	0
+ASNtex	L-asparagine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+CHRPL	Chorismate pyruvate lyase	0	iJO1366	0
+CYNTtex	Cyanate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ACM6PH	N-acetylmuramate 6-phosphate hydrolase	0	iJO1366	0
+PMDPHT	pyrimidine phosphatase	0	iJO1366	0
+ACALD	acetaldehyde dehydrogenase (acetylating)	1	iJO1366	0
+CUtex	copper (Cu+1) transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+METDabcpp	D-methionine transport via ABC system (periplasm)	0	iJO1366	0
+MCOATA1	Malonyl-CoA-ACP transacylase	1	iJO1366_genetic_unlumping	0
+ACt2rpp	acetate reversible transport via proton symport (periplasm)	1	iJO1366	0
+O16GLCT2	glucosyltransferase II (LPS O16 antigen biosynthesis)	0	iJO1366	0
+MDDCP5pp	murein D,D-carboxypeptidase (murein5p3p) (periplasm)	0	iJO1366	0
+23CCMPtex	23cCMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+O16GLCT1	glucosyltransferase I (LPS O16 antigen biosynthesis)	0	iJO1366	0
+GDPTPDP	guanosine 3_prime_-diphosphate 5_prime_-triphosphate 3_prime_-diphosphatase	0	iJO1366	0
+GLYCK2	glycerate kinase	0	iJO1366	0
+G6PDA	glucosamine-6-phosphate deaminase	0	iJO1366	0
+SPODMpp	superoxide dismutase	0	iJO1366	0
+MPTG2	murein polymerizing transglycosylase 2 (three linked units)	0	iJO1366	0
+MLTG5	Maltodextrin glucosidase (maltoheptaose)	0	iJO1366	0
+MLTG4	Maltodextrin glucosidase (maltohexaose)	0	iJO1366	0
+ACACCT	acetyl-CoA:acetoacetyl-CoA transferase	0	iJO1366	0
+MLTG1	Maltodextrin glucosidase (maltotriose)	0	iJO1366	0
+MLTG3	Maltodextrin glucosidase (maltopentaose)	0	iJO1366	0
+MLTG2	Maltodextrin glucosidase (maltotetraose)	0	iJO1366	0
+DKGLCNR1	2,5-diketo-D-gluconate reductase	0	iJO1366	0
+HXAND	hypoxanthine dehydrogenase	0	iJO1366	0
+G1Ptex	D-glucose 1-phosphate transport via diffusion	1	iJO1366	0
+GLCRtex	D-glucarate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+H2St1pp	h2s transport (periplasm)	0	iJO1366	1
+G3PIabcpp	sn-glycerol-3-phosphoethanolamine transport via ABC system (periplasm)	0	iJO1366	0
+LDH_D	D-lactate dehydrogenase	1	iJO1366	0
+RBK	ribokinase	0	iJO1366	0
+ECAtpp	enterobacterial common antigen transferase (flippase, cytoplasm to periplasm)	0	iJO1366	0
+OMCDC	2-Oxo-4-methyl-3-carboxypentanoate decarboxylation	0	iJO1366	1
+CBIuabcpp	Cobinamide transport via ABC system (uptake, periplasm)	0	iJO1366	0
+ACPPAT1401	acyl-(acyl carrier protein):phosphate acyltransferase (C14:0)	0	iJO1366_genetic_unlumping	0
+O16AUNDtpp	O16 antigen (flippase, cytoplasm to periplasm)	0	iJO1366	0
+SARCOX	sarcosine oxidase	0	iJO1366	0
+ACS	acetyl-CoA synthetase	0	iJO1366	0
+URItex	uridine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+UHGADA	UDP-3-O-acetylglucosamine deacetylase	0	iJO1366	0
+METOX2s	methionine oxidation 2 (spontaneous)	0	iJO1366	1
+IMPtex	IMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GALCTNt2pp	D-galactonate transport via proton symport (periplasm)	0	iJO1366	0
+14GLUCANabcpp	1,4-alpha-D-glucan transport via ABC system (periplasm)	0	iJO1366	0
+EAR140y1	enoyl-[acyl-carrier-protein] reductase (NADPH) (n-C14:0)	0	iJO1366_genetic_unlumping	0
+FDMO	FMNH2-dependent monooxygenase	0	iJO1366	0
+2AGPA180tipp	2-Acyl-sn-glycero-3-phosphatidate (n-C18:0) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+AGMt2pp	GlcNAc-anhMurNAc transport in via proton symport (periplasm)	0	iJO1366	0
+PROGLYabcpp	L-Prolinylglycine (Pro-Gly) transport via ABC system (periplasm)	0	iJO1366	0
+CLPNH160pp	cardiolipin hydrolase (periplasm, n-C16:0)	0	iJO1366	0
+GRXR1	glutaredoxin reductase	0	iJO1366_genetic_unlumping	0
+AACPS41	acyl-[acyl-carrier-protein] synthetase  (n-C16:1)	0	iJO1366_genetic_unlumping	0
+GRXR4	glutaredoxin reductase	0	iJO1366_genetic_unlumping	0
+NHFRBO	NADH:flavorubredoxin oxidoreductase	0	iJO1366	0
+T2DECAI1	trans-2-decenoyl-ACP isomerase	1	iJO1366_genetic_unlumping	0
+CDAPPA161	CDP-Diacylglycerol pyrophostatase (n-C16:1)	0	iJO1366	0
+CDAPPA160	CDP-Diacylglycerol pyrophostatase (n-C16:0)	0	iJO1366	0
+RMNtex	L-rhamnose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PGPP120	phosphatidylglycerol phosphate phosphatase (n-C14:0)	0	iJO1366	0
+MMETtex	S-methyl-L-methionine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+MLDCP2App	murein L,D-carboxypeptidase (murein5p5p) (periplasm)	0	iJO1366	0
+DASYN120	CDP-diacylglycerol synthetase (n-C12:0)	0	iJO1366	0
+MTHFC	methenyltetrahydrofolate cyclohydrolase	1	iJO1366	0
+MTHFD	methylenetetrahydrofolate dehydrogenase (NADP)	1	iJO1366	0
+TRPS2	tryptophan synthase (indole)	0	iJO1366	0
+TRPS3	tryptophan synthase (indoleglycerol phosphate)	0	iJO1366	0
+TRPS1	tryptophan synthase (indoleglycerol phosphate)	0	iJO1366	0
+CD2t3pp	cadmium (Cd+2) transport out via proton antiport (periplasm)	0	iJO1366	0
+FE2t3pp	iron (Fe+2) transport out via proton antiport (periplasm)	0	iJO1366	0
+DHAtex	Dihydroxyacetone transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GLXCL	glyoxalate carboligase	0	iJO1366	0
+DURIt2pp	deoxyuridine transport in via proton symport (periplasm)	0	iJO1366	0
+DOXRBCNtex	Doxorubicin transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+EAR181x1	enoyl-[acyl-carrier-protein] reductase (NADH) (n-C18:1)	0	iJO1366_genetic_unlumping	0
+OMPDC	orotidine-5_prime_-phosphate decarboxylase	0	iJO1366	0
+2AGPEAT161	2-acyl-glycerophospho-ethanolamine acyltransferase (n-C16:1)	0	iJO1366	0
+MOGDS	molybdopterin guanine dinucleotide synthase	0	iJO1366	0
+TDP	thiamin pyrophosphatase	0	iJO1366	0
+OHPHM	2-octaprenyl-6-hydroxyphenol methylase	0	iJO1366	0
+PPAt4pp	Na+/Propionate symporter (periplasm)	0	iJO1366	0
+TYROXDApp	Tyramine:oxygen oxidoreductase(deaminating)(flavin-containing) (periplasm)	0	iJO1366	0
+NADDP	NAD diphosphatase	0	iJO1366	0
+PSP_Lpp	phospho-L-serine phosphatase (periplasmic)	0	iJO1366	0
+GTPtex	GTP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+AGt3	silver transport out via proton antiport	0	iJO1366	0
+R1PK	ribose 1-phosphokinase	0	iJO1366	0
+AOBUTDs	L-2-amino-3-oxobutanoate decarboxylation (spontaneous)	0	iJO1366	1
+HCYSMT2	Homocysteine Methyltransferase	0	iJO1366	0
+MDDCP4pp	murein D,D-carboxypeptidase (murein5p4p) (periplasm)	0	iJO1366	0
+ADCL	4-aminobenzoate synthase	0	iJO1366	0
+CYANSTpp	Cyanide sulfurtransferase (periplasmic)	0	iJO1366	0
+HSDy	homoserine dehydrogenase (NADPH)	1	iJO1366	0
+XYLK2	L-xylulokinase	0	iJO1366	0
+NOtpp	NO transport (diffusion)	1	iJO1366	1
+FE2abcpp	iron (II) transport via ABC system (periplasm)	0	iJO1366	0
+NMNDA	nicotinamide-nucleotide amidase	0	iJO1366	0
+HPPPNtex	3-(3-hydroxyphenyl)propionate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GMHEPPA	D-glycero-D-manno-heptose 1,7-bisphosphate phosphatase	0	iJO1366	0
+MCPST	3-mercaptopyruvate sulfurtransferase	0	iJO1366	0
+CDAPPA181	CDP-Diacylglycerol pyrophostatase (n-C18:1)	0	iJO1366	0
+CDAPPA180	CDP-Diacylglycerol pyrophostatase (n-C18:0)	0	iJO1366	0
+FUCtex	L-fucose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PGMT	phosphoglucomutase	1	iJO1366	0
+GLYAT	glycine C-acetyltransferase	1	iJO1366	0
+ANHGMtex	GlcNAc-anhMurNAc transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GLYCLTtex	glycolate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+MOADSUx1	MoaD sulfuration (nadh, assumed)	0	iJO1366_genetic_unlumping	0
+ZNabcpp	zinc (Zn+2) transport via ABC system (periplasm)	0	iJO1366	0
+LPLIPAL2ATE141	Lysophospholipase L2 (acyltransferase, 2-acyl-glycerophosphoethanolamine, n-C14:1)	0	iJO1366	0
+DHPTDNR	dihydropteridine reductase	1	iJO1366	0
+UAMAGS	UDP-N-acetylmuramoyl-L-alanyl-D-glutamate synthetase	0	iJO1366	0
+FRUURt2rpp	D-fructuronate transport via proton symport, reversible (periplasm)	1	iJO1366	0
+ADNtex	adenosine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+DHPS2	dihydropteroate synthase	0	iJO1366	0
+PYDXtex	pyridoxal transport via diffusion (extracellular)	1	iJO1366	0
+LPLIPAL1E141pp	Lysophospholipase L1 (2-acylglycerophosphoethanolamine, n-C14:1) (periplasm)	0	iJO1366	0
+FACOAE60	fatty-acid-CoA thioesterase (hexanoate)	0	iJO1366	0
+DHBSH	2,3-dihydroxybenzoylserine hydrolase	0	iJO1366	0
+GLYOX3	glyoxalase III	0	iJO1366	0
+ACACT4r	acetyl-CoA C-acyltransferase (octanoyl-CoA) (r)	1	iJO1366	0
+COLIPAabctex	core oligosaccharide lipid A transport via ABC system (periplasm to extracellular)	0	iJO1366	0
+PPTHpp	Phosphonate hydrogenase (periplasm)	0	iJO1366	0
+PLIPA1E180pp	Phospholipase A1 (phosphatidylethanolamine, n-C18:0) (periplasm)	0	iJO1366	0
+TMPPP	thiamine-phosphate diphosphorylase	0	iJO1366	0
+ARGORNt7pp	arginine/ornithine antiporter (periplasm)	1	iJO1366	0
+PLIPA1G140pp	Phospholipase A1 (phosphatidylglycerol, n-C14:0) (periplasm)	0	iJO1366	0
+G1PACT	glucosamine-1-phosphate N-acetyltransferase	0	iJO1366	0
+FACOAL80t2pp	fatty-acid-CoA ligase (octanoate transport via vectoral Co-A coupling)	0	iJO1366	0
+PGSA161	Phosphatidylglycerol synthase (n-C16:1)	0	iJO1366	0
+FACOAE80	fatty-acid-CoA thioesterase (octanoate)	0	iJO1366	0
+TRE6PH	trehalose-6-phosphate hydrolase	0	iJO1366	0
+OMBZLM	2-Octaprenyl-6-methoxy-benzoquinol methylase	0	iJO1366	0
+TRE6PP	trehalose-phosphatase	0	iJO1366	0
+TRE6PS	alpha,alpha-trehalose-phosphate synthase (UDP-forming)	0	iJO1366	0
+THRt4pp	L-threonine  via sodium symport (periplasm)	0	iJO1366	0
+THDPS	tetrahydrodipicolinate succinylase	0	iJO1366	0
+DMQMT	3-Dimethylubiquinonol 3-methyltransferase	0	iJO1366	0
+GALtex	D-galactose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+4PCPpp	tetrapeptide L,D-carboxypeptidase (periplasm)	0	iJO1366	0
+ILEt2rpp	L-isoleucine reversible transport via proton symport (periplasm)	1	iJO1366	0
+PPNCL2	phosphopantothenate-cysteine ligase	0	iJO1366	0
+DHPPDA2	diaminohydroxyphosphoribosylaminopryrimidine deaminase (25drapp)	0	iJO1366	0
+H2tpp	hydrogen transport diffusion (periplasm)	1	iJO1366	1
+CITtex	citrate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GUACYC	guanylate cyclase	0	iJO1366	0
+4HTHRS	4-Hydroxy-L-threonine synthase	0	iJO1366	0
+tl_generation	tl_generation	0	M_protein_recon	0
+PLIPA1E141pp	Phospholipase A1 (phosphatidylethanolamine, n-C14:1) (periplasm)	0	iJO1366	0
+LPLIPAL2ATG161	Lysophospholipase L2 (acyltransferase, 2-acyl-glycerophosphoglycerol, n-C16:1)	0	iJO1366	0
+FADRx2	FAD reductase	0	iJO1366	0
+APRAUR	5-amino-6-(5-phosphoribosylamino)uracil reductase	0	iJO1366	0
+XYLUt2pp	L-xylulose transport in via proton symport (periplasm)	0	iJO1366	0
+HYD3pp	Hydrogenase (Demethylmenaquinone-8: 2 protons) (periplasm)	0	iJO1366	0
+GLBRAN2	1,4-alpha-glucan branching enzyme (glycogen -> bglycogen)	0	iJO1366	0
+UDPGDC	UDP-glucuronate C-4_prime__prime_ decarboxylase	0	iJO1366	0
+NTD10pp	5_prime_-nucleotidase (XMP)	0	iJO1366	0
+CITt7pp	Citrate transport via succinate antiport (periplasm)	0	iJO1366	0
+LPLIPAL1G120pp	Lysophospholipase L1 (2-acylglycerophosphoglycerol, n-C12:0) (periplasm)	0	iJO1366	0
+GMHEPK	D-glycero-D-manno-heptose 7-phosphate kinase	0	iJO1366	0
+FE3DCITabcpp	iron transport from ferric-dicitrate via ABC system (periplasm)	0	iJO1366	0
+TAURabcpp	taurine transport via ABC system (periplasm)	0	iJO1366	0
+ADNt2rpp	adenosine transport in via proton symport, reversible (periplasm)	1	iJO1366	0
+CYTDK2	cytidine kinase (GTP)	0	iJO1366	0
+PLIPA2E181pp	Phospholipase A2 (phosphatidylethanolamine, n-C18:1) (periplasm)	0	iJO1366	0
+23CUMPtex	23cUMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+DHNPTE	Dihydroneopterin epimerase	1	iJO1366	0
+MG2t3_2pp	magnesium (Mg+2) transport in/out via proton antiport (periplasm)	1	iJO1366	0
+PMANM	phosphomannomutase	1	iJO1366	0
+PIt2rpp	phosphate reversible transport via symport (periplasm)	1	iJO1366	0
+ACMANAptspp	N-acetyl-D-mannosamine transport via PTS  (periplasm)	0	iJO1366	0
+GSNK	guanosine kinase	0	iJO1366	0
+MDH	malate dehydrogenase	1	iJO1366	0
+SHK3Dr	shikimate dehydrogenase	1	iJO1366	0
+TYRTA	tyrosine transaminase	1	iJO1366	0
+ASPK	aspartate kinase	1	iJO1366	0
+ASPT	L-aspartase	0	iJO1366	0
+PTAr	phosphotransacetylase	1	iJO1366	0
+LPLIPAL2ATE180	Lysophospholipase L2 (acyltransferase, 2-acyl-glycerophosphoethanolamine, n-C18:0)	0	iJO1366	0
+5DGLCNR	5-dehydro-D-gluconate reductase	1	iJO1366	0
+CYTBDpp	cytochrome oxidase bd (ubiquinol-8: 2 protons) (periplasm)	0	iJO1366	0
+ACPPAT1411	acyl-(acyl carrier protein):phosphate acyltransferase (C14:1)	0	iJO1366_genetic_unlumping	0
+GTPCII2	GTP cyclohydrolase II (25drapp)	0	iJO1366	0
+2Fe2S_to_SufA_by_IscU	2Fe2S_to_SufA_by_IscU	0	M_protein_recon	0
+PLIPA1G141pp	Phospholipase A1 (phosphatidylglycerol, n-C14:1) (periplasm)	0	iJO1366	0
+MG2tpp	magnesium (+2) transport in via diffusion	0	iJO1366	0
+MAN6Pt6_2pp	Mannose-6-phosphate transport via phosphate antiport (periplasm)	0	iJO1366	0
+PLIPA1G181pp	Phospholipase A1 (phosphatidylglycerol, n-C18:1) (periplasm)	0	iJO1366	0
+2Fe2S_to_ErpA_by_IscU	2Fe2S_to_ErpA_by_IscU	0	M_protein_recon	0
+MMM	Methylmalonyl-CoA mutase	0	iJO1366	0
+METSOX1abcpp	L-methionine S-oxide transport via ABC system (periplasm)	0	iJO1366	0
+EAR140x1	enoyl-[acyl-carrier-protein] reductase (NADH) (n-C14:0)	0	iJO1366_genetic_unlumping	0
+TDSR21	thiol:disulfide reductase (DsbG)	0	iJO1366_genetic_unlumping	0
+UAPGR	UDP-N-acetylenolpyruvoylglucosamine reductase	0	iJO1366	0
+TMDPP	thymidine phosphorylase	1	iJO1366	0
+AACPS51	acyl-[acyl-carrier-protein] synthetase  (n-C18:1)	0	iJO1366_genetic_unlumping	0
+DURADx	dihydrouracil dehydrogenase (NAD)	1	iJO1366	0
+PTA2	Phosphate acetyltransferase	0	iJO1366	0
+MEPCT	2-C-methyl-D-erythritol 4-phosphate cytidylyltransferase	0	iJO1366	0
+PROabcpp	L-proline transport via ABC system (periplasm)	0	iJO1366	0
+MALTATr	maltose O-acetyltransferase	1	iJO1366	0
+PETNT181pp	phosphoethanolamine transferase (c-C16:1)	0	iJO1366	0
+CLPNH120pp	cardiolipin hydrolase (periplasm, n-C12:0)	0	iJO1366	0
+FECRMexs	ferrichrome Fe(III)-loading reaction (spontaneous)	0	iJO1366	1
+FE3HOXtonex	Fe(III)hydroxamine transport via ton system (extracellular)	0	iJO1366	0
+FEOXAMR2	ferroxamine reductase	0	iJO1366	0
+FEOXAMR3	ferroxamine reductase	0	iJO1366	0
+FEOXAMR1	ferroxamine reductase	0	iJO1366	0
+ACt4pp	Na+/Acetate symport (periplasm)	0	iJO1366	0
+H2O2tex	hydrogen peroxide transport via diffusion (external)	1	iJO1366	0
+OROTtex	Orotate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+2Fe2S_to_ErpA_by_IscA	2Fe2S_to_ErpA_by_IscA	0	M_protein_recon	0
+MLTGY4pp	murein lytic transglycosylase (murein4px4p4p) (periplasm)	0	iJO1366	0
+ADPRDP	ADPribose diphosphatase	0	iJO1366	0
+HXPRT	hypoxanthine phosphoribosyltransferase (Hypoxanthine)	0	iJO1366	0
+SUCOAS	succinyl-CoA synthetase (ADP-forming)	1	iJO1366	0
+APCS	aminopropylcadaverine synthase	0	iJO1366	0
+EAR181y1	enoyl-[acyl-carrier-protein] reductase (NADPH) (n-C18:1)	0	iJO1366_genetic_unlumping	0
+TMAOR2	Trimethylamine N-oxide reductase (demethylmenaquinol 8)	0	iJO1366	0
+FE2tpp	iron (+2) transport in via permease (no H+)	0	iJO1366	0
+ENTCS	enterochelin synthase	0	iJO1366	0
+GMHEPAT	D-glycero-D-manno-hepose 1-phosphate adenyltransferase	0	iJO1366	0
+EGMEACPR1	Enoylglutaryl-[ACP] methyl ester reductase	0	iJO1366_genetic_unlumping	0
+ACACt2pp	acetoacetate transport via proton symport  (periplasm)	1	iJO1366	0
+PLIPA1A180pp	Phospholipase A1 (phosphatidate, n-C18:0) (periplasm)	0	iJO1366	0
+LPLIPAL1A140pp	Lysophospholipase L1 (2-acylglycerophosphotidate, n-C14:0) (periplasm)	0	iJO1366	0
+PPAKr	Propionate kinase	1	iJO1366	0
+CTBTabcpp	crotonobetaine transport via ABC system (periplasm)	0	iJO1366	0
+DDCAtexi	Fatty acid (dodecanoate) transport via facilitated irreversible diffusion (extracellular to periplasm)	0	iJO1366	0
+GF6PTA	glutamine-fructose-6-phosphate transaminase	0	iJO1366	0
+FA161ACPHi1	fatty-acyl-ACP hydrolase	0	iJO1366_genetic_unlumping	0
+RNDR32	ribonucleoside-diphosphate reductase (CDP)	0	iJO1366_genetic_unlumping	0
+PRAMPC	phosphoribosyl-AMP cyclohydrolase	0	iJO1366	0
+NTP3pp	nucleoside-triphosphatase (GTP) (periplasm)	0	iJO1366	0
+GLUABUTt7pp	4-aminobutyrate/glutamate antiport (periplasm)	1	iJO1366	0
+ASO3t8pp	arsenite efflux via ATP hydrolysis (periplasm)	0	iJO1366	0
+CYSS	cysteine synthase	0	iJO1366	0
+2AGPGAT160	2-acyl-glycerophospho-glycerol acyltransferase (n-C16:0)	0	iJO1366	0
+FEOXAMexs	ferroxamine Fe3-loading reaction (spontaneous)	0	iJO1366	1
+HEXt2rpp	hexanoate transport via proton symport, reversible (periplasm)	1	iJO1366	0
+ANHMK	1,6-anhydrous-N-Acetylmuramate kinase	0	iJO1366	0
+3OAR1801	3-oxoacyl-[acyl-carrier-protein] reductase (n-C18:0)	1	iJO1366_genetic_unlumping	0
+CBMKr	Carbamate kinase	1	iJO1366	0
+ADK1	adenylate kinase	1	iJO1366	0
+INSt2rpp	inosine transport in via proton symport, reversible (periplasm)	1	iJO1366	0
+ACPS11	acyl-carrier protein synthase	0	iJO1366_genetic_unlumping	0
+DCAtex	Decanoate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ASNt2rpp	L-asparagine reversible transport via proton symport (periplasm)	1	iJO1366	0
+MECDPS	2-C-methyl-D-erythritol 2,4-cyclodiphosphate synthase	0	iJO1366	0
+NACtex	Nicotinic acid transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ACALDtex	acetaldehyde transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+G3PAT1611	glycerol-3-phosphate acyltransferase (C16:1)	0	iJO1366_genetic_unlumping	0
+IMPC	IMP cyclohydrolase	1	iJO1366	0
+IMPD	IMP dehydrogenase	0	iJO1366	0
+HOPNTAL	4-hydroxy-2-oxopentanoate aldolase	0	iJO1366	0
+CLIPAabctex	cold lipid A transport via ABC system (periplasm to extracellular)	0	iJO1366	0
+PSD161	Phosphatidylserine decarboxylase (n-C16:1)	0	iJO1366	0
+OMPHHX3	2-octaprenyl-6-methoxyphenol hydroxylase (anaerobic)	0	iJO1366	0
+PPKr	polyphosphate kinase	1	iJO1366	0
+IPDDI	isopentenyl-diphosphate D-isomerase	1	iJO1366	0
+dpm_import	dpm_import	0	M_protein_recon	0
+DURIPP	deoxyuridine phosphorylase	1	iJO1366	0
+CYSSADS	L-cysteine sulfinic acid desulfurase	0	iJO1366	0
+DALAt2pp	D-alanine transport in via proton symport (periplasm)	0	iJO1366	0
+3HAD1811	3-hydroxyacyl-[acyl-carrier-protein] dehydratase (n-C18:1)	0	iJO1366_genetic_unlumping	0
+DAPDC	diaminopimelate decarboxylase	0	iJO1366	0
+SERASr	(L-seryl)adenylate synthase	1	iJO1366	0
+EAR141x1	enoyl-[acyl-carrier-protein] reductase (NADH) (n-C14:1)	0	iJO1366_genetic_unlumping	0
+ISETACtex	isethionate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+SPMS	spermidine synthase	0	iJO1366	0
+ASPCT	aspartate carbamoyltransferase	0	iJO1366	0
+ATPS4rpp	ATP synthase (four protons for one ATP) (periplasm)	1	iJO1366	0
+PPPNt2rpp	3-phenylpropionate transport via proton symport, reversible (periplasm)	1	iJO1366	0
+PYDAMtpp	pyridoxamine import	0	iJO1366	0
+ACGAM1Ptex	N-acetyl-D-glucosamine 1-phosphate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+NTP3	nucleoside-triphosphatase (GTP)	0	iJO1366	0
+NTP1	nucleoside-triphosphatase (ATP)	0	iJO1366	0
+DAGK181	diacylglycerol kinase (n-C18:1)	0	iJO1366	0
+DAGK180	diacylglycerol kinase (n-C18:0)	0	iJO1366	0
+PA120abcpp	phosphatidate transport via ABC system (n-C12:0, periplasm)	0	iJO1366	0
+INSTtex	inositol transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FUM	fumarase	1	iJO1366	0
+DAPE	diaminopimelate epimerase	1	iJO1366	0
+PROt4pp	Na+/Proline-L symporter (periplasm)	0	iJO1366	0
+TDPAGTA	dTDP-4-amino-4,6-dideoxy-D-glucose transaminase	0	iJO1366	0
+GALURt2rpp	D-galacturonate transport via proton symport, reversible (periplasm)	1	iJO1366	0
+NO3t7pp	nitrate transport in via nitrite antiport (periplasm)	0	iJO1366	0
+ABUTtex	4-aminobutyrate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FRULYSDG	Fructoselysine phosphate deglycase	1	iJO1366	0
+LYStex	L-lysine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GPDDA1pp	Glycerophosphodiester phosphodiesterase (Glycerophosphocholine)	0	iJO1366	0
+AGPAT1801	1-octadecanoyl-sn-glycerol 3-phosphate O-acyltransferase (n-C18:0)	0	iJO1366_genetic_unlumping	0
+AGM4PApp	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramyl-tetrapeptide amidase (periplasm)	0	iJO1366	0
+PYDXPP	Pyridoxal 5-phosphate phosphatase	0	iJO1366	0
+IscU_Fe_loading	IscU_Fe_loading	0	M_protein_recon	0
+GTHOXtex	glutathione (ox) transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+CCGS	7-cyano-7-carbaguanine synthase	0	iJO1366	0
+IPPMIb	2-isopropylmalate hydratase	1	iJO1366	0
+PLIPA1A181pp	Phospholipase A1 (phosphatidate, n-C18:1) (periplasm)	0	iJO1366	0
+LPLIPAL1A141pp	Lysophospholipase L1 (2-acylglycerophosphotidate, n-C14:1) (periplasm)	0	iJO1366	0
+TMPK	thiamine-phosphate kinase	0	iJO1366	0
+SGDS	Succinylglutamate desuccinylase	0	iJO1366	0
+ACACT5r	acetyl-CoA C-acyltransferase (decanoyl-CoA) (r)	1	iJO1366	0
+ASNNpp	L-asparaginase	0	iJO1366	0
+FRD2	fumarate reductase	0	iJO1366	0
+FRD3	fumarate reductase	0	iJO1366	0
+PACALDt2rpp	phenylacetaldehyde reversible transport via proton symport (periplasm)	1	iJO1366	0
+UDPGLCURtex	UDP-D-glucuronate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+SUCBZS	O-succinylbenzoate-CoA synthase	0	iJO1366	0
+ORPT	orotate phosphoribosyltransferase	1	iJO1366	0
+ALAGLUE	L-alanyl-gamma-glutamate epimerase	1	iJO1366	0
+HISt2rpp	L-histidine reversible transport via proton symport (periplasm)	1	iJO1366	0
+TDPADGAT	dTDP-4-amino-4,6-dideoxy-D-glucose acetyltransferase	0	iJO1366	0
+FE3DHBZSabcpp	ferric 2,3-dihydroxybenzoylserine transport via ABC system (periplasm)	0	iJO1366	0
+SUCBZL	o-succinylbenzoate-CoA ligase	0	iJO1366	0
+PGSA120	Phosphatidylglycerol synthase (n-C12:0)	0	iJO1366	0
+ASR	arsenate reductase	0	iJO1366	0
+FACOAL181t2pp	fatty-acid-CoA ligase (octadecenoate transport via vectoral Co-A coupling)	0	iJO1366	0
+AST	Arginine succinyltransferase	0	iJO1366	0
+5DGLCNt2rpp	5-Dehydro-D-gluconate transport via proton symport, reversible (periplasm)	1	iJO1366	0
+PLIPA2A141pp	Phospholipase A2 (phosphatidate, n-C14:1) (periplasm)	0	iJO1366	0
+ALCD19	alcohol dehydrogenase (glycerol)	1	iJO1366	0
+ALLabcpp	D-allose transport via ABC system (periplasm)	0	iJO1366	0
+L__LACtex	L-lactate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FRULYSK	Fructoselysine Kinase	0	iJO1366	0
+PPM2	phosphopentomutase 2 (deoxyribose)	1	iJO1366	0
+FRULYSE	fructoselysine 3-epimerase	1	iJO1366	0
+TDPDRE	dTDP-4-dehydrorhamnose 3,5-epimerase	0	iJO1366	0
+LIPAabcpp	lipid A transport via ABC system (periplasm)	0	iJO1366	0
+GALCTNtex	D-galactonate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+IGPDH	imidazoleglycerol-phosphate dehydratase	0	iJO1366	0
+TDPDRR	dTDP-4-dehydrorhamnose reductase	0	iJO1366	0
+PRATPP	phosphoribosyl-ATP pyrophosphatase	0	iJO1366	0
+HYPOE	hypothetical enyme	0	iJO1366	0
+MAN6Ptex	Mannose 6-phosphate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GALM2pp	aldose-1-epimerase	0	iJO1366	0
+L__LACt2rpp	L-lactate reversible transport via proton symport (periplasm)	1	iJO1366	0
+PGAMT	phosphoglucosamine mutase	1	iJO1366	0
+EDTXS41	Endotoxin Synthesis (myristoyl transferase)	0	iJO1366_genetic_unlumping	0
+PLIPA1E140pp	Phospholipase A1 (phosphatidylethanolamine, n-C14:0) (periplasm)	0	iJO1366	0
+PLIPA2G120pp	Phospholipase A2 (phosphatidylglycerol, n-C12:0) (periplasm)	0	iJO1366	0
+GAMtex	D-glucosamine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+NADPHQR2	NADPH Quinone Reductase (Ubiquinone-8)	0	iJO1366	0
+FACOAE181	fatty-acid-CoA thioesterase (octadecenoate)	0	iJO1366	0
+PGP120abcpp	phosphatidylglycerophosphate transport via ABC system (n-C12:0, periplasm)	0	iJO1366	0
+ACMAMUT	UDP-N-acetyl-D-mannosaminuronic acid transferase	0	iJO1366	0
+CYTD	cytidine deaminase	0	iJO1366	0
+NDPK8	nucleoside-diphosphate kinase (ATP:dADP)	1	iJO1366	0
+DSERDHr	D-serine dehydrogenase	1	iJO1366	0
+NDPK2	nucleoside-diphosphate kinase (ATP:UDP)	1	iJO1366	0
+NDPK3	nucleoside-diphosphate kinase (ATP:CDP)	1	iJO1366	0
+NDPK1	nucleoside-diphosphate kinase (ATP:GDP)	1	iJO1366	0
+NDPK6	nucleoside-diphosphate kinase (ATP:dUDP)	1	iJO1366	0
+NDPK7	nucleoside-diphosphate kinase (ATP:dCDP)	1	iJO1366	0
+NDPK4	nucleoside-diphosphate kinase (ATP:dTDP)	1	iJO1366	0
+NDPK5	nucleoside-diphosphate kinase (ATP:dGDP)	1	iJO1366	0
+AACPS81	acyl-[acyl-carrier-protein] synthetase  (n-C10:0)	0	iJO1366_genetic_unlumping	0
+GLYC3Ptex	Glycerol-3-phosphate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+S_transfer_to_SufBCD_mod_1:2Fe2S_mod_2:fe2	S_transfer_to_SufBCD_mod_1:2Fe2S_mod_2:fe2	0	M_protein_recon	0
+FLDR22	flavodoxin reductase (NADPH)	0	iJO1366_genetic_unlumping	0
+PLIPA2E180pp	Phospholipase A2 (phosphatidylethanolamine, n-C18:0) (periplasm)	0	iJO1366	0
+CA2t3pp	calcium (Ca+2) transport out via proton antiport (periplasm)	0	iJO1366	0
+ACALDtpp	acetaldehyde reversible transport (periplasm)	1	iJO1366	1
+ALPATE160pp1	apolipoprotein N-acyltransferase (phosphatidylethanolamine, periplasm)	0	iJO1366_genetic_unlumping	0
+GLCURtex	D-glucuronat transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+NTD9pp	5_prime_-nucleotidase (GMP)	0	iJO1366	0
+NI2tex	nickel transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+URAt2pp	uracil transport in via proton symport (periplasm)	0	iJO1366	0
+ASPabcpp	L-aspartate transport via ABC system (periplasm)	0	iJO1366	0
+ALLTAMH	allantoate amidohydrolase	0	iJO1366	0
+MAN1PT2	mannose-1-phosphate guanylyltransferase (GDP)	0	iJO1366	0
+SHCHD2	sirohydrochlorin dehydrogenase (NAD)	0	iJO1366	0
+2AGPGAT161	2-acyl-glycerophospho-glycerol acyltransferase (n-C16:1)	0	iJO1366	0
+2AGPEAT141	2-acyl-glycerophospho-ethanolamine acyltransferase (n-C14:1)	0	iJO1366	0
+2AGPEAT140	2-acyl-glycerophospho-ethanolamine acyltransferase (n-C14:0)	0	iJO1366	0
+ARBTNR2	aerobactin reductase	0	iJO1366	0
+DIMPtex	dIMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+THRPtex	phospho-L-threonine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ARBTNR1	aerobactin reductase	0	iJO1366	0
+GHMT2r	glycine hydroxymethyltransferase, reversible	1	iJO1366	0
+MLDCP1Bpp	murein L,D-carboxypeptidase (murein4p4p) (periplasm)	0	iJO1366	0
+MOAT2	3-deoxy-D-manno-octulosonic acid transferase	0	iJO1366	0
+N2Otpp	nitrious oxide transport (diffusion)	1	iJO1366	1
+MANtex	D-mannose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ARGabcpp	L-arginine transport via ABC system (periplasm)	0	iJO1366	0
+IPMD	3-isopropylmalate dehydrogenase	0	iJO1366	0
+LACZ	b-galactosidase	0	iJO1366	0
+LPLIPAL2ATE120	Lysophospholipase L2 (acyltransferase, 2-acyl-glycerophosphoethanolamine, n-C12:0)	0	iJO1366	0
+RNDR3b4	ribonucleoside-diphosphate reductase (CDP) (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+RNDR3b1	ribonucleoside-diphosphate reductase (CDP) (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+RNDR3b2	ribonucleoside-diphosphate reductase (CDP) (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+RNDR3b3	ribonucleoside-diphosphate reductase (CDP) (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+IPDPS	1-hydroxy-2-methyl-2-(E)-butenyl 4-diphosphate reductase (ipdp)	0	iJO1366	0
+FACOAE180	fatty-acid-CoA thioesterase (octadecanoate)	0	iJO1366	0
+SULRi	sulfite reductase (NADPH2)	0	iJO1366	0
+PLIPA1E181pp	Phospholipase A1 (phosphatidylethanolamine, n-C18:1) (periplasm)	0	iJO1366	0
+THMabcpp	thiamine transport via ABC system (periplasm)	0	iJO1366	0
+GAPD	glyceraldehyde-3-phosphate dehydrogenase	1	iJO1366	0
+LPLIPAL2G160	Lysophospholipase L2 (2-acylglycerophosphoglycerol, n-C16:0)	0	iJO1366	0
+LPLIPAL2G161	Lysophospholipase L2 (2-acylglycerophosphoglycerol, n-C16:1)	0	iJO1366	0
+INOSTt4pp	Na+/myo-inositol symporter (periplasm)	0	iJO1366	0
+GMPtex	GMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+3OAR1811	3-oxoacyl-[acyl-carrier-protein] reductase (n-C18:1)	0	iJO1366_genetic_unlumping	0
+FCLT	Ferrochelatase	0	iJO1366	0
+3HPPtex	3-hydroxypropionate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GLCtex	glucose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+CU2tex	copper (Cu+2) transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FA140ACPHi1	fatty-acyl-ACP hydrolase	0	iJO1366_genetic_unlumping	0
+GMPR	GMP reductase	0	iJO1366	0
+MEOHtex	Methanol transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+XANt2pp	xanthine transport in via proton symport (periplasm)	0	iJO1366	0
+3NTD2pp	3_prime_-nucleotidase (UMP) (periplasm)	0	iJO1366	0
+PA140abcpp	phosphatidate transport via ABC system (n-C14:0, periplasm)	0	iJO1366	0
+DHPTPE	dihydroneopterin triphosphate 2_prime_-epimerase	1	iJO1366	0
+THRD_L	L-threonine deaminase	0	iJO1366	0
+GLYOX	hydroxyacylglutathione hydrolase	0	iJO1366	0
+AACTOOR	Aminoacetone:oxygen oxidoreductase(deaminating)(flavin-containing)	0	iJO1366	0
+THRtex	L-threonine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+NACtpp	Nicotinic acid uptake (periplasm)	0	iJO1366	0
+N2Otex	nitrious oxide transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+AGM4PCP	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramyl-tetrapeptide L,D-carboxypeptidase	0	iJO1366	0
+URIK2	uridine kinase (GTP:Uridine)	0	iJO1366	0
+GHBDHx	gamma-hydroxybutyrate dehydrogenase (NADH)	1	iJO1366	0
+AKGt2rpp	2-oxoglutarate reversible transport via symport (periplasm)	1	iJO1366	0
+3HAD1801	3-hydroxyacyl-[acyl-carrier-protein] dehydratase (n-C18:0)	0	iJO1366_genetic_unlumping	0
+UGLYCH	Ureidoglycolate hydrolase	0	iJO1366	0
+ARAI	L-arabinose isomerase	1	iJO1366	0
+GALKr	galactokinase	1	iJO1366	0
+CINNDO	Cinnamate dioxygenase	0	iJO1366	0
+ACACT6r	acetyl-CoA C-acyltransferase (dodecanoyl-CoA) (r)	1	iJO1366	0
+MALS	malate synthase	0	iJO1366	0
+EAR141y1	enoyl-[acyl-carrier-protein] reductase (NADPH) (n-C14:1)	0	iJO1366_genetic_unlumping	0
+NTD11pp	5_prime_-nucleotidase (IMP)	0	iJO1366	0
+ARBt3ipp	L-arabinose transport via proton antiport (periplasm)	0	iJO1366	0
+XYLUtex	L-xylulose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+MALt3pp	L-malate transport out via proton antiport (periplasm)	0	iJO1366	0
+HETZK	hydroxyethylthiazole kinase	0	iJO1366	0
+NTD8pp	5_prime_-nucleotidase (dGMP)	0	iJO1366	0
+PTRCTA	Putrescine Transaminase	0	iJO1366	0
+ECOAH8	3-hydroxyacyl-CoA dehydratase (3-hydroxyoctadecanoyl-CoA)	1	iJO1366	0
+ECOAH6	3-hydroxyacyl-CoA dehydratase (3-hydroxytetradecanoyl-CoA)	1	iJO1366	0
+ECOAH7	3-hydroxyacyl-CoA dehydratase (3-hydroxyhexadecanoyl-CoA)	1	iJO1366	0
+ECOAH4	3-hydroxyacyl-CoA dehydratase (3-hydroxydecanoyl-CoA)	1	iJO1366	0
+ECOAH5	3-hydroxyacyl-CoA dehydratase (3-hydroxydodecanoyl-CoA)	1	iJO1366	0
+ECOAH2	3-hydroxyacyl-CoA dehydratase (3-hydroxyhexanoyl-CoA)	1	iJO1366	0
+ECOAH3	3-hydroxyacyl-CoA dehydratase (3-hydroxyoctanoyl-CoA)	1	iJO1366	0
+CMtpp	Chloramphenicol transport via TolC system	0	iJO1366	0
+OP4ENH	2-oxopent-4-enoate hydratase	0	iJO1366	0
+GRTT	geranyltranstransferase	0	iJO1366	0
+4Fe4S_to_ErpA_by_IscA	4Fe4S_to_ErpA_by_IscA	0	M_protein_recon	0
+ARBTptspp	arbutin transport via PEP:Pyr PTS (periplasm)	0	iJO1366	0
+PE181abcpp	phosphatidylethanolamine transport via ABC system (n-C18:1, periplasm)	0	iJO1366	0
+SO2tex	SO2 transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+UGLCURPpp	UDP-D-glucuronate pyrophosphohydrolase (periplasm)	0	iJO1366	0
+ADOCBLtonex	Adenosylcobalimin transport via ton system (extermal)	0	iJO1366	0
+ASPO3	L-aspartate oxidase	0	iJO1366	0
+A5PISO	arabinose-5-phosphate isomerase	1	iJO1366	0
+ARGSL	argininosuccinate lyase	1	iJO1366	0
+LYSt2pp	L-lysine transport in via proton symport (periplasm)	0	iJO1366	0
+OBTFL	2-Oxobutanoate formate lyase	0	iJO1366	0
+UAMAS	UDP-N-acetylmuramoyl-L-alanine synthetase	0	iJO1366	0
+ARGSS	argininosuccinate synthase	0	iJO1366	0
+NO3R1pp	Nitrate reductase (Ubiquinol-8) (periplasm)	0	iJO1366	0
+CRNDt2rpp	D-carnitine outward transport (H+ antiport)	1	iJO1366	0
+DHFR	dihydrofolate reductase	1	iJO1366	0
+CLPNS160pp	cardiolipin synthase (periplasmic, n-C16:0)	1	iJO1366	0
+PNTOt4pp	Pantothenate sodium symporter (periplasm)	0	iJO1366	0
+ALDD19xr	aldehyde dehydrogenase (phenylacetaldehyde, NAD)	1	iJO1366	0
+PGP180abcpp	phosphatidylglycerophosphate transport via ABC system (n-C18:0, periplasm)	0	iJO1366	0
+3HAD401	3-hydroxyacyl-[acyl-carrier-protein] dehydratase (n-C4:0)	0	iJO1366_genetic_unlumping	0
+UGMDDS	UDP-N-acetylmuramoyl-L-alanyl-D-glutamyl-meso-2,6-diaminopimeloyl-D-alanyl-D-alanine synthetase	0	iJO1366	0
+THIORDXi1	hydrogen peroxide reductase (thioredoxin)	0	iJO1366_genetic_unlumping	0
+THIORDXi2	hydrogen peroxide reductase (thioredoxin)	0	iJO1366_genetic_unlumping	0
+4PEPTtex	LalaDgluMdapDala (pentapeptide) transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GTPHs	GTP amine hydrolysis (spontaneous)	0	iJO1366	1
+ASNN	L-asparaginase	0	iJO1366	0
+PLIPA1A140pp	Phospholipase A1 (phosphatidate, n-C14:0) (periplasm)	0	iJO1366	0
+PHEMEabcpp	protoheme transport via ABC system (periplasm)	0	iJO1366	0
+MLTGY1pp	murein lytic transglycosylase (murein4p4p) (periplasm)	0	iJO1366	0
+MLTGY2pp	murein lytic transglycosylase (murein4p3p) (periplasm)	0	iJO1366	0
+CBMD	carbamate deaminase	0	iJO1366	1
+ADEtex	adenine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+3OAS1411	3-oxoacyl-[acyl-carrier-protein] synthase (n-C14:1)	0	iJO1366_genetic_unlumping	0
+FE3DCITtonex	ferric-dicitrate transport via ton system (extracellular)	0	iJO1366	0
+ACKr	acetate kinase	1	iJO1366	0
+RIBtex	ribose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+DHORTS	dihydroorotase	1	iJO1366	0
+DGSNt2pp	deoxyguanosine transport in via proton symport (periplasm)	0	iJO1366	0
+PPC	phosphoenolpyruvate carboxylase	0	iJO1366	0
+PPA	inorganic diphosphatase	0	iJO1366	0
+FDH5pp	Formate Dehydrogenase (menaquinone-8) (periplasm)	0	iJO1366	0
+HPYRRy	Hydroxypyruvate reductase (NADPH)	0	iJO1366	0
+12DGR180tipp	1,2 diacylglycerol transport via flipping (periplasm to cytoplasm, n-C18:0)	0	iJO1366	0
+URIt2rpp	uridine transport in via proton symport, reversible (periplasm)	1	iJO1366	0
+PPM	phosphopentomutase	1	iJO1366	0
+PPS	phosphoenolpyruvate synthase	0	iJO1366	0
+RNDR4b4	ribonucleoside-diphosphate reductase (UDP) (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+PGPP181pp	phosphatidylglycerol phosphate phosphatase (periplasm, n-C18:1)	0	iJO1366	0
+RNDR4b2	ribonucleoside-diphosphate reductase (UDP) (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+RNDR4b1	ribonucleoside-diphosphate reductase (UDP) (glutaredoxin)	0	iJO1366_genetic_unlumping	0
+GPDDA4	Glycerophosphodiester phosphodiesterase (Glycerophosphoglycerol)	0	iJO1366	0
+GPDDA5	Glycerophosphodiester phosphodiesterase (Glycerophosphoinositol)	0	iJO1366	0
+PRAGSr	phosphoribosylglycinamide synthase	1	iJO1366	0
+GPDDA1	Glycerophosphodiester phosphodiesterase (Glycerophosphocholine)	0	iJO1366	0
+GPDDA2	Glycerophosphodiester phosphodiesterase (Glycerophosphoethanolamine)	0	iJO1366	0
+GPDDA3	Glycerophosphodiester phosphodiesterase (Glycerophosphoserine)	0	iJO1366	0
+GLYCAt2rpp	D-glycerate transport via proton symport, reversible (periplasm)	1	iJO1366	0
+SKMt2pp	shikimate transport in via proton symport (periplasm)	0	iJO1366	0
+OCDCAtexi	Octadecanoate transport via facilitated irreversible diffusion (extracellular to periplasm)	0	iJO1366	0
+XANtpp	xanthine reversible transport (periplasm)	1	iJO1366	0
+ANS	anthranilate synthase	0	iJO1366	0
+TPI	triose-phosphate isomerase	1	iJO1366	0
+PLIPA2G161pp	Phospholipase A2 (phosphatidylglycerol, n-C16:1) (periplasm)	0	iJO1366	0
+ZN2t3pp	zinc (Zn+2) transport out via proton antiport (periplasm)	0	iJO1366	0
+SDPTA	succinyldiaminopimelate transaminase	1	iJO1366	0
+GLUSy	glutamate synthase (NADPH)	0	iJO1366	0
+LIPOtex	lipoate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+CPGNR2	coprogen(Fe(III)) reductase	0	iJO1366	0
+CPGNR3	coprogen(Fe(III)) reductase	0	iJO1366	0
+CRNCBCT	crotonobetainyl-CoA: carnitine CoA transferase	1	iJO1366	0
+CPGNR1	coprogen(Fe(III)) reductase	0	iJO1366	0
+BPNT	3_prime_,5_prime_-bisphosphate nucleotidase	0	iJO1366	0
+NI2abcpp	Nickle (Ni+2) ABC transporter (periplasm)	0	iJO1366	0
+ETHSO3tex	ethanesulfonate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FMNRx	FMN reductase	0	iJO1366	0
+G3PItex	glycero-3-phospho-1-inositol transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+CBLAT	cob(I)alamin adenosyltransferase	1	iJO1366	0
+LPLIPAL1E160pp	Lysophospholipase L1 (2-acylglycerophosphoethanolamine, n-C16:0) (periplasm)	0	iJO1366	0
+CA2tex	calcium (Ca+2) transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+LPLIPAL1A181pp	Lysophospholipase L1 (2-acylglycerophosphotidate, n-C18:1) (periplasm)	0	iJO1366	0
+APPLDHr	aminopropanol dehydrogenase reversible	1	iJO1366	0
+PGP161abcpp	phosphatidylglycerophosphate transport via ABC system (n-C16:1, periplasm)	0	iJO1366	0
+NADN	NAD nucleosidase	0	iJO1366	0
+DURItex	deoxyuridine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ThDPAT	ThDP adenylyl transferase	0	iJO1366	0
+LPADSS	Lipid A disaccaride synthase	0	iJO1366	0
+BUTSO3tex	butanesulfonate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+MDDEP1pp	murein D,D-endopeptidase (murein4px4p) (periplasm)	0	iJO1366	0
+SUCDi	succinate dehydrogenase (irreversible)	0	iJO1366	0
+ILEabcpp	L-isoleucine transport via ABC system (periplasm)	0	iJO1366	0
+CLPNS161pp	cardiolipin synthase (periplasmic, n-C16:1)	1	iJO1366	0
+3UMPtex	3UMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+NADS1	NAD synthase (nh3)	0	iJO1366	0
+TREH	alpha,alpha-trehalase	0	iJO1366	0
+PLIPA2E161pp	Phospholipase A2 (phosphatidylethanolamine, n-C16:1) (periplasm)	0	iJO1366	0
+LPLIPAL2E140	Lysophospholipase L2 (2-acylglycerophosphoethanolamine, n-C14:0)	0	iJO1366	0
+LPLIPAL2E141	Lysophospholipase L2 (2-acylglycerophosphoethanolamine, n-C14:1)	0	iJO1366	0
+MSO3abcpp	methanesulfonate transport via ABC system (periplasm)	0	iJO1366	0
+NAt3_1p5pp	sodium proton antiporter (H:NA is 1.5) (periplasm)	0	iJO1366	0
+NAt3pp	sodium transport out via proton antiport (cytoplasm to periplasm)	0	iJO1366	0
+4Fe4S_to_SufA_by_IscU	4Fe4S_to_SufA_by_IscU	0	M_protein_recon	0
+2AGPGAT181	2-acyl-glycerophospho-glycerol acyltransferase (n-C18:1)	0	iJO1366	0
+SERt4pp	L-serine via sodium symport (periplasm)	0	iJO1366	0
+FLDR21	flavodoxin reductase (NADPH)	0	iJO1366_genetic_unlumping	0
+LGTHL	lactoylglutathione lyase	0	iJO1366	0
+PLIPA1A141pp	Phospholipase A1 (phosphatidate, n-C14:1) (periplasm)	0	iJO1366	0
+INDOLEt2rpp	Indole transport via proton symport, reversible (periplasm)	1	iJO1366	0
+LCTStex	Lactose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GLUR	glutamate racemase	1	iJO1366	0
+4HOXPACDtex	4-hydroxyphenylacetaldehyde transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+XPPT	xanthine phosphoribosyltransferase	0	iJO1366	0
+3OAS1811	3-oxoacyl-[acyl-carrier-protein] synthase (n-C18:1)	0	iJO1366_genetic_unlumping	0
+NH4tex	ammonia transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+UACGAMtex	UDP-N-acetyl-D-glucosamine transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+NOVBCNtpp	Novobiocin transport via TolC system	0	iJO1366	0
+AGMHE	ADP-D-glycero-D-manno-heptose epimerase	0	iJO1366	0
+AP4AS	Ap4A synthetase	0	iJO1366	0
+MALTptspp	maltose transport via PEP:Pyr PTS (periplasm)	0	iJO1366	0
+G3PAT1411	glycerol-3-phosphate acyltransferase (C14:1)	0	iJO1366_genetic_unlumping	0
+CYSabcpp	L-cysteine uptake via ABC system (periplasm)	0	iJO1366	0
+AP4AH	Ap4A hydrolase	0	iJO1366	0
+GLYCLTt2rpp	glycolate transport via proton symport, reversible (periplasm)	1	iJO1366	0
+PYROX	pyrimidine oxygenase	0	iJO1366	0
+PIuabcpp	phosphate transport via ABC system (uptake, periplasm)	0	iJO1366	0
+NO3R1bpp	Nitrate reductase (Ubiquinol-8)	0	iJO1366	0
+ETHAt2pp	ethanolamine transport in via proton symport	0	iJO1366	0
+SHKK	shikimate kinase	0	iJO1366	0
+URDGLYCD	ureidoglycolate dehydrogenase	0	iJO1366	0
+PAPA140pp	Phosphatidate phosphatase (periplasmic, n-C14:0)	0	iJO1366	0
+ETHAAL	Ethanolamine ammonia-lyase	0	iJO1366	0
+RNTR4c22	ribonucleoside-triphosphate reductase (UTP) (flavodoxin)	0	iJO1366_genetic_unlumping	0
+RNTR4c21	ribonucleoside-triphosphate reductase (UTP) (flavodoxin)	0	iJO1366_genetic_unlumping	0
+EAR160y1	enoyl-[acyl-carrier-protein] reductase (NADPH) (n-C16:0)	0	iJO1366_genetic_unlumping	0
+FBA	fructose-bisphosphate aldolase	1	iJO1366	0
+LALGP	L-alanyl-gamma-L-glutamate peptidase	0	iJO1366	0
+PLIPA2G160pp	Phospholipase A2 (phosphatidylglycerol, n-C16:0) (periplasm)	0	iJO1366	0
+NMNPtpp	NMN permease (periplasm)	0	iJO1366	0
+Ktex	potassium transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+DHAPT	Dihydroxyacetone phosphotransferase	0	iJO1366	0
+ABUTt2pp	4-aminobutyrate transport in via proton symport (periplasm)	0	iJO1366	0
+FEENTERexs	enterobactin Fe(III) binding (spontaneous)	0	iJO1366	1
+FE3abcpp	iron (III) transport via ABC system (periplasm to cytoplasm)	0	iJO1366	0
+XAND	xanthine dehydrogenase	0	iJO1366	0
+G6PP	glucose-6-phosphate phosphatase	0	iJO1366	0
+AGPR	N-acetyl-g-glutamyl-phosphate reductase	1	iJO1366	0
+BUTt2rpp	Butyrate transport via proton symport, reversible (periplasm)	1	iJO1366	0
+PSD160	Phosphatidylserine decarboxylase (n-C16:0)	0	iJO1366	0
+FE3tex	iron (III) transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+ALAR	alanine racemase	1	iJO1366	0
+MINCYCtpp	Minocycline transport via TolC system	0	iJO1366	0
+CRNt2rpp	L-carnitine outward transport (H+ antiport)	1	iJO1366	0
+MALDtex	D-Malate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+GLUDC	Glutamate Decarboxylase	0	iJO1366	0
+CYANST	Cyanide sulfurtransferase	0	iJO1366	0
+F6PP	D-fructose 6-phosphate phosphatase	0	iJO1366	0
+GLUDy	glutamate dehydrogenase (NADP)	1	iJO1366	0
+PGP181abcpp	phosphatidylglycerophosphate transport via ABC system (n-C18:1, periplasm)	0	iJO1366	0
+3OAR1601	3-oxoacyl-[acyl-carrier-protein] reductase (n-C16:0)	1	iJO1366_genetic_unlumping	0
+PLIPA2A140pp	Phospholipase A2 (phosphatidate, n-C14:0) (periplasm)	0	iJO1366	0
+F6PA	fructose 6-phosphate aldolase	1	iJO1366	0
+FRUtex	D-fructose transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+12PPDRtpp	(R)-Propane-1,2-diol facilitated transport (periplasm)	1	iJO1366	0
+UM3PL	UDP-N-acetylmuramate:L-alanyl-gamma-D-glutamyl-meso-diaminopimelate ligase	0	iJO1366	0
+MI1PP	myo-inositol 1-phosphatase	0	iJO1366	0
+LEUabcpp	L-leucine transport via ABC system (periplasm)	0	iJO1366	0
+ACGAMT	UDP-N-acetylglucosamine:undecaprenylphosphate N-acetylglucosamine -1-phosphate transferase	0	iJO1366	0
+ICYSDS1	ISC Cysteine desulfuration	0	iJO1366_genetic_unlumping	0
+FUMtex	Fumarate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PPPNDO	Phenylpropanoate Dioxygenase	0	iJO1366	0
+ACACT7r	acetyl-CoA C-acyltransferase (tetradecanoyl-CoA) (r)	1	iJO1366	0
+NTP5	nucleoside-triphosphatase (CTP)	0	iJO1366	0
+PLIPA2A181pp	Phospholipase A2 (phosphatidate, n-C18:1) (periplasm)	0	iJO1366	0
+ACGAMK	N-acetylglucosamine kinase	0	iJO1366	0
+MALTTTRtexi	maltotetraoseMaltotriose transport via diffusion (extracellular to periplasm) irreversible	0	iJO1366	0
+PLIPA2E160pp	Phospholipase A2 (phosphatidylethanolamine, n-C16:0) (periplasm)	0	iJO1366	0
+PAPA120	Phosphatidate phosphatase (n-C12:0)	0	iJO1366	0
+DHCINDO	2,3-dihydroxycinnamate 1,2-dioxygenase	0	iJO1366	0
+R15BPK	ribose-1,5-bisphosphokinase	0	iJO1366	0
+MN2t3pp	manganese (Mn+2) transport out via proton antiport (periplasm)	0	iJO1366	0
+LIPAHTex	Lipid A:hexadecanoate transferase (n-C16:0) (extracellular membrane)	0	iJO1366	0
+K2L4Aabctex	KDO(2)-lipid IV A transport via ABC system (periplasm to extracellular)	0	iJO1366	0
+MOAT	3-deoxy-D-manno-octulosonic acid transferase	0	iJO1366	0
+TDPGDH	dTDPglucose 4,6-dehydratase	0	iJO1366	0
+COBALT2tex	cobalt (Co+2) transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+PGSA141	Phosphatidylglycerol synthase (n-C14:1)	0	iJO1366	0
+PGSA140	Phosphatidylglycerol synthase (n-C14:0)	0	iJO1366	0
+CPPPGO	coproporphyrinogen oxidase (O2 required)	0	iJO1366	0
+PE141abcpp	phosphatidylethanolamine transport via ABC system (n-C14:1, periplasm)	0	iJO1366	0
+H2Stex	h2s transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+NODOx	nitric oxide dioxygenase	0	iJO1366	0
+NNAM	nicotinamidase	0	iJO1366	0
+CYTBD2pp	cytochrome oxidase bd (menaquinol-8: 2 protons) (periplasm)	0	iJO1366	0
+ASAD	aspartate-semialdehyde dehydrogenase	1	iJO1366	0
+MANAO	Mannonate oxidoreductase	1	iJO1366	0
+RZ5PP	alpha-ribazole 5-phosphate phosphatase	0	iJO1366	0
+HPYRRx	Hydroxypyruvate reductase (NADH)	0	iJO1366	0
+CLPNS120pp	cardiolipin synthase (periplasmic, n-C12:0)	1	iJO1366	0
+ADMDC	adenosylmethionine decarboxylase	0	iJO1366	0
+3HAD1001	3-hydroxyacyl-[acyl-carrier-protein] dehydratase (n-C10:0)	0	iJO1366_genetic_unlumping	0
+OAADC	oxaloacetate decarboxylase	0	iJO1366	0
+PAPA180pp	Phosphatidate phosphatase (periplasmic, n-C18:0)	0	iJO1366	0
+IDOND	L-idonate 5-dehydrogenase	1	iJO1366	0
+UDPGD	UDPglucose 6-dehydrogenase	0	iJO1366	0
+SULabcpp	sulfate transport via ABC system (periplasm)	0	iJO1366	0
+CMPtex	CMP transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+FECRMUtpp	ferrichrome (minus Fe) secretion (to periplasm)	0	iJO1366	0
+DDGLCNtex	2-dehydro-3-deoxy-D-gluconate transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+MTAN	methylthioadenosine nucleosidase	0	iJO1366	0
+MOBDabcpp	molybdate transport via ABC system (periplasm)	0	iJO1366	0
+H2SO	Hydrogen sulfide oxidation	0	iJO1366	0
+PROt2rpp	L-proline reversible transport via proton symport (periplasm)	1	iJO1366	0
+MLDEP2pp	murein L,D-endopeptidase (murein5px3p) (periplasm)	0	iJO1366	0
+OXDHCOAT	3-oxo-5,6-dehydrosuberyl-CoA thiolase	0	iJO1366	0
+TTDCAtexi	Tetradecanoate transport via facilitated irreversible diffusion (extracellular to periplasm)	0	iJO1366	0
+AAMYL	alpha-amylase	0	iJO1366	0
+QUINDH	Quinate dehydrogenase	1	iJO1366	0
+ACOATA1	Acetyl-CoA ACP transacylase	1	iJO1366_genetic_unlumping	0
+14GLUCANtexi	1,4-alpha-D-glucan transport via diffusion (extracellular to periplasm) irreversible	0	iJO1366	0
+G3PGabcpp	sn-glycerol-3-phosphoglycerol transport via ABC system (periplasm)	0	iJO1366	0
+CHLtex	choline transport via diffusion (extracellular to periplasm)	1	iJO1366	0
+MDDCP3pp	murein D,D-carboxypeptidase (murein5p5p) (periplasm)	0	iJO1366	0
+CDPMEK	4-(cytidine 5_prime_-diphospho)-2-C-methyl-D-erythritol kinase	0	iJO1366	0
+CU1abcpp	Copper (Cu +1) ABC transporter (periplasm)	0	iJO1366	0
+2AGPA120tipp	2-Acyl-sn-glycero-3-phosphatidate (n-C12:0) transporter via facilitated diffusion (periplasm)	0	iJO1366	0
+LCTSt3ipp	Lactose transport via proton aniport (periplasm)	0	iJO1366	0
+SELR	selenate reductase	0	iJO1366	0
+PLIPA1G180pp	Phospholipase A1 (phosphatidylglycerol, n-C18:0) (periplasm)	0	iJO1366	0
+pqq_transport	pqq_transport	0	M_protein_recon	0
+GLUTRR	glutamyl-tRNA reductase	0	M_protein_recon	0
+acp_lipoate_synthase	acp lipoate synthase	0	M_protein_recon	1
+CPLX0-782_mod_4fe4s_regeneration	CPLX0-782_mod_4fe4s_regeneration	0	M_protein_recon	1

@@ -1,6 +1,6 @@
 # Ecolime
 
-Ecolime contains all the information and building scripts required to construct a ME-model for E. coli K-12 MG1655, *i*LE168-ME using [COBRAme](https://github.com/sbrg/cobrame) 
+Ecolime contains all the information and building scripts required to construct a ME-model for E. coli K-12 MG1655, *i*LE1678-ME using [COBRAme](https://github.com/sbrg/cobrame) 
 
 
 ## Installation

@@ -1,0 +1,10 @@
+Reaction_name	Complexes	Keff
+yidC_translocation	SRP-CPLX AND YidC_MONOMER	20.
+srp_yidC_translocation	SRP-CPLX AND YidC_MONOMER AND Sec-CPLX AND 	20.
+srp_translocation	SRP-CPLX AND FtsY_MONOMER AND Sec-CPLX	20.
+sec_translocation	SecB_tetra AND SecA_MONOMER AND Sec-CPLX	4.
+secA_translocation	SecA_MONOMER	4.
+tat_translocation	TatBC_octa AND TatA_MONOMER	0.0125
+tat_translocation_alt	TatBC_octa AND TatE_MONOMER	0.0125
+lol_translocation	LolCDE-CPLX AND LolA_MONOMER AND LolB_MONOMER	0.9
+bam_translocation	SurA_MONOMER AND Bam-CPLX	0.027

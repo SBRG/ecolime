@@ -122,7 +122,7 @@ def add_translation_subreactions_to_model(me_model):
         data.enzyme = info['enzymes']
         data.stoichiometry = info['stoich']
 
-    # add subreactions associated with translation intiation
+    # add subreactions associated with translation initiation
     for rxn, info in initiation_subreactions.items():
         data = SubreactionData(rxn, me_model)
         data.enzyme = info['enzymes']

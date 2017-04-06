@@ -1,0 +1,997 @@
+o16a4colipa	(O16 antigen)x4 core oligosaccharide lipid A	C312H523N6O200P4	Periplasm AND Extra-organism	iJO1366
+scl	sirohydrochlorin	C42H39N4O16	Cytosol	iJO1366
+murein5px4p	two disacharide linked murein units, pentapeptide crosslinked tetrapeptide (A2pm->D-ala) (middle of chain)	C77H117N15O40	Periplasm	iJO1366
+cpg180	cyclopropane phosphatidylglycerol (dioctadec-11,12-cyclo-anoyl, n-C18:0 cyclo)	C44H82O10P1	Cytosol	iJO1366
+r1p	alpha-D-Ribose 1-phosphate	C5H9O8P	Cytosol	iJO1366
+selnp	Selenophosphate	H2O3PSe	Cytosol	iJO1366
+acolipa	4-Amino-4-deoxy-L-arabinose modified core oligosaccharide lipid A	C181H314N3O103P4	Periplasm AND Extra-organism	iJO1366
+LalaLglu	L-alanine-L-glutamate	C8H13N2O5	Cytosol AND Extra-organism AND Periplasm	iJO1366
+25dkglcn	2,5-diketo-D-gluconate	C6H7O7	Cytosol	iJO1366
+ttrcyc	tetracycline	C22H24N2O8	Extra-organism AND Periplasm	iJO1366
+2dmmq8	2-Demethylmenaquinone 8	C50H70O2	Cytosol	iJO1366
+4ampm	4-Amino-2-methyl-5-phosphomethylpyrimidine	C6H8N3O4P	Cytosol	iJO1366
+cdg	7-deaza-7-carboxyguanine	C7H5N4O3	Cytosol	iJO1366
+mnl	D-Mannitol	C6H14O6	Extra-organism AND Periplasm	iJO1366
+mql8	Menaquinol 8	C51H74O2	Cytosol	iJO1366
+3hhdcoa	(S)-3-Hydroxyhexadecanoyl-CoA	C37H62N7O18P3S	Cytosol	iJO1366
+frdp	Farnesyl diphosphate	C15H25O7P2	Cytosol	iJO1366
+murein4px4p4p	three disacharide linked murein units (tetrapeptide crosslinked tetrapeptide (A2pm->D-ala), one uncrosslinked tetrapaptide) (middle of chain)	C111H169N21O59	Periplasm	iJO1366
+sucorn	N2-Succinyl-L-ornithine	C9H15N2O5	Cytosol	iJO1366
+fe3dcit	Fe(III)dicitrate	C12H10FeO14	Periplasm AND Extra-organism	iJO1366
+asp_DASH_L	L-Aspartate	C4H6NO4	Periplasm AND Extra-organism AND Cytosol	iJO1366
+pgp160	Phosphatidylglycerophosphate (dihexadecanoyl, n-C16:0)	C38H73O13P2	Periplasm AND Cytosol	iJO1366
+pgp161	Phosphatidylglycerophosphate (dihexadec-9-enoyl, n-C16:1)	C38H69O13P2	Periplasm AND Cytosol	iJO1366
+xtp	XTP	C10H11N4O15P3	Cytosol	iJO1366
+apg181	acyl phosphatidylglycerol (n-C18:1)	C60H110O11P	Cytosol	iJO1366
+3ohcoa	3-Oxohexanoyl-CoA	C27H40N7O18P3S	Cytosol	iJO1366
+anhgm4p	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramyl-tetrapeptide	C37H57N7O20	Cytosol AND Periplasm	iJO1366
+tl	thallium ion	Tl	No_Compartment	M_protein_recon
+dctp	dCTP	C9H12N3O13P3	Cytosol	iJO1366
+10fthf	10-Formyltetrahydrofolate	C20H21N7O7	Cytosol	iJO1366
+gthrd	Reduced glutathione	C10H16N3O6S	Periplasm AND Extra-organism AND Cytosol	iJO1366
+2hdecg3p	2-hexadecanoyl-sn-glycerol 3-phosphate	C19H38O7P1	Cytosol AND Periplasm	iJO1366
+LalaDgluMdap	L-alanine-D-glutamate-meso-2,6-diaminoheptanedioate	C15H25N4O8	Periplasm AND Extra-organism AND Cytosol	iJO1366
+3c2hmp	3-Carboxy-2-hydroxy-4-methylpentanoate	C7H10O5	Cytosol	iJO1366
+3ohdcoa	3-Oxohexadecanoyl-CoA	C37H60N7O18P3S	Cytosol	iJO1366
+ahdt	2-Amino-4-hydroxy-6-(erythro-1,2,3-trihydroxypropyl)dihydropteridine triphosphate	C9H12N5O13P3	Cytosol	iJO1366
+ps141	phosphatidylserine (ditetradec-7-enoyl, n-C14:1)	C34H61N1O10P1	Cytosol	iJO1366
+ps140	phosphatidylserine (ditetradecanoyl, n-C14:0)	C34H65N1O10P1	Cytosol	iJO1366
+urea	Urea	CH4N2O	Periplasm AND Cytosol AND Extra-organism	iJO1366
+dhpt	Dihydropteroate	C14H13N6O3	Cytosol	iJO1366
+ragund	rhamanosyl-N-acetylglucosamyl-undecaprenyl diphosphate	C69H113N1O16P2	Cytosol	iJO1366
+idon_DASH_L	L-Idonate	C6H11O7	Extra-organism AND Cytosol AND Periplasm	iJO1366
+mn2	Mn2+	Mn	Cytosol AND Extra-organism AND Periplasm	iJO1366
+udpgal	UDPgalactose	C15H22N2O17P2	Periplasm AND Cytosol AND Extra-organism	iJO1366
+3oocoa	3-Oxooctanoyl-CoA	C29H44N7O18P3S	Cytosol	iJO1366
+mpt	molybdopterin	C10H10N5O6PS2Cu	Cytosol	iJO1366
+hdceap	Hexadecanoyl-phosphate (n-C16:1)	C16H30O5P	Cytosol	iJO1366
+cyan	Hydrogen cyanide	CHN	Periplasm AND Extra-organism AND Cytosol	iJO1366
+lys_DASH_L	L-Lysine	C6H15N2O2	Cytosol AND Extra-organism AND Periplasm	iJO1366
+fad	Flavin adenine dinucleotide oxidized	C27H31N9O15P2	Cytosol	iJO1366
+val_DASH_L	L-Valine	C5H11NO2	Extra-organism AND Cytosol AND Periplasm	iJO1366
+dgmp	dGMP	C10H12N5O7P	Extra-organism AND Cytosol AND Periplasm	iJO1366
+gua	Guanine	C5H5N5O	Cytosol AND Extra-organism AND Periplasm	iJO1366
+allul6p	Allulose 6-phosphate	C6H11O9P	Cytosol	iJO1366
+12dgr140	1,2-Diacyl-sn-glycerol (ditetradecanoyl, n-C14:0)	C31H60O5	Periplasm AND Cytosol	iJO1366
+23doguln	2,3-Dioxo-L-gulonate	C6H7O7	Cytosol	iJO1366
+apg140	acyl phosphatidylglycerol (n-C14:0)	C48H92O11P	Cytosol	iJO1366
+ttdcea	tetradecenoate (n-C14:1)	C14H25O2	Periplasm AND Extra-organism AND Cytosol	iJO1366
+tre	Trehalose	C12H22O11	Periplasm AND Cytosol AND Extra-organism	iJO1366
+5aizc	5-amino-1-(5-phospho-D-ribosyl)imidazole-4-carboxylate	C9H11N3O9P	Cytosol	iJO1366
+glyc2p	Glycerol 2-phosphate	C3H7O6P	Extra-organism AND Cytosol AND Periplasm	iJO1366
+dmlz	6,7-Dimethyl-8-(1-D-ribityl)lumazine	C13H18N4O6	Cytosol	iJO1366
+bmoco1gdp	bis-molybdopterin mono-guanine dinucleotide	C30H32N15O20P3S4Mo	Cytosol	iJO1366
+progly	L-Prolinylglycine	C7H12N2O3	Extra-organism AND Cytosol AND Periplasm	iJO1366
+metsox_DASH_R_DASH_L	L-methionine-R-sulfoxide	C5H11NO3S	Cytosol AND Extra-organism AND Periplasm	iJO1366
+5caiz	5-phosphoribosyl-5-carboxyaminoimidazole	C9H11N3O9P	Cytosol	iJO1366
+cmp	CMP	C9H12N3O8P	Cytosol AND Extra-organism AND Periplasm	iJO1366
+ppcoa	Propanoyl-CoA	C24H36N7O17P3S	Cytosol	iJO1366
+ocdceap	Octadecanoyl-phosphate (n-C18:1)	C18H34O5P	Cytosol	iJO1366
+cpgn_DASH_un	coprogen unloaded (no Fe(III))	C35H52N6O13	Periplasm AND Cytosol AND Extra-organism	iJO1366
+dmpp	Dimethylallyl diphosphate	C5H9O7P2	Cytosol	iJO1366
+oxam	Oxamate	C2H2NO3	Cytosol	iJO1366
+ddca	Dodecanoate (n-C12:0)	C12H23O2	Cytosol AND Extra-organism AND Periplasm	iJO1366
+4mhetz	4-Methyl-5-(2-hydroxyethyl)-thiazole	C6H9NOS	Cytosol	iJO1366
+agdpcbi	Adenosine-GDP-cobinamide	C68H95CoN21O21P2	Cytosol	iJO1366
+adphep_DASH_LD	ADP-L-glycero-D-manno-heptose	C17H25N5O16P2	Cytosol	iJO1366
+op4en	2-Oxopent-4-enoate	C5H5O3	Cytosol	iJO1366
+ppgpp	Guanosine 3_prime_,5_prime_-bis(diphosphate)	C10H11N5O17P4	Cytosol	iJO1366
+ichor	Isochorismate	C10H8O6	Cytosol	iJO1366
+td2coa	trans-Tetradec-2-enoyl-CoA	C35H56N7O17P3S	Cytosol	iJO1366
+dhptd	4,5-dihydroxy-2,3-pentanedione	C5H8O4	Cytosol	iJO1366
+LalaDglu	L-alanine-D-glutamate	C8H13N2O5	Cytosol AND Extra-organism AND Periplasm	iJO1366
+hdd2coa	trans-Hexadec-2-enoyl-CoA	C37H60N7O17P3S	Cytosol	iJO1366
+4hthr	4-Hydroxy-L-threonine	C4H9NO4	Cytosol	iJO1366
+1agpe181	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C18:1)	C23H46NO7P1	Periplasm	iJO1366
+1agpe180	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C18:0)	C23H48NO7P1	Periplasm	iJO1366
+murein4p4p	two linked disacharide tetrapeptide murein units (uncrosslinked, middle of chain)	C74H114N14O40	Periplasm	iJO1366
+dhnpt	Dihydroneopterin	C9H13N5O4	Cytosol	iJO1366
+uLa4fn	undecaprenyl phosphate-4-amino-4-formyl-L-arabinose	C61H99N1O8P1	Cytosol	iJO1366
+duri	Deoxyuridine	C9H12N2O5	Extra-organism AND Cytosol AND Periplasm	iJO1366
+sbt_DASH_D	D-Sorbitol	C6H14O6	Periplasm AND Extra-organism	iJO1366
+murein5p4p	two linked disacharide pentapeptide and tetrapeptide murein units (uncrosslinked, middle of chain)	C77H119N15O41	Periplasm	iJO1366
+ara5p	D-Arabinose 5-phosphate	C5H9O8P	Cytosol	iJO1366
+acg5sa	N-Acetyl-L-glutamate 5-semialdehyde	C7H10NO4	Cytosol	iJO1366
+2agpg181	2-Acyl-sn-glycero-3-phosphoglycerol (n-C18:1)	C24H46O9P1	Periplasm AND Cytosol	iJO1366
+ser_DASH_D	D-Serine	C3H7NO3	Extra-organism AND Periplasm AND Cytosol	iJO1366
+unagamu	Undecaprenyl-diphospho-N-acetylglucosamine-N-acetylmannosaminuronate	C71H113N2O18P2	Cytosol	iJO1366
+cdpdodec11eg	CDP-1,2-dioctadec-11-enoylglycerol	C48H83N3O15P2	Cytosol	iJO1366
+pydx5p	Pyridoxal 5_prime_-phosphate	C8H8NO6P	Cytosol	iJO1366
+acon_DASH_T	trans-Aconitate	C6H3O6	Cytosol	iJO1366
+dcacoa	Decanoyl-CoA (n-C10:0CoA)	C31H50N7O17P3S	Cytosol	iJO1366
+ser_DASH_L	L-Serine	C3H7NO3	Cytosol AND Periplasm AND Extra-organism	iJO1366
+dgtp	dGTP	C10H12N5O13P3	Cytosol	iJO1366
+2agpe120	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C12:0)	C17H36NO7P1	Cytosol AND Periplasm	iJO1366
+dtbt	Dethiobiotin	C10H17N2O3	Cytosol	iJO1366
+pe140	phosphatidylethanolamine (ditetradecanoyl, n-C14:0)	C33H66N1O8P1	Cytosol AND Periplasm	iJO1366
+hcys_DASH_L	L-Homocysteine	C4H9NO2S	Cytosol	iJO1366
+pg180	Phosphatidylglycerol (dioctadecanoyl, n-C18:0)	C42H82O10P1	Periplasm AND Cytosol	iJO1366
+all_DASH_D	D-Allose	C6H12O6	Cytosol AND Extra-organism AND Periplasm	iJO1366
+crn_DASH_D	D-Carnitine	C7H15NO3	Extra-organism AND Periplasm AND Cytosol	iJO1366
+acon_DASH_C	cis-Aconitate	C6H3O6	Cytosol	iJO1366
+uama	UDP-N-acetylmuramoyl-L-alanine	C23H33N4O20P2	Cytosol	iJO1366
+cpe160	cyclopropane phosphatidylethanolamine (dihexadec-9,10-cyclo-anoyl, n-C16:0 cyclo)	C39H74N1O8P1	Cytosol	iJO1366
+ctp	CTP	C9H12N3O14P3	Cytosol	iJO1366
+u3aga	UDP-3-O-(3-hydroxytetradecanoyl)-N-acetylglucosamine	C31H51N3O19P2	Cytosol	iJO1366
+phe_DASH_L	L-Phenylalanine	C9H11NO2	Extra-organism AND Periplasm AND Cytosol	iJO1366
+phom	O-Phospho-L-homoserine	C4H8NO6P	Cytosol	iJO1366
+octa	octanoate (n-C8:0)	C8H15O2	Cytosol AND Periplasm AND Extra-organism	iJO1366
+stcoa	Stearoyl-CoA (n-C18:0CoA)	C39H66N7O17P3S	Cytosol	iJO1366
+db4p	3,4-dihydroxy-2-butanone 4-phosphate	C4H7O6P	Cytosol	iJO1366
+dcdp	dCDP	C9H12N3O10P2	Cytosol	iJO1366
+glx	Glyoxylate	C2H1O3	Cytosol	iJO1366
+cys_DASH_L	L-Cysteine	C3H7NO2S	Extra-organism AND Cytosol AND Periplasm	iJO1366
+dtdp4aaddg	dTDP-4-acetamido-4,6-dideoxy-D-galactose	C18H27N3O15P2	Cytosol	iJO1366
+2ommbl	2-Octaprenyl-3-methyl-6-methoxy- 1,4-benzoquinol	C48H74O3	Cytosol	iJO1366
+cys_DASH_D	D-Cysteine	C3H7NO2S	Cytosol AND Periplasm AND Extra-organism	iJO1366
+hlipa	heptosyl-kdo2-lipidA	C117H208N2O45P2	Cytosol	iJO1366
+kdolipid4	KDO-lipid IV(A)	C76H137N2O30P2	Cytosol	iJO1366
+dttp	dTTP	C10H13N2O14P3	Cytosol	iJO1366
+2oxpaccoa	2-oxepin-2(3H)-ylideneacetyl-CoA	C29H38N7O18P3S	Cytosol	iJO1366
+4crsol	p-Cresol	C7H8O	Cytosol	iJO1366
+anhgm3p	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramyl-tripeptide	C34H52N6O19	Periplasm AND Cytosol	iJO1366
+dcyt	Deoxycytidine	C9H13N3O4	Periplasm AND Extra-organism AND Cytosol	iJO1366
+ppp9	Protoporphyrin	C34H32N4O4	Cytosol	iJO1366
+4abut	4-Aminobutanoate	C4H9NO2	Extra-organism AND Cytosol AND Periplasm	iJO1366
+ocdca	octadecanoate (n-C18:0)	C18H35O2	Periplasm AND Extra-organism AND Cytosol	iJO1366
+pydx	Pyridoxal	C8H9NO3	Periplasm AND Extra-organism AND Cytosol	iJO1366
+glucys	gamma-L-Glutamyl-L-cysteine	C8H13N2O5S	Cytosol	iJO1366
+galct_DASH_D	D-Galactarate	C6H8O8	Periplasm AND Extra-organism AND Cytosol	iJO1366
+dcamp	N6-(1,2-Dicarboxyethyl)-AMP	C14H14N5O11P	Cytosol	iJO1366
+bmoco	bis-molybdenum cofactor	C20H20N10O13P2S4Mo	Cytosol	iJO1366
+urate	Urate	C5H4N4O3	Cytosol	iJO1366
+arab_DASH_L	L-Arabinose	C5H10O5	Periplasm AND Cytosol AND Extra-organism	iJO1366
+cdpdtdec7eg	CDP-1,2-ditetradec-7-enoylglycerol	C40H67N3O15P2	Cytosol	iJO1366
+acgam6p	N-Acetyl-D-glucosamine 6-phosphate	C8H14NO9P	Cytosol	iJO1366
+dudp	dUDP	C9H11N2O11P2	Cytosol	iJO1366
+sucbz	o-Succinylbenzoate	C11H8O5	Cytosol	iJO1366
+1pyr5c	1-Pyrroline-5-carboxylate	C5H6NO2	Cytosol	iJO1366
+dhpmp	Dihydroneopterin monophosphate	C9H12N5O7P	Cytosol	iJO1366
+pgp180	Phosphatidylglycerophosphate (dioctadecanoyl, n-C18:0)	C42H81O13P2	Cytosol AND Periplasm	iJO1366
+pgp181	Phosphatidylglycerophosphate (dioctadec-11-enoyl, n-C18:1)	C42H77O13P2	Periplasm AND Cytosol	iJO1366
+ap4a	P1,P4-Bis(5_prime_-adenosyl) tetraphosphate	C20H24N10O19P4	Cytosol	iJO1366
+2agpe180	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C18:0)	C23H48NO7P1	Periplasm AND Cytosol	iJO1366
+2agpe181	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C18:1)	C23H46NO7P1	Cytosol AND Periplasm	iJO1366
+feenter	Fe-enterobactin	C30H27FeN3O15	Periplasm AND Extra-organism AND Cytosol	iJO1366
+gdpfuc	GDP-L-fucose	C16H23N5O15P2	Cytosol	iJO1366
+tdecoa	Tetradecenoyl-CoA (n-C14:1CoA)	C35H56N7O17P3S	Cytosol	iJO1366
+thr_DASH_L	L-Threonine	C4H9NO3	Cytosol AND Extra-organism AND Periplasm	iJO1366
+acgam	N-Acetyl-D-glucosamine	C8H15NO6	Cytosol AND Extra-organism AND Periplasm	iJO1366
+acgal	N-Acetyl-D-galactosamine	C8H15NO6	Extra-organism AND Periplasm	iJO1366
+mincyc	minocycline	C23H27N3O7	Extra-organism AND Periplasm	iJO1366
+man1p	D-Mannose 1-phosphate	C6H11O9P	Cytosol	iJO1366
+pppn	Phenylpropanoate	C9H9O2	Cytosol AND Extra-organism AND Periplasm	iJO1366
+apg180	acyl phosphatidylglycerol (n-C18:0)	C60H116O11P	Cytosol	iJO1366
+uLa4n	undecaprenyl phosphate-4-amino-4-deoxy-L-arabinose	C60H100N1O7P1	Cytosol AND Periplasm	iJO1366
+4pasp	4-Phospho-L-aspartate	C4H6NO7P	Cytosol	iJO1366
+phphhlipa	phospho-heptosyl-phospho-heptosyl-heptosyl-kdo2-lipidA	C131H230N2O63P4	Cytosol	iJO1366
+1agpg120	1-Acyl-sn-glycero-3-phosphoglycerol (n-C12:0)	C18H36O9P1	Periplasm	iJO1366
+acmanap	N-Acetyl-D-mannosamine 6-phosphate	C8H14NO9P	Cytosol	iJO1366
+2tpr3dpcoa	2_prime_-(5_prime__prime_-triphosphoribosyl)-3_prime_-dephospho-CoA	C26H40N7O26P5S	Cytosol	iJO1366
+malt	Maltose	C12H22O11	Periplasm AND Cytosol AND Extra-organism	iJO1366
+3mop	(S)-3-Methyl-2-oxopentanoate	C6H9O3	Cytosol	iJO1366
+2oph	2-Octaprenylphenol	C46H70O	Cytosol	iJO1366
+taur	Taurine	C2H7NO3S	Extra-organism AND Cytosol AND Periplasm	iJO1366
+b2coa	Crotonoyl-CoA	C25H36N7O17P3S	Cytosol	iJO1366
+murein5p5p5p	three linked disacharide pentapeptide murein units (uncrosslinked, middle of chain)	C120H186N24O63	Periplasm	iJO1366
+fe2	Fe2+	Fe	Cytosol AND Extra-organism AND Periplasm	iJO1366
+fe3	Fe3+	Fe	Periplasm AND Cytosol AND Extra-organism	iJO1366
+crncoa	L-Carnitinyl-CoA	C28H46N8O18P3S	Cytosol	iJO1366
+5fthf	5-Formyltetrahydrofolate	C20H21N7O7	Cytosol	iJO1366
+3mob	3-Methyl-2-oxobutanoate	C5H7O3	Cytosol	iJO1366
+gggagicolipa	glucosyl-glucosyl-galactosyl-glucosyl-inner core oligosaccharide lipid A	C169H291N2O94P4	Cytosol	iJO1366
+asn_DASH_L	L-Asparagine	C4H8N2O3	Periplasm AND Cytosol AND Extra-organism	iJO1366
+phthr	O-Phospho-4-hydroxy-L-threonine	C4H8NO7P	Cytosol	iJO1366
+cinnm	trans-Cinnamate	C9H7O2	Cytosol	iJO1366
+1tdecg3p	1-tetradecanoyl-sn-glycerol 3-phosphate	C17H33O7P1	Cytosol AND Periplasm	iJO1366
+2dhguln	2-Dehydro-L-gulonate	C6H9O7	Cytosol	iJO1366
+clpn120	cardiolipin (tetradodecanoyl, n-C12:0)	C57H108O17P2	Periplasm	iJO1366
+o2s	Superoxide anion	O2	Periplasm AND Cytosol AND Extra-organism	iJO1366
+uacmamu	UDP-N-acetyl-D-mannosaminouronate	C17H22N3O18P2	Cytosol	iJO1366
+14dhncoa	1,4-dihydroxy-2-napthoyl-CoA	C32H38N7O19P3S	Cytosol	iJO1366
+pmtcoa	Palmitoyl-CoA (n-C16:0CoA)	C37H62N7O17P3S	Cytosol	iJO1366
+idp	IDP	C10H11N4O11P2	Cytosol	iJO1366
+1agpe140	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C14:0)	C19H40NO7P1	Periplasm	iJO1366
+udpLa4o	UDP-4-keto-pyranose	C14H18N2O16P2	Cytosol	iJO1366
+udpLa4n	uridine 5_prime__prime_-diphospho-{beta}-4-deoxy-4-amino-L-arabinose	C14H22N3O15P2	Cytosol	iJO1366
+preq1	7-aminomethyl-7-deazaguanine	C7H10N5O	Cytosol	iJO1366
+preq0	7-cyano-7-carbaguanine	C7H5N5O	Cytosol	iJO1366
+o2	O2	O2	Cytosol AND Extra-organism AND Periplasm	iJO1366
+csn	Cytosine	C4H5N3O	Periplasm AND Cytosol AND Extra-organism	iJO1366
+3hpp	3-Hydroxypropanoate	C3H5O3	Periplasm AND Cytosol AND Extra-organism	iJO1366
+actp	Acetyl phosphate	C2H3O5P	Cytosol	iJO1366
+o16aund	O16 antigen undecaprenyl diphosphate	C89H145N1O32P2	Periplasm AND Cytosol	iJO1366
+fald	Formaldehyde	CH2O	Extra-organism AND Cytosol AND Periplasm	iJO1366
+3otdcoa	3-Oxotetradecanoyl-CoA	C35H56N7O18P3S	Cytosol	iJO1366
+cgly	Cys-Gly	C5H10N2O3S	Periplasm AND Extra-organism AND Cytosol	iJO1366
+aacald	Aminoacetaldehyde	C2H6NO	Cytosol	iJO1366
+zn2	Zinc	Zn	Periplasm AND Extra-organism AND Cytosol	iJO1366
+gdpmann	GDP-D-mannose	C16H23N5O16P2	Cytosol	iJO1366
+pppi	Inorganic triphosphate	HO10P3	Cytosol	iJO1366
+poaac	Peroxyaminoacrylate	C3H5NO3	Cytosol	iJO1366
+cdpdhdecg	CDP-1,2-dihexadecanoylglycerol	C44H79N3O15P2	Cytosol	iJO1366
+g1p	D-Glucose 1-phosphate	C6H11O9P	Extra-organism AND Cytosol AND Periplasm	iJO1366
+hemed	heme D	C34H32N4O6Fe	No_Compartment	M_protein_recon
+1hdecg3p	1-hexadecanoyl-sn-glycerol 3-phosphate	C19H37O7P1	Cytosol AND Periplasm	iJO1366
+23dhdp	2,3-Dihydrodipicolinate	C7H5NO4	Cytosol	iJO1366
+4hbz	4-Hydroxybenzoate	C7H5O3	Cytosol	iJO1366
+anhgm	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramic acid	C19H29N2O12	Periplasm AND Extra-organism AND Cytosol	iJO1366
+ascb_DASH_L	L-Ascorbate	C6H8O6	Extra-organism AND Periplasm	iJO1366
+lcts	Lactose	C12H22O11	Cytosol AND Extra-organism AND Periplasm	iJO1366
+murein3p3p	two linked disacharide tripeptide murein units (uncrosslinked, middle of chain)	C68H104N12O38	Periplasm	iJO1366
+6hmhptpp	6-hydroxymethyl-dihydropterin pyrophosphate	C7H8N5O8P2	Cytosol	iJO1366
+oc2coa	trans-Oct-2-enoyl-CoA	C29H44N7O17P3S	Cytosol	iJO1366
+2mcacn	cis-2-Methylaconitate	C7H5O6	Cytosol	iJO1366
+pqq	pyrroloquinoline quinone	C14H3N2O8	No_Compartment	M_protein_recon
+succ	Succinate	C4H4O4	Periplasm AND Cytosol AND Extra-organism	iJO1366
+galctn_DASH_D	D-Galactonate	C6H11O7	Periplasm AND Cytosol AND Extra-organism	iJO1366
+4ppan	D-4_prime_-Phosphopantothenate	C9H15NO8P	Cytosol	iJO1366
+o16a3und	(O16 antigen)x3 undecaprenyl diphosphate	C157H255N3O82P2	Periplasm	iJO1366
+man	D-Mannose	C6H12O6	Extra-organism AND Cytosol AND Periplasm	iJO1366
+gal_DASH_bD	beta D-Galactose	C6H12O6	Periplasm AND Extra-organism	iJO1366
+eca3und	(enterobacterial common antigen)x3 undecaprenyl-diphosphate	C127H198N9O52P2	Periplasm	iJO1366
+succoa	Succinyl-CoA	C25H35N7O19P3S	Cytosol	iJO1366
+fecrm	Ferrichrome	C27H42FeN9O12	Extra-organism AND Cytosol AND Periplasm	iJO1366
+mnl1p	D-Mannitol 1-phosphate	C6H13O9P	Cytosol	iJO1366
+anhm4p	1,6-anhydrous-N-Acetylmuramyl-tetrapeptide	C29H44N6O15	Cytosol	iJO1366
+hemeO	Heme O	C49H56FeN4O5	Cytosol	iJO1366
+btal	Butanal	C4H8O	Cytosol	iJO1366
+2cpr5p	1-(2-Carboxyphenylamino)-1-deoxy-D-ribulose 5-phosphate	C12H13NO9P	Cytosol	iJO1366
+glc_DASH_D	D-Glucose	C6H12O6	Periplasm AND Extra-organism AND Cytosol	iJO1366
+2aobut	L-2-Amino-3-oxobutanoate	C4H7NO3	Cytosol	iJO1366
+acgal1p	N-Acetyl-D-galactosamine 1-phosphate	C8H14NO9P	Extra-organism AND Periplasm	iJO1366
+ghb	gamma-hydroxybutyrate	C4H7O3	Cytosol	iJO1366
+enter	Enterochelin	C30H27N3O15	Cytosol AND Periplasm AND Extra-organism	iJO1366
+o16a4und	(O16 antigen)x4 undecaprenyl diphosphate	C191H310N4O107P2	Periplasm	iJO1366
+4mop	4-Methyl-2-oxopentanoate	C6H9O3	Cytosol	iJO1366
+dtdpglu	dTDPglucose	C16H24N2O16P2	Cytosol	iJO1366
+crnDcoa	D-carnitinyl-CoA	C28H46N8O18P3S	Cytosol	iJO1366
+rib_DASH_D	D-Ribose	C5H10O5	Cytosol AND Extra-organism AND Periplasm	iJO1366
+forcoa	Formyl-CoA	C22H32N7O17P3S	Cytosol	iJO1366
+aconm	E-3-carboxy-2-pentenedioate 6-methyl ester	C7H6O6	Cytosol	iJO1366
+fruur	D-Fructuronate	C6H9O7	Periplasm AND Extra-organism AND Cytosol	iJO1366
+2omph	2-Octaprenyl-6-methoxyphenol	C47H72O2	Cytosol	iJO1366
+1agpg181	1-Acyl-sn-glycero-3-phosphoglycerol (n-C18:1)	C24H46O9P1	Periplasm	iJO1366
+alltn	Allantoin	C4H6N4O3	Periplasm AND Extra-organism AND Cytosol	iJO1366
+2h3oppan	2-Hydroxy-3-oxopropanoate	C3H3O4	Cytosol	iJO1366
+man6p	D-Mannose 6-phosphate	C6H11O9P	Periplasm AND Cytosol AND Extra-organism	iJO1366
+alltt	Allantoate	C4H7N4O4	Cytosol	iJO1366
+dha	Dihydroxyacetone	C3H6O3	Extra-organism AND Cytosol AND Periplasm	iJO1366
+etoh	Ethanol	C2H6O	Periplasm AND Extra-organism AND Cytosol	iJO1366
+ohpb	2-Oxo-3-hydroxy-4-phosphobutanoate	C4H4O8P	Cytosol	iJO1366
+dc2coa	trans-Dec-2-enoyl-CoA	C31H48N7O17P3S	Cytosol	iJO1366
+hmgth	hydroxymethylglutathione	C11H18N3O7S	Cytosol	iJO1366
+no2	Nitrite	NO2	Periplasm AND Extra-organism AND Cytosol	iJO1366
+no3	Nitrate	NO3	Extra-organism AND Cytosol AND Periplasm	iJO1366
+udpgalfur	UDP-D-galacto-1,4-furanose	C15H22N2O17P2	Cytosol	iJO1366
+prlp	5-[(5-phospho-1-deoxyribulos-1-ylamino)methylideneamino]-1-(5-phosphoribosyl)imidazole-4-carboxamide	C15H21N5O15P2	Cytosol	iJO1366
+h2o2	Hydrogen peroxide	H2O2	Periplasm AND Cytosol AND Extra-organism	iJO1366
+gmhep7p	D-Glycero-D-manno-heptose 7-phosphate	C7H13O10P	Cytosol	iJO1366
+1hdec9eg3p	1-hexadec-9-enoyl-sn-glycerol 3-phosphate	C19H35O7P1	Periplasm AND Cytosol	iJO1366
+gtp	GTP	C10H12N5O14P3	Periplasm AND Cytosol AND Extra-organism	iJO1366
+imp	IMP	C10H11N4O8P	Periplasm AND Cytosol AND Extra-organism	iJO1366
+pa120	1,2-didodecanoyl-sn-glycerol 3-phosphate	C27H51O8P1	Periplasm AND Cytosol	iJO1366
+apg120	acyl phosphatidylglycerol (n-C12:0)	C42H80O11P	Cytosol	iJO1366
+dpcoa	Dephospho-CoA	C21H33N7O13P2S	Cytosol	iJO1366
+dmso	Dimethyl sulfoxide	C2H6OS	Cytosol AND Extra-organism AND Periplasm	iJO1366
+pram	5-Phospho-beta-D-ribosylamine	C5H11NO7P	Cytosol	iJO1366
+arbtn	aerobactin minus Fe3	C22H33N4O13	Extra-organism AND Cytosol AND Periplasm	iJO1366
+pran	N-(5-Phospho-D-ribosyl)anthranilate	C12H13NO9P	Cytosol	iJO1366
+2ddecg3p	2-dodecanoyl-sn-glycerol 3-phosphate	C15H30O7P1	Periplasm AND Cytosol	iJO1366
+5aprbu	5-Amino-6-(5_prime_-phosphoribitylamino)uracil	C9H15N4O9P	Cytosol	iJO1366
+nadh	Nicotinamide adenine dinucleotide - reduced	C21H27N7O14P2	Cytosol	iJO1366
+uracp	Ureidoacrylate peracid	C4H6N2O4	Cytosol	iJO1366
+fcl_DASH_L	L-fuculose	C6H12O5	Cytosol	iJO1366
+26dap_DASH_M	meso-2,6-Diaminoheptanedioate	C7H14N2O4	Cytosol AND Extra-organism AND Periplasm	iJO1366
+5aop	5-Amino-4-oxopentanoate	C5H9NO3	Cytosol	iJO1366
+gam	D-Glucosamine	C6H14NO5	Extra-organism AND Periplasm	iJO1366
+din	Deoxyinosine	C10H12N4O4	Periplasm AND Cytosol AND Extra-organism	iJO1366
+lipidAds	Lipid A Disaccharide	C68H127N2O20P	Cytosol	iJO1366
+galur	D-Galacturonate	C6H9O7	Periplasm AND Extra-organism AND Cytosol	iJO1366
+4per	4-Phospho-D-erythronate	C4H6O8P	Cytosol	iJO1366
+kdo2lipid4p	KDO(2)-lipid IV(A) with palmitoleoyl	C100H176N2O38P2	Cytosol	iJO1366
+2mahmp	2-Methyl-4-amino-5-hydroxymethylpyrimidine diphosphate	C6H8N3O7P2	Cytosol	iJO1366
+uaccg	UDP-N-acetyl-3-O-(1-carboxyvinyl)-D-glucosamine	C20H26N3O19P2	Cytosol	iJO1366
+nadp	Nicotinamide adenine dinucleotide phosphate	C21H25N7O17P3	Cytosol	iJO1366
+dtdprmn	dTDP-L-rhamnose	C16H24N2O15P2	Cytosol	iJO1366
+acetol	Acetol	C3H6O2	Cytosol	iJO1366
+betald	Betaine aldehyde	C5H12NO	Cytosol	iJO1366
+thymd	Thymidine	C10H14N2O5	Extra-organism AND Cytosol AND Periplasm	iJO1366
+acmalt	Acetyl-maltose	C14H24O12	Cytosol	iJO1366
+ctbt	crotonobetaine	C7H13NO2	Periplasm AND Cytosol	iJO1366
+apg141	acyl phosphatidylglycerol (n-C14:1)	C48H86O11P	Cytosol	iJO1366
+feoxam	ferroxamine	C25H46FeN6O8	Periplasm AND Cytosol AND Extra-organism	iJO1366
+fgam	N2-Formyl-N1-(5-phospho-D-ribosyl)glycinamide	C8H13N2O9P	Cytosol	iJO1366
+didp	dIDP	C10H11N4O10P2	Cytosol	iJO1366
+hqn	Hydroquinone	C6H6O2	Cytosol	iJO1366
+tagdp_DASH_D	D-Tagatose 1,6-biphosphate	C6H10O12P2	Cytosol	iJO1366
+glu5sa	L-Glutamate 5-semialdehyde	C5H9NO3	Cytosol	iJO1366
+malt6p	Maltose 6_prime_-phosphate	C12H21O14P	Cytosol	iJO1366
+iasp	Iminoaspartate	C4H3NO4	Cytosol	iJO1366
+dhptdn	6,7-Dihydropteridine	C6H6N4	Cytosol	iJO1366
+malthx	Maltohexaose	C36H62O31	Extra-organism AND Cytosol AND Periplasm	iJO1366
+o16a2und	(O16 antigen)x2 undecaprenyl diphosphate	C123H200N2O57P2	Periplasm	iJO1366
+rml1p	L-Rhamnulose 1-phosphate	C6H11O8P	Cytosol	iJO1366
+gfgaragund	galactofuranosyl-glucosyl-O-acetyl-rhamanosyl-N-acetylglucosamyl-undecaprenyl diphosphate	C83H135N1O27P2	Cytosol	iJO1366
+1agpg161	1-Acyl-sn-glycero-3-phosphoglycerol (n-C16:1)	C22H42O9P1	Periplasm	iJO1366
+1agpg160	1-Acyl-sn-glycero-3-phosphoglycerol (n-C16:0)	C22H44O9P1	Periplasm	iJO1366
+23ddhb	2,3-Dihydro-2,3-dihydroxybenzoate	C7H7O4	Cytosol	iJO1366
+sucr	Sucrose	C12H22O11	Periplasm AND Extra-organism	iJO1366
+gagicolipa	galactosyl-glucosyl-inner core oligosaccharide lipid A	C157H271N2O84P4	Cytosol	iJO1366
+15dap	1,5-Diaminopentane	C5H16N2	Periplasm AND Extra-organism AND Cytosol	iJO1366
+glu_DASH_D	D-Glutamate	C5H8NO4	Cytosol	iJO1366
+2tdecg3p	2-tetradecanoyl-sn-glycerol 3-phosphate	C17H34O7P1	Cytosol AND Periplasm	iJO1366
+murein4px4p	two disacharide linked murein units, tetrapeptide corsslinked tetrapeptide (A2pm->D-ala) (middle of chain)	C74H112N14O39	Periplasm	iJO1366
+sl2a6o	N-Succinyl-2-L-amino-6-oxoheptanedioate	C11H12NO8	Cytosol	iJO1366
+gmhep17bp	D-Glycero-D-manno-heptose 1,7-bisphosphate	C7H12O13P2	Cytosol	iJO1366
+56dura	5,6-dihydrouracil	C4H6N2O2	Cytosol	iJO1366
+cytd	Cytidine	C9H13N3O5	Periplasm AND Cytosol AND Extra-organism	iJO1366
+cpgn	coprogen	C35H52N6O13Fe	Extra-organism AND Cytosol AND Periplasm	iJO1366
+2agpe140	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C14:0)	C19H40NO7P1	Periplasm AND Cytosol	iJO1366
+2agpe141	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C14:1)	C19H38NO7P1	Periplasm AND Cytosol	iJO1366
+sucsal	Succinic semialdehyde	C4H5O3	Cytosol	iJO1366
+cechddd	cis-3-(3-carboxyethyl)-3,5-cyclohexadiene-1,2-diol	C9H11O4	Cytosol	iJO1366
+argsuc	N(omega)-(L-Arginino)succinate	C10H17N4O6	Cytosol	iJO1366
+2tdec7eg3p	2-tetradec-7-enoyl-sn-glycerol 3-phosphate	C17H32O7P1	Periplasm AND Cytosol	iJO1366
+pheme	Protoheme	C34H30FeN4O4	Extra-organism AND Cytosol AND Periplasm	iJO1366
+thptdn	5,6,7,8-tetrahydropteridine	C6H10N4	Cytosol	iJO1366
+cenchddd	cis-3-(3-carboxyethenyl)-3,5-cyclohexadiene-1,2-diol	C9H9O4	Cytosol	iJO1366
+thmnp	Tetrahydromonapterin	C9H15N5O4	Cytosol	iJO1366
+1odecg3p	1-octadecanoyl-sn-glycerol 3-phosphate	C21H41O7P1	Periplasm AND Cytosol	iJO1366
+23dhbzs	2,3-dihydroxybenzoylserine	C10H10NO6	Cytosol	iJO1366
+prbamp	1-(5-Phosphoribosyl)-AMP	C15H19N5O14P2	Cytosol	iJO1366
+2dhp	2-Dehydropantoate	C6H9O4	Cytosol	iJO1366
+datp	dATP	C10H12N5O12P3	Cytosol	iJO1366
+orn	Ornithine	C5H13N2O2	Periplasm AND Extra-organism AND Cytosol	iJO1366
+n8aspmd	N8-Acetylspermidine	C9H23N3O	Cytosol	iJO1366
+garagund	glucosyl-O-acetyl-rhamanosyl-N-acetylglucosamyl-undecaprenyl diphosphate	C77H125N1O22P2	Cytosol	iJO1366
+dxyl	1-deoxy-D-xylulose	C5H10O4	Cytosol	iJO1366
+acorn	N2-Acetyl-L-ornithine	C7H14N2O3	Cytosol	iJO1366
+aragund	O-acetyl-rhamanosyl-N-acetylglucosamyl-undecaprenyl diphosphate	C71H115N1O17P2	Cytosol	iJO1366
+xu5p_DASH_L	L-Xylulose 5-phosphate	C5H9O8P	Cytosol	iJO1366
+aps	Adenosine 5_prime_-phosphosulfate	C10H12N5O10PS	Cytosol	iJO1366
+dpm	dipyrromethane	C20H20N2O8	No_Compartment	M_protein_recon
+pacald	Phenylacetaldehyde	C8H8O	Periplasm AND Extra-organism AND Cytosol	iJO1366
+fmnh2	Reduced FMN	C17H21N4O9P	Cytosol	iJO1366
+murein5px4px4p	three disacharide linked murein units (pentapeptide crosslinked tetrapeptide (A2pm->D-ala) tetrapeptide corsslinked tetrapeptide (A2pm->D-ala)) (middle of chain)	C114H172N22O59	Periplasm	iJO1366
+pg161	Phosphatidylglycerol (dihexadec-9-enoyl, n-C16:1)	C38H70O10P1	Periplasm AND Cytosol	iJO1366
+pg160	Phosphatidylglycerol (dihexadecanoyl, n-C16:0)	C38H74O10P1	Cytosol AND Periplasm	iJO1366
+4hoxpacd	4-Hydroxyphenylacetaldehyde	C8H8O2	Periplasm AND Extra-organism	iJO1366
+mercppyr	Mercaptopyruvate	C3H3O3S	Cytosol	iJO1366
+ggbutal	gamma-glutamyl-gamma-butyraldehyde	C9H16O4N2	Cytosol	iJO1366
+acgam1p	N-Acetyl-D-glucosamine 1-phosphate	C8H14NO9P	Periplasm AND Extra-organism AND Cytosol	iJO1366
+prfp	1-(5-Phosphoribosyl)-5-[(5-phosphoribosylamino)methylideneamino]imidazole-4-carboxamide	C15H21N5O15P2	Cytosol	iJO1366
+atp	ATP	C10H12N5O13P3	Cytosol	iJO1366
+btcoa	Butanoyl-CoA	C25H38N7O17P3S	Cytosol	iJO1366
+3htdcoa	(S)-3-Hydroxytetradecanoyl-CoA	C35H58N7O18P3S	Cytosol	iJO1366
+clpn161	cardiolipin (tetrahexadec-9-enoyl, n-C16:1)	C73H132O17P2	Periplasm	iJO1366
+clpn160	cardiolipin (tetrahexadecanoyl, n-C16:0)	C73H140O17P2	Periplasm	iJO1366
+35cgmp	3_prime_,5_prime_-Cyclic GMP	C10H11N5O7P	Cytosol	iJO1366
+ttdca	tetradecanoate (n-C14:0)	C14H27O2	Periplasm AND Cytosol AND Extra-organism	iJO1366
+gdptp	Guanosine 3_prime_-diphosphate 5_prime_-triphosphate	C10H11N5O20P5	Cytosol	iJO1366
+ppal	Propanal	C3H6O	Periplasm AND Cytosol AND Extra-organism	iJO1366
+4mpetz	4-Methyl-5-(2-phosphoethyl)-thiazole	C6H8NO4PS	Cytosol	iJO1366
+2odec11eg3p	2-octadec-11-enoyl-sn-glycerol 3-phosphate	C21H40O7P1	Periplasm AND Cytosol	iJO1366
+ps161	phosphatidylserine (dihexadec-9-enoyl, n-C16:1)	C38H69N1O10P1	Cytosol	iJO1366
+clpn181	cardiolipin (tetraoctadec-11-enoyl, n-C18:1)	C81H148O17P2	Periplasm	iJO1366
+clpn180	cardiolipin (tetraoctadecanoyl, n-C18:0)	C81H156O17P2	Periplasm	iJO1366
+ugmd	UDP-N-acetylmuramoyl-L-alanyl-D-gamma-glutamyl-meso-2,6-diaminopimelate	C35H51N7O26P2	Cytosol	iJO1366
+sbt6p	D-Sorbitol 6-phosphate	C6H13O9P	Cytosol	iJO1366
+his_DASH_L	L-Histidine	C6H9N3O2	Periplasm AND Extra-organism AND Cytosol	iJO1366
+unagamuf	Undecaprenyl-diphospho N-acetylglucosamine-N-acetylmannosaminuronate-N-acetamido-4,6-dideoxy-D-galactose	C79H126N3O22P2	Cytosol AND Periplasm	iJO1366
+3c4mop	3-Carboxy-4-methyl-2-oxopentanoate	C7H8O5	Cytosol	iJO1366
+3c3hmp	3-Carboxy-3-hydroxy-4-methylpentanoate	C7H10O5	Cytosol	iJO1366
+galctn_DASH_L	L-Galactonate	C6H11O7	Cytosol AND Extra-organism AND Periplasm	iJO1366
+peamn	Phenethylamine	C8H12N	Periplasm AND Extra-organism	iJO1366
+fmn	FMN	C17H19N4O9P	Cytosol	iJO1366
+glyc	Glycerol	C3H8O3	Extra-organism AND Cytosol AND Periplasm	iJO1366
+uamr	UDP-N-acetylmuramate	C20H28N3O19P2	Cytosol	iJO1366
+3dhgulnp	3-keto-L-gulonate-6-phosphate	C6H8O10P	Cytosol	iJO1366
+glyald	D-Glyceraldehyde	C3H6O3	Cytosol AND Extra-organism AND Periplasm	iJO1366
+f1p	D-Fructose 1-phosphate	C6H11O9P	Cytosol	iJO1366
+2obut	2-Oxobutanoate	C4H5O3	Cytosol	iJO1366
+arg_DASH_L	L-Arginine	C6H15N4O2	Cytosol AND Periplasm AND Extra-organism	iJO1366
+sucglu	N2-Succinyl-L-glutamate	C9H10NO7	Cytosol	iJO1366
+altrn	D-Altronate	C6H11O7	Cytosol	iJO1366
+4abz	4-Aminobenzoate	C7H6NO2	Cytosol	iJO1366
+udp	UDP	C9H11N2O12P2	Cytosol	iJO1366
+phhlipa	phospho-heptosyl-heptosyl-kdo2-lipidA	C124H219N2O54P3	Cytosol	iJO1366
+arbtn_DASH_fe3	Aerobactin	C22H33FeN4O13	Periplasm AND Extra-organism AND Cytosol	iJO1366
+hxan	Hypoxanthine	C5H4N4O	Extra-organism AND Cytosol AND Periplasm	iJO1366
+ppap	Propanoyl phosphate	C3H5O5P	Cytosol	iJO1366
+nh4	Ammonium	H4N	Periplasm AND Extra-organism AND Cytosol	iJO1366
+dnad	Deamino-NAD+	C21H24N6O15P2	Cytosol	iJO1366
+dhor_DASH_S	(S)-Dihydroorotate	C5H5N2O4	Cytosol	iJO1366
+pser_DASH_L	O-Phospho-L-serine	C3H6NO6P	Periplasm AND Cytosol AND Extra-organism	iJO1366
+hdcoa	Hexadecenoyl-CoA (n-C16:1CoA)	C37H60N7O17P3S	Cytosol	iJO1366
+malthp	Maltoheptaose	C42H72O36	Cytosol	iJO1366
+25aics	(S)-2-[5-Amino-1-(5-phospho-D-ribosyl)imidazole-4-carboxamido]succinate	C13H15N4O12P	Cytosol	iJO1366
+adocbi	Adenosyl cobinamide	C58H84CoN16O11	Cytosol	iJO1366
+acmum6p	N-acetylmuramate 6-phosphate	C11H17NO11P	Cytosol	iJO1366
+adocbl	Adenosylcobalamin	C72H100CoN18O17P	Cytosol AND Extra-organism AND Periplasm	iJO1366
+suc6p	Sucrose 6-phosphate	C12H21O14P	Cytosol	iJO1366
+aspsa	L-Aspartate 4-semialdehyde	C4H7NO3	Cytosol	iJO1366
+dann	7,8-Diaminononanoate	C9H21N2O2	Cytosol	iJO1366
+hphhlipa	heptosyl-phospho-heptosyl-heptosyl-kdo2-lipidA	C131H231N2O60P3	Cytosol	iJO1366
+histd	L-Histidinol	C6H12N3O	Cytosol	iJO1366
+gdpofuc	GDP-4-oxo-L-fucose	C16H21N5O15P2	Cytosol	iJO1366
+galt	Galactitol	C6H14O6	Periplasm AND Extra-organism	iJO1366
+2dda7p	2-Dehydro-3-deoxy-D-arabino-heptonate 7-phosphate	C7H10O10P	Cytosol	iJO1366
+arbt	Arbutin	C12H16O7	Periplasm AND Extra-organism	iJO1366
+mthgxl	Methylglyoxal	C3H4O2	Cytosol	iJO1366
+lipoamp	lipoyl-AMP	C18H25N5O8PS2	Cytosol	iJO1366
+5mthf	5-Methyltetrahydrofolate	C20H24N7O6	Cytosol	iJO1366
+12dgr120	1,2-Diacyl-sn-glycerol (didodecanoyl, n-C12:0)	C27H52O5	Cytosol AND Periplasm	iJO1366
+hco3	Bicarbonate	CHO3	Cytosol	iJO1366
+6pgc	6-Phospho-D-gluconate	C6H10O10P	Cytosol	iJO1366
+glu1sa	L-Glutamate 1-semialdehyde	C5H9NO3	Cytosol	iJO1366
+2agpg140	2-Acyl-sn-glycero-3-phosphoglycerol (n-C14:0)	C20H40O9P1	Periplasm AND Cytosol	iJO1366
+fprica	5-Formamido-1-(5-phospho-D-ribosyl)imidazole-4-carboxamide	C10H13N4O9P	Cytosol	iJO1366
+pa181	1,2-dioctadec-11-enoyl-sn-glycerol 3-phosphate	C39H71O8P1	Periplasm AND Cytosol	iJO1366
+mqn8	Menaquinone 8	C51H72O2	Cytosol	iJO1366
+cpppg3	Coproporphyrinogen III	C36H40N4O8	Cytosol	iJO1366
+mi1p_DASH_D	1D-myo-Inositol 1-phosphate	C6H11O9P	Cytosol	iJO1366
+leu_DASH_L	L-Leucine	C6H13NO2	Cytosol AND Extra-organism AND Periplasm	iJO1366
+maltttr	Maltotetraose	C24H42O21	Extra-organism AND Cytosol AND Periplasm	iJO1366
+ctbtcoa	crotonobetainyl-CoA	C28H44N8O17P3S	Cytosol	iJO1366
+seln	Selenide	HSe	Cytosol	iJO1366
+btn	Biotin	C10H15N2O3S	Cytosol AND Extra-organism AND Periplasm	iJO1366
+2amsa	2-Aminomalonate semialdehyde	C3H5NO3	Cytosol	iJO1366
+sucgsa	N2-Succinyl-L-glutamate 5-semialdehyde	C9H11NO6	Cytosol	iJO1366
+2ippm	2-Isopropylmaleate	C7H8O4	Cytosol	iJO1366
+hhlipa	heptosyl-heptosyl-kdo2-lipidA	C124H220N2O51P2	Cytosol	iJO1366
+fe3hox_DASH_un	Fe(III)hydoxamate, unloaded	C9H18O6N3	Periplasm AND Extra-organism AND Cytosol	iJO1366
+unaga	Undecaprenyl diphospho N-acetyl-glucosamine	C63H103NO12P2	Cytosol	iJO1366
+4ppcys	N-((R)-4-Phosphopantothenoyl)-L-cysteine	C12H20N2O9PS	Cytosol	iJO1366
+mococdp	molybdopterin cytosine dinucleotide	C19H22N8O15P2S2Mo	Cytosol	iJO1366
+ptrc	Putrescine	C4H14N2	Cytosol AND Periplasm AND Extra-organism	iJO1366
+glyb	Glycine betaine	C5H11NO2	Extra-organism AND Cytosol AND Periplasm	iJO1366
+tym	Tyramine	C8H12NO	Extra-organism AND Periplasm	iJO1366
+34hpp	3-(4-Hydroxyphenyl)pyruvate	C9H7O4	Cytosol	iJO1366
+met_DASH_D	D-Methionine	C5H10NO2S	Extra-organism AND Cytosol AND Periplasm	iJO1366
+mlthf	5,10-Methylenetetrahydrofolate	C20H21N7O6	Cytosol	iJO1366
+3sala	3-Sulfino-L-alanine	C3H5NO4S	Cytosol	iJO1366
+oxur	Oxalureate	C3H3N2O4	Cytosol	iJO1366
+pyr	Pyruvate	C3H3O3	Cytosol AND Extra-organism AND Periplasm	iJO1366
+ahcys	S-Adenosyl-L-homocysteine	C14H20N6O5S	Cytosol	iJO1366
+2dr1p	2-Deoxy-D-ribose 1-phosphate	C5H9O7P	Cytosol	iJO1366
+uamag	UDP-N-acetylmuramoyl-L-alanyl-D-glutamate	C28H39N5O23P2	Cytosol	iJO1366
+glcur	D-Glucuronate	C6H9O7	Extra-organism AND Cytosol AND Periplasm	iJO1366
+dhmptp	dihydromonapterin-triphosphate	C9H12N5O13P3	Cytosol	iJO1366
+cbl1	Cob(I)alamin	C62H88CoN13O14P	Periplasm AND Cytosol AND Extra-organism	iJO1366
+chtbs	N,N_prime_-diacetylchitobiose	C16H28N2O11	Extra-organism AND Periplasm	iJO1366
+etha	Ethanolamine	C2H8NO	Extra-organism AND Cytosol AND Periplasm	iJO1366
+cyst_DASH_L	L-Cystathionine	C7H14N2O4S	Cytosol	iJO1366
+cdpdddecg	CDP-1,2-didodecanoylglycerol	C36H63N3O15P2	Cytosol	iJO1366
+colipap	core oligosaccharide lipid A diphosphate	C176H303N2O103P5	Extra-organism AND Periplasm	iJO1366
+4adcho	4-amino-4-deoxychorismate	C10H10NO5	Cytosol	iJO1366
+so3	Sulfite	O3S	Cytosol AND Extra-organism AND Periplasm	iJO1366
+isetac	Isethionic acid	C2H5O4S	Cytosol AND Periplasm AND Extra-organism	iJO1366
+2sephchc	2-succinyl-5-enolpyruvyl-6-hydroxy-3-cyclohexene-1-carboxylate	C14H13O9	Cytosol	iJO1366
+2pglyc	2-Phosphoglycolate	C2H2O6P	Cytosol	iJO1366
+rhcys	S-Ribosyl-L-homocysteine	C9H17NO6S	Cytosol	iJO1366
+pydam	Pyridoxamine	C8H13N2O2	Extra-organism AND Periplasm AND Cytosol	iJO1366
+ura	Uracil	C4H4N2O2	Cytosol AND Extra-organism AND Periplasm	iJO1366
+udcpp	Undecaprenyl phosphate	C55H89O4P	Periplasm AND Cytosol	iJO1366
+3oxdhscoa	3-oxo-5,6-dehydrosuberyl-CoA	C29H39N7O20P3S	Cytosol	iJO1366
+camp	cAMP	C10H11N5O6P	Cytosol	iJO1366
+hg2	Hg2+	Hg	Periplasm AND Cytosol AND Extra-organism	iJO1366
+uri	Uridine	C9H12N2O6	Periplasm AND Cytosol AND Extra-organism	iJO1366
+udpglcur	UDP-D-glucuronate	C15H19N2O18P2	Extra-organism AND Cytosol AND Periplasm	iJO1366
+adphep_DASH_DD	ADP-D-glycero-D-manno-heptose	C17H25N5O16P2	Cytosol	iJO1366
+h2o	H2O	H2O	Cytosol AND Extra-organism AND Periplasm	iJO1366
+hmbil	Hydroxymethylbilane	C40H38N4O17	Cytosol	iJO1366
+mththf	(2R,4S)-2-methyl-2,3,3,4-tetrahydroxytetrahydrofuran	C5H10O5	Cytosol	iJO1366
+f6p	D-Fructose 6-phosphate	C6H11O9P	Extra-organism AND Cytosol AND Periplasm	iJO1366
+8aonn	8-Amino-7-oxononanoate	C9H17NO3	Cytosol	iJO1366
+galt1p	Galactitol 1-phosphate	C6H13O9P	Cytosol	iJO1366
+mmcoa_DASH_S	(S)-Methylmalonyl-CoA	C25H35N7O19P3S	Cytosol	iJO1366
+ascb6p	L-ascorbate-6-phosphate	C6H7O9P	Cytosol	iJO1366
+anhm	1,6-anhydrous-N-Acetylmuramate	C11H16NO7	Cytosol	iJO1366
+ru5p_DASH_D	D-Ribulose 5-phosphate	C5H9O8P	Cytosol	iJO1366
+lipidA	2,3,2_prime_3_prime_-Tetrakis(beta-hydroxymyristoyl)-D-glucosaminyl-1,6-beta-D-glucosamine 1,4_prime_-bisphosphate	C68H126N2O23P2	Cytosol	iJO1366
+2p4c2me	2-phospho-4-(cytidine 5_prime_-diphospho)-2-C-methyl-D-erythritol	C14H22N3O17P3	Cytosol	iJO1366
+3amac	3-Aminoacrylate	C3H4NO2	Cytosol	iJO1366
+r15bp	D-Ribose 1,5-bisphosphate	C5H8O11P2	Cytosol	iJO1366
+ru5p_DASH_L	L-Ribulose 5-phosphate	C5H9O8P	Cytosol	iJO1366
+3ump	3_prime_-UMP	C9H11N2O9P	Periplasm AND Extra-organism	iJO1366
+12dgr141	1,2-Diacyl-sn-glycerol (ditetradec-7-enoyl, n-C14:1)	C31H56O5	Cytosol AND Periplasm	iJO1366
+mg2	magnesium	Mg	Periplasm AND Extra-organism AND Cytosol	iJO1366
+alac_DASH_S	(S)-2-Acetolactate	C5H7O4	Cytosol	iJO1366
+cdp	CDP	C9H12N3O11P2	Cytosol	iJO1366
+1ddecg3p	1-dodecanoyl-sn-glycerol 3-phosphate	C15H29O7P1	Periplasm AND Cytosol	iJO1366
+xu5p_DASH_D	D-Xylulose 5-phosphate	C5H9O8P	Cytosol	iJO1366
+acanth	N-Acetylanthranilate	C9H8NO3	Cytosol	iJO1366
+pa161	1,2-dihexadec-9-enoyl-sn-glycerol 3-phosphate	C35H63O8P1	Periplasm AND Cytosol	iJO1366
+itp	ITP	C10H11N4O14P3	Cytosol	iJO1366
+kdo2lipid4	KDO(2)-lipid IV(A)	C84H148N2O37P2	Periplasm AND Cytosol AND Extra-organism	iJO1366
+ca2	Calcium	Ca	Extra-organism AND Cytosol AND Periplasm	iJO1366
+lipidX	2,3-Bis(3-hydroxytetradecanoyl)-beta-D-glucosaminyl 1-phosphate	C34H64NO12P	Cytosol	iJO1366
+gln_DASH_L	L-Glutamine	C5H10N2O3	Extra-organism AND Cytosol AND Periplasm	iJO1366
+3hodcoa	(S)-3-Hydroxyoctadecanoyl-CoA	C39H66N7O18P3S	Cytosol	iJO1366
+23bpg	2,3-bisphosphoglycerate	C3H3O10P2	No_Compartment	M_protein_recon
+q8	Ubiquinone-8	C49H74O4	Cytosol	iJO1366
+hkntd	2-hydroxy-6-ketononatrienedioate	C9H6O6	Cytosol	iJO1366
+murein5px3p	two disacharide linked murein units, pentapeptide corsslinked tripeptide (A2pm->A2pm) (middle of chain)	C74H112N14O39	Periplasm	iJO1366
+pe120	phosphatidylethanolamine (didodecanoyl, n-C12:0)	C29H58N1O8P1	Cytosol AND Periplasm	iJO1366
+dcmp	dCMP	C9H12N3O7P	Cytosol AND Extra-organism AND Periplasm	iJO1366
+prpp	5-Phospho-alpha-D-ribose 1-diphosphate	C5H8O14P3	Cytosol	iJO1366
+xmp	Xanthosine 5_prime_-phosphate	C10H11N4O9P	Cytosol AND Extra-organism AND Periplasm	iJO1366
+3hadpcoa	(3S)-3-Hydroxyadipyl-CoA	C27H39N7O20P3S	Cytosol	iJO1366
+hdca	Hexadecanoate (n-C16:0)	C16H31O2	Periplasm AND Extra-organism AND Cytosol	iJO1366
+pe160	phosphatidylethanolamine (dihexadecanoyl, n-C16:0)	C37H74N1O8P1	Periplasm AND Cytosol	iJO1366
+sl26da	N-Succinyl-LL-2,6-diaminoheptanedioate	C11H16N2O7	Cytosol	iJO1366
+eca4und	(enterobacterial common antigen)x4 undecaprenyl-diphosphate	C151H234N12O67P2	Periplasm	iJO1366
+uppg3	Uroporphyrinogen III	C40H36N4O16	Cytosol	iJO1366
+eca4colipa	(enterobacterial common antigen)x4 core oligosaccharide lipid A	C272H447N14O160P4	Extra-organism AND Periplasm	iJO1366
+25drapp	2,5-Diamino-6-(ribosylamino)-4-(3H)-pyrimidinone 5_prime_-phosphate	C9H14N5O8P	Cytosol	iJO1366
+fadh2	Flavin adenine dinucleotide reduced	C27H33N9O15P2	Cytosol	iJO1366
+halipa	hepta-acylated KDO(2)-lipid (A)	C126H226N2O40P2	Extra-organism	iJO1366
+34dhpac	3,4-Dihydroxyphenylacetaldehyde	C8H8O3	Periplasm AND Extra-organism	iJO1366
+murein4px4px4p	three disacharide linked murein units (tetrapeptide crosslinked tetrapeptide (A2pm->D-ala) & tetrapeptide corsslinked tetrapeptide (A2pm->D-ala)) (middle of chain)	C111H167N21O58	Periplasm	iJO1366
+dopa	Dopamine	C8H12NO2	Extra-organism AND Periplasm	iJO1366
+bbtcoa	gamma-butyrobetainyl-CoA	C28H46N8O17P3S	Cytosol	iJO1366
+5dh4dglc	5-Dehydro-4-deoxy-D-glucarate	C6H6O7	Cytosol	iJO1366
+uacmam	UDP-N-acetyl-D-mannosamine	C17H25N3O17P2	Cytosol	iJO1366
+cd2	Cadmium	Cd	Extra-organism AND Cytosol AND Periplasm	iJO1366
+xdp	XDP	C10H11N4O12P2	Cytosol	iJO1366
+pro_DASH_L	L-Proline	C5H9NO2	Cytosol AND Extra-organism AND Periplasm	iJO1366
+dhpppn	3-(2,3-Dihydroxyphenyl)propanoate	C9H9O4	Cytosol	iJO1366
+udpg	UDPglucose	C15H22N2O17P2	Periplasm AND Extra-organism AND Cytosol	iJO1366
+4r5au	4-(1-D-Ribitylamino)-5-aminouracil	C9H16N4O6	Cytosol	iJO1366
+ggptrc	gamma-glutamyl-putrescine	C9H20O3N3	Cytosol	iJO1366
+murein5p3p	two linked disacharide pentapeptide and tripeptide murein units (uncrosslinked, middle of chain)	C74H114N14O40	Periplasm	iJO1366
+h	H+	H	Periplasm AND Extra-organism AND Cytosol	iJO1366
+cobalt2	Co2+	Co	Extra-organism AND Cytosol AND Periplasm	iJO1366
+quln	Quinolinate	C7H3NO4	Cytosol	iJO1366
+rephaccoa	Ring 1,2-epoxyphenylacetyl-CoA	C29H38N7O18P3S	Cytosol	iJO1366
+2agpg180	2-Acyl-sn-glycero-3-phosphoglycerol (n-C18:0)	C24H48O9P1	Periplasm AND Cytosol	iJO1366
+na15dap	N-3-aminopropyl-1,5-diaminopentane	C8H24N3	Cytosol	iJO1366
+lipoate	Lipoate	C8H14O2S2	Periplasm AND Extra-organism AND Cytosol	iJO1366
+fuc_DASH_L	L-Fucose	C6H12O5	Cytosol AND Extra-organism AND Periplasm	iJO1366
+3amp	3_prime_-AMP	C10H12N5O7P	Extra-organism AND Periplasm	iJO1366
+crn	L-Carnitine	C7H15NO3	Cytosol AND Extra-organism AND Periplasm	iJO1366
+oxa	Oxalate	C2O4	Cytosol	iJO1366
+ametam	S-Adenosylmethioninamine	C14H24N6O3S	Cytosol	iJO1366
+ethso3	ethanesulfonate	C2H5O3S	Extra-organism AND Cytosol AND Periplasm	iJO1366
+2dh3dgal6p	2-Dehydro-3-deoxy-D-galactonate 6-phosphate	C6H8O9P	Cytosol	iJO1366
+thym	Thymine	C5H6N2O2	Extra-organism AND Cytosol AND Periplasm	iJO1366
+1agpg140	1-Acyl-sn-glycero-3-phosphoglycerol (n-C14:0)	C20H40O9P1	Periplasm	iJO1366
+cpg160	cyclopropane phosphatidylglycerol (dihexadec-9,10-cyclo-anoyl, n-C16:0 cyclo)	C40H74O10P1	Cytosol	iJO1366
+thmmp	Thiamin monophosphate	C12H16N4O4PS	Cytosol	iJO1366
+3cmp	3_prime_-cmp	C9H12N3O8P	Periplasm AND Extra-organism	iJO1366
+23cgmp	2_prime_,3_prime_-Cyclic GMP	C10H11N5O7P	Extra-organism AND Periplasm	iJO1366
+sel	Selenate	O4Se	Cytosol AND Extra-organism AND Periplasm	iJO1366
+rmn	L-Rhamnose	C6H12O5	Cytosol AND Extra-organism AND Periplasm	iJO1366
+fc1p	L-Fuculose 1-phosphate	C6H11O8P	Cytosol	iJO1366
+rml	L-Rhamnulose	C6H12O5	Cytosol	iJO1366
+3oddcoa	3-Oxododecanoyl-CoA	C33H52N7O18P3S	Cytosol	iJO1366
+co2	CO2	CO2	Periplasm AND Cytosol AND Extra-organism	iJO1366
+hdcea	Hexadecenoate (n-C16:1)	C16H29O2	Periplasm AND Cytosol AND Extra-organism	iJO1366
+urdglyc	(-)-Ureidoglycolate	C3H5N2O4	Cytosol	iJO1366
+glyclt	Glycolate	C2H3O3	Cytosol AND Extra-organism AND Periplasm	iJO1366
+pgp140	Phosphatidylglycerophosphate (ditetradecanoyl, n-C14:0)	C34H65O13P2	Cytosol AND Periplasm	iJO1366
+pgp141	Phosphatidylglycerophosphate (ditetradec-7-enoyl, n-C14:1)	C34H61O13P2	Periplasm AND Cytosol	iJO1366
+nadph	Nicotinamide adenine dinucleotide phosphate - reduced	C21H26N7O17P3	Cytosol	iJO1366
+sarcs	Sarcosine	C3H7NO2	Cytosol	iJO1366
+enlipa	phosphoethanolamine KDO(2)-lipid (A)	C112H202N3O42P3	Extra-organism AND Periplasm	iJO1366
+hisp	L-Histidinol phosphate	C6H11N3O4P	Cytosol	iJO1366
+acg5p	N-Acetyl-L-glutamyl 5-phosphate	C7H9NO8P	Cytosol	iJO1366
+hxcoa	Hexanoyl-CoA (n-C6:0CoA)	C27H42N7O17P3S	Cytosol	iJO1366
+hom_DASH_L	L-Homoserine	C4H9NO3	Extra-organism AND Cytosol AND Periplasm	iJO1366
+hacolipa	hepta-acylated core oligosaccharide lipid A (E. coli)	C192H333N2O101P4	Extra-organism	iJO1366
+aicar	5-Amino-1-(5-Phospho-D-ribosyl)imidazole-4-carboxamide	C9H13N4O8P	Cytosol	iJO1366
+tsul	Thiosulfate	O3S2	Periplasm AND Extra-organism AND Cytosol	iJO1366
+hkndd	2-Hydroxy-6-oxonona-2,4-diene-1,9-dioate	C9H8O6	Cytosol	iJO1366
+uacgam	UDP-N-acetyl-D-glucosamine	C17H25N3O17P2	Cytosol AND Extra-organism AND Periplasm	iJO1366
+g3p	Glyceraldehyde 3-phosphate	C3H5O6P	Cytosol	iJO1366
+dhmpt	Dihydromonapterin	C9H13N5O4	Cytosol	iJO1366
+phaccoa	Phenylacetyl-CoA	C29H38N7O17P3S	Cytosol	iJO1366
+glcr	D-Glucarate	C6H8O8	Extra-organism AND Cytosol AND Periplasm	iJO1366
+ps160	phosphatidylserine (dihexadecanoyl, n-C16:0)	C38H73N1O10P1	Cytosol	iJO1366
+inost	myo-Inositol	C6H12O6	Periplasm AND Extra-organism AND Cytosol	iJO1366
+apg161	acyl phosphatidylglycerol (n-C16:1)	C54H98O11P	Cytosol	iJO1366
+apg160	acyl phosphatidylglycerol (n-C16:0)	C54H104O11P	Cytosol	iJO1366
+pe141	phosphatidylethanolamine (ditetradec-7-enoyl, n-C14:1)	C33H62N1O8P1	Periplasm AND Cytosol	iJO1366
+2pg	D-Glycerate 2-phosphate	C3H4O7P	Cytosol	iJO1366
+eig3p	D-erythro-1-(Imidazol-4-yl)glycerol 3-phosphate	C6H9N2O6P	Cytosol	iJO1366
+s17bp	Sedoheptulose 1,7-bisphosphate	C7H12O13P2	Cytosol	iJO1366
+eca2und	(enterobacterial common antigen)x2 undecaprenyl-diphosphate	C103H162N6O37P2	Periplasm	iJO1366
+sbzcoa	O-Succinylbenzoyl-CoA	C32H39N7O20P3S	Cytosol	iJO1366
+amet	S-Adenosyl-L-methionine	C15H23N6O5S	Cytosol	iJO1366
+pnto_DASH_R	(R)-Pantothenate	C9H16NO5	Periplasm AND Extra-organism AND Cytosol	iJO1366
+pyam5p	Pyridoxamine 5_prime_-phosphate	C8H12N2O5P	Cytosol	iJO1366
+acglc_DASH_D	6-Acetyl-D-glucose	C8H14O7	Cytosol	iJO1366
+ncam	Nicotinamide	C6H6N2O	Cytosol	iJO1366
+glcn	D-Gluconate	C6H11O7	Periplasm AND Cytosol AND Extra-organism	iJO1366
+octdp	all-trans-Octaprenyl diphosphate	C40H65O7P2	Cytosol	iJO1366
+coa	Coenzyme A	C21H32N7O16P3S	Cytosol	iJO1366
+mana	D-Mannonate	C6H11O7	Cytosol	iJO1366
+s7p	Sedoheptulose 7-phosphate	C7H13O10P	Cytosol	iJO1366
+acglu	N-Acetyl-L-glutamate	C7H9NO5	Cytosol	iJO1366
+tmao	Trimethylamine N-oxide	C3H9NO	Periplasm AND Cytosol AND Extra-organism	iJO1366
+lipa_cold	cold adapted KDO(2)-lipid (A)	C114H202N2O39P2	Extra-organism AND Cytosol AND Periplasm	iJO1366
+oxadpcoa	3-Oxoadipyl-CoA	C27H37N7O20P3S	Cytosol	iJO1366
+dhna	1,4-Dihydroxy-2-naphthoate	C11H7O4	Cytosol	iJO1366
+tyrp	Phosphotyrosine	C9H10NO6P	Periplasm AND Extra-organism	iJO1366
+cm	Chloramphenicol	C11H12Cl2N2O5	Periplasm AND Extra-organism	iJO1366
+cl	Chloride	Cl	Periplasm AND Extra-organism AND Cytosol	iJO1366
+dutp	dUTP	C9H11N2O14P3	Cytosol	iJO1366
+acald	Acetaldehyde	C2H4O	Cytosol AND Extra-organism AND Periplasm	iJO1366
+sheme	Siroheme	C42H36FeN4O16	Cytosol	iJO1366
+frulysp	fructoselysine Phosphate	C12H24N2O10P	Cytosol	iJO1366
+glu5p	L-Glutamate 5-phosphate	C5H8NO7P	Cytosol	iJO1366
+dgslnt	Selenodiglutathione	C20H30N6O12S2Se	Cytosol	iJO1366
+udcpdp	Undecaprenyl diphosphate	C55H89O7P2	Periplasm AND Cytosol	iJO1366
+anth	Anthranilate	C7H6NO2	Cytosol	iJO1366
+2ohph	2-Octaprenyl-6-hydroxyphenol	C46H70O2	Cytosol	iJO1366
+dgsn	Deoxyguanosine	C10H13N5O4	Cytosol AND Extra-organism AND Periplasm	iJO1366
+dtmp	dTMP	C10H13N2O8P	Cytosol AND Extra-organism AND Periplasm	iJO1366
+utp	UTP	C9H11N2O15P3	Cytosol	iJO1366
+cu	Cu+	Cu	Extra-organism AND Cytosol AND Periplasm	iJO1366
+aact	Aminoacetone	C3H8NO	Cytosol	iJO1366
+mmet	S-Methyl-L-methionine	C6H14NO2S	Periplasm AND Extra-organism AND Cytosol	iJO1366
+e4p	D-Erythrose 4-phosphate	C4H7O7P	Cytosol	iJO1366
+1agpe160	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C16:0)	C21H44NO7P1	Periplasm	iJO1366
+23dhmb	(R)-2,3-Dihydroxy-3-methylbutanoate	C5H9O4	Cytosol	iJO1366
+grdp	Geranyl diphosphate	C10H17O7P2	Cytosol	iJO1366
+acnam	N-Acetylneuraminate	C11H18NO9	Periplasm AND Extra-organism AND Cytosol	iJO1366
+seramp	L-seryl-AMP	C13H19N6O9P	Cytosol	iJO1366
+orot5p	Orotidine 5_prime_-phosphate	C10H10N2O11P	Cytosol	iJO1366
+dtdp	dTDP	C10H13N2O11P2	Cytosol	iJO1366
+3gmp	3_prime_-GMP	C10H12N5O8P	Extra-organism AND Periplasm	iJO1366
+dhap	Dihydroxyacetone phosphate	C3H5O6P	Cytosol	iJO1366
+xan	Xanthine	C5H4N4O2	Extra-organism AND Cytosol AND Periplasm	iJO1366
+Sfglutth	S-Formylglutathione	C11H16N3O7S	Cytosol	iJO1366
+gam6p	D-Glucosamine 6-phosphate	C6H13NO8P	Cytosol AND Extra-organism AND Periplasm	iJO1366
+fpram	2-(Formamido)-N1-(5-phospho-D-ribosyl)acetamidine	C8H15N3O8P	Cytosol	iJO1366
+3psme	5-O-(1-Carboxyvinyl)-3-phosphoshikimate	C10H9O10P	Cytosol	iJO1366
+3hddcoa	(S)-3-Hydroxydodecanoyl-CoA	C33H54N7O18P3S	Cytosol	iJO1366
+23dappa	2,3-diaminopropionate	C3H9N2O2	Periplasm AND Extra-organism AND Cytosol	iJO1366
+ckdo	CMP-3-deoxy-D-manno-octulosonate	C17H24N3O15P	Cytosol	iJO1366
+gar	N1-(5-Phospho-D-ribosyl)glycinamide	C7H14N2O8P	Cytosol	iJO1366
+q8h2	Ubiquinol-8	C49H76O4	Cytosol	iJO1366
+skm	Shikimate	C7H9O5	Extra-organism AND Cytosol AND Periplasm	iJO1366
+dhcinnm	2,3-dihydroxicinnamic acid	C9H7O4	Cytosol	iJO1366
+gal	D-Galactose	C6H12O6	Cytosol AND Extra-organism AND Periplasm	iJO1366
+cbm	Carbamate	CH2NO2	Cytosol	iJO1366
+23ccmp	2_prime_,3_prime_-Cyclic CMP	C9H11N3O7P	Extra-organism AND Periplasm	iJO1366
+glu_DASH_L	L-Glutamate	C5H8NO4	Periplasm AND Cytosol AND Extra-organism	iJO1366
+dhgly	dehydroglycine	C2H2NO2	Cytosol	iJO1366
+ps181	phosphatidylserine (dioctadec-11-enoyl, n-C18:1)	C42H77N1O10P1	Cytosol	iJO1366
+ps180	phosphatidylserine (dioctadecanoyl, n-C18:0)	C42H81N1O10P1	Cytosol	iJO1366
+2omhmbl	2-Octaprenyl-3-methyl-5-hydroxy-6-methoxy-1,4-benzoquinol	C48H74O4	Cytosol	iJO1366
+murein4p3p	two linked disacharide tetrapeptide and tripeptide murein units (uncrosslinked, middle of chain)	C71H109N13O39	Periplasm	iJO1366
+2mcit	2-Methylcitrate	C7H7O7	Cytosol	iJO1366
+cpe180	cyclopropane phosphatidylethanolamine (dioctadec-11,12-cyclo-anoyl, n-C18:0 cyclo)	C43H82N1O8P1	Cytosol	iJO1366
+air	5-amino-1-(5-phospho-D-ribosyl)imidazole	C8H12N3O7P	Cytosol	iJO1366
+xylu_DASH_D	D-Xylulose	C5H10O5	Cytosol	iJO1366
+2agpg141	2-Acyl-sn-glycero-3-phosphoglycerol (n-C14:1)	C20H38O9P1	Cytosol AND Periplasm	iJO1366
+ala_DASH_L	L-Alanine	C3H7NO2	Cytosol AND Extra-organism AND Periplasm	iJO1366
+gthox	Oxidized glutathione	C20H30N6O12S2	Periplasm AND Extra-organism AND Cytosol	iJO1366
+pg181	Phosphatidylglycerol (dioctadec-11-enoyl, n-C18:1)	C42H78O10P1	Periplasm AND Cytosol	iJO1366
+xylu_DASH_L	L-Xylulose	C5H10O5	Periplasm AND Extra-organism AND Cytosol	iJO1366
+ala_DASH_B	beta-Alanine	C3H7NO2	Extra-organism AND Cytosol AND Periplasm	iJO1366
+fum	Fumarate	C4H2O4	Cytosol AND Extra-organism AND Periplasm	iJO1366
+ala_DASH_D	D-Alanine	C3H7NO2	Periplasm AND Cytosol AND Extra-organism	iJO1366
+k	potassium	K	Periplasm AND Cytosol AND Extra-organism	iJO1366
+orot	Orotate	C5H3N2O4	Extra-organism AND Cytosol AND Periplasm	iJO1366
+frulys	fructoselysine	C12H25N2O7	Periplasm AND Cytosol AND Extra-organism	iJO1366
+melib	Melibiose	C12H22O11	Periplasm AND Cytosol AND Extra-organism	iJO1366
+n2o	Nitrous oxide	N2O	Periplasm AND Cytosol AND Extra-organism	iJO1366
+kdo2lipid4L	KDO(2)-lipid IV(A) with laurate	C96H170N2O38P2	Cytosol	iJO1366
+dad_DASH_5	5_prime_-Deoxyadenosine	C10H13N5O3	Cytosol	iJO1366
+dad_DASH_2	Deoxyadenosine	C10H13N5O3	Periplasm AND Extra-organism AND Cytosol	iJO1366
+23camp	2_prime_,3_prime_-Cyclic AMP	C10H11N5O6P	Periplasm AND Extra-organism	iJO1366
+thrp	L-Threonine O-3-phosphate	C4H8NO6P	Periplasm AND Extra-organism	iJO1366
+citr_DASH_L	L-Citrulline	C6H13N3O3	Cytosol	iJO1366
+u23ga	UDP-2,3-bis(3-hydroxytetradecanoyl)glucosamine	C43H75N3O20P2	Cytosol	iJO1366
+ggagicolipa	glucosyl-galactosyl-glucosyl-inner core oligosaccharide lipid A	C163H281N2O89P4	Cytosol	iJO1366
+ni2	nickel	Ni	Extra-organism AND Cytosol AND Periplasm	iJO1366
+fe3hox	Fe(III)hydroxamate	C9H18O6N3Fe	Periplasm AND Cytosol AND Extra-organism	iJO1366
+arbt6p	Arbutin 6-phosphate	C12H15O10P	Cytosol	iJO1366
+pap	Adenosine 3_prime_,5_prime_-bisphosphate	C10H11N5O10P2	Cytosol	iJO1366
+4h2opntn	4-Hydroxy-2-oxopentanoate	C5H7O4	Cytosol	iJO1366
+hxa	Hexanoate (n-C6:0)	C6H11O2	Periplasm AND Cytosol AND Extra-organism	iJO1366
+btnso	d-biotin d-sulfoxide	C10H15N2O4S	Cytosol	iJO1366
+3dhsk	3-Dehydroshikimate	C7H7O5	Cytosol	iJO1366
+glycogen	glycogen	C6H10O5	Cytosol	iJO1366
+gly	Glycine	C2H5NO2	Periplasm AND Extra-organism AND Cytosol	iJO1366
+thmpp	Thiamine diphosphate	C12H16N4O7P2S	Cytosol	iJO1366
+tqn	6-hydroxydopa quinone	C9H8NO4	No_Compartment	M_protein_recon
+23cump	2_prime_,3_prime_-Cyclic UMP	C9H10N2O8P	Extra-organism AND Periplasm	iJO1366
+pant_DASH_R	(R)-Pantoate	C6H11O4	Cytosol	iJO1366
+glyc3p	Glycerol 3-phosphate	C3H7O6P	Cytosol AND Extra-organism AND Periplasm	iJO1366
+pac	Phenylacetic acid	C8H7O2	Cytosol	iJO1366
+ocdcap	Octadecanoyl-phosphate (n-C18:0)	C18H36O5P	Cytosol	iJO1366
+hdcap	Hexadecanoyl-phosphate (n-C16:0)	C16H32O5P	Cytosol	iJO1366
+man6pglyc	2(alpha-D-Mannosyl-6-phosphate)-D-glycerate	C9H14O12P	Cytosol	iJO1366
+colipa	core oligosaccharide lipid A	C176H303N2O100P4	Periplasm AND Cytosol AND Extra-organism	iJO1366
+cs	cesium ion	Cs	Periplasm AND Extra-organism AND Cytosol	M_protein_recon
+fecrm_DASH_un	Ferrichrome minus Fe(III)	C27H42N9O12	Extra-organism AND Cytosol AND Periplasm	iJO1366
+4ahmmp	4-Amino-5-hydroxymethyl-2-methylpyrimidine	C6H9N3O	Cytosol	iJO1366
+ddcap	Dodecanoly-phosphate (n-C12:0)	C12H24O5P1	Cytosol	iJO1366
+sucarg	N2-Succinyl-L-arginine	C10H17N4O5	Cytosol	iJO1366
+nicrnt	Nicotinate D-ribonucleotide	C11H12NO9P	Cytosol	iJO1366
+3php	3-Phosphohydroxypyruvate	C3H2O7P	Cytosol	iJO1366
+dimp	dIMP	C10H11N4O7P	Periplasm AND Cytosol AND Extra-organism	iJO1366
+2ombzl	2-Octaprenyl-6-methoxy-1,4-benzoquinol	C47H72O3	Cytosol	iJO1366
+minohp	myo-Inositol hexakisphosphate	C6H6O24P6	Periplasm AND Extra-organism	iJO1366
+manglyc	2(alpha-D-Mannosyl)-D-glycerate	C9H15O9	Extra-organism AND Periplasm	iJO1366
+fusa	fusidic acid	C31H48O5	Periplasm AND Extra-organism	iJO1366
+2ddg6p	2-Dehydro-3-deoxy-D-gluconate 6-phosphate	C6H8O9P	Cytosol	iJO1366
+maltpt	Maltopentaose	C30H52O26	Periplasm AND Cytosol AND Extra-organism	iJO1366
+lyx_DASH_L	L-Lyxose	C5H10O5	Periplasm AND Cytosol AND Extra-organism	iJO1366
+gmp	GMP	C10H12N5O8P	Cytosol AND Extra-organism AND Periplasm	iJO1366
+pe181	phosphatidylethanolamine (dioctadec-11-enoyl, n-C18:1)	C41H78N1O8P1	Periplasm AND Cytosol	iJO1366
+pe180	phosphatidylethanolamine (dioctadecanoyl, n-C18:0)	C41H82N1O8P1	Cytosol AND Periplasm	iJO1366
+oaa	Oxaloacetate	C4H2O5	Cytosol	iJO1366
+rdmbzi	N1-(alpha-D-ribosyl)-5,6-dimethylbenzimidazole	C14H18N2O4	Cytosol	iJO1366
+akg	2-Oxoglutarate	C5H4O5	Cytosol AND Extra-organism AND Periplasm	iJO1366
+cynt	Cyanate	CNO	Periplasm AND Cytosol AND Extra-organism	iJO1366
+2odecg3p	2-octadecanoyl-sn-glycerol 3-phosphate	C21H42O7P1	Cytosol AND Periplasm	iJO1366
+mobd	Molybdate	MoO4	Extra-organism AND Cytosol AND Periplasm	iJO1366
+pa180	1,2-dioctadecanoyl-sn-glycerol 3-phosphate	C39H75O8P1	Cytosol AND Periplasm	iJO1366
+23dhacoa	2,3-dehydroadipyl-CoA	C27H37N7O19P3S	Cytosol	iJO1366
+thm	Thiamin	C12H17N4OS	Cytosol AND Extra-organism AND Periplasm	iJO1366
+acmana	N-Acetyl-D-mannosamine	C8H15NO6	Cytosol AND Extra-organism AND Periplasm	iJO1366
+gal1p	alpha-D-Galactose 1-phosphate	C6H11O9P	Periplasm AND Extra-organism AND Cytosol	iJO1366
+12dgr180	1,2-Diacyl-sn-glycerol (dioctadecanoyl, n-C18:0)	C39H76O5	Periplasm AND Cytosol	iJO1366
+tagur	D-Tagaturonate	C6H9O7	Cytosol	iJO1366
+thf	5,6,7,8-Tetrahydrofolate	C19H21N7O6	Cytosol	iJO1366
+pan4p	Pantetheine 4_prime_-phosphate	C11H21N2O7PS	Cytosol	iJO1366
+dadp	dADP	C10H12N5O9P2	Cytosol	iJO1366
+met_DASH_L	L-Methionine	C5H11NO2S	Extra-organism AND Cytosol AND Periplasm	iJO1366
+gsn	Guanosine	C10H13N5O5	Extra-organism AND Cytosol AND Periplasm	iJO1366
+gdp	GDP	C10H12N5O11P2	Extra-organism AND Cytosol AND Periplasm	iJO1366
+dhf	7,8-Dihydrofolate	C19H19N7O6	Cytosol	iJO1366
+oxalcoa	Oxalyl-CoA	C23H31N7O19P3S	Cytosol	iJO1366
+tre6p	alpha,alpha_prime_-Trehalose 6-phosphate	C12H21O14P	Cytosol	iJO1366
+pa160	1,2-dihexadecanoyl-sn-glycerol 3-phosphate	C35H67O8P1	Periplasm AND Cytosol	iJO1366
+micit	methylisocitrate	C7H7O7	Cytosol	iJO1366
+3hcinnm	3-hydroxycinnamic acid	C9H7O3	Extra-organism AND Cytosol AND Periplasm	iJO1366
+LalaDgluMdapDala	L-alanine-D-glutamate-meso-2,6-diaminoheptanedioate-D-alanine	C18H30N5O9	Cytosol AND Extra-organism AND Periplasm	iJO1366
+12ppd_DASH_S	(S)-Propane-1,2-diol	C3H8O2	Extra-organism AND Periplasm AND Cytosol	iJO1366
+12ppd_DASH_R	(R)-Propane-1,2-diol	C3H8O2	Periplasm AND Cytosol AND Extra-organism	iJO1366
+malcoame	malonyl-CoA methyl ester	C25H36N7O19P3S	Cytosol	iJO1366
+ttdceap	Tetradecanoyl-phosphate (n-C14:1)	C14H26O5P	Cytosol	iJO1366
+athr_DASH_L	L-Allo-threonine	C4H9NO3	Cytosol	iJO1366
+1agpg141	1-Acyl-sn-glycero-3-phosphoglycerol (n-C14:1)	C20H38O9P1	Periplasm	iJO1366
+amp	AMP	C10H12N5O7P	Extra-organism AND Cytosol AND Periplasm	iJO1366
+6pgl	6-phospho-D-glucono-1,5-lactone	C6H9O9P	Cytosol	iJO1366
+1agpe120	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C12:0)	C17H36NO7P1	Periplasm	iJO1366
+2agpg120	2-Acyl-sn-glycero-3-phosphoglycerol (n-C12:0)	C18H36O9P1	Periplasm AND Cytosol	iJO1366
+gdpddman	GDP-4-dehydro-6-deoxy-D-mannose	C16H21N5O15P2	Cytosol	iJO1366
+spmd	Spermidine	C7H22N3	Cytosol AND Extra-organism AND Periplasm	iJO1366
+udpLa4fn	uridine 5_prime__prime_-diphospho-{beta}-4-deoxy-4-formamido-L-arabinose	C15H21N3O16P2	Cytosol	iJO1366
+ugmda	UDP-N-acetylmuramoyl-L-alanyl-D-glutamyl-meso-2,6-diaminopimeloyl-D-alanyl-D-alanine	C41H61N9O28P2	Cytosol	iJO1366
+adp	ADP	C10H12N5O10P2	Cytosol	iJO1366
+14glucan	1,4-alpha-D-glucan	C36H62O31	Periplasm AND Cytosol AND Extra-organism	iJO1366
+2dh3dgal	2-Dehydro-3-deoxy-D-galactonate	C6H9O6	Cytosol	iJO1366
+imacp	3-(Imidazol-4-yl)-2-oxopropyl phosphate	C6H7N2O5P	Cytosol	iJO1366
+ade	Adenine	C5H5N5	Cytosol AND Extra-organism AND Periplasm	iJO1366
+lac_DASH_L	L-Lactate	C3H5O3	Cytosol AND Extra-organism AND Periplasm	iJO1366
+tartr_DASH_L	L-tartrate	C4H4O6	Extra-organism AND Cytosol AND Periplasm	iJO1366
+adn	Adenosine	C10H13N5O4	Cytosol AND Extra-organism AND Periplasm	iJO1366
+ipdp	Isopentenyl diphosphate	C5H9O7P2	Cytosol	iJO1366
+lac_DASH_D	D-Lactate	C3H5O3	Periplasm AND Cytosol AND Extra-organism	iJO1366
+3ophb	3-Octaprenyl-4-hydroxybenzoate	C47H69O3	Cytosol	iJO1366
+tartr_DASH_D	D-tartrate	C4H4O6	Periplasm AND Extra-organism AND Cytosol	iJO1366
+ditp	dITP	C10H11N4O13P3	Cytosol	iJO1366
+lald_DASH_L	L-Lactaldehyde	C3H6O2	Cytosol	iJO1366
+tyr_DASH_L	L-Tyrosine	C9H11NO3	Periplasm AND Extra-organism AND Cytosol	iJO1366
+butso3	butanesulfonate	C4H9O3S	Cytosol AND Extra-organism AND Periplasm	iJO1366
+methf	5,10-Methenyltetrahydrofolate	C20H20N7O6	Cytosol	iJO1366
+lald_DASH_D	D-Lactaldehyde	C3H6O2	Cytosol	iJO1366
+icit	Isocitrate	C6H5O7	Cytosol	iJO1366
+gicolipa	glucosyl-inner core oligosaccharide lipid A	C151H261N2O79P4	Cytosol	iJO1366
+13dpg	3-Phospho-D-glyceroyl phosphate	C3H4O10P2	Cytosol	iJO1366
+cph4	6-carboxy-5,6,7,8-tetrahydropterin	C7H8N5O3	Cytosol	iJO1366
+3dhguln	3-Dehydro-L-gulonate	C6H9O7	Cytosol	iJO1366
+3pg	3-Phospho-D-glycerate	C3H4O7P	Cytosol	iJO1366
+4c2me	4-(cytidine 5_prime_-diphospho)-2-C-methyl-D-erythritol	C14H23N3O14P2	Cytosol	iJO1366
+hx2coa	trans-Hex-2-enoyl-CoA	C27H40N7O17P3S	Cytosol	iJO1366
+phpyr	Phenylpyruvate	C9H7O3	Cytosol	iJO1366
+cu2	Cu2+	Cu	Cytosol AND Extra-organism AND Periplasm	iJO1366
+amob	S-Adenosyl-4-methylthio-2-oxobutanoate	C15H19N5O6S	Cytosol	iJO1366
+aso3	arsenite	AsO3	Cytosol AND Extra-organism AND Periplasm	iJO1366
+athtp	adenosine thiamine triphosphate	C22H28N9O13P3S	Cytosol	iJO1366
+pg140	Phosphatidylglycerol (ditetradecanoyl, n-C14:0)	C34H66O10P1	Periplasm AND Cytosol	iJO1366
+mso3	methanesulfonate	CH3O3S	Extra-organism AND Cytosol AND Periplasm	iJO1366
+xyl_DASH_D	D-Xylose	C5H10O5	Cytosol AND Extra-organism AND Periplasm	iJO1366
+glyc_DASH_R	(R)-Glycerate	C3H5O4	Extra-organism AND Cytosol AND Periplasm	iJO1366
+lgt_DASH_S	(R)-S-Lactoylglutathione	C13H20N3O8S	Cytosol	iJO1366
+clpn141	cardiolipin (tetratetradec-7-enoyl, n-C14:1)	C65H116O17P2	Periplasm	iJO1366
+clpn140	cardiolipin (tetratetradecanoyl, n-C14:0)	C65H124O17P2	Periplasm	iJO1366
+acmum	N-Acetylmuramate	C11H18NO8	Extra-organism AND Periplasm	iJO1366
+kdo8p	3-Deoxy-D-manno-octulosonate 8-phosphate	C8H12O11P	Cytosol	iJO1366
+murein3px4p	two disacharide linked murein units, tripeptide crosslinked tetrapeptide (A2pm->D-ala) (middle of chain)	C71H107N13O38	Periplasm	iJO1366
+chtbs6p	diacetylchitobiose-6-phosphate	C16H27N2O14P	Cytosol	iJO1366
+dtdp4addg	dTDP-4-amino-4,6-dideoxy-D-galactose	C16H26N3O14P2	Cytosol	iJO1366
+lipa	KDO(2)-lipid (A)	C110H196N2O39P2	Extra-organism AND Cytosol AND Periplasm	iJO1366
+ap5a	P1,P5-Bis(5_prime_-adenosyl) pentaphosphate	C20H24N10O22P5	Cytosol	iJO1366
+mal_DASH_L	L-Malate	C4H4O5	Periplasm AND Cytosol AND Extra-organism	iJO1366
+acser	O-Acetyl-L-serine	C5H9NO4	Periplasm AND Cytosol AND Extra-organism	iJO1366
+acac	Acetoacetate	C4H5O3	Periplasm AND Cytosol AND Extra-organism	iJO1366
+g3pg	Glycerophosphoglycerol	C6H14O8P	Periplasm AND Cytosol AND Extra-organism	iJO1366
+g3pe	sn-Glycero-3-phosphoethanolamine	C5H14NO6P	Extra-organism AND Cytosol AND Periplasm	iJO1366
+pg141	Phosphatidylglycerol (ditetradec-7-enoyl, n-C14:1)	C34H62O10P1	Cytosol AND Periplasm	iJO1366
+cdpdodecg	CDP-1,2-dioctadecanoylglycerol	C48H87N3O15P2	Cytosol	iJO1366
+g3pi	sn-Glycero-3-phospho-1-inositol	C9H18O11P	Periplasm AND Cytosol AND Extra-organism	iJO1366
+1odec11eg3p	1-octadec-11-enoyl-sn-glycerol 3-phosphate	C21H39O7P1	Periplasm AND Cytosol	iJO1366
+alaala	D-Alanyl-D-alanine	C6H12N2O3	Periplasm AND Extra-organism AND Cytosol	iJO1366
+aso4	arsenate	AsO4	Cytosol	iJO1366
+g3ps	Glycerophosphoserine	C6H13NO8P	Extra-organism AND Cytosol AND Periplasm	iJO1366
+gmhep1p	D-Glycero-D-manno-heptose 1-phosphate	C7H13O10P	Cytosol	iJO1366
+4abutn	4-Aminobutanal	C4H10NO	Cytosol	iJO1366
+2ahbut	(S)-2-Aceto-2-hydroxybutanoate	C6H9O4	Cytosol	iJO1366
+gtspmd	Glutathionylspermidine	C17H36N6O5S	Cytosol	iJO1366
+indole	Indole	C8H7N	Periplasm AND Extra-organism AND Cytosol	iJO1366
+icolipa	inner core oligosaccharide lipid A (E coli)	C145H251N2O74P4	Cytosol	iJO1366
+ump	UMP	C9H11N2O9P	Cytosol AND Extra-organism AND Periplasm	iJO1366
+for	Formate	CH1O2	Periplasm AND Extra-organism AND Cytosol	iJO1366
+ribflv	Riboflavin	C17H20N4O6	Cytosol	iJO1366
+pep	Phosphoenolpyruvate	C3H2O6P	Cytosol	iJO1366
+udpacgal	UDP-N-acetyl-D-galactosamine	C17H25N3O17P2	Periplasm AND Extra-organism	iJO1366
+tma	trimethylamine	C3H10N	Periplasm AND Extra-organism AND Cytosol	iJO1366
+3ig3p	C_prime_-(3-Indolyl)-glycerol 3-phosphate	C11H12NO6P	Cytosol	iJO1366
+skm5p	Shikimate 5-phosphate	C7H8O8P	Cytosol	iJO1366
+2shchc	2-Succinyl-6-hydroxy-2,4-cyclohexadiene-1-carboxylate	C11H10O6	Cytosol	iJO1366
+ocdcea	octadecenoate (n-C18:1)	C18H33O2	Cytosol AND Extra-organism AND Periplasm	iJO1366
+5mta	5-Methylthioadenosine	C11H15N5O3S	Cytosol	iJO1366
+pydxn	Pyridoxine	C8H11NO3	Periplasm AND Cytosol AND Extra-organism	iJO1366
+bmocogdp	bis-molybdopterin guanine dinucleotide	C40H44N20O27P4S4Mo	Cytosol	iJO1366
+23dhba	(2,3-Dihydroxybenzoyl)adenylate	C17H17N5O10P	Cytosol	iJO1366
+1agpe161	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C16:1)	C21H42NO7P1	Periplasm	iJO1366
+malttr	Maltotriose	C18H32O16	Periplasm AND Extra-organism AND Cytosol	iJO1366
+dca	Decanoate (n-C10:0)	C10H19O2	Periplasm AND Extra-organism AND Cytosol	iJO1366
+5mtr	5-Methylthio-D-ribose	C6H12O4S	Extra-organism AND Cytosol AND Periplasm	iJO1366
+26dap_DASH_LL	LL-2,6-Diaminoheptanedioate	C7H14N2O4	Cytosol	iJO1366
+3oodcoa	3-Oxooctadecanoyl-CoA	C39H64N7O18P3S	Cytosol	iJO1366
+tcynt	Thiocyanate	CNS	Extra-organism AND Cytosol AND Periplasm	iJO1366
+nmn	NMN	C11H14N2O8P	Extra-organism AND Cytosol AND Periplasm	iJO1366
+quin	Quinate	C7H12O6	Cytosol AND Extra-organism AND Periplasm	iJO1366
+suchms	O-Succinyl-L-homoserine	C8H12NO6	Cytosol	iJO1366
+murein3px3p	two disacharide linked murein units, tripeptide crosslinked tripeptide (A2pm->A2pm) (middle of chain)	C68H102N12O37	Periplasm	iJO1366
+1tdec7eg3p	1-tetradec-7-enoyl-sn-glycerol 3-phosphate	C17H31O7P1	Cytosol AND Periplasm	iJO1366
+slnt	selenite	O3Se	Periplasm AND Cytosol AND Extra-organism	iJO1366
+ddcacoa	Dodecanoyl-CoA (n-C12:0CoA)	C33H54N7O17P3S	Cytosol	iJO1366
+trp_DASH_L	L-Tryptophan	C11H12N2O2	Periplasm AND Cytosol AND Extra-organism	iJO1366
+pe161	phosphatidylethanolamine (dihexadec-9enoyl, n-C16:1)	C37H70N1O8P1	Cytosol AND Periplasm	iJO1366
+3a1hac1p	3-amino-1-hydroxyacetone-1-phosphate	C3H7N05P	Cytosol	M_protein_recon
+all6p	D-Allose 6-phosphate	C6H11O9P	Cytosol	iJO1366
+chol	Choline	C5H14NO	Periplasm AND Cytosol AND Extra-organism	iJO1366
+dscl	dihydrosirohydrochlorin	C42H41N4O16	Cytosol	iJO1366
+gcald	Glycolaldehyde	C2H4O2	Cytosol	iJO1366
+cdpdtdecg	CDP-1,2-ditetradecanoylglycerol	C40H71N3O15P2	Cytosol	iJO1366
+chor	chorismate	C10H8O6	Cytosol	iJO1366
+gam1p	D-Glucosamine 1-phosphate	C6H13NO8P	Cytosol	iJO1366
+5apru	5-Amino-6-(5_prime_-phosphoribosylamino)uracil	C9H13N4O9P	Cytosol	iJO1366
+accoa	Acetyl-CoA	C23H34N7O17P3S	Cytosol	iJO1366
+meoh	Methanol	CH4O1	Periplasm AND Extra-organism AND Cytosol	iJO1366
+adpglc	ADPglucose	C16H23N5O15P2	Cytosol	iJO1366
+murein5p5p	two linked disacharide pentapeptide murein units (uncrosslinked, middle of chain)	C80H124N16O42	Periplasm	iJO1366
+damp	dAMP	C10H12N5O6P	Periplasm AND Cytosol AND Extra-organism	iJO1366
+tag6p_DASH_D	D-Tagatose 6-phosphate	C6H11O9P	Cytosol	iJO1366
+ppa	Propionate (n-C3:0)	C3H5O2	Periplasm AND Cytosol AND Extra-organism	iJO1366
+1agpg180	1-Acyl-sn-glycero-3-phosphoglycerol (n-C18:0)	C24H48O9P1	Periplasm	iJO1366
+g3pc	sn-Glycero-3-phosphocholine	C8H20NO6P	Periplasm AND Extra-organism AND Cytosol	iJO1366
+h2	H2	H2	Extra-organism AND Cytosol AND Periplasm	iJO1366
+doxrbcn	doxorubicin	C27H29NO11	Periplasm AND Extra-organism	iJO1366
+ppi	Diphosphate	HO7P2	Cytosol	iJO1366
+pa141	1,2-ditetradec-7-enoyl-sn-glycerol 3-phosphate	C31H55O8P1	Periplasm AND Cytosol	iJO1366
+tdcoa	Tetradecanoyl-CoA (n-C14:0CoA)	C35H58N7O17P3S	Cytosol	iJO1366
+rfamp	rifampin	C43H58N4O12	Extra-organism AND Periplasm	iJO1366
+ile_DASH_L	L-Isoleucine	C6H13NO2	Periplasm AND Extra-organism AND Cytosol	iJO1366
+pa140	1,2-ditetradecanoyl-sn-glycerol 3-phosphate	C31H59O8P1	Cytosol AND Periplasm	iJO1366
+sulfac	sulfoacetate	C2H2O5S	Periplasm AND Cytosol AND Extra-organism	iJO1366
+ppt	Phosphonate	HO3P	Extra-organism AND Periplasm	iJO1366
+occoa	Octanoyl-CoA (n-C8:0CoA)	C29H46N7O17P3S	Cytosol	iJO1366
+3hpppn	3-(3-hydroxy-phenyl)propionate	C9H9O3	Extra-organism AND Cytosol AND Periplasm	iJO1366
+r5p	alpha-D-Ribose 5-phosphate	C5H9O8P	Periplasm AND Cytosol AND Extra-organism	iJO1366
+2agpg160	2-Acyl-sn-glycero-3-phosphoglycerol (n-C16:0)	C22H44O9P1	Cytosol AND Periplasm	iJO1366
+2agpg161	2-Acyl-sn-glycero-3-phosphoglycerol (n-C16:1)	C22H42O9P1	Cytosol AND Periplasm	iJO1366
+dtdp4d6dm	dTDP-4-dehydro-6-deoxy-L-mannose	C16H22N2O15P2	Cytosol	iJO1366
+ps120	phosphatidylserine (didodecanoyl, n-C12:0)	C30H57N1O10P1	Cytosol	iJO1366
+dtdp4d6dg	dTDP-4-dehydro-6-deoxy-D-glucose	C16H22N2O15P2	Cytosol	iJO1366
+malcoa	Malonyl-CoA	C24H33N7O19P3S	Cytosol	iJO1366
+5drib	5_prime_-deoxyribose	C5H10O4	Cytosol	iJO1366
+2me4p	2-C-methyl-D-erythritol 4-phosphate	C5H11O7P	Cytosol	iJO1366
+gslnt	Glutathiolselenolate	C10H16N3O6SSe	Cytosol	iJO1366
+anhm3p	1,6-anhydrous-N-Acetylmuramyl-tripeptide	C26H39N5O14	Cytosol	iJO1366
+od2coa	trans-Octadec-2-enoyl-CoA	C39H64N7O17P3S	Cytosol	iJO1366
+appl	1-Aminopropan-2-ol	C3H10NO	Cytosol	iJO1366
+adprib	ADPribose	C15H21N5O14P2	Cytosol	iJO1366
+2agpe160	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C16:0)	C21H44NO7P1	Cytosol AND Periplasm	iJO1366
+2agpe161	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C16:1)	C21H42NO7P1	Cytosol AND Periplasm	iJO1366
+pg120	Phosphatidylglycerol (didodecanoyl, n-C12:0)	C30H58O10P1	Periplasm AND Cytosol	iJO1366
+mal_DASH_D	D-Malate	C4H4O5	Periplasm AND Cytosol AND Extra-organism	iJO1366
+pgp120	Phosphatidylglycerophosphate (didodecanoyl, n-C12:0)	C30H57O13P2	Cytosol AND Periplasm	iJO1366
+novbcn	novobiocin	C31H36N2O11	Extra-organism AND Periplasm	iJO1366
+dmbzid	5,6-Dimethylbenzimidazole	C9H10N2	Cytosol	iJO1366
+fru	D-Fructose	C6H12O6	Extra-organism AND Cytosol AND Periplasm	iJO1366
+Nmtrp	N-Methyltryptophan	C12H14N2O2	Cytosol	iJO1366
+but	Butyrate (n-C4:0)	C4H7O2	Extra-organism AND Cytosol AND Periplasm	iJO1366
+5prdmbz	N1-(5-Phospho-alpha-D-ribosyl)-5,6-dimethylbenzimidazole	C14H17N2O7P	Cytosol	iJO1366
+3hdcoa	(S)-3-Hydroxydecanoyl-CoA	C31H50N7O18P3S	Cytosol	iJO1366
+gp4g	P1,P4-Bis(5_prime_-guanosyl) tetraphosphate	C20H24N10O21P4	Cytosol	iJO1366
+so2	sulfur dioxide	O2S	Cytosol AND Extra-organism AND Periplasm	iJO1366
+kdo	3-Deoxy-D-manno-2-octulosonate	C8H13O8	Cytosol	iJO1366
+so4	Sulfate	O4S	Periplasm AND Cytosol AND Extra-organism	iJO1366
+dgdp	dGDP	C10H12N5O10P2	Cytosol	iJO1366
+3hbcoa	(S)-3-Hydroxybutanoyl-CoA	C25H38N7O18P3S	Cytosol	iJO1366
+glcur1p	D-Glucuronate 1-phosphate	C6H8O10P	Extra-organism AND Periplasm	iJO1366
+dump	dUMP	C9H11N2O8P	Cytosol AND Periplasm AND Extra-organism	iJO1366
+fe3dhbzs	ferric 2,3-dihydroxybenzoylserine	C10H10NO6Fe	Extra-organism AND Cytosol AND Periplasm	iJO1366
+pi	Phosphate	HO4P	Periplasm AND Cytosol AND Extra-organism	iJO1366
+aacoa	Acetoacetyl-CoA	C25H36N7O18P3S	Cytosol	iJO1366
+mptamp	adenylated molybdopterin	C20H22N10O12P2S2Cu	Cytosol	iJO1366
+3dhq	3-Dehydroquinate	C7H9O6	Cytosol	iJO1366
+1agpe141	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C14:1)	C19H38NO7P1	Periplasm	iJO1366
+prbatp	1-(5-Phosphoribosyl)-ATP	C15H19N5O20P4	Cytosol	iJO1366
+fdp	D-Fructose 1,6-bisphosphate	C6H10O12P2	Cytosol	iJO1366
+pphn	Prephenate	C10H8O6	Cytosol	iJO1366
+dms	Dimethyl sulfide	C2H6S	Cytosol AND Extra-organism AND Periplasm	iJO1366
+12dgr181	1,2-Diacyl-sn-glycerol (dioctadec-11-enoyl, n-C18:1)	C39H72O5	Cytosol AND Periplasm	iJO1366
+msa	Malonate semialdehyde	C3H3O3	Cytosol	iJO1366
+2mecdp	2-C-methyl-D-erythritol 2,4-cyclodiphosphate	C5H10O9P2	Cytosol	iJO1366
+cit	Citrate	C6H5O7	Extra-organism AND Cytosol AND Periplasm	iJO1366
+psclys	psicoselysine	C12H25N2O7	Extra-organism AND Cytosol AND Periplasm	iJO1366
+uagmda	Undecaprenyl-diphospho-N-acetylmuramoyl-L-alanyl-D-glutamyl-meso-2,6-diaminopimeloyl-D-alanyl-D-alanine	C87H139N7O23P2	Cytosol	iJO1366
+23dhb	2,3-Dihydroxybenzoate	C7H5O4	Cytosol	iJO1366
+pdx5p	Pyridoxine 5_prime_-phosphate	C8H10NO6P	Cytosol	iJO1366
+ac	Acetate	C2H3O2	Periplasm AND Cytosol AND Extra-organism	iJO1366
+rbflvrd	Reduced riboflavin	C17H22N4O6	Cytosol	iJO1366
+ag	silver	Ag	Cytosol AND Extra-organism	iJO1366
+cbi	Cobinamide	C48H72CoN11O8	Periplasm AND Cytosol AND Extra-organism	iJO1366
+ins	Inosine	C10H12N4O5	Periplasm AND Extra-organism AND Cytosol	iJO1366
+cbp	Carbamoyl phosphate	CH2NO5P	Cytosol	iJO1366
+5dglcn	5-Dehydro-D-gluconate	C6H9O7	Extra-organism AND Cytosol AND Periplasm	iJO1366
+23dhmp	(R)-2,3-Dihydroxy-3-methylpentanoate	C6H11O4	Cytosol	iJO1366
+h2s	Hydrogen sulfide	H2S	Extra-organism AND Cytosol AND Periplasm	iJO1366
+3hocoa	(S)-3-Hydroxyoctanoyl-CoA	C29H46N7O18P3S	Cytosol	iJO1366
+12dgr161	1,2-Diacyl-sn-glycerol (dihexadec-9-enoyl, n-C16:1)	C35H64O5	Periplasm AND Cytosol	iJO1366
+12dgr160	1,2-Diacyl-sn-glycerol (dihexadecanoyl, n-C16:0)	C35H68O5	Periplasm AND Cytosol	iJO1366
+thdp	2,3,4,5-Tetrahydrodipicolinate	C7H7NO4	Cytosol	iJO1366
+rbl_DASH_L	L-Ribulose	C5H10O5	Cytosol	iJO1366
+nac	Nicotinate	C6H4NO2	Extra-organism AND Cytosol AND Periplasm	iJO1366
+dxyl5p	1-deoxy-D-xylulose 5-phosphate	C5H9O7P	Cytosol	iJO1366
+gg4abut	gamma-glutamyl-gamma aminobutyric acid	C9H15O5N2	Cytosol	iJO1366
+cpmp	cyclic pyranopterin monophosphate	C10H13N5O8P	Cytosol	iJO1366
+nad	Nicotinamide adenine dinucleotide	C21H26N7O14P2	Cytosol	iJO1366
+no	Nitric oxide	NO	Extra-organism AND Periplasm AND Cytosol	iJO1366
+gbbtn	gamma-butyrobetaine	C7H15NO2	Extra-organism AND Cytosol AND Periplasm	iJO1366
+3hhcoa	(S)-3-Hydroxyhexanoyl-CoA	C27H42N7O18P3S	Cytosol	iJO1366
+mocogdp	molybdopterin guanine dinucleotide	C20H22N10O15P2S2Mo	Cytosol	iJO1366
+2ddglcn	2-Dehydro-3-deoxy-D-gluconate	C6H9O6	Cytosol AND Extra-organism AND Periplasm	iJO1366
+2dmmql8	2-Demethylmenaquinol 8	C50H72O2	Cytosol	iJO1366
+mdhdhf	(2R,4S)-2-methyl-2,4-dihydroxydihydrofuran-3-one	C5H8O4	Cytosol	iJO1366
+feoxam_DASH_un	ferroxamine minus Fe(3)	C25H46N6O8	Periplasm AND Cytosol AND Extra-organism	iJO1366
+h2mb4p	1-hydroxy-2-methyl-2-(E)-butenyl 4-diphosphate	C5H9O8P2	Cytosol	iJO1366
+moco	molybdenum cofactor	C10H10N5O8PS2Mo	Cytosol	iJO1366
+uaagmda	Undecaprenyl-diphospho-N-acetylmuramoyl-(N-acetylglucosamine)-L-ala-D-glu-meso-2,6-diaminopimeloyl-D-ala-D-ala	C95H152N8O28P2	Cytosol	iJO1366
+2dr5p	2-Deoxy-D-ribose 5-phosphate	C5H9O7P	Cytosol	iJO1366
+adocbip	Adenosyl cobinamide phosphate	C58H83CoN16O14P	Cytosol	iJO1366
+metsox_DASH_S_DASH_L	L-Methionine Sulfoxide	C5H11NO3S	Extra-organism AND Cytosol AND Periplasm	iJO1366
+kphphhlipa	kdo-phospho-heptosyl-phospho-heptosyl-heptosyl-kdo2-lipidA	C139H241N2O70P4	Cytosol	iJO1366
+u3hga	UDP-3-O-(3-hydroxytetradecanoyl)-D-glucosamine	C29H50N3O18P2	Cytosol	iJO1366
+dd2coa	trans-Dodec-2-enoyl-CoA	C33H52N7O17P3S	Cytosol	iJO1366
+N1aspmd	N1-Acetylspermidine	C9H23N3O	Cytosol	iJO1366
+3odcoa	3-Oxodecanoyl-CoA	C31H48N7O18P3S	Cytosol	iJO1366
+2hdec9eg3p	2-hexadec-9-enoyl-sn-glycerol 3-phosphate	C19H36O7P1	Cytosol AND Periplasm	iJO1366
+ppbng	Porphobilinogen	C10H13N2O4	Cytosol	iJO1366
+6hmhpt	6-hydroxymethyl dihydropterin	C7H9N5O2	Cytosol	iJO1366
+paps	3_prime_-Phosphoadenylyl sulfate	C10H11N5O13P2S	Cytosol	iJO1366
+cdpdhdec9eg	CDP-1,2-dihexadec-9-enoylglycerol	C44H75N3O15P2	Cytosol	iJO1366
+agm	Agmatine	C5H16N4	Periplasm AND Cytosol AND Extra-organism	iJO1366
+bglycogen	branching glycogen	C6H10O5	Cytosol	iJO1366
+xtsn	Xanthosine	C10H12N4O6	Extra-organism AND Cytosol AND Periplasm	iJO1366
+odecoa	Octadecenoyl-CoA (n-C18:1CoA)	C39H64N7O17P3S	Cytosol	iJO1366
+cbasp	N-Carbamoyl-L-aspartate	C5H6N2O5	Cytosol	iJO1366
+um4p	UDP-N-acetylmuramoyl-L-alanyl-D-gamma-glutamyl-meso-2,6-diaminopimelate-D-alanine	C38H56N8O27P2	Cytosol	iJO1366
+na1	Sodium	Na	Cytosol AND Extra-organism AND Periplasm	iJO1366
+pppg9	Protoporphyrinogen IX	C34H38N4O4	Cytosol	iJO1366
+g6p	D-Glucose 6-phosphate	C6H11O9P	Periplasm AND Cytosol AND Extra-organism	iJO1366
+ttdcap	Tetradecanoyl-phosphate (n-C14:0)	C14H28O5P	Cytosol	iJO1366
+tungs	tungstate	O4W1	Extra-organism AND Cytosol AND Periplasm	iJO1366
+hpyr	Hydroxypyruvate	C3H3O4	Cytosol	iJO1366

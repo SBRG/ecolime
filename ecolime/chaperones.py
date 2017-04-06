@@ -1,7 +1,9 @@
+from __future__ import print_function, division, absolute_import
+
 import math
 import re
 
-import flat_files
+from . import flat_files
 from cobrame.core.ProcessData import SubreactionData, PostTranslationData
 from cobrame.core.Components import ProcessedProtein, TranslatedGene
 from cobrame.core.MEReactions import PostTranslationReaction

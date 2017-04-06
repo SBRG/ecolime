@@ -13,7 +13,7 @@ from six import iteritems
 from ecolime.ecoli_k12 import *
 from ecolime import ecoli_k12, tRNA_charging
 
-ecoli_files_dir = dirname(abspath(__file__))
+ecoli_files_dir = join(dirname(abspath(__file__)), 'building_data/')
 
 del dirname, abspath
 
@@ -91,7 +91,7 @@ def get_complex_modifications(complex_modification_file, protein_complex_file):
                                         complex_set=complex_set)
     ignored_complexes = set()
     for met_stoich in rxn_dict.values():
-        for met, value in met_stoich.items():
+        for met, value in iteritems(met_stoich):
             if 'mod_c' not in met:
                 ignored_complexes.add(met.replace('_c', ''))
             else:
@@ -104,7 +104,7 @@ def get_complex_modifications(complex_modification_file, protein_complex_file):
     ignored_complexes.remove('EG11597-MONOMER_mod_amp')
 
     new_mod_dict = {}
-    for key, value in complex_mods.T.to_dict().items():
+    for key, value in iteritems(complex_mods.T.to_dict()):
         if key.startswith('#') or key in ignored_complexes:
             continue
         new_mod_dict[key] = {}
@@ -124,12 +124,12 @@ def get_complex_modifications(complex_modification_file, protein_complex_file):
     for i in ['CPLX0-246_CPLX0-1342_mod_1:SH']:
         new_mod_dict.pop(i)
 
-    new_mod_dict["CPLX0-246_CPLX0-1342_mod_pydx5p"] = {"core_enzyme":
-                                                           "CPLX0-246_CPLX0-1342",
-                                                       "modifications": {"pydx5p_c": 1}}
+    new_mod_dict['CPLX0-246_CPLX0-1342_mod_pydx5p'] = {'core_enzyme':
+                                                       'CPLX0-246_CPLX0-1342',
+                                                       'modifications': {
+                                                           'pydx5p_c': 1}}
     new_mod_dict["IscS_mod_2:pydx5p"] = {"core_enzyme": "IscS",
                                          "modifications": {"pydx5p_c": 2}}
-
 
     return new_mod_dict
 
@@ -141,7 +141,7 @@ def get_reaction_to_complex(modifications=True):
     for line in enzRxn:
         line = line.rstrip('\n')
         line = re.split('\t| OR ', line)
-        # Colton Update
+
         # fix legacy naming. TODO fix lysine modification with _DASH_
         if 'DASH' in line[0]:
             line[0] = line[0].replace('DASH', '')
@@ -172,7 +172,6 @@ def get_reaction_matrix_dict(reaction_matrix_file, complex_set=set()):
                                 names=['Reaction', 'Metabolites',
                                        'Compartment', 'Stoichiometry'])
     matrix_df.replace({'No_Compartment': 'Cytosol'}, inplace=True)
-
 
     compartments = {'Cytosol': 'c', 'Periplasm': 'p', 'Extra-organism': 'e'}
     metabolic_reaction_dict = defaultdict(dict)
@@ -257,7 +256,7 @@ def process_m_model(m_model, metabolites_file, m_to_me_map_file,
 def get_m_model():
     m = cobra.Model("e_coli_ME_M_portion")
     m.compartments = {"p": "Periplasm", "e": "Extra-organism", "c": "Cytosol"}
-    compartment_lookup = {v: k for k, v in m.compartments.items()}
+    compartment_lookup = {v: k for k, v in iteritems(m.compartments)}
 
     met_info = pandas.read_csv(join(ecoli_files_dir, "metabolites.txt"),
                                delimiter="\t", header=None, index_col=0,
@@ -285,7 +284,7 @@ def get_m_model():
     for rxn_id in rxn_info.index:
         reaction = cobra.Reaction(rxn_id)
         reaction.name = rxn_info.description[rxn_id]
-        for met_id, amount in rxn_dict[rxn_id].items():
+        for met_id, amount in iteritems(rxn_dict[rxn_id]):
             try:
                 metabolite = m.metabolites.get_by_id(met_id)
             except KeyError:
@@ -341,7 +340,7 @@ def get_reaction_keffs(me, verbose=True):
     def log(*args, **kwargs):
         if verbose:
             print(*args, **kwargs)
-    with open(fixpath('keffs.json'), 'rb') as infile:
+    with open(fixpath('keffs.json'), 'r') as infile:
         keffs = json.load(infile)
     new_keffs = {}
     for r in me.reactions:
@@ -350,7 +349,7 @@ def get_reaction_keffs(me, verbose=True):
             continue
         if isinstance(r, MetabolicReaction) and r.complex_data.id != "CPLX_dummy":
             met_rxn = r
-            key = met_rxn.id.replace("-", "_DASH_").replace("__", "_DASH_").replace(":", "_COLON_")
+            key = met_rxn.id.replace("-","_DASH_").replace("__","_DASH_").replace(":", "_COLON_")
             # specific patches for PGK, TPI ids
             key = key.replace('TPI_DASH_CPLX', 'TPI')
             key = key.replace('PGK_DASH_CPLX', 'PGK')

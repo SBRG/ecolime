@@ -1,9 +1,9 @@
-from cobrame import ComplexData, TranscribedGene, ModificationData
-from cobrame.util.building import add_modification_data
+from __future__ import division, absolute_import, print_function
 
+from six import iteritems
+
+from cobrame import ComplexData, ModificationData
 from ecolime import ecoli_k12
-import cobra
-
 
 transcription_subreactions = {
     'Transcription_normal_rho_independent':
@@ -94,7 +94,7 @@ rna_polymerase_sigma_factor_components = {
 
 def add_RNA_polymerase_complexes(me_model, verbose=True):
 
-    for complex, components in rna_polymerase_sigma_factor_components.iteritems():
+    for complex, components in iteritems(rna_polymerase_sigma_factor_components):
         rnap_complex = ComplexData(complex, me_model)
         rnap_components = rnap_complex.stoichiometry
         sigma_factor = components['sigma_factor']
@@ -111,11 +111,11 @@ def add_RNA_splicing(me_model):
     # Ecoli has three alternatie mechanisms for splicing RNA, depending
     # on what RNA types the TU contains
     excision_types = ['rRNA_containing', 'monocistronic',
-                  'polycistronic_wout_rRNA']
+                      'polycistronic_wout_rRNA']
 
     for excision_type in excision_types:
-        complex_data =  ComplexData(excision_type + "_excision_machinery",
-                                    me_model)
+        complex_data = ComplexData(excision_type + "_excision_machinery",
+                                   me_model)
 
         for machine in ecoli_k12.excision_machinery[excision_type]:
             complex_data.stoichiometry[machine] = 1
