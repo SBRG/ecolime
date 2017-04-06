@@ -9,8 +9,11 @@ branches:
     - master
     - devel
 
-install:
+before_install:
     - pip install -U pip wheel
+
+install:
+    - pip install -U pytest
     - pip install .
     - pip install git+https://github.com/sbrg/cobrame.git@devel
 
