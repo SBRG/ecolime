@@ -17,4 +17,4 @@ install:
     - pip install .
     - pip install git+https://github.com/sbrg/cobrame.git@devel
 
-script: pytest
+script: travis_wait pytest

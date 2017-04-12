@@ -73,6 +73,7 @@ def find_ME_model_difference(old_model, new_model, tol):
             new_reaction = new_model.reactions.get_by_id(old_reaction.id)
         except KeyError:
             output_dict[old_reaction.id] = ['Reaction not in new model']
+            continue
 
         if old_reaction.lower_bound != new_reaction.lower_bound:
             output_dict[old_reaction.id] = \
