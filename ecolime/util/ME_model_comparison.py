@@ -11,7 +11,7 @@ def get_reaction_stoich_dict(reaction, tol):
         else:
             coefficient = coefficient
 
-        if coefficient > tol:
+        if abs(coefficient) > tol:
             stoich[metabolite.id] = coefficient
             
     return stoich
