@@ -1,15 +1,21 @@
+from __future__ import print_function, absolute_import, division
 
-trna_modification = {'D_at_20A': {'machines': ['generic_Dus'],  # fixed
+from six import iteritems
+
+import cobrame
+from ecolime.corrections import correct_tRNA_modifications
+
+trna_modification = {'D_at_20A': {'machines': ['generic_Dus'],  
                                   'metabolites': {'nadph_c': -1,
                                                   'h_c': -1,
                                                   'nadp_c': 1}},
 
-                     'D_at_20': {'machines': ['generic_Dus'],  # fixed
+                     'D_at_20': {'machines': ['generic_Dus'],  
                                  'metabolites': {'nadph_c': -1,
                                                  'h_c': -1,
                                                  'nadp_c': 1}},
 
-                     't6A_at_37': {'machines': ['YrdC_mono'],  # fixed
+                     't6A_at_37': {'machines': ['YrdC_mono'],  
                                    'metabolites': {'hco3_c': -1,
                                                    'thr__L_c': -1,
                                                    'atp_c': -1,
@@ -18,45 +24,41 @@ trna_modification = {'D_at_20A': {'machines': ['generic_Dus'],  # fixed
                                                    'h2o_c': 1,
                                                    'ppi_c': 1}},
 
-                     'm7G_at_46': {'machines': ['YggH_mono'],  # fixed
+                     'm7G_at_46': {'machines': ['YggH_mono'],  
                                    'metabolites': {'amet_c': -1,
                                                    'ahcys_c': 1,
                                                    'h_c': 1}},
 
                      'acp3U_at_47': {'machines': [],
-                                     # fixed, still unknown, previously called 'AcpT_tRNA_pos_47_acp3U'
                                      'metabolites': {'amet_c': -1,
                                                      '5mta_c': 1,
                                                      'h_c': 1}},
 
-                     'm5U_at_54': {'machines': ['TrmA_mono'],  # fixed
+                     'm5U_at_54': {'machines': ['TrmA_mono'],  
                                    'metabolites': {'amet_c': -1,
                                                    'ahcys_c': 1,
                                                    'h_c': 1}},
 
-                     'Y_at_55': {'machines': ['TruB_mono'],  # fixed
+                     'Y_at_55': {'machines': ['TruB_mono'],  
                                  'metabolites': {}},
 
-                     'Y_at_65': {'machines': ['YqcB_mono'],  # fixed
+                     'Y_at_65': {'machines': ['YqcB_mono'],  
                                  'metabolites': {}},
 
-                     'D_at_17': {'machines': ['generic_Dus'],  # fixed
+                     'D_at_17': {'machines': ['generic_Dus'],  
                                  'metabolites': {'nadph_c': -1,
                                                  'h_c': -1,
                                                  'nadp_c': 1}},
 
                      'cmo5U_at_34': {'machines': ['YecO_mono', 'YecP_mono'],
-                                     # fixed, also includes an unknown factor 'HyL_tRNA_pos_34_ho5U'
                                      'metabolites': {'amet_c': -1,
                                                      'chor_c': -2,
                                                      'ahcys_c': 1,
                                                      'h_c': 1,
                                                      'C10H8O5_c': 1,
-                                                     # new metabolite warning!
                                                      'C9H9O4_c': 1}},
-                     # new metabolite warning!
 
-                     'D_at_16': {'machines': ['generic_Dus'],  # fixed
+                     'D_at_16': {'machines': ['generic_Dus'],  
                                  'metabolites': {'nadph_c': -1,
                                                  'h_c': -1,
                                                  'nadp_c': 1}},
@@ -64,22 +66,19 @@ trna_modification = {'D_at_20A': {'machines': ['generic_Dus'],  # fixed
                      'Q_at_34': {
                      'machines': ['Tgt_hexa_mod_6:zn2', 'QueA_mono',
                                   'QueG_mono_mod_adocbl'],
-                     # fixed and gapped the unknown factor
-                     'metabolites': {'preq1_c': -1,  # yes
-                                     'amet_c': -1,  # yes
-                                     'gua_c': 1,  # yes
-                                     'ade_c': 1,  # yes
-                                     'met__L_c': 1,  # yes
-                                     'h_c': 2}},  # yes
+                     'metabolites': {'preq1_c': -1,
+                                     'amet_c': -1,
+                                     'gua_c': 1,
+                                     'ade_c': 1,
+                                     'met__L_c': 1,
+                                     'h_c': 2}},
 
                      'm2A_at_37': {'machines': [],
-                                   # fixed, but still unknown, previously called 'MeT_tRNA_pos_37_m2A'
                                    'metabolites': {'amet_c': -1,
                                                    'ahcys_c': 1,
                                                    'h_c': 1}},
 
                      's4U_at_8': {'machines': ['ThiI_mono'],
-                                  # still need names for carriers
                                   'carriers': {'trdrd_c': -1,
                                                'trdox_c': 1,
                                                'IscS_mod_2:pydx5p_mod_1:SH': -1,
@@ -90,7 +89,6 @@ trna_modification = {'D_at_20A': {'machines': ['generic_Dus'],  # fixed
                                                   'h_c': 1}},
 
                      'm6t6A_at_37': {'machines': ['YrdC_mono'],
-                                     # fixed, but this reaction also has a methylation by an unknown factor 'MeT_tRNA_pos_37_m6t6A', although the evidence for this should be checked more extensively
                                      'metabolites': {'amet_c': -1,
                                                      'atp_c': -1,
                                                      'hco3_c': -1,
@@ -102,7 +100,6 @@ trna_modification = {'D_at_20A': {'machines': ['generic_Dus'],  # fixed
                                                      'ppi_c': 1}},
 
                      's2C_at_32': {'machines': ['YdaO_mono'],
-                                   # still need names for carriers
                                    'carriers': {'trdrd_c': -1,
                                                 'trdox_c': 1,
                                                 'IscS_mod_2:pydx5p_mod_1:SH': -1,
@@ -114,7 +111,6 @@ trna_modification = {'D_at_20A': {'machines': ['generic_Dus'],  # fixed
 
                      'mnm5U_at_34': {'machines': ['MnmEG_cplx_mod_fad_mod_2:k',
                                                   'MnmC_mono_mod_fad'],
-                                     # fixed, but check the role of fad w/ mnmG and TrmCand fadh2 (not sure why fadh2 was in the original reaction).. maybe we can ask harish about this one. # CHECK that MnmEG is actually formed once Teddy adds the complex to the database.
                                      'metabolites': {'gtp_c': -1,
                                                      'h2o_c': -1,
                                                      '5fthf_c': -1,
@@ -125,72 +121,72 @@ trna_modification = {'D_at_20A': {'machines': ['generic_Dus'],  # fixed
                                                      'gdp_c': 1,
                                                      'glx_c': 1,
                                                      'pi_c': 1,
-                                                     # was missing this!
                                                      'thf_c': 1}},
 
-                     'Y_at_40': {'machines': ['TruA_dim'],  # fixed
+                     'Y_at_40': {'machines': ['TruA_dim'],  
                                  'metabolites': {}},
 
-                     'Gm_at_18': {'machines': ['TrmH_dim'],  # fixed
+                     'Gm_at_18': {'machines': ['TrmH_dim'],  
                                   'metabolites': {'amet_c': -1,
                                                   'ahcys_c': 1,
                                                   'h_c': 1}},
 
                      'Um_at_32': {'machines': [],
-                                  # fixed, but still unknown, previously called 'MeT_tRNA_pos_32_Um'
                                   'metabolites': {'amet_c': -1,
                                                   'ahcys_c': 1,
                                                   'h_c': 1}},
 
-                     'Y_at_38': {'machines': ['TruA_dim'],  # fixed
+                     'Y_at_38': {'machines': ['TruA_dim'],  
                                  'metabolites': {}},
 
-                     'ac4C_at_34': {'machines': ['TmcA_mono'],  # fixed
+                     'ac4C_at_34': {'machines': ['TmcA_mono'],  
                                     'metabolites': {'accoa_c': -1,
                                                     'coa_c': 1}},
 
-                     'Y_at_39': {'machines': ['TruA_dim'],  # fixed
+                     'Y_at_39': {'machines': ['TruA_dim'],  
                                  'metabolites': {}},
 
-                     'mnm5s2U_at_34': {'machines': ['TrmU_mono', 'YhhP_mono',
-                                                    'YheLMN_cplx', 'YccK_mono',
-                                                    'MnmEG_cplx_mod_fad_mod_2:k',
-                                  'MnmC_mono_mod_fad'],
-                     # check that MnmEG_cplex and YheLMN_cplx are formed. also check role of fadh2 (not sure why fadh2 was in the original reaction).
-                     'carriers': {'IscS_mod_2:pydx5p_mod_1:SH': -1,
-                                  'trdrd_c': -1,
-                                  'IscS_mod_2:pydx5p': 1,
-                                  'trdox_c': 1},
-                     'metabolites': {'atp_c': -1,
-                                     'gtp_c': -1,
-                                     'h2o_c': -1,
-                                     '5fthf_c': -1,
-                                     'gly_c': -1,
-                                     'amet_c': -1,
-                                     'gdp_c': 1,
-                                     'pi_c': 1,
-                                     'h_c': 4,
-                                     'thf_c': 1,
-                                     'glx_c': 1,
-                                     'ahcys_c': 1,
-                                     'amp_c': 1,
-                                     'ppi_c': 1}},
+                     # YhhP, YheLMN, YccK involved in sulfur transferase
+                     # activity. TrmU catalyzes the addition of sulfur to
+                     # uridine
+                     'mnm5s2U_at_34': {'machines':
+                                           ['TrmU_mono', 'YhhP_mono',
+                                            'YheLMN_cplx', 'YccK_mono',
+                                            'MnmEG_cplx_mod_fad_mod_2:k',
+                                            'MnmC_mono_mod_fad'],
+                                       'carriers': {
+                                           'IscS_mod_2:pydx5p_mod_1:SH': -1,
+                                           'trdrd_c': -1,
+                                           'IscS_mod_2:pydx5p': 1,
+                                           'trdox_c': 1},
+                                       'metabolites': {'atp_c': -1,
+                                                       'gtp_c': -1,
+                                                       'h2o_c': -1,
+                                                       '5fthf_c': -1,
+                                                       'gly_c': -1,
+                                                       'amet_c': -1,
+                                                       'gdp_c': 1,
+                                                       'pi_c': 1,
+                                                       'h_c': 4,
+                                                       'thf_c': 1,
+                                                       'glx_c': 1,
+                                                       'ahcys_c': 1,
+                                                       'amp_c': 1,
+                                                       'ppi_c': 1}},
 
                      'm6A_at_37': {'machines': ['YfiC_mono'],
-                                   # fixed, new gene
                                    'metabolites': {'amet_c': -1,
                                                    'ahcys_c': 1,
                                                    'h_c': 1}},
 
                      'Cm_at_32': {'machines': ['TrmJ_dim'],
-                                  # fixed, previously this was called 'MeT_tRNA_pos_32_Cm'
                                   'metabolites': {'amet_c': -1,
                                                   'ahcys_c': 1,
                                                   'h_c': 1}},
 
                      'ms2i6A_at_37': {'machines': ['MiaA_dim_mod_2:mg2',
                                                    'MiaB_mono_mod_1:4fe4s'],
-                                      # still need names for carriers
+
                                       'carriers': {
                                       'IscS_mod_2:pydx5p_mod_1:SH': -1,
                                       'IscS_mod_2:pydx5p': 1,
@@ -205,23 +201,23 @@ trna_modification = {'D_at_20A': {'machines': ['generic_Dus'],  # fixed
                                                       'dad__5_c': 1,
                                                       }},
 
-                     'Y_at_32': {'machines': ['RluA_mono'],  # fixed
+                     'Y_at_32': {'machines': ['RluA_mono'],  
                                  'metabolites': {}},
 
-                     'D_at_21': {'machines': ['generic_Dus'],  # fixed
+                     'D_at_21': {'machines': ['generic_Dus'],  
                                  'metabolites': {'nadph_c': -1,
                                                  'h_c': -1,
                                                  'nadp_c': 1}},
 
-                     'm1G_at_37': {'machines': ['TrmD_dim'],  # fixed
+                     'm1G_at_37': {'machines': ['TrmD_dim'],  
                                    'metabolites': {'amet_c': -1,
                                                    'ahcys_c': 1,
                                                    'h_c': 1}},
 
-                     'Y_at_13': {'machines': ['TruD_mono'],  # fixed
+                     'Y_at_13': {'machines': ['TruD_mono'],  
                                  'metabolites': {}},
 
-                     'k2C_at_34': {'machines': ['TilS_mono'],  # fixed
+                     'k2C_at_34': {'machines': ['TilS_mono'],  
                                    'metabolites': {'atp_c': -1,
                                                    'lys__L_c': -1,
                                                    'ppi_c': 1,
@@ -229,69 +225,94 @@ trna_modification = {'D_at_20A': {'machines': ['generic_Dus'],  # fixed
                                                    'h_c': 2}},
 
                      'I_at_34': {'machines': ['TadA_dim_mod_2:zn2'],
-                                 # fixed (added an h to both sides, so nh4 is released instead of nh3)
                                  'metabolites': {'h2o_c': -1, 'h_c': -1,
                                                  'nh4_c': 1}},
 
-                     'i6A_at_37': {'machines': ['MiaA_dim_mod_2:mg2'],  # fixed
+                     'i6A_at_37': {'machines': ['MiaA_dim_mod_2:mg2'],  
                                    'metabolites': {'dmpp_c': -1,
                                                    'ppi_c': 1}},
 
                      'D_at_20_in_met_tRNA': {'machines': ['DusA_mono'],
-                                             # fixed
+                                             
                                              'metabolites': {'nadph_c': -1,
                                                              'h_c': -1,
                                                              'nadp_c': 1}},
 
                      'D_at_16_in_met_tRNA': {'machines': ['DusA_mono'],
-                                             # fixed
+                                             
                                              'metabolites': {'nadph_c': -1,
                                                              'h_c': -1,
                                                              'nadp_c': 1}},
 
                      'D_at_17_in_met_tRNA': {'machines': ['DusA_mono'],
-                                             # fixed
+                                             
                                              'metabolites': {'nadph_c': -1,
                                                              'h_c': -1,
                                                              'nadp_c': 1}},
                      'D_at_20A_in_met_tRNA': {'machines': ['DusA_mono'],
-                                              # fixed
+                                              
                                               'metabolites': {'nadph_c': -1,
                                                               'h_c': -1,
                                                               'nadp_c': 1}}
                      }
 
+modification_info = {'D': {'elements': {'H': 2}, 'charge': 0},
+                     'i6A': {'elements': {'C': 5, 'H': 8}, 'charge': 0},
+                     'I': {'elements': {'N': -1, 'H': -1, 'O': 1},
+                           'charge': 0},
+                     'k2C': {'elements': {'O': 1, 'N': 2, 'H': 12, 'C': 6},
+                             'charge': 0},
+                     'Y': {'elements': {}, 'charge': 0},
+                     'm1G': {'elements': {'H': 2, 'C': 1}, 'charge': 0},
+                     'ms2i6A': {'elements': {'C': 6, 'H': 10, 'S': 1},
+                                'charge': 0},
+                     'Cm': {'elements': {'H': 2, 'C': 1}, 'charge': 0},
+                     'Um': {'elements': {'H': 2, 'C': 1}, 'charge': 0},
+                     'm6A': {'elements': {'H': 2, 'C': 1}, 'charge': 0},
+                     'mnm5s2U': {'elements': {'C': 2, 'H': 5, 'N': 1, 'O': -1,
+                                              'S': 1},
+                                 'charge': 0},
+                     'ac4C': {'elements': {'H': 2, 'C': 2, 'O': 1},
+                              'charge': 0},
+                     'Gm': {'elements': {'H': 2, 'C': 1}, 'charge': 0},
+                     'mnm5U': {'elements': {'C': 2, 'H': 5, 'N': 1, 'O': -1,
+                                            'S': 1},
+                               'charge': 0},
+                     's2C': {'elements': {'O': -1, 'S': 1}, 'charge': 0},
+                     'm6t6A': {'elements': {'C': 6, 'O': 4, 'N': 1, 'H': 9},
+                               'charge': 0},
+                     's4U': {'elements': {'O': -1, 'S': 1}, 'charge': 0},
+                     'm2A': {'elements': {'H': 2, 'C': 1}, 'charge': 0},
+                     'Q': {'elements': {'C': 7, 'O': 2, 'H': 11}, 'charge': 1},
+                     'cmo5U': {'elements': {'C': 3, 'O': 2, 'H': 4},
+                               'charge': 0},
+                     'm5U': {'elements': {'C': 1, 'H': 2}, 'charge': 0},
+                     'acp3U': {'elements': {'C': 4, 'H': 7, 'N': 1, 'O': 2},
+                               'charge': 0},
+                     'm7G': {'elements': {'C': 1, 'H': 2}, 'charge': 0},
+                     't6A': {'elements': {'C': 5, 'N': 1, 'O': 4, 'H': 6},
+                             'charge': 0}
+                     }
 
-def get_tRNA_modification_procedures():
 
-    mod = trna_modification.copy()
+def add_tRNA_modification_procedures(model):
 
-    # flavodoxin fix based off of doi:10.1016/j.febslet.2005.05.047
-    # "Two types of flavodoxins exist in E. coli. Flavodoxin
-    # I is encoded by fldA and is constitutively expressed in
-    # E. coli whereas flavodoxin II is encoded by fldB and is induced
-    # by oxidative stress [18]. Flavodoxin I has been shown
-    # to be an essential gene in E. coli. Flavodoxin II cannot replace
-    # flavodoxin I"
+    modifications = trna_modification.copy()
+    modifications = correct_tRNA_modifications(modifications)
 
-    correct_mod = mod['ms2i6A_at_37']['carriers']
-    correct_mod["FLAVODOXIN1-MONOMER"] = correct_mod.pop('fldrd_c')
-    correct_mod["FLAVODOXIN1-MONOMER_mod_Oxidized"] = correct_mod.pop('fldox_c')
+    for mod, components in iteritems(modifications):
+        tRNA_mod = cobrame.ModificationData(mod, model)
+        tRNA_mod.enzyme = components['machines']
+        tRNA_mod.stoichiometry = components['metabolites']
+        tRNA_mod.keff = 65.  # iOL uses 65 for all tRNA mods
+        if 'carriers' in components.keys():
+            for carrier, stoich in components['carriers'].items():
+                if stoich < 0:
+                    tRNA_mod.enzyme += [carrier]
+                tRNA_mod.stoichiometry[carrier] = stoich
 
-    # iron sulfur clusters do sulfur transferase
-    # no indication that that a separate redox metabolite is needed
-    correct_mod = mod['s2C_at_32']['carriers']
-    correct_mod.pop('trdrd_c')
-    correct_mod.pop('trdox_c')
+        # Add element contribution from modification to tRNA
+        tRNA_mod._element_contribution = \
+            modification_info[mod.split('_')[0]]['elements']
 
-    # also not needed for this one. PMID 10753862
-    correct_mod = mod['s4U_at_8']['carriers']
-    correct_mod.pop('trdrd_c')
-    correct_mod.pop('trdox_c')
-
-    # no reference for this, but it's free anyway
-    correct_mod = mod['mnm5s2U_at_34']['carriers']
-    correct_mod.pop('trdrd_c')
-    correct_mod.pop('trdox_c')
-
-    return mod
+    return modifications

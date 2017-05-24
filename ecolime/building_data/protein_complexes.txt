@@ -1038,7 +1038,7 @@ UDPHYDROXYMYRGLUCOSAMNACETYLTRANS-MONO	default_name	b0179(1)	M_protein_recon
 CPLX0-1341	default_name	b1681(1) AND b1683(1) AND b1682(2)	M_protein_recon
 COBU-CPLX	default_name	b1993(2)	M_protein_recon
 #PrmC_mono	N5-glutamine methyltransferase, modifies release factors RF-1 and RF-2 (EC:2.1.1.-), hemK	b1212(1)	2011_Updated_E_recon
-#DISULFOXRED-MONOMER	default_name	b3860(1)	M_protein_recon
+DISULFOXRED-MONOMER	default_name	b3860(1)	M_protein_recon
 G6715-MONOMER	default_name	b1394(1)	M_protein_recon
 G7090-MONOMER_EG11982-MONOMER	default_name	b2027() AND b2035()	M_protein_recon
 GMP-REDUCT-CPLX	default_name	b0104(4)	M_protein_recon

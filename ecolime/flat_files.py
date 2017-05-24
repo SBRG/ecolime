@@ -11,7 +11,7 @@ import pandas
 from six import iteritems
 
 from ecolime.ecoli_k12 import *
-from ecolime import ecoli_k12, tRNA_charging
+from ecolime import corrections
 
 ecoli_files_dir = join(dirname(abspath(__file__)), 'building_data/')
 
@@ -27,8 +27,7 @@ def fix_id(id_str):
 
 
 def get_complex_subunit_stoichiometry(complex_stoichiometry_file,
-                                      rna_components={},
-                                      corrections=None):
+                                      rna_components={}):
     """Returns dictionary of complex: {stoichiometry: {bnumber: stoichiometry}}
 
     some entries in the file need to be renamed.
@@ -63,10 +62,8 @@ def get_complex_subunit_stoichiometry(complex_stoichiometry_file,
             prefix = 'protein_' if bnum not in rna_components else 'RNA_'
             complex_stoichiometry_dict[key][prefix + bnum] = stoichiometry
 
-    # add in missing entries
-    complex_stoichiometry_dict["CPLX0-7617"] = {"protein_b0156": 2}
-    # should actually be a dimer PMID 24914049
-    complex_stoichiometry_dict['YdaO_mono'] = {"protein_b1344": 2}
+    complex_stoichiometry_dict = \
+        corrections.correct_complex_stoichiometry(complex_stoichiometry_dict)
 
     return complex_stoichiometry_dict
 
@@ -99,14 +96,13 @@ def get_complex_modifications(complex_modification_file, protein_complex_file):
     # don't ignore these. They are included in the reaction matrix but still
     # must be formed via a complex formation reaction
     # TODO look into this list closer
-    ignored_complexes.remove('EG10544-MONOMER_mod_palmitate')
     ignored_complexes.remove('CPLX0-782_mod_2:4fe4s')
-    ignored_complexes.remove('EG11597-MONOMER_mod_amp')
 
     new_mod_dict = {}
     for key, value in iteritems(complex_mods.T.to_dict()):
         if key.startswith('#') or key in ignored_complexes:
             continue
+        key = key.replace('_DASH_', '__')
         new_mod_dict[key] = {}
         new_mod_dict[key]['core_enzyme'] = value['Core_enzyme']
         new_mod_dict[key]['modifications'] = {}
@@ -120,48 +116,37 @@ def get_complex_modifications(complex_modification_file, protein_complex_file):
             mod = mod.replace('_DASH_', '__')
             new_mod_dict[key]['modifications'][mod + '_c'] = -num_mods
 
-    # specific patches. Not used in iOL1650 but included as a complex
-    for i in ['CPLX0-246_CPLX0-1342_mod_1:SH']:
-        new_mod_dict.pop(i)
-
-    new_mod_dict['CPLX0-246_CPLX0-1342_mod_pydx5p'] = {'core_enzyme':
-                                                       'CPLX0-246_CPLX0-1342',
-                                                       'modifications': {
-                                                           'pydx5p_c': 1}}
-    new_mod_dict["IscS_mod_2:pydx5p"] = {"core_enzyme": "IscS",
-                                         "modifications": {"pydx5p_c": 2}}
+    new_mod_dict = corrections.correct_complex_modification_dict(new_mod_dict)
 
     return new_mod_dict
 
 
-def get_reaction_to_complex(modifications=True):
+def get_reaction_to_complex(m_model, modifications=True):
     """anything not in this dict is assumed to be an orphan"""
-    enzRxn = open(fixpath('enzyme_reaction_association.txt'), 'r')
-    rxnToModCplxDict = {}
-    for line in enzRxn:
-        line = line.rstrip('\n')
-        line = re.split('\t| OR ', line)
 
-        # fix legacy naming. TODO fix lysine modification with _DASH_
-        if 'DASH' in line[0]:
-            line[0] = line[0].replace('DASH', '')
-            print('Fixed _DASH: ' + line[0])
+    rxn_to_complex_dict = defaultdict(set)
 
-        reaction = line[0]
-        rxnToModCplxDict[reaction] = set()
-        for line in line[1:]:
+    # Load enzyme reaction association dataframe
+    df = pandas.read_csv(fixpath('enzyme_reaction_association.txt'),
+                         delimiter='\t', names=['Reaction', 'Complexes'])
+    # Fix legacy naming
+    df = df.applymap(lambda x: x.replace('DASH', ''))
+    df = df.set_index('Reaction')
+
+    df = corrections.correct_enzyme_reaction_association_frame(df)
+
+    for reaction, complexes in df.itertuples():
+        for cplx in complexes.split(' OR '):
             if modifications:
-                rxnToModCplxDict[reaction].add(line)
+                rxn_to_complex_dict[reaction].add(cplx)
             else:
-                rxnToModCplxDict[reaction].add(line.split('_mod_')[0])
-    enzRxn.close()
-    m_model = get_m_model()
+                rxn_to_complex_dict[reaction].add(cplx.split('_mod_')[0])
+
     for reaction in m_model.reactions:
-        if reaction.gene_reaction_rule == "s0001":
-            if reaction.id not in rxnToModCplxDict:
-                rxnToModCplxDict[reaction.id] = set()
-            rxnToModCplxDict[reaction.id].add(None)
-    return rxnToModCplxDict
+        if "s0001" in reaction.gene_reaction_rule:
+            rxn_to_complex_dict[reaction.id].add(None)
+
+    return rxn_to_complex_dict
 
 
 def get_reaction_matrix_dict(reaction_matrix_file, complex_set=set()):
@@ -188,12 +173,18 @@ def get_reaction_matrix_dict(reaction_matrix_file, complex_set=set()):
             metabolite += compartment_id
         metabolic_reaction_dict[reaction][metabolite] = float(stoichiometry)
 
+    metabolic_reaction_dict = \
+        corrections.correct_reaction_matrix(metabolic_reaction_dict)
+
     return metabolic_reaction_dict
 
 
 def get_reaction_info_frame(reaction_info_file):
-    return pandas.read_csv(fixpath(reaction_info_file),
-                           delimiter="\t", index_col=0)
+    df = pandas.read_csv(fixpath(reaction_info_file), delimiter="\t",
+                         index_col=0)
+    df = corrections.correct_reaction_info_frame(df)
+
+    return df
 
 
 def remove_compartment(id_str):
@@ -228,25 +219,37 @@ def process_m_model(m_model, metabolites_file, m_to_me_map_file,
                 or rxn.id in defer_to_rxn_matrix:
             rxn.remove_from_model(remove_orphans=True)
     for rxn_id in reaction_matrix_dict:
-        if rxn_id not in m_model.reactions:
-            rxn_stoichiometry = reaction_matrix_dict[rxn_id]
-            for met in rxn_stoichiometry:
-                if met not in m_model.metabolites:
-                    m_model.add_metabolites([cobra.Metabolite(str(met))])
-            rxn = cobra.Reaction(rxn_id)
-            m_model.add_reactions([rxn])
-            rxn.add_metabolites(rxn_stoichiometry)
-            reversible = rxn_info.loc[rxn_id, 'is_reversible']
-            rxn.lower_bound = -1000 if reversible else 0
+        if rxn_id in m_model.reactions:
+            continue
+        rxn_stoichiometry = reaction_matrix_dict[rxn_id]
+        for met in rxn_stoichiometry:
+            try:
+                met_obj = m_model.metabolites.get_by_id(met)
+            except:
+                met_obj = cobra.Metabolite(str(met))
+                m_model.add_metabolites([met_obj])
+            met_id = remove_compartment(met_obj.id)
+            if met_id in met_info.index and not met_obj.formula:
+                met_obj.formula = met_info.loc[met_id, 'formula']
+                met_obj.name = met_info.loc[met_id, 'name']
+
+        rxn = cobra.Reaction(rxn_id)
+        m_model.add_reactions([rxn])
+        rxn.add_metabolites(rxn_stoichiometry)
+        reversible = rxn_info.loc[rxn_id, 'is_reversible']
+        rxn.lower_bound = -1000 if reversible else 0
 
     for met in list(m_model.metabolites):
         met_id = remove_compartment(met.id)
         if met_id not in met_info.index and met_id in m_to_me_df.index:
             met_id = m_to_me_df.loc[met.id, 'me_name']
-            if met_id != '' or met_id != 'N/A':
+            if met_id != '' and met_id != 'N/A':
                 met.id = met_id
             else:
                 met.remove_from_model()
+
+    # Add formulas not included in metabolites.txt
+    corrections.update_metabolite_formulas(m_model)
 
     m_model.repair()
 
@@ -320,6 +323,9 @@ def get_m_model():
         # set bounds on exchanges
         if reaction.id.startswith("EX_") and met in source_amounts.index:
             reaction.lower_bound = -source_amounts.amount[met]
+
+    # Add formulas not included in metabolites.txt
+    corrections.update_metabolite_formulas(m)
 
     return m
 

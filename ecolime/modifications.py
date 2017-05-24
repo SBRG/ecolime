@@ -1,7 +1,7 @@
-from cobrame import (ComplexData, Complex, GenericData, ModificationData,
-                     StoichiometricData)
-from cobrame.util import building
 import cobra
+
+from cobrame import (ComplexData, GenericData, ModificationData)
+from ecolime import corrections
 
 # these guys can transfer assembled iron sulfur clusters to the various enzymes
 fes_transfer = {"erpA": "CPLX0-7617", "iscA": "IscA_tetra",
@@ -67,6 +67,7 @@ def add_iron_sulfur_modifications(me_model):
     mod_3fe4s = me_model.modification_data.mod_3fe4s_c
     mod_3fe4s.enzyme = 'generic_4fe4s_transfer_complex'
     mod_3fe4s.stoichiometry = {'4fe4s_c': -1., 'fe2_c': 1}
+    mod_3fe4s._element_contribution = {'Fe': 3, 'S': 4}
 
     for chaperone in set(fes_chaperones.values()):
         new_mod = ModificationData('mod_2fe2s_c_' + chaperone, me_model)
@@ -95,6 +96,9 @@ def add_lipoate_modifications(me_model):
         mod_data.stoichiometry = info["stoich"]
         mod_data.enzyme = info["enzyme"]
 
+        # element count for lipoate modifications
+        mod_data._element_contribution = {'C': 8, 'H': 11, 'O': 1, 'S': 2}
+
     lipo = me_model.modification_data.get_by_id('mod_lipo_c')
     alt_lipo = me_model.modification_data.get_by_id('mod_lipo_c_alt')
     for cplx_data in lipo.get_complex_data():
@@ -121,3 +125,17 @@ def add_bmocogdp_modifications(me_model):
             cplx_data.modifications[
                 'mod_bmocogdp_c_' + bmocogdp_chaperones[cplx_id]] = \
                 cplx_data.modifications.pop('mod_bmocogdp_c')
+
+
+def add_modification_procedures(me_model):
+    # add ModificationData for iron sulfur clusters
+    add_iron_sulfur_modifications(me_model)
+
+    # lipoate modifications can be accomplished using two different mechanisms
+    add_lipoate_modifications(me_model)
+
+    # bmocogdp modifications have multiple selective chaperones that transfer
+    # the metabolite to the target complexes
+    add_bmocogdp_modifications(me_model)
+
+    corrections.correct_complex_modifications(me_model)

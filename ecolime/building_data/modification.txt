@@ -5,7 +5,7 @@ LI
 Oxidized
 SH	S1H1	0
 NiFeCoCN2
-amp	C11H13N5O8P1	-1
+amp	C10H12N5O6P1	-1
 coo	C1O2	-1
 cosh	C1O1S1H1	0
 ac	C2H2O1	0
@@ -75,3 +75,4 @@ lipo	C8H13OS2	1
 fes
 palmitate
 2fe1s	Fe2S1	0
+pan4p	C11H20N2O6PS	-1

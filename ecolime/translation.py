@@ -9,16 +9,16 @@ special_tRNA_subreactions = {
         #  iOL had h_c:1 for fmet addition but this is not
         #  mass balanced
         'stoich': {'10fthf_c': -1, 'thf_c': 1,  # 'h_c': 1,
-                   'generic_tRNA_START_met__L_c': -1,
-                   'met__L_c': -1}},
+                   'generic_tRNA_START_met__L_c': -1},
+        'element_contribution': {'C': 1, 'O': 1}},
 
     'sec_addition_at_UGA': {
         'enzymes': ['SelA_deca_mod_10:pydx5p',
                     'SelB_mono'],  # Selenocysteine loaders
-        'stoich': {'h_c': 1, 'h2o_c': -1, 'selnp_c': -1,
+        'stoich': {'h_c': 1, 'selnp_c': -1,
                    'pi_c': 1,
-                   'generic_tRNA_UGA_cys__L_c': -1,
-                   'cys__L_c': -1}}}
+                   'generic_tRNA_UGA_cys__L_c': -1},
+        'element_contribution': {'O': -1, 'Se': 1}}}
 
 initiation_subreactions = {'Translation_initiation_factor_InfA':
                                {'enzymes': 'InfA_mono',
@@ -33,7 +33,8 @@ initiation_subreactions = {'Translation_initiation_factor_InfA':
                                 'stoich': {'gtp_c': -1,
                                            'h2o_c': -1,
                                            'h_c': 1,
-                                           'pi_c': 1}}
+                                           'pi_c': 1,
+                                           'gdp_c': 1}}
                            }
 
 elongation_subreactions = {'FusA_mono_elongation': {'enzymes': ['FusA_mono'],
@@ -62,24 +63,31 @@ termination_subreactions = {'PrfA_mono_mediated_termination':
                             'N_terminal_methionine_cleavage':
                             {'enzymes': ['Map_mono_mod_2:fe2'],
                              'stoich': {'h2o_c': -1,
-                                        'met__L_c': 1}},
+                                        'met__L_c': 1, 'h_c': 1},
+                             'element_contribution': {'H': -10, 'O': -1,
+                                                      'C': -5, 'N': -1,
+                                                      'S': -1}},
 
                             'peptide_deformylase_processing':
                             {'enzymes': ['Def_mono_mod_1:fe2'],
                              'stoich': {'h2o_c': -1,
-                                        'for_c': 1}},
-                            # TODO look at this especially
+                                        'for_c': 1},
+                             'element_contribution':
+                                 {'H': 1, 'O': -1, 'C': -1}},
 
+                            # This is a GTPS
                             'peptide_chain_release':
                             {'enzymes': ['PrfC_mono'],
-                             'stoich': {}},
+                             'stoich': {'gtp_c': -1,
+                                        'h2o_c': -1,
+                                        'h_c': 1,
+                                        'pi_c': 1,
+                                        'gdp_c': 1}},
 
                             'ribosome_recycler':
                             {'enzymes': ['Rrf_mono'],
                              'stoich': {}},
 
-                            # TODO create complex formation for GroEL complex
-                            # 7 adp and 7 mg2 are used to modify GroEL
                             'GroEL_dependent_folding':
                             {'enzymes': ['GroL_14', 'cisGroES_hepta',
                                         'transGroES_hepta'],
@@ -121,6 +129,7 @@ def add_translation_subreactions_to_model(me_model):
         data = SubreactionData(rxn, me_model)
         data.enzyme = info['enzymes']
         data.stoichiometry = info['stoich']
+        data._element_contribution = info.get('element_contribution', {})
 
     # add subreactions associated with translation initiation
     for rxn, info in initiation_subreactions.items():
@@ -151,15 +160,21 @@ def add_charged_tRNA_subreactions(me_model):
                 me_model)
             tRNA = 'generic_tRNA_' + codon.replace('T', 'U') + '_' + full_aa
             subreaction_data.enzyme = 'generic_Tuf'  # Default AA loader enzyme
-            subreaction_data.stoichiometry = {'gtp_c': -1,
-                                              'gdp_c': 1, 'h_c': 1, 'pi_c': 1,
-                                              tRNA: -1}  # 'h2o_c': 1
+
+            # Accounts for GTP hydrolyzed by EF-TU and the ATP hydrolysis to
+            # AMP required to add the amino acid to the tRNA
+            subreaction_data.stoichiometry = {'gtp_c': -1, 'h2o_c': -2,
+                                              'gdp_c': 1, 'h_c': 2, 'pi_c': 1,
+                                              'ppi_c': 1, 'amp_c': 1,
+                                              'atp_c': -1,
+                                              tRNA: -1}
 
     # Add subreactions for start codon and selenocysteine
     for rxn, info in special_tRNA_subreactions.items():
         data = SubreactionData(rxn, me_model)
         data.enzyme = info['enzymes']
         data.stoichiometry = info['stoich']
+        data._element_contribution = info.get('element_contribution', {})
 
 # N terminal methionine cleaved
 methionine_cleaved = ['b4154', 'b1109', 'b3908', 'b3417', 'b3940', 'b0344',

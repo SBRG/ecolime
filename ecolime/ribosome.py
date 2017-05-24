@@ -1,7 +1,12 @@
-from cobrame import ComplexData, TranscribedGene, ModificationData
-from cobrame.util.building import add_modification_data
+from __future__ import print_function, absolute_import, division
 
-import cobra
+from six import iteritems
+
+from cobrame import ComplexData, ModificationData, SubreactionData
+from cobrame.util.building import add_modification_data
+from ecolime.corrections import correct_rRNA_modifications
+
+
 
 # Dictionary of {formation_step:[{metabolite:stoichiometry}]}
 # Positive for reactants negative for products (complex formation convention)
@@ -39,11 +44,10 @@ ribosome_stoich = {'30_S_assembly_1_(215)': {'stoich': {'RpsD_mono': 1,
                                                         'RpsS_mono': 1,
                                                         'RpsT_mono': 1,
                                                         'generic_16s_rRNAs': 1}},
-                   '30_S_assembly_2_(21S)': {'stoich': {'mg2_c': 60,
-                                                        'RpsA_mono': 1,
+                   '30_S_assembly_2_(21S)': {'stoich': {'RpsA_mono': 1,
                                                         'RpsB_mono': 1,
                                                         'RpsC_mono': 1,
-                                                        'RpsJ_mono': 1, # TODO is the RplJ stoich right?
+                                                        'RpsJ_mono': 1,
                                                         'RpsN_mono': 1,
                                                         'RpsU_mono': 1,
                                                         'Sra_mono': 1}},
@@ -69,8 +73,7 @@ ribosome_stoich = {'30_S_assembly_1_(215)': {'stoich': {'RpsD_mono': 1,
                                                   'RpmG_mono': 1,
                                                   'RpmH_mono': 1,
                                                   'rpL7/12_mod_1:acetyl': 2}},
-                   '50_S_assembly_2': {'stoich': {'mg2_c': 111,
-                                                  'RplF_mono': 1,
+                   '50_S_assembly_2': {'stoich': {'RplF_mono': 1,
                                                   'RplN_mono': 1,
                                                   'RplO_mono': 1,
                                                   'RplP_mono': 1,
@@ -83,111 +86,123 @@ ribosome_stoich = {'30_S_assembly_1_(215)': {'stoich': {'RpsD_mono': 1,
                                                   'RpmF_mono': 1,
                                                   'RpmI_mono': 1,
                                                   'RpmJ_mono': 1,
-                                                  'Tig_mono': 1}, # Leave Tig_mono in or remove it?
+                                                  'Tig_mono': 1},
                                        'mods': None,
                                        'enzymes': None},
                    # TODO Make sure this isn't double counted
                    'assemble_ribosome_subunits': {'stoich': {'gtp_c': 1}
                                                   }}
 
-ribosome_modifications = {'gtp_bound_30S_assembly_factor_phase1':
-                          {'enzyme': 'Era_dim',
-                           'stoich': {'gtp_c': -2,
-                                      'h2o_c': -2,
-                                      'h_c': 2,
-                                      'pi_c': 2},
-                           'num_mods': 1},
+ribosome_subreactions = {'gtp_bound_30S_assembly_factor_phase1':
+                         {'enzyme': 'Era_dim',
+                          'stoich': {'gtp_c': -2,
+                                     'h2o_c': -2,
+                                     'h_c': 2,
+                                     'pi_c': 2,
+                                     'gdp_c': 2},
+                          'num_mods': 1},
 
-                          'RbfA_mono_assembly_factor_phase1':
-                          {'enzyme': 'RbfA_mono',
-                           'stoich': {},
-                           'num_mods': 1},
+                         'RbfA_mono_assembly_factor_phase1':
+                         {'enzyme': 'RbfA_mono',
+                          'stoich': {},
+                          'num_mods': 1},
 
-                          'RimM_mono_assembly_factor_phase1':
-                          {'enzyme': 'RimM_mono',
-                           'stoich': {},
-                           'num_mods': 1}
-                          }
+                         'RimM_mono_assembly_factor_phase1':
+                         {'enzyme': 'RimM_mono',
+                          'stoich': {},
+                          'num_mods': 1}
+                         }
 
 
 def add_ribosome(me_model, verbose=True):
     ribosome_complex = ComplexData("ribosome", me_model)
     ribosome_components = ribosome_complex.stoichiometry
 
-    for mod, components in rrna_modifications.items():
+    rRNA_modifications = correct_rRNA_modifications(rrna_modifications)
+    for mod, components in iteritems(rRNA_modifications):
         rRNA_mod = ModificationData(mod, me_model)
         rRNA_mod.enzyme = components['machine']
         rRNA_mod.stoichiometry = components['metabolites']
         rRNA_mod.keff = 65.  # iOL uses 65. for all RNA mods
+
+        # Add element contribution from modification to rRNA
+        rRNA_mod._element_contribution = \
+            modification_info[mod.split('_')[0]]['elements']
+
         if 'carriers' in components.keys():
-            for carrier, stoich in components['carriers'].items():
+            for carrier, stoich in iteritems(components['carriers']):
                 if stoich < 0:
                     rRNA_mod.enzyme += [carrier]
                 rRNA_mod.stoichiometry[carrier] = stoich
         ribosome_complex.modifications[rRNA_mod.id] = 1
 
-    mod_dict = ribosome_modifications
-    for mod_id in mod_dict:
-        mod_stoich = mod_dict[mod_id]['stoich']
-        mod_enzyme = mod_dict[mod_id]['enzyme']
-        num_mods = mod_dict[mod_id]['num_mods']
-        add_modification_data(me_model, mod_id, mod_stoich, mod_enzyme)
-        mod = me_model.modification_data.get_by_id(mod_id)
-        ribosome_complex.modifications[mod.id] = num_mods
+    subreaction_dict = ribosome_subreactions
+    for subreaction_id in subreaction_dict:
+        # get subreaction info
+        subreaction_stoich = subreaction_dict[subreaction_id]['stoich']
+        subreaction_enzyme = subreaction_dict[subreaction_id]['enzyme']
+        num_subreactions = subreaction_dict[subreaction_id]['num_mods']
 
+        # add subreaction to model
+        subreaction = SubreactionData(subreaction_id, me_model)
+        subreaction.stoichiometry = subreaction_stoich
+        subreaction.enzyme = subreaction_enzyme
+
+        # account for subreactions in complex data
+        ribosome_complex.subreactions[subreaction.id] = num_subreactions
+
+    # Ribosomes in iOL1650 contain 171 mg2 ions
+    ribosome_complex.modifications['mod_mg2_c'] = 171.
     ribosome_assembly = ribosome_stoich
     for process in ribosome_assembly:
-        for protein, amount in ribosome_assembly[process]['stoich'].items():
+        for protein, amount in iteritems(ribosome_assembly[process]['stoich']):
             ribosome_components[protein] += amount
 
     ribosome_complex.create_complex_formation(verbose=verbose)
 
-# TODO: Double check the modifications here
 rrna_modifications = {
                       # ---------16S Modifications---------------
-                      'm2G_at_1207': {'machine': 'RsmC_mono',  # fixed
+                      'm2G_at_1207': {'machine': 'RsmC_mono',  
                                       'metabolites': {'amet_c': -1,
                                                       'ahcys_c': 1,
                                                       'h_c': 1}},
                       'm2G_at_1516': {'machine': None,
-                                      # fixed, but still unknown, NOT ybiN despite their ecocyc comments, the old 'MeT_16S_1516'
                                       'metabolites': {'amet_c': -1,
                                                       'ahcys_c': 1,
                                                       'h_c': 1}},
-                      'm2G_at_966': {'machine': 'RsmD_mono',  # fixed
+                      'm2G_at_966': {'machine': 'RsmD_mono',  
                                      'metabolites': {'amet_c': -1,
                                                      'ahcys_c': 1,
                                                      'h_c': 1}},
-                      'm3U_at_1498': {'machine': 'YggJ_dim',  # fixed
+                      'm3U_at_1498': {'machine': 'YggJ_dim',  
                                       'metabolites': {'amet_c': -1,
                                                       'ahcys_c': 1,
                                                       'h_c': 1}},
                       'm4Cm_at_1402': {'machine': 'generic_16Sm4Cm1402',
-                                       # fixed
                                        'metabolites': {'amet_c': -2,
                                                        'ahcys_c': 2,
                                                        'h_c': 2}},
-                      'm5C_at_1407': {'machine': 'RsmF_mono',  # fixed
+                      'm5C_at_1407': {'machine': 'RsmF_mono',  
                                       'metabolites': {'amet_c': -1,
                                                       'ahcys_c': 1,
                                                       'h_c': 1}},
-                      'm5C_at_967': {'machine': 'RsmB_mono',  # fixed
+                      'm5C_at_967': {'machine': 'RsmB_mono',  
                                      'metabolites': {'amet_c': -1,
                                                      'ahcys_c': 1,
                                                      'h_c': 1}},
-                      'm62A_at_1518': {'machine': 'KsgA_mono',  # fixed
+                      'm62A_at_1518': {'machine': 'KsgA_mono',  
                                        'metabolites': {'amet_c': -2,
                                                        'ahcys_c': 2,
                                                        'h_c': 2}},
-                      'm62A_at_1519': {'machine': 'KsgA_mono',  # fixed
+                      'm62A_at_1519': {'machine': 'KsgA_mono',  
                                        'metabolites': {'amet_c': -2,
                                                        'ahcys_c': 2,
                                                        'h_c': 2}},
-                      'm7G_at_527': {'machine': 'RsmG_mono',  # fixed
+                      'm7G_at_527': {'machine': 'RsmG_mono',  
                                      'metabolites': {'amet_c': -1,
                                                      'ahcys_c': 1,
                                                      'h_c': 1}},
-                      'Y_at_516': {'machine': 'RsuA_mono',  # fixed
+                      'Y_at_516': {'machine': 'RsuA_mono',  
                                    'metabolites': {}},
 
                       # ---------23S Modifications---------------
@@ -196,88 +211,96 @@ rrna_modifications = {
                                                      'ahcys_c': 1,
                                                      'h_c': 1}},
                       'D_at_2449': {'machine': None,
-                                    # fixed, but still unknown, the old 'DU_23S_2449'
                                     'metabolites': {'h_c': -1,
                                                     'nadh_c': -1,
                                                     'nad_c': 1}},
-                      'Gm_at_2251': {'machine': 'RlmB_dim',  # fixed
+                      'Gm_at_2251': {'machine': 'RlmB_dim',  
                                      'metabolites': {'amet_c': -1,
                                                      'ahcys_c': 1,
                                                      'h_c': 1}},
                       'm1G_at_745': {'machine': 'RrmA_dim_mod_2:zn2',
-                                     # fixed
                                      'metabolites': {'amet_c': -1,
                                                      'ahcys_c': 1,
                                                      'h_c': 1}},
                       'm2A_at_2503': {'machine': 'RlmN_mono_mod_1:4fe4s',
-                                      # fixed
                                       'metabolites': {'amet_c': -1,
                                                       'ahcys_c': 1,
                                                       'h_c': 1}},
-                      'm2G_at_1835': {'machine': 'RlmG_mono',  # fixed
+                      'm2G_at_1835': {'machine': 'RlmG_mono',  
                                       'metabolites': {'amet_c': -1,
                                                       'ahcys_c': 1,
                                                       'h_c': 1}},
-                      'm2G_at_2445': {'machine': 'RlmL_dim',  # fixed
+                      'm2G_at_2445': {'machine': 'RlmL_dim',  
                                       'metabolites': {'amet_c': -1,
                                                       'ahcys_c': 1,
                                                       'h_c': 1}},
-                      'm5C_at_1962': {'machine': 'RlmI_dim',  # fixed
+                      'm5C_at_1962': {'machine': 'RlmI_dim',  
                                       'metabolites': {'amet_c': -1,
                                                       'ahcys_c': 1,
                                                       'h_c': 1}},
                       'm5U_at_1939': {'machine': 'RumA_mono_mod_1:4fe4s',
-                                      # fixed
                                       'metabolites': {'amet_c': -1,
                                                       'ahcys_c': 1,
                                                       'h_c': 1}},
                       'm5U_at_747': {'machine': 'RumB_mono_mod_1:4fe4s',
-                                     # fixed
                                      'metabolites': {'amet_c': -1,
                                                      'ahcys_c': 1,
                                                      'h_c': 1}},
-                      'm6A_at_1618': {'machine': 'RlmF_mono',  # fixed
+                      'm6A_at_1618': {'machine': 'RlmF_mono',  
                                       'metabolites': {'amet_c': -1,
                                                       'ahcys_c': 1,
                                                       'h_c': 1}},
                       'm6A_at_2030': {'machine': None,
-                                      # fixed, but still unknown, the old 'MeT_23S_2030'
                                       'metabolites': {'amet_c': -1,
                                                       'ahcys_c': 1,
                                                       'h_c': 1}},
                       'm7G_at_2069': {'machine': None,
-                                      # fixed, but still unknonw, the old 'MeT_23S_2069'
                                       'metabolites': {'amet_c': -1,
                                                       'ahcys_c': 1,
                                                       'h_c': 1}},
-                      'Um_at_2552': {'machine': 'RrmJ_mono',  # fixed
+                      'Um_at_2552': {'machine': 'RrmJ_mono',  
                                      'metabolites': {'amet_c': -1,
                                                      'ahcys_c': 1,
                                                      'h_c': 1}},
                       'Y_at_1911': {'machine': 'RluD_mono_mod_1:mg2',
-                                    # fixed
                                     'metabolites': {}},
                       'Y_at_1915': {'machine': 'RluD_mono_mod_1:mg2',
-                                    # fixed
                                     'metabolites': {}},
-                      'm3Y_at_1915': {'machine': 'RlmH_dim',  # fixed
+                      'm3Y_at_1915': {'machine': 'RlmH_dim',  
                                       'metabolites': {'amet_c': -1,
                                                       'ahcys_c': 1,
                                                       'h_c': 1}},
                       'Y_at_1917': {'machine': 'RluD_mono_mod_1:mg2',
-                                    # fixed
                                     'metabolites': {}},
-                      'Y_at_2457': {'machine': 'YmfC_mono',  # fixed
+                      'Y_at_2457': {'machine': 'YmfC_mono',  
                                     'metabolites': {}},
-                      'Y_at_2504': {'machine': 'RluC_mono',  # fixed
+                      'Y_at_2504': {'machine': 'RluC_mono',  
                                     'metabolites': {}},
-                      'Y_at_2580': {'machine': 'RluC_mono',  # fixed
+                      'Y_at_2580': {'machine': 'RluC_mono',  
                                     'metabolites': {}},
-                      'Y_at_2604': {'machine': 'YjbC_mono',  # fixed
+                      'Y_at_2604': {'machine': 'YjbC_mono',  
                                     'metabolites': {}},
-                      'Y_at_2605': {'machine': 'RluB_mono',  # fixed
+                      'Y_at_2605': {'machine': 'RluB_mono',  
                                     'metabolites': {}},
-                      'Y_at_746': {'machine': 'RluA_mono',  # fixed
+                      'Y_at_746': {'machine': 'RluA_mono',  
                                    'metabolites': {}},
-                      'Y_at_955': {'machine': 'RluC_mono',  # fixed
+                      'Y_at_955': {'machine': 'RluC_mono',  
                                    'metabolites': {}}}
+
+modification_info = {'Y': {'elements': {}, 'charge': 0},
+                     'm3Y': {'elements': {'C': 1, 'H': 2}, 'charge': 0},
+                     'Um': {'elements': {'H': 2, 'C': 1}, 'charge': 0},
+                     'm7G': {'elements': {'C': 1, 'H': 2}, 'charge': 0},
+                     'm6A': {'elements': {'C': 1, 'H': 2}, 'charge': 0},
+                     'm5U': {'elements': {'C': 1, 'H': 2}, 'charge': 0},
+                     'm5C': {'elements': {'C': 1, 'H': 2}, 'charge': 0},
+                     'm2G': {'elements': {'C': 1, 'H': 2}, 'charge': 0},
+                     'm2A': {'elements': {'C': 1, 'H': 2}, 'charge': 0},
+                     'm1G': {'elements': {'C': 1, 'H': 2}, 'charge': 0},
+                     'Gm': {'elements': {'C': 1, 'H': 2}, 'charge': 0},
+                     'D': {'elements': {'H': 2}, 'charge': 0},
+                     'Cm': {'elements': {'C': 1, 'H': 2}, 'charge': 0},
+                     'm62A': {'elements': {'C': 2, 'H': 4}, 'charge': 0},
+                     'm4Cm': {'elements': {'C': 2, 'H': 4}, 'charge': 0},
+                     'm3U': {'elements': {'C': 1, 'H': 2}, 'charge': 0}
+                     }

@@ -1,4 +1,3 @@
-
 # coding: utf-8
 
 # # Build *i*LE1678-ME
@@ -21,7 +20,8 @@ import cobra
 
 # ECOLIme
 import ecolime
-from ecolime import (transcription, translation, flat_files, ecoli_k12)
+from ecolime import (transcription, translation, flat_files, ecoli_k12,
+                     formulas)
 
 # COBRAme
 import cobrame
@@ -29,17 +29,17 @@ from cobrame.util import building, mu
 from cobrame.util.mass import dna_mw_no_ppi
 
 # ## Part 1: Create minimum solveable ME-model
-# This will include the bare minimum representations of 
+# This will include the bare minimum representations of
 # - Transcription Reactions
 # - Translation Reactions
 # - Complex Formation Reactions
 # - Metabolic Reactions
-# 
+#
 # that still produce a working ME-model
-# 
+#
 # ### 1) Create Model Object and populate its global info
-# This includes important parameters that are used to calculate coupling 
-# constraints as well as organism-specific information such as peptide 
+# This includes important parameters that are used to calculate coupling
+# constraints as well as organism-specific information such as peptide
 # processing types
 
 # In[ ]:
@@ -137,20 +137,15 @@ def return_ME_model():
         [i.id for i in m_model.metabolites if i.id.split('_mod_')[0] in complexes])
     building.add_m_model_content(me, m_model, complex_metabolite_ids=complex_set)
 
-    # flat_files.get_complex_subunit_stoichiometry('protein_complexes.txt')
-
     # In[ ]:
 
     # This adds exchange reactions for metabolites not contained in iJO1366
-    # Some of these cannot be produced by the model (C10H805) so they are added here
+    # Some of these cannot be produced by the model so they are added here
     exchange_list = [
         'LI_c',
         'pqq_e',
         'cs_e',
         'tl_c',
-        'cu_c',  # needed for NDH activity. TODO fix this with new reactions
-        'C10H8O5_c', 'C9H9O4_c',  # for tRNA modifications
-        'NiFeCoCN2_c',
         'RNase_m5', 'RNase_m16', 'RNase_m23']  # RNAses are gaps in model
 
     for met_id in exchange_list:
@@ -248,7 +243,7 @@ def return_ME_model():
     # In[ ]:
 
     # associate reaction id with the old ME complex id (including modifications)
-    rxn_to_cplx_dict = flat_files.get_reaction_to_complex()
+    rxn_to_cplx_dict = flat_files.get_reaction_to_complex(m_model)
     rxn_info = flat_files.get_reaction_info_frame('reactions.txt')
 
     # Required to add dummy reaction as spontaneous reaction
@@ -268,8 +263,8 @@ def return_ME_model():
 
     # In[ ]:
 
-    me.ngam = 16.68
-    me.gam = 25.40
+    me.ngam = 6.86
+    me.gam = 20.
     me.unmodeled_protein_fraction = .275
 
     biomass_components = {
@@ -444,6 +439,7 @@ def return_ME_model():
 
     # In[ ]:
 
+    me.add_metabolites([cobrame.Complex('RNA_degradosome')])
     data = cobrame.ComplexData('RNA_degradosome', me)
     for subunit, value in ecoli_k12.RNA_degradosome.items():
         data.stoichiometry[subunit] = value
@@ -456,8 +452,8 @@ def return_ME_model():
     data = cobrame.ModificationData('RNA_degradation_atp_requirement', me)
     # .25 water equivaltent for atp hydrolysis and 1 h20 equivalent for to
     # restore OH group in nucleotide monophosphate during RNA hydrolysis
-    data.stoichiometry = {'atp_c': -.25, 'h2o_c': -1.25, 'adp_c': .25,
-                          'pi_c': .25, 'h_c': 1.25}
+    data.stoichiometry = {'atp_c': -.25, 'h2o_c': -.25, 'adp_c': .25,
+                          'pi_c': .25, 'h_c': .25}
 
     transcription.add_RNA_splicing(me)
 
@@ -480,15 +476,9 @@ def return_ME_model():
             modifications['mod_' + mod] = abs(value)
         me.complex_data.get_by_id(complex_id).modifications = modifications
 
-    # lipoate modifications can be accomplished using two different mechanisms
-    ecolime.modifications.add_lipoate_modifications(me)
-
-    # bmocogdp modifications have multiple selective chaperones that transfer the metabolite
-    # to the target complexes
-    ecolime.modifications.add_bmocogdp_modifications(me)
-
-    # add ModificationData for iron sulfur clusters
-    ecolime.modifications.add_iron_sulfur_modifications(me)
+    # Adds modification data for more complicated enzyme modifications
+    # (ie, iron sulfur cluster modification)
+    ecolime.modifications.add_modification_procedures(me)
 
     # add formation reactions for each of the ComplexDatas
     for cplx_data in me.complex_data:
@@ -500,22 +490,14 @@ def return_ME_model():
 
     # ### 2) Add tRNA mods and asocciate them with tRNA charging reactions
     # New data from:
-    # 1. **ecolime/tRNA_charging.py** (read via *get_tRNA_modification_procedures()*)
+    # 1. **ecolime/tRNA_charging.py** (read via *add_tRNA_modification_procedures()*)
     # 2. **post_transcriptional_modification_of_tRNA.txt** (modification types per tRNA)
     #
 
     # In[ ]:
 
-    for mod, components in ecolime.tRNA_charging.get_tRNA_modification_procedures().items():
-        tRNA_mod = cobrame.ModificationData(mod, me)
-        tRNA_mod.enzyme = components['machines']
-        tRNA_mod.stoichiometry = components['metabolites']
-        tRNA_mod.keff = 65.  # iOL uses 65 for all tRNA mods
-        if 'carriers' in components.keys():
-            for carrier, stoich in components['carriers'].items():
-                if stoich < 0:
-                    tRNA_mod.enzyme += [carrier]
-                tRNA_mod.stoichiometry[carrier] = stoich
+    # Add tRNA modifications to ME-model
+    ecolime.tRNA_charging.add_tRNA_modification_procedures(me)
 
     # tRNA_modifications = {tRNA_id: {modifications: count}}
     tRNA_modifications = flat_files.get_tRNA_modification_targets()
@@ -622,6 +604,8 @@ def return_ME_model():
     # new_stoich = {complex_id: protein_w_compartment}
     new_stoich = defaultdict(dict)
     for cplx, row in transloc.set_index('Complex').iterrows():
+        if cplx == 'EG10544-MONOMER':
+            continue
         protein = row.Protein.split('(')[0] + '_' + row.Protein_compartment
         value = row.Protein.split('(')[1][:-1].split(':')[0]
         new_stoich[cplx]['protein_' + protein] = float(value)
@@ -661,14 +645,19 @@ def return_ME_model():
         data = cobrame.ModificationData('mod_' + lipid, me)
         data.stoichiometry = {lipid: -1, 'g3p_c': 1}
         data.enzyme = ['Lgt_MONOMER', 'LspA_MONOMER']
+        # The element contribution is based on the lipid involved in the
+        # modfication, so calculate based on the metabolite formula
+        data._element_contribution = data.calculate_element_contribution()
 
     data = cobrame.ModificationData('mod2_pg160_p', me)
     data.stoichiometry = {'pg160_p': -1, '2agpg160_p': 1}
     data.enzyme = 'EG10168-MONOMER'
+    data._element_contribution = data.calculate_element_contribution()
 
     data = cobrame.ModificationData('mod2_pe160_p', me)
     data.stoichiometry = {'pe160_p': -1, '2agpe160_p': 1}
     data.enzyme = 'EG10168-MONOMER'
+    data._element_contribution = data.calculate_element_contribution()
 
     ecolime.translocation.add_lipoprotein_formation(me, compartment_dict,
                                                     membrane_constraints=False)
@@ -762,6 +751,39 @@ def return_ME_model():
         for r in data.parent_reactions:
             r.subsystem = rxn.subsystem
 
+    # #### Corrections and final updates
+
+    # In[ ]:
+
+    ecolime.corrections.correct_reaction_stoichiometries(me, join(
+        flat_files.ecoli_files_dir,
+        'iLE1678_model_changes.xlsx'))
+    # RNA_dummy, TU_b3247, TU_b3705 do not have RNAP, this is set as the most common RNAP
+    for data in me.transcription_data:
+        if len(data.RNA_polymerase) == 0:
+            data.RNA_polymerase = 'RNAP70-CPLX'
+
+    # If lower_bound open, model feeds G6P into EDD
+    me.reactions.EX_pqq_e.lower_bound = 0
+    me.reactions.EX_pqq_e.upper_bound = 0
+
+    # cobalamin is not in glucose M9 media
+    me.reactions.EX_cbl1_e.lower_bound = 0
+
+    me.stoichiometric_data.PPKr.lower_bound = 0.
+    me.stoichiometric_data.PPKr._update_parent_reactions()
+
+    # this RNAP/sigma factor should not be used to transcribe stable rna
+    for rxn in me.metabolites.get_by_id('RNAP32-CPLX').reactions:
+        if rxn.id != 'formation_RNAP32-CPLX' and rxn.transcription_data.codes_stable_rna:
+            rxn.upper_bound = 0
+            print(rxn)
+
+    # This enyzme is involved in catalyzing this reaction
+    sub = cobrame.SubreactionData('EG12450-MONOMER_activity', me)
+    sub.enzyme = 'EG12450-MONOMER'
+    me.stoichiometric_data.NHFRBO.subreactions['EG12450-MONOMER_activity'] = 1
+
     # #### Add enzymatic coupling for "carriers"
     # These are enzyme complexes that act as metabolites in a metabolic reaction (i.e. are metabolites in iJO1366)
 
@@ -782,65 +804,16 @@ def return_ME_model():
                 sub.enzyme = met
             data.subreactions[subreaction_id] = abs(value)
 
-    # #### Corrections
-
-    # In[ ]:
-
-    # RNA_dummy, TU_b3247, TU_b3705 do not have RNAP, this is set as the most common RNAP
-    for data in me.transcription_data:
-        if len(data.RNA_polymerase) == 0:
-            data.RNA_polymerase = 'RNAP70-CPLX'
-
-    # Newly annotated modification gene (w/ high confidence)
-    mod = me.modification_data.get_by_id('mod_acetyl_c')
-    mod.stoichiometry = {'accoa_c': -1, 'coa_c': 1}
-
-    # If lower_bound open, model feeds G6P into EDD
-    me.reactions.EX_pqq_e.lower_bound = 0
-    me.reactions.EX_pqq_e.upper_bound = 0
-
-    # cobalamin is not essential in e. coli and there is no evidence
-    # of this gene requiring this modification.
-    me.reactions.EX_cbl1_e.lower_bound = 0
-    me.complex_data.QueG_mono_mod_adocbl.modifications.pop('mod_adocbl_c')
-    me.complex_data.QueG_mono_mod_adocbl.formation.update()
-
-    # this RNAP/sigma factor should not be used to transcribe stable rna
-    for rxn in me.metabolites.get_by_id('RNAP32-CPLX').reactions:
-        if rxn.id != 'formation_RNAP32-CPLX' and rxn.transcription_data.codes_stable_rna:
-            rxn.upper_bound = 0
-            print(rxn)
-
-    # This complex likely doesn't have ATPSYN activity
-    me.reactions.get_by_id('formation_ATPSYN-CPLX_EG10106-MONOMER').knock_out()
-
-    # This enyzme is involved in catalyzing this reaction
-    sub = cobrame.SubreactionData('EG12450-MONOMER_activity', me)
-    sub.enzyme = 'EG12450-MONOMER'
-    me.stoichiometric_data.NHFRBO.subreactions['EG12450-MONOMER_activity'] = 1
-
-    # This reaction was edited based on iJO1366 GPR
-    data = cobrame.ComplexData('EG11910-MONOMER_dimer_EG11911-MONOMER', me)
-    data.stoichiometry = {'EG11910-MONOMER_dimer': 1, 'EG11911-MONOMER': 1}
-    data.create_complex_formation()
-    me.reactions.get_by_id('PFL_FWD_EG11910-MONOMER_dimer').remove_from_model()
-    building.add_metabolic_reaction_to_model(me, 'PFL', 'forward',
-                                             complex_id='EG11910-MONOMER_dimer_EG11911-MONOMER',
-                                             update=True)
-
-    # NGAM reaction is just called ATPM
-    me.reactions.ATPM_FWD_SPONT.remove_from_model()
-
     # ----
-    # ## Part 9: Update and solve
+    # ## Part 9: Update and save
 
     # In[ ]:
 
     me.reactions.dummy_reaction_FWD_SPONT.objective_coefficient = 1.
     me.reactions.EX_glc__D_e.lower_bound = -1000
     me.reactions.EX_o2_e.lower_bound = -16.
-    me.ngam = 16.68
-    me.gam = 25.40
+    me.ngam = 6.86
+    me.gam = 20.
     me.unmodeled_protein_fraction = .275
 
     # In[ ]:
@@ -848,14 +821,25 @@ def return_ME_model():
     me.update()
     me.prune()
 
+    # ### Add remaining metabolite formulas to model
+
+    # In[ ]:
+
+    # Update a second time to incorporate all of the metabolite formulas corectly
+    me.update()
+    formulas.add_remaining_complex_formulas(me)
+    me.metabolites.get_by_id(
+        'CPLX0-782_mod_1:2fe2s_mod_1:4fe4s').formula = 'C3164Fe6H5090N920O920S50'
+    me.metabolites.get_by_id(
+        'EG50003-MONOMER_mod_pan4p_mod_lipo').formula = 'C387H606N95O142PS4'
+
     # In[ ]:
 
     n_genes = len(me.metabolites.query(re.compile('RNA_b[0-9]')))
-    print("number of genes in the model %d (%.2f%%)" % (n_genes, n_genes * 100. / (1678)))
-
+    print("number of genes in the model %d (%.2f%%)" % (
+    n_genes, n_genes * 100. / (1678)))
 
     return me
-
 
 if __name__ == '__main__':
 

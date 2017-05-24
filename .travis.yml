@@ -15,6 +15,6 @@ before_install:
 install:
     - pip install -U pytest
     - pip install .
-    - pip install git+https://github.com/sbrg/cobrame.git@devel
+    - ./travis_install.sh
 
 script: travis_wait pytest

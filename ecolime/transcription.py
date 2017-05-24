@@ -122,7 +122,6 @@ def add_RNA_splicing(me_model):
 
         complex_data.create_complex_formation()
         modification = ModificationData(excision_type + "_excision", me_model)
-        modification.stoichiometry = {'h2o_c': -1, 'h_c': 1}
         modification.enzyme = complex_data.id
 
     # Loop through transcription reactions and add appropriate splicing

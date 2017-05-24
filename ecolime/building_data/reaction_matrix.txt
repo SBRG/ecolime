@@ -2091,7 +2091,7 @@ SBTptspp	pyr	Cytosol	1.0
 SBTptspp	sbt_DASH_D	Periplasm	-1.0
 SBTptspp	sbt6p	Cytosol	1.0
 SBTptspp	pep	Cytosol	-1.0
-MPTSS1	EG11597-MONOMER_mod_coo	No_Compartment	-1.0
+MPTSS1	EG11597-MONOMER	No_Compartment	-1.0
 MPTSS1	ppi	Cytosol	1.0
 MPTSS1	h	Cytosol	-1.0
 MPTSS1	atp	Cytosol	-1.0
@@ -2956,7 +2956,7 @@ GLCP2	pi	Cytosol	-1.0
 GLCP2	g1p	Cytosol	1.0
 GLCP2	bglycogen	Cytosol	-1.0
 MPTS1	cpmp	Cytosol	-1.0
-MPTS1	EG11597-MONOMER_mod_coo	No_Compartment	2.0
+MPTS1	EG11597-MONOMER	No_Compartment	2.0
 MPTS1	h	Cytosol	5.0
 MPTS1	mpt	Cytosol	1.0
 MPTS1	EG11597-MONOMER_mod_cosh	No_Compartment	-2.0

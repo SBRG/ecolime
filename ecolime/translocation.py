@@ -1,3 +1,5 @@
+from __future__ import print_function, absolute_import, division
+
 from cobrame.core.ProcessData import PostTranslationData
 from cobrame.core.MEReactions import PostTranslationReaction
 
@@ -9,8 +11,9 @@ pathway = {'sec': {'enzymes': {'SecB_tetra': {'length_dependent': True,
                                             'fixed_keff': False}},
                    'keff': 4.,
                    'length_dependent_energy': True,
-                   'stoichiometry': {'atp_c': -1./25., 'adp_c': 1./25.,
-                                     'pi_c': 1./25.}},
+                   'stoichiometry': {'atp_c': -1./25., 'h2o_c': -1./25.,
+                                     'adp_c': 1./25., 'pi_c': 1./25.,
+                                     'h_c': 1./25.}},
 
            'tat': {'enzymes': {'TatBC_octa': {'length_dependent': False,
                                               'fixed_keff': False},
@@ -44,7 +47,8 @@ pathway = {'sec': {'enzymes': {'SecB_tetra': {'length_dependent': True,
                                                 'fixed_keff': False}},
                    'keff': 0.9,
                    'length_dependent_energy': False,
-                   'stoichiometry': {'atp_c': -1., 'adp_c': 1., 'pi_c': 1.}},
+                   'stoichiometry': {'atp_c': -1., 'h2o_c': -1.,
+                                     'adp_c': 1., 'pi_c': 1., 'h_c': 1.}},
 
            'yidC': {'enzymes': {'SRP-CPLX': {'length_dependent': True,
                                              'fixed_keff': False},
@@ -52,14 +56,16 @@ pathway = {'sec': {'enzymes': {'SecB_tetra': {'length_dependent': True,
                                                  'fixed_keff': False}},
                     'keff': 20.,
                     'length_dependent_energy': False,
-                    'stoichiometry': {'gtp_c': -1., 'gdp_c': 1., 'pi_c': 1.}},
+                    'stoichiometry': {'gtp_c': -1., 'h2o_c': -1., 'gdp_c': 1.,
+                                      'pi_c': 1., 'h_c': 1.}},
 
            'secA': {'enzymes': {'SecA_MONOMER': {'length_dependent': True,
                                                  'fixed_keff': False}},
                     'keff': 4.,
                     'length_dependent_energy': True,
-                    'stoichiometry': {'atp_c': -1./3./25., 'adp_c': 1./3./25.,
-                                      'pi_c': 1./3./25.}},
+                    'stoichiometry': {'atp_c': -1./3./25., 'h2o_c': -1./3./25.,
+                                      'adp_c': 1./3./25., 'pi_c': 1./3./25.,
+                                      'h_c': 1./3./25.}},
 
            'srp_yidC': {'enzymes': {'SRP-CPLX': {'length_dependent': True,
                                                  'fixed_keff': False},
@@ -69,8 +75,8 @@ pathway = {'sec': {'enzymes': {'SecB_tetra': {'length_dependent': True,
                                                  'fixed_keff': False}},
                         'keff': 20.,
                         'length_dependent_energy': False,
-                        'stoichiometry': {'gtp_c': -1., 'gdp_c': 1.,
-                                          'pi_c': 1.}},
+                        'stoichiometry': {'gtp_c': -1., 'h2o_c': -1.,
+                                          'gdp_c': 1., 'pi_c': 1., 'h_c': 1.}},
 
            'srp': {'enzymes': {'SRP-CPLX': {'length_dependent': True,
                                             'fixed_keff': False},
@@ -80,7 +86,8 @@ pathway = {'sec': {'enzymes': {'SecB_tetra': {'length_dependent': True,
                                             'fixed_keff': False}},
                    'keff': 20.,
                    'length_dependent_energy': False,
-                   'stoichiometry': {'gtp_c': -2., 'gdp_c': 2., 'pi_c': 2.}}
+                   'stoichiometry': {'gtp_c': -2., 'h2o_c': -2., 'gdp_c': 2.,
+                                     'pi_c': 2., 'h_c': 2.}}
            }
 abbreviation_to_pathway = {'s': 'sec_translocation',
                            't': ['tat_translocation', 'tat_translocation_alt'],
@@ -209,7 +216,6 @@ def add_lipoprotein_formation(model, compartment_dict,
 
         processed_id = 'protein_' + protein + '_lipoprotein_' + compartment
         preprocessed_id = 'protein_' + protein + '_' + compartment
-
 
         def add_lipoprotein_data_and_reaction(first_lipid, second_lipid):
 

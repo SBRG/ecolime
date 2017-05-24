@@ -1,7 +1,7 @@
 {
   "cys__L_c": "CysS_mono_mod_1:zn2",
   "leu__L_c": "LeuS_mono",
-  "lys__L_c": "LysI_RS_dim",
+  "lys__L_c": "generic_LYSINEaaRS",
   "asp__L_c": "Asp_RS_dim",
   "phe__L_c": "Phe_RS_tetra_mod_mg2",
   "his__L_c": "His_RS_dim_mod_4:mg2",
