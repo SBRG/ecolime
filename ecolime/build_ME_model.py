@@ -8,6 +8,7 @@
 # In[ ]:
 
 # python imports
+
 import re
 import json
 from os.path import join
@@ -25,7 +26,7 @@ from ecolime import (transcription, translation, flat_files, ecoli_k12,
 
 # COBRAme
 import cobrame
-from cobrame.util import building, mu
+from cobrame.util import building, mu, me_model_interface
 from cobrame.util.mass import dna_mw_no_ppi
 
 # ## Part 1: Create minimum solveable ME-model
@@ -48,7 +49,17 @@ def return_ME_model():
     # Define Models
     ijo_directory = join(flat_files.ecoli_files_dir, 'iJO1366.json')
     ijo = cobra.io.load_json_model(ijo_directory)
-    me = cobrame.MEModel('iLE1678-ME')
+    me = cobrame.MEModel('iJL1678b-ME')
+
+    # ME-models require special OptLang interface if cobrapy version >= 0.6.0
+    # If cannot import SymbolicParameter, assume using cobrapy
+    # versions <= 0.5.11
+    try:
+        from optlang.interface import SymbolicParameter
+    except:
+        pass
+    else:
+        me.solver = me_model_interface
 
     # "Translational capacity" of organism
     me.global_info['kt'] = 4.5  # (in h-1)scott 2010, RNA-to-protein curve fit
