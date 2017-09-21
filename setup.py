@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 
-setup(name='EcoliME',
+setup(name='ECOLIme',
       version='0.0.5',
       description='ME model data files specific to E. coli K-12 MG1655',
       author='Ali Ebrahim and Colton Lloyd',

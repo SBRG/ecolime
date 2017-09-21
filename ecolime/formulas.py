@@ -12,7 +12,6 @@ def get_remaining_complex_elements(model, complex):
     base_complex = components[0]
     elements = Counter()
 
-
     # If a the completely unmodified complex is present in the model
     # has a formula, initialize the elements dictionary with that
     if base_complex in mets and mets.get_by_id(base_complex).formula:

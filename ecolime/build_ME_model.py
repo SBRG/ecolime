@@ -837,12 +837,18 @@ def return_ME_model():
     # In[ ]:
 
     # Update a second time to incorporate all of the metabolite formulas corectly
-    me.update()
+    for r in me.reactions.query('formation_'):
+        r.update()
     formulas.add_remaining_complex_formulas(me)
     me.metabolites.get_by_id(
         'CPLX0-782_mod_1:2fe2s_mod_1:4fe4s').formula = 'C3164Fe6H5090N920O920S50'
     me.metabolites.get_by_id(
         'EG50003-MONOMER_mod_pan4p_mod_lipo').formula = 'C387H606N95O142PS4'
+    # Update reactions affected by formula update
+    for r in me.reactions.query('_mod_lipo'):
+        r.update()
+    for r in me.reactions.query('_mod_glycl'):
+        r.update()
 
     # In[ ]:
 
