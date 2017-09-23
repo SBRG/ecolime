@@ -92,11 +92,6 @@ def return_ME_model():
                                                         'Translation_initiation_factor_InfC',
                                                         'Translation_gtp_initiation_factor_InfB']
 
-    # Used to calculate translocation coupling constraints
-    me.global_info['translocation_multipliers'] = defaultdict(dict)
-    for enzyme, value in ecolime.translocation.multipliers.items():
-        me.global_info['translocation_multipliers'][enzyme] = value
-
     # Folding Properties
     me.global_info['temperature'] = 37
     me.global_info['propensity_scaling'] = .45

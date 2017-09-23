@@ -1,5 +1,7 @@
 from __future__ import print_function, absolute_import, division
 
+from collections import defaultdict
+
 from cobrame.core.ProcessData import PostTranslationData
 from cobrame.core.MEReactions import PostTranslationReaction
 
@@ -99,7 +101,7 @@ abbreviation_to_pathway = {'s': 'sec_translocation',
                            'r': 'srp_translocation'}
 
 # Some proteins require different numbers of a complex in order to be
-# translocated by a pathways
+# translocated by a pathway
 multipliers = {'YidC_MONOMER': {'b1855': 2., 'b3731': 2.},
                'TatE_MONOMER': {'b4072': 20.0, 'b1475': 5.166666666666667,
                                 'b1474': 5.166666666666667, 'b2817': 22.0,
@@ -120,6 +122,11 @@ multipliers = {'YidC_MONOMER': {'b1855': 2., 'b3731': 2.},
                                 'b0894': 26.0, 'b0123': 23.0, 'b2206': 27.0,
                                 'b2205': 20.0}}
 
+multipliers_protein_keys = defaultdict(dict)
+for enzyme, value in multipliers.items():
+    for bnum in value.keys():
+        multipliers_protein_keys['protein_' + bnum][enzyme] = value[bnum]
+
 mmol = 6.022e20  # number of molecules per mmol
 nm2_per_m2 = 1e18  # used to convert nm^2 to m^2
 
@@ -137,6 +144,9 @@ def add_translocation_pathways(model, pathways_df, membrane_constraints=False):
                                    model, processed_id, preprocessed_id)
         for pathway in pathways:
             data.translocation[pathway] = 1
+
+        data.translocation_multipliers = \
+            multipliers_protein_keys.get(preprocessed_id, {})
 
         # Add protein surface area constraint
         if membrane_constraints and compartment != 'Periplasm':
