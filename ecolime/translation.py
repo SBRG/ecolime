@@ -1,5 +1,4 @@
 from cobrame import SubreactionData, dogma, Complex
-from ecolime import ribosome
 
 # 1 machine + 1 atp + 1 aa + 1 h2o --> 1 machine-amp + 1 h + 1 ppi
 # 1 machine-amp + 1 free tRNA --> 1 machine + 1 amp + 1 charged tRNA
@@ -115,6 +114,10 @@ translation_stop_dict = {'UAG': 'PrfA_mono',
 
 # Dictionary of frame shift mutations
 frameshift_dict = {'b2891': '3033206:3034228,3034230:3034304'}
+
+peptide_processing_subreactions = {"peptide_deformylase_processing",
+                                   "peptide_chain_release",
+                                   "ribosome_recycler"}
 
 
 def add_translation_subreactions_to_model(me_model):

@@ -10,7 +10,6 @@ import cobra
 import pandas
 from six import iteritems
 
-from ecolime.ecoli_k12 import *
 from ecolime import corrections
 
 ecoli_files_dir = join(dirname(abspath(__file__)), 'building_data/')
@@ -355,7 +354,7 @@ def get_reaction_keffs(me, verbose=True):
             continue
         if isinstance(r, MetabolicReaction) and r.complex_data.id != "CPLX_dummy":
             met_rxn = r
-            key = met_rxn.id.replace("-","_DASH_").replace("__","_DASH_").replace(":", "_COLON_")
+            key = met_rxn.id.replace("-", "_DASH_").replace("__", "_DASH_").replace(":", "_COLON_")
             # specific patches for PGK, TPI ids
             key = key.replace('TPI_DASH_CPLX', 'TPI')
             key = key.replace('PGK_DASH_CPLX', 'PGK')

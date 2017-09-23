@@ -19,6 +19,7 @@ test_model = return_ME_model()
 save_full_me_model_json(test_model, 'test_json_dump.json')
 json_model = load_full_me_model_json('test_json_dump.json')
 
+
 def test_model_benchmark():
     benchmark_model = load_json_me(join(models_dir, 'iLE1678_benchmark.json'))
     difference = find_ME_model_difference(benchmark_model, test_model, 1e-6)
@@ -32,6 +33,7 @@ def test_full_json_dumping():
     print(difference)
     assert (len(difference) == 0)
 
+
 def test_mass_balance():
     not_mass_balanced = check_me_model_mass_balance(test_model)
     not_mass_balanced.pop('23bpg_generation_FWD_CPLX_dummy')
@@ -40,6 +42,7 @@ def test_mass_balance():
     not_mass_balanced.pop('tl_generation_FWD_CPLX_dummy')
     print(not_mass_balanced)
     assert (len(not_mass_balanced) == 0)
+
 
 def test_json_mass_balance():
     not_mass_balanced = check_me_model_mass_balance(json_model)

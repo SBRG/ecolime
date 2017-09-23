@@ -4,7 +4,7 @@ import cobrame
 from cobrame.util import massbalance
 
 
-def get_remaining_complex_elements(model, complex):
+def get_remaining_complex_elements(model, complex, modification_formulas):
 
     tmp_met = cobrame.Metabolite('tmp_met')
     mets = model.metabolites
@@ -38,16 +38,15 @@ def get_remaining_complex_elements(model, complex):
             new_elements['S'] += 1
             new_elements['H'] += 1
 
-        elif component in model.global_info['modification_formulas']:
-            formula = model.global_info['modification_formulas'][component]
+        elif component in modification_formulas:
+            formula = modification_formulas[component]
             tmp_met.formula = formula
             new_elements.update(tmp_met.elements)
 
         elif ':' in component:
             value, component = component.split(':')
-            if component in model.global_info['modification_formulas']:
-                formula = \
-                    model.global_info['modification_formulas'][component]['formula']
+            if component in modification_formulas:
+                formula = modification_formulas[component]['formula']
             elif component + '_c' in mets:
                 formula = mets.get_by_id(component + '_c').formula
             else:
@@ -69,7 +68,7 @@ def get_remaining_complex_elements(model, complex):
     return elements
 
 
-def add_remaining_complex_formulas(model):
+def add_remaining_complex_formulas(model, modification_formulas):
     """
         Add formula to complexes that are not formed from a complex formation
         reaction (ie. complexes involved in metabolic reactions)
@@ -91,10 +90,10 @@ def add_remaining_complex_formulas(model):
 
     # Get formulas only for complexes without complex formation reaction
     for c in complex_list:
-        element_dict[c] = get_remaining_complex_elements(model, c)
+        element_dict[c] = get_remaining_complex_elements(model, c,
+                                                         modification_formulas)
 
     # Adding elements for complexes dynamically can change function output
     # Update all of them after
     for c, elements in element_dict.items():
         massbalance.elements_to_formula(c, elements)
-

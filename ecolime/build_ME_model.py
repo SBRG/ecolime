@@ -21,7 +21,7 @@ import cobra
 
 # ECOLIme
 import ecolime
-from ecolime import (transcription, translation, flat_files, ecoli_k12,
+from ecolime import (transcription, translation, flat_files, generics,
                      formulas)
 
 # COBRAme
@@ -44,6 +44,7 @@ from cobrame.util.mass import dna_mw_no_ppi
 # processing types
 
 # In[ ]:
+
 
 def return_ME_model():
     # Define Models
@@ -81,17 +82,9 @@ def return_ME_model():
     me.global_info['m_tRNA'] = 25000. / 1000.  # in kDA
     me.global_info['f_tRNA'] = .12
 
-    me.global_info['RNA_polymerase'] = {'CPLX0-221', 'RNAPE-CPLX', 'CPLX0-222',
-                                        'RNAP32-CPLX', 'RNAP54-CPLX',
-                                        'RNAP70-CPLX', 'RNAPS-CPLX'}
-
     # Translation associated global information
     me.global_info["translation_terminators"] = translation.translation_stop_dict
     me.global_info["met_start_codons"] = {"AUG", "GUG", "UUG", "AUU", "CUG"}
-    me.global_info["peptide_processing_subreactions"] = {
-        "peptide_deformylase_processing": 1,
-        "peptide_chain_release": 1,
-        "ribosome_recycler": 1}
     me.global_info["translation_elongation_subreactions"] = [
         'FusA_mono_elongation', 'Tuf_gtp_regeneration']
     me.global_info['translation_start_subreactions'] = ['fmet_addition_at_START',
@@ -99,7 +92,7 @@ def return_ME_model():
                                                         'Translation_initiation_factor_InfC',
                                                         'Translation_gtp_initiation_factor_InfB']
 
-    # Used to calculate translation coupling constraints
+    # Used to calculate translocation coupling constraints
     me.global_info['translocation_multipliers'] = defaultdict(dict)
     for enzyme, value in ecolime.translocation.multipliers.items():
         me.global_info['translocation_multipliers'][enzyme] = value
@@ -110,12 +103,6 @@ def return_ME_model():
 
     # DNA Replication Parameters
     me.global_info['GC_fraction'] = 0.507896997096
-
-    # Used for mass balance checks
-    df = pandas.read_table(join(flat_files.ecoli_files_dir, 'modification.txt'),
-                           names=['mod', 'formula', 'na'])
-    df = df.drop('na', axis=1).set_index('mod').dropna(how='any')
-    me.global_info['modification_formulas'] = df.T.to_dict()
 
     # ### 2) Load metabolites and build Metabolic reactions
     # The below reads in:
@@ -362,7 +349,7 @@ def return_ME_model():
     DNA_replication.lower_bound = mu
     DNA_replication.upper_bound = mu
 
-    # **Note: From this point forward, executing every codeblock should result in a solveable ME-model**
+    # **Note**: From this point forward, executing every codeblock should result in a solveable ME-model
     #
     # ------
     #
@@ -376,7 +363,7 @@ def return_ME_model():
 
     # In[ ]:
 
-    for generic, components in ecoli_k12.generic_dict.items():
+    for generic, components in generics.generic_dict.items():
         cobrame.GenericData(generic, me, components).create_reactions()
 
     # ### 1) Add ribosome
@@ -390,13 +377,11 @@ def return_ME_model():
 
     # The tRNA charging reactions were automatically added when loading the genome from the genbank file. However, the charging reactions still need to be made aware of the tRNA synthetases which are responsible.
     #
-    # Uses **amino_acid_tRNA_synthetase.json**
+    # Uses **tRNA_charging.py**
 
     # In[ ]:
 
-    with open(join(flat_files.ecoli_files_dir, "amino_acid_tRNA_synthetase.json"),
-              "r") as infile:
-        aa_synthetase_dict = json.load(infile)
+    aa_synthetase_dict = ecolime.tRNA_charging.amino_acid_tRNA_synthetase
     for data in me.tRNA_data:
         data.synthetase = str(aa_synthetase_dict[data.amino_acid])
 
@@ -429,7 +414,7 @@ def return_ME_model():
 
     # In[ ]:
 
-    for met in me.global_info['RNA_polymerase']:
+    for met in transcription.RNA_polymerases:
         RNAP_obj = cobrame.RNAP(met)
         me.add_metabolites(RNAP_obj)
     transcription.add_RNA_polymerase_complexes(me, verbose=False)
@@ -438,21 +423,19 @@ def return_ME_model():
     sigma_to_RNAP_dict = transcription.sigma_factor_complex_to_rna_polymerase_dict
     for TU_id in TU_df.index:
         transcription_data = me.transcription_data.get_by_id(TU_id)
-        rho_dependent = TU_df.rho_dependent[TU_id]
         sigma = TU_df.sigma[TU_id]
         RNA_polymerase = sigma_to_RNAP_dict[sigma]
         transcription_data.RNA_polymerase = RNA_polymerase
-        transcription_data.rho_dependent = rho_dependent
 
     # #### Degradosome (both for RNA degradation and RNA splicing)
     #
-    # All new data contained in **ecolime/ecoli_k12.py**
+    # All new data contained in **transcription.py**
 
     # In[ ]:
 
     me.add_metabolites([cobrame.Complex('RNA_degradosome')])
     data = cobrame.ComplexData('RNA_degradosome', me)
-    for subunit, value in ecoli_k12.RNA_degradosome.items():
+    for subunit, value in transcription.RNA_degradosome.items():
         data.stoichiometry[subunit] = value
     data.create_complex_formation(verbose=False)
 
@@ -461,8 +444,7 @@ def return_ME_model():
     data.enzyme = 'RNA_degradosome'
 
     data = cobrame.ModificationData('RNA_degradation_atp_requirement', me)
-    # .25 water equivaltent for atp hydrolysis and 1 h20 equivalent for to
-    # restore OH group in nucleotide monophosphate during RNA hydrolysis
+    # .25 water equivaltent for atp hydrolysis per nucleotide
     data.stoichiometry = {'atp_c': -.25, 'h2o_c': -.25, 'adp_c': .25,
                           'pi_c': .25, 'h_c': .25}
 
@@ -553,9 +535,8 @@ def return_ME_model():
 
         # add organism specific subreactions associated with peptide processing
         global_info = me.global_info
-        for subrxn, value in global_info[
-            'peptide_processing_subreactions'].items():
-            data.subreactions[subrxn] = value
+        for subrxn in translation.peptide_processing_subreactions:
+            data.subreactions[subrxn] = 1
 
     # ### 2) Add transcription related subreactions
     # All new data from **ecolime/transcription.py**
@@ -570,15 +551,10 @@ def return_ME_model():
         subreaction_data.enzyme = enzymes
 
     for transcription_data in me.transcription_data:
-        if transcription_data.rho_dependent:
-            rho = 'dependent'
-        else:
-            rho = 'independent'
-        if transcription_data.codes_stable_rna:
-            stable = 'stable'
-        else:
-            stable = 'normal'
-
+        # Assume false if not in TU_df\n",
+        rho_dependent = TU_df.rho_dependent.get(transcription_data.id, False)
+        rho = 'dependent' if rho_dependent else 'independent'
+        stable = 'stable' if transcription_data.codes_stable_rna else 'normal'
         transcription_data.subreactions['Transcription_%s_rho_%s' % (stable,
                                                                      rho)] = 1
 
@@ -657,7 +633,7 @@ def return_ME_model():
         data.stoichiometry = {lipid: -1, 'g3p_c': 1}
         data.enzyme = ['Lgt_MONOMER', 'LspA_MONOMER']
         # The element contribution is based on the lipid involved in the
-        # modfication, so calculate based on the metabolite formula
+        # modification, so calculate based on the metabolite formula
         data._element_contribution = data.calculate_element_contribution()
 
     data = cobrame.ModificationData('mod2_pg160_p', me)
@@ -839,7 +815,15 @@ def return_ME_model():
     # Update a second time to incorporate all of the metabolite formulas corectly
     for r in me.reactions.query('formation_'):
         r.update()
-    formulas.add_remaining_complex_formulas(me)
+
+    # Update complex formulas
+    df = \
+        pandas.read_table(join(flat_files.ecoli_files_dir, 'modification.txt'),
+                          names=['mod', 'formula', 'na'])
+    df = df.drop('na', axis=1).set_index('mod').dropna(how='any')
+    modification_formulas = df.T.to_dict()
+    formulas.add_remaining_complex_formulas(me, modification_formulas)
+
     me.metabolites.get_by_id(
         'CPLX0-782_mod_1:2fe2s_mod_1:4fe4s').formula = 'C3164Fe6H5090N920O920S50'
     me.metabolites.get_by_id(

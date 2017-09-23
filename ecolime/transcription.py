@@ -3,7 +3,7 @@ from __future__ import division, absolute_import, print_function
 from six import iteritems
 
 from cobrame import ComplexData, ModificationData
-from ecolime import ecoli_k12
+from ecolime import generics
 
 transcription_subreactions = {
     'Transcription_normal_rho_independent':
@@ -38,36 +38,8 @@ transcription_subreactions = {
 }
 
 sigma_factor_complex_to_rna_polymerase_dict = {
-    'sigma_19': 'CPLX0-221',
-    # this is standard notation
-    'sigma_28': 'CPLX0-222',
-    # this is standard notation
-    'sigma_32': 'RNAP32-CPLX',
-    # this is standard notation
-    'sigma_54': 'RNAP54-CPLX',
-    # this is standard notation
-    'sigma_70': 'RNAP70-CPLX',
-    # this is standard notation
-    'sigma_24': 'RNAPE-CPLX',
-    # this is standard notation
-    'sigma_38': 'RNAPS-CPLX',
-    # this is standard notation
-    'RPOD-MONOMER': 'RNAP70-CPLX',
-    # this is the notation used in promoters.dat
-    'RPOH-MONOMER': 'RNAP32-CPLX',
-    # this is the notation used in promoters.dat
-    'RPOE-MONOMER': 'RNAPE-CPLX',
-    # this is the notation used in promoters.dat
-    'RPOS-MONOMER': 'RNAPS-CPLX',
-    # this is the notation used in promoters.dat
-    'RPON-MONOMER': 'RNAP54-CPLX',
-    # this is the notation used in promoters.dat
-    'EG11355-MONOMER': 'CPLX0-222',
-    # this is the notation used in promoters.dat
-    'PD00440': 'CPLX0-221',
-    # this is the notation used in promoters.dat
-    'RpoD_mono': 'RNAP70-CPLX',
     # this is notation used in Tu_from_ecocyc, protein_complexes (and below)
+    'RpoD_mono': 'RNAP70-CPLX',
     'RpoH_mono': 'RNAP32-CPLX',
     'RpoE_mono': 'RNAPE-CPLX',
     'RpoS_mono': 'RNAPS-CPLX',
@@ -90,6 +62,26 @@ rna_polymerase_sigma_factor_components = {
                     'polymerase': 'hRNAP_mod_1:zn2_mod_2:mg2'},
     'RNAPS-CPLX': {'sigma_factor': 'RpoS_mono',
                    'polymerase': 'hRNAP_mod_1:zn2_mod_2:mg2'}}
+
+RNA_polymerases = {'CPLX0-221', 'RNAPE-CPLX', 'CPLX0-222',
+                   'RNAP32-CPLX', 'RNAP54-CPLX',
+                   'RNAP70-CPLX', 'RNAPS-CPLX'}
+
+RNA_degradosome = {'Eno_dim_mod_4:mg2': 1, 'Pnp_trim': 1,
+                   'RNase_E_tetra_mod_2:zn2': 1, 'RhlB_dim': 1,
+                   'Orn_dim_mod_2:mg2': 1}
+
+excision_machinery = {
+    'rRNA_containing': ['RNase_E_tetra_mod_2:zn2', 'RNase_P_cplx_mod_2:mg2',
+                        'generic_RNase', 'RNase_m5', 'RNase_m16', 'RNase_m23',
+                        'RNase_III_dim_mod_2:mg2', 'RNase_G_dim',
+                        'RNase_T_dim_mod_4:mg2'],
+    'monocistronic': ['RNase_E_tetra_mod_2:zn2', 'RNase_P_cplx_mod_2:mg2',
+                      'generic_RNase'],
+    'polycistronic_wout_rRNA': ['RNase_E_tetra_mod_2:zn2',
+                                'RNase_P_cplx_mod_2:mg2', 'generic_RNase',
+                                'RNase_III_dim', 'RNase_G_dim',
+                                'RNase_T_dim_mod_4:mg2']}
 
 
 def add_RNA_polymerase_complexes(me_model, verbose=True):
@@ -117,7 +109,7 @@ def add_RNA_splicing(me_model):
         complex_data = ComplexData(excision_type + "_excision_machinery",
                                    me_model)
 
-        for machine in ecoli_k12.excision_machinery[excision_type]:
+        for machine in excision_machinery[excision_type]:
             complex_data.stoichiometry[machine] = 1
 
         complex_data.create_complex_formation()
