@@ -3,14 +3,6 @@ from cobrame import SubreactionData, dogma, Complex
 # 1 machine + 1 atp + 1 aa + 1 h2o --> 1 machine-amp + 1 h + 1 ppi
 # 1 machine-amp + 1 free tRNA --> 1 machine + 1 amp + 1 charged tRNA
 special_tRNA_subreactions = {
-    'fmet_addition_at_START': {
-        'enzymes': ['InfB_mono', 'Fmt_mono_mod_mg2_mod_k'],
-        #  iOL had h_c:1 for fmet addition but this is not
-        #  mass balanced
-        'stoich': {'10fthf_c': -1, 'thf_c': 1,  # 'h_c': 1,
-                   'generic_tRNA_START_met__L_c': -1},
-        'element_contribution': {'C': 1, 'O': 1}},
-
     'sec_addition_at_UGA': {
         'enzymes': ['SelA_deca_mod_10:pydx5p',
                     'SelB_mono'],  # Selenocysteine loaders
@@ -33,7 +25,18 @@ initiation_subreactions = {'Translation_initiation_factor_InfA':
                                            'h2o_c': -1,
                                            'h_c': 1,
                                            'pi_c': 1,
-                                           'gdp_c': 1}}
+                                           'gdp_c': 1}},
+
+                           'fmet_addition_at_START': {
+                               'enzymes': ['InfB_mono',
+                                           'Fmt_mono_mod_mg2_mod_k'],
+                               #  iOL had h_c:1 for fmet addition but this
+                               # is not
+                               #  mass balanced
+                               'stoich': {'10fthf_c': -1, 'thf_c': 1,
+                                          # 'h_c': 1,
+                                          'generic_tRNA_START_met__L_c': -1},
+                               'element_contribution': {'C': 1, 'O': 1}}
                            }
 
 elongation_subreactions = {'FusA_mono_elongation': {'enzymes': ['FusA_mono'],
@@ -111,6 +114,8 @@ termination_subreactions = {'PrfA_mono_mediated_termination':
 translation_stop_dict = {'UAG': 'PrfA_mono',
                          'UGA': 'PrfB_mono',
                          'UAA': 'generic_RF'}
+
+translation_start_codons = {"AUG", "GUG", "UUG", "AUU", "CUG"}
 
 # Dictionary of frame shift mutations
 frameshift_dict = {'b2891': '3033206:3034228,3034230:3034304'}

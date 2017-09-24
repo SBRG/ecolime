@@ -71,7 +71,7 @@ def return_ME_model():
     me.global_info['m_rr'] = 1700.  # in kDa
 
     # Average molecular mass of an amino acid
-    me.global_info['m_aa'] = 109. / 1000.  # 109. / 1000. # in kDa
+    me.global_info['m_aa'] = 109. / 1000.  # in kDa
 
     # Proportion of RNA that is rRNA
     me.global_info['f_rRNA'] = .86
@@ -81,16 +81,6 @@ def return_ME_model():
     # tRNA associated global information
     me.global_info['m_tRNA'] = 25000. / 1000.  # in kDA
     me.global_info['f_tRNA'] = .12
-
-    # Translation associated global information
-    me.global_info["translation_terminators"] = translation.translation_stop_dict
-    me.global_info["met_start_codons"] = {"AUG", "GUG", "UUG", "AUU", "CUG"}
-    me.global_info["translation_elongation_subreactions"] = [
-        'FusA_mono_elongation', 'Tuf_gtp_regeneration']
-    me.global_info['translation_start_subreactions'] = ['fmet_addition_at_START',
-                                                        'Translation_initiation_factor_InfA',
-                                                        'Translation_initiation_factor_InfC',
-                                                        'Translation_gtp_initiation_factor_InfB']
 
     # Folding Properties
     me.global_info['temperature'] = 37
@@ -388,17 +378,15 @@ def return_ME_model():
 
     ecolime.translation.add_charged_tRNA_subreactions(me)
     for data in me.translation_data:
-        for subreaction in data.translation_start_subreactions:
-            data.subreactions[subreaction] = 1
+        data.add_initiation_subreactions(
+            start_codons=translation.translation_start_codons,
+            start_subreactions=set(translation.initiation_subreactions.keys()))
 
-        for subreaction, value in data.elongation_subreactions.items():
-            data.subreactions[subreaction] = value
+        data.add_elongation_subreactions(elongation_subreactions=set(
+            translation.elongation_subreactions.keys()))
 
-        for subreaction in data.translation_termination_subreactions:
-            data.subreactions[subreaction] = 1
-
-        for subreaction in data.translation_termination_subreactions:
-            data.subreactions[subreaction] = 1
+        data.add_termination_subreactions(
+            translation_terminator_dict=translation.translation_stop_dict)
 
     # ### 3) Add Transcription Metacomplexes
     # #### RNA Polymerase
@@ -506,10 +494,10 @@ def return_ME_model():
     # add translation subreaction data to reactions
     methionine_cleaved = translation.methionine_cleaved
     folding_dict = translation.folding_dict
-    terminator_dict = translation.translation_stop_dict
 
     for data in me.translation_data:
-        data.term_enzyme = terminator_dict.get(data.last_codon)
+        data.term_enzyme = \
+            translation.translation_stop_dict.get(data.last_codon)
 
         locus_id = data.id
         if locus_id in methionine_cleaved:
@@ -521,12 +509,13 @@ def return_ME_model():
 
         # This block was ran above, but should be ran again to
         # incorporate any subreactions not added previously
-        for subreaction in data.translation_start_subreactions:
-            data.subreactions[subreaction] = 1
-        for subreaction, value in data.elongation_subreactions.items():
-            data.subreactions[subreaction] = value
-        for subreaction in data.translation_termination_subreactions:
-            data.subreactions[subreaction] = 1
+        data.add_initiation_subreactions(
+            start_codons=translation.translation_start_codons,
+            start_subreactions=set(translation.initiation_subreactions.keys()))
+        data.add_elongation_subreactions(elongation_subreactions=set(
+            translation.elongation_subreactions.keys()))
+        data.add_termination_subreactions(
+            translation_terminator_dict=translation.translation_stop_dict)
 
         # add organism specific subreactions associated with peptide processing
         global_info = me.global_info
