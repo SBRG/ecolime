@@ -2,8 +2,7 @@ from __future__ import print_function, absolute_import, division
 
 from six import iteritems
 
-from cobrame import ComplexData, ModificationData, SubreactionData
-from cobrame.util.building import add_modification_data
+from cobrame import ComplexData, SubreactionData
 from ecolime.corrections import correct_rRNA_modifications
 
 
@@ -120,7 +119,7 @@ def add_ribosome(me_model, verbose=True):
 
     rRNA_modifications = correct_rRNA_modifications(rrna_modifications)
     for mod, components in iteritems(rRNA_modifications):
-        rRNA_mod = ModificationData(mod, me_model)
+        rRNA_mod = SubreactionData(mod, me_model)
         rRNA_mod.enzyme = components['machine']
         rRNA_mod.stoichiometry = components['metabolites']
         rRNA_mod.keff = 65.  # iOL uses 65. for all RNA mods
@@ -134,7 +133,7 @@ def add_ribosome(me_model, verbose=True):
                 if stoich < 0:
                     rRNA_mod.enzyme += [carrier]
                 rRNA_mod.stoichiometry[carrier] = stoich
-        ribosome_complex.modifications[rRNA_mod.id] = 1
+        ribosome_complex.subreactions[rRNA_mod.id] = 1
 
     subreaction_dict = ribosome_subreactions
     for subreaction_id in subreaction_dict:
@@ -152,7 +151,7 @@ def add_ribosome(me_model, verbose=True):
         ribosome_complex.subreactions[subreaction.id] = num_subreactions
 
     # Ribosomes in iOL1650 contain 171 mg2 ions
-    ribosome_complex.modifications['mod_mg2_c'] = 171.
+    ribosome_complex.subreactions['mod_mg2_c'] = 171.
     ribosome_assembly = ribosome_stoich
     for process in ribosome_assembly:
         for protein, amount in iteritems(ribosome_assembly[process]['stoich']):

@@ -232,8 +232,8 @@ def add_lipoprotein_formation(model, compartment_dict,
             # Add PostTranslation Data, modifications and surface area
             data = PostTranslationData(reaction_prefix + '_' + second_lipid,
                                        model, processed_id, preprocessed_id)
-            data.modifications['mod_' + first_lipid] = 1
-            data.modifications['mod2_' + second_lipid + '_p'] = 1
+            data.subreactions['mod_' + first_lipid] = 1
+            data.subreactions['mod2_' + second_lipid + '_p'] = 1
 
             if membrane_constraints:
                 thickness_dict = model.global_info['membrane_thickness']

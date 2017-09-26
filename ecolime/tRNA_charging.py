@@ -324,7 +324,7 @@ def add_tRNA_modification_procedures(model):
     modifications = correct_tRNA_modifications(modifications)
 
     for mod, components in iteritems(modifications):
-        tRNA_mod = cobrame.ModificationData(mod, model)
+        tRNA_mod = cobrame.SubreactionData(mod, model)
         tRNA_mod.enzyme = components['machines']
         tRNA_mod.stoichiometry = components['metabolites']
         tRNA_mod.keff = 65.  # iOL uses 65 for all tRNA mods

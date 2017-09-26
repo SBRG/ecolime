@@ -2,7 +2,7 @@ from __future__ import division, absolute_import, print_function
 
 from six import iteritems
 
-from cobrame import ComplexData, ModificationData
+from cobrame import ComplexData, SubreactionData
 from ecolime import generics
 
 transcription_subreactions = {
@@ -113,7 +113,7 @@ def add_RNA_splicing(me_model):
             complex_data.stoichiometry[machine] = 1
 
         complex_data.create_complex_formation()
-        modification = ModificationData(excision_type + "_excision", me_model)
+        modification = SubreactionData(excision_type + "_excision", me_model)
         modification.enzyme = complex_data.id
 
     # Loop through transcription reactions and add appropriate splicing
@@ -127,15 +127,15 @@ def add_RNA_splicing(me_model):
         n_tRNA = RNA_types.count("tRNA")
 
         if "rRNA" in set(RNA_types):
-            t.modifications["rRNA_containing_excision"] = n_cuts
+            t.subreactions["rRNA_containing_excision"] = n_cuts
         elif n_tRNA == 1:
-            t.modifications["monocistronic_excision"] = n_cuts
+            t.subreactions["monocistronic_excision"] = n_cuts
         elif n_tRNA > 1:
-            t.modifications["polycistronic_wout_rRNA_excision"] = n_cuts
+            t.subreactions["polycistronic_wout_rRNA_excision"] = n_cuts
         else:  # only applies to rnpB
-            t.modifications["monocistronic_excision"] = n_cuts
+            t.subreactions["monocistronic_excision"] = n_cuts
 
         # The non functional RNA segments need degraded back to nucleotides
         # TODO check if RNA_degradation requirement is per nucleotide
-        t.modifications["RNA_degradation_machine"] = n_cuts
-        t.modifications["RNA_degradation_atp_requirement"] = n_excised
+        t.subreactions["RNA_degradation_machine"] = n_cuts
+        t.subreactions["RNA_degradation_atp_requirement"] = n_excised

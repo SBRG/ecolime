@@ -181,7 +181,7 @@ def return_ME_model():
 
     # remove modifications. they will be added back in later
     for data in me.complex_data:
-        data.modifications = {}
+        data.subreactions = {}
 
     # add formation reactions for each of the ComplexDatas
     for cplx_data in me.complex_data:
@@ -423,10 +423,10 @@ def return_ME_model():
     data.create_complex_formation(verbose=False)
 
     # Used for RNA splicing
-    data = cobrame.ModificationData('RNA_degradation_machine', me)
+    data = cobrame.SubreactionData('RNA_degradation_machine', me)
     data.enzyme = 'RNA_degradosome'
 
-    data = cobrame.ModificationData('RNA_degradation_atp_requirement', me)
+    data = cobrame.SubreactionData('RNA_degradation_atp_requirement', me)
     # .25 water equivaltent for atp hydrolysis per nucleotide
     data.stoichiometry = {'atp_c': -.25, 'h2o_c': -.25, 'adp_c': .25,
                           'pi_c': .25, 'h_c': .25}
@@ -448,9 +448,9 @@ def return_ME_model():
         modifications = {}
         for mod, value in info['modifications'].items():
             # stoichiometry of modification determined in
-            # modification_data.stoichiometry
+            # subreaction_data.stoichiometry
             modifications['mod_' + mod] = abs(value)
-        me.complex_data.get_by_id(complex_id).modifications = modifications
+        me.complex_data.get_by_id(complex_id).subreactions = modifications
 
     # Adds modification data for more complicated enzyme modifications
     # (ie, iron sulfur cluster modification)
@@ -479,7 +479,7 @@ def return_ME_model():
     tRNA_modifications = flat_files.get_tRNA_modification_targets()
     for tRNA in tRNA_modifications:
         for data in me.tRNA_data.query(tRNA):
-            data.modifications = tRNA_modifications[tRNA]
+            data.subreactions = tRNA_modifications[tRNA]
 
     # ---
     # ## Part 4: Add remaining subreactions
@@ -518,7 +518,6 @@ def return_ME_model():
             translation_terminator_dict=translation.translation_stop_dict)
 
         # add organism specific subreactions associated with peptide processing
-        global_info = me.global_info
         for subrxn in translation.peptide_processing_subreactions:
             data.subreactions[subrxn] = 1
 
@@ -606,26 +605,26 @@ def return_ME_model():
             'Protein').Protein_compartment.to_dict().items():
         compartment_dict[prot.split('(')[0]] = compartment
 
-    # #### Add lipid modification ModificationData
+    # #### Add lipid modification SubreactionData
 
     # In[ ]:
 
     lipid_modifications = ecolime.translocation.lipid_modifications
 
     for lipid in lipid_modifications:
-        data = cobrame.ModificationData('mod_' + lipid, me)
+        data = cobrame.SubreactionData('mod_' + lipid, me)
         data.stoichiometry = {lipid: -1, 'g3p_c': 1}
         data.enzyme = ['Lgt_MONOMER', 'LspA_MONOMER']
         # The element contribution is based on the lipid involved in the
         # modification, so calculate based on the metabolite formula
         data._element_contribution = data.calculate_element_contribution()
 
-    data = cobrame.ModificationData('mod2_pg160_p', me)
+    data = cobrame.SubreactionData('mod2_pg160_p', me)
     data.stoichiometry = {'pg160_p': -1, '2agpg160_p': 1}
     data.enzyme = 'EG10168-MONOMER'
     data._element_contribution = data.calculate_element_contribution()
 
-    data = cobrame.ModificationData('mod2_pe160_p', me)
+    data = cobrame.SubreactionData('mod2_pe160_p', me)
     data.stoichiometry = {'pe160_p': -1, '2agpe160_p': 1}
     data.enzyme = 'EG10168-MONOMER'
     data._element_contribution = data.calculate_element_contribution()
