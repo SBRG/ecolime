@@ -1,12 +1,16 @@
 import math
+
+import numpy as np
 from scipy.optimize import leastsq
+
 from cobrame import mu
 from cobrame.util.mass import dna_mw_no_ppi
 
 # Experimental Data
 gr_data_doublings_per_hour = [0, 0.6, 1.0, 1.5, 2.0, 2.5]
 gr_data = [m * math.log(2) for m in gr_data_doublings_per_hour]
-#first point is mass 1 genome in 0.4 um^3 at density
+
+# First point is mass 1 genome in 0.4 um^3 at density
 percent_dna_data = [0.0592, 0.0512, 0.0330, 0.0252, 0.0222, 0.0208]
 
 DNA_polymerase_stoichiometry = {
@@ -34,38 +38,39 @@ DNA_polymerase_stoichiometry = {
 
 
 def percent_dna_template_function(params, gr):
-    [g_p_gDW_0, g_per_gDW_inf, b, d] = params
-    c = g_per_gDW_inf
-    a = g_p_gDW_0 - g_per_gDW_inf
-    g_p_gDW = (-a * gr ** d) / (b + gr ** d) + a + c
-    return g_p_gDW
+    [g_p_gdw_0, g_per_gdw_inf, b, d] = params
+    c = g_per_gdw_inf
+    a = g_p_gdw_0 - g_per_gdw_inf
+    g_p_gdw = (-a * gr ** d) / (b + gr ** d) + a + c
+    return g_p_gdw
+
+
+def _minimization_function(params, gr, percent_dna):
+    return percent_dna_template_function(params, gr) - percent_dna
 
 
 def optimize_dna_function(gr, percent_dna):
-    params = [0.9, 0.3, 0.2, 1]
-
-    def minimization_function(params, gr, percent_dna):
-        return percent_dna_template_function(params, gr) - percent_dna
-    a = leastsq(minimization_function, params, args=(gr, percent_dna))
+    params = np.array([0.9, 0.3, 0.2, 1])
+    a = leastsq(_minimization_function, params, args=(gr, percent_dna))
     return a[0]
 
 
-def return_gr_dependent_dna_demand(GC_fraction):
+def return_gr_dependent_dna_demand(gc_fraction):
     fit_params = optimize_dna_function(gr_data, percent_dna_data)
     dna_g_per_g = percent_dna_template_function(fit_params, mu)
 
     # average dinucleotide molecular weight
     dna_mw = dna_mw_no_ppi
-    dNTP_mw = (GC_fraction * (dna_mw['dctp'] + dna_mw['dgtp']) +
-               (1 - GC_fraction) * (dna_mw['datp'] + dna_mw['dttp'])) / 2
+    dntp_mw = (gc_fraction * (dna_mw['dctp'] + dna_mw['dgtp']) +
+               (1 - gc_fraction) * (dna_mw['datp'] + dna_mw['dttp'])) / 2
 
-    mmol_dNTPs_per_gram_dry_weight = dna_g_per_g / dNTP_mw * 1000
+    mmol_dntps_per_gram_dry_weight = dna_g_per_g / dntp_mw * 1000
 
     dna_demand_stoich = {
-        'datp_c': -mmol_dNTPs_per_gram_dry_weight * ((1 - GC_fraction) / 2),
-        'dctp_c': -mmol_dNTPs_per_gram_dry_weight * (GC_fraction / 2),
-        'dgtp_c': -mmol_dNTPs_per_gram_dry_weight * (GC_fraction / 2),
-        'dttp_c': -mmol_dNTPs_per_gram_dry_weight * ((1 - GC_fraction) / 2),
-        'ppi_c': mmol_dNTPs_per_gram_dry_weight}
+        'datp_c': -mmol_dntps_per_gram_dry_weight * ((1 - gc_fraction) / 2),
+        'dctp_c': -mmol_dntps_per_gram_dry_weight * (gc_fraction / 2),
+        'dgtp_c': -mmol_dntps_per_gram_dry_weight * (gc_fraction / 2),
+        'dttp_c': -mmol_dntps_per_gram_dry_weight * ((1 - gc_fraction) / 2),
+        'ppi_c': mmol_dntps_per_gram_dry_weight}
 
     return dna_demand_stoich

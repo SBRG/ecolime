@@ -13,7 +13,7 @@ def get_reaction_stoich_dict(reaction, tol):
 
         if abs(coefficient) > tol:
             stoich[metabolite.id] = coefficient
-            
+
     return stoich
 
 
@@ -44,7 +44,7 @@ class StoichiometryChanges(object):
         return changed_set
 
 
-def compare_ME_reaction(old_reaction, new_reaction, output_dict, tol):
+def compare_me_reaction(old_reaction, new_reaction, output_dict, tol):
     stoich1 = get_reaction_stoich_dict(old_reaction, tol)
     stoich2 = get_reaction_stoich_dict(new_reaction, tol)
 
@@ -65,7 +65,7 @@ def compare_ME_reaction(old_reaction, new_reaction, output_dict, tol):
                 output_dict[new_reaction.id].append(message)
 
 
-def find_ME_model_difference(old_model, new_model, tol):
+def find_me_model_difference(old_model, new_model, tol):
     reaction_list = []
     output_dict = defaultdict(list)
     for old_reaction in old_model.reactions:
@@ -85,10 +85,11 @@ def find_ME_model_difference(old_model, new_model, tol):
                 ['Reaction upper bound changed ({}->{})'.format(
                     old_reaction.upper_bound, new_reaction.upper_bound)]
 
-        compare_ME_reaction(old_reaction, new_reaction, output_dict, tol)
+        compare_me_reaction(old_reaction, new_reaction, output_dict, tol)
         reaction_list.append(old_reaction.id)
 
     for new_reaction in new_model.reactions:
         if new_reaction.id not in reaction_list:
             output_dict[new_reaction.id] = ['Reaction not in old model']
     return output_dict
+

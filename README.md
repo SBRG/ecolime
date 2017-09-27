@@ -15,7 +15,7 @@ publication.
 
 1. clone the repository
 2. run ```python setup.py develop --user```
-3. Run build_ME_model.py or build_ME_model.ipynb to construct and save *i*LE1678-ME
+3. Run build_me_model.py or build_me_model.ipynb to construct and save *i*LE1678-ME
 4. The saved model can be solved using solve_demo.ipynb
 
 

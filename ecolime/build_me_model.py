@@ -10,7 +10,6 @@
 # python imports
 
 import re
-import json
 from os.path import join
 from collections import defaultdict
 import pickle
@@ -46,7 +45,7 @@ from cobrame.util.mass import dna_mw_no_ppi
 # In[ ]:
 
 
-def return_ME_model():
+def return_me_model():
     # Define Models
     ijo_directory = join(flat_files.ecoli_files_dir, 'iJO1366.json')
     ijo = cobra.io.load_json_model(ijo_directory)
@@ -109,7 +108,7 @@ def return_ME_model():
                                          'm_to_me_mets.csv', 'reactions.txt',
                                          'reaction_matrix.txt',
                                          'protein_complexes.txt',
-                                         defer_to_rxn_matrix=['GLUTRR', 'PAPSR2'])
+                                         defer_to_rxn_matrix={'GLUTRR', 'PAPSR2'})
     m_model.reactions.EX_glc_e.id = 'EX_glc__D_e'
     m_model.repair()
     # some of the "metabolites" in iJO1366 "M" model are actually complexes. We pass those in
@@ -132,7 +131,7 @@ def return_ME_model():
         'RNase_m5', 'RNase_m16', 'RNase_m23']  # RNAses are gaps in model
 
     for met_id in exchange_list:
-        r = cobra.Reaction("EX_" + met_id)
+        r = cobrame.MEReaction("EX_" + met_id)
         me.add_reaction(r)
         r.reaction = met_id + " <=> "
 
@@ -150,13 +149,13 @@ def return_ME_model():
     # In[ ]:
 
     gb_filename = join(flat_files.ecoli_files_dir, 'NC_000913.2.gb')
-    TU_df = pandas.read_csv(
+    tu_df = pandas.read_csv(
         join(flat_files.ecoli_files_dir, 'TUs_from_ecocyc.txt'), delimiter="\t",
         index_col=0)
 
-    building.build_reactions_from_genbank(me, gb_filename, TU_df, verbose=False,
+    building.build_reactions_from_genbank(me, gb_filename, tu_df, verbose=False,
                                           frameshift_dict=translation.frameshift_dict,
-                                          tRNA_to_codon=translation.tRNA_to_codon)
+                                          trna_to_codon=translation.trna_to_codon)
 
     # ### 4) Add in complex Formation without modifications (for now)
     #
@@ -315,24 +314,24 @@ def return_ME_model():
 
     # In[ ]:
 
-    dna_demand_stoich = ecolime.DNA_replication.return_gr_dependent_dna_demand(
+    dna_demand_stoich = ecolime.dna_replication.return_gr_dependent_dna_demand(
         me.global_info['GC_fraction'])
 
-    DNA_replication = cobrame.SummaryVariable("DNA_replication")
-    me.add_reaction(DNA_replication)
-    DNA_replication.add_metabolites(dna_demand_stoich)
-    DNA_biomass = cobrame.Constraint("DNA_biomass")
-    DNA_biomass.elements = {e: abs(v) for e, v in
-                            DNA_replication.check_mass_balance().items()}
+    dna_replication = cobrame.SummaryVariable("DNA_replication")
+    me.add_reaction(dna_replication)
+    dna_replication.add_metabolites(dna_demand_stoich)
+    dna_biomass = cobrame.Constraint("DNA_biomass")
+    dna_biomass.elements = {e: abs(v) for e, v in
+                            dna_replication.check_mass_balance().items()}
 
     dna_mw = 0
     for met, value in me.reactions.DNA_replication.metabolites.items():
         if met.id != 'ppi_c':
             dna_mw -= value * dna_mw_no_ppi[met.id.replace('_c', '')] / 1000.
 
-    DNA_replication.add_metabolites({DNA_biomass: dna_mw})
-    DNA_replication.lower_bound = mu
-    DNA_replication.upper_bound = mu
+    dna_replication.add_metabolites({dna_biomass: dna_mw})
+    dna_replication.lower_bound = mu
+    dna_replication.upper_bound = mu
 
     # **Note**: From this point forward, executing every codeblock should result in a solveable ME-model
     #
@@ -362,11 +361,11 @@ def return_ME_model():
 
     # The tRNA charging reactions were automatically added when loading the genome from the genbank file. However, the charging reactions still need to be made aware of the tRNA synthetases which are responsible.
     #
-    # Uses **tRNA_charging.py**
+    # Uses **trna_charging.py**
 
     # In[ ]:
 
-    aa_synthetase_dict = ecolime.tRNA_charging.amino_acid_tRNA_synthetase
+    aa_synthetase_dict = ecolime.trna_charging.amino_acid_trna_synthetase
     for data in me.tRNA_data:
         data.synthetase = str(aa_synthetase_dict[data.amino_acid])
 
@@ -376,7 +375,7 @@ def return_ME_model():
 
     # In[ ]:
 
-    ecolime.translation.add_charged_tRNA_subreactions(me)
+    ecolime.translation.add_charged_trna_subreactions(me)
     for data in me.translation_data:
         data.add_initiation_subreactions(
             start_codons=translation.translation_start_codons,
@@ -393,22 +392,22 @@ def return_ME_model():
     #
     # Data for RNA_polymerase composition fround in **ecolime/transcription**
     #
-    # Uses *TU_df* from **TUs_from_ecocyc.txt**, above
+    # Uses *tu_df* from **TUs_from_ecocyc.txt**, above
 
     # In[ ]:
 
-    for met in transcription.RNA_polymerases:
-        RNAP_obj = cobrame.RNAP(met)
-        me.add_metabolites(RNAP_obj)
-    transcription.add_RNA_polymerase_complexes(me, verbose=False)
+    for met in transcription.rna_polymerases:
+        rnap_obj = cobrame.RNAP(met)
+        me.add_metabolites(rnap_obj)
+    transcription.add_rna_polymerase_complexes(me, verbose=False)
 
     # associate the correct RNA_polymerase and factors to TUs
-    sigma_to_RNAP_dict = transcription.sigma_factor_complex_to_rna_polymerase_dict
-    for TU_id in TU_df.index:
-        transcription_data = me.transcription_data.get_by_id(TU_id)
-        sigma = TU_df.sigma[TU_id]
-        RNA_polymerase = sigma_to_RNAP_dict[sigma]
-        transcription_data.RNA_polymerase = RNA_polymerase
+    sigma_to_rnap_dict = transcription.sigma_factor_complex_to_rna_polymerase_dict
+    for tu_id in tu_df.index:
+        transcription_data = me.transcription_data.get_by_id(tu_id)
+        sigma = tu_df.sigma[tu_id]
+        rna_polymerase = sigma_to_rnap_dict[sigma]
+        transcription_data.RNA_polymerase = rna_polymerase
 
     # #### Degradosome (both for RNA degradation and RNA splicing)
     #
@@ -418,7 +417,7 @@ def return_ME_model():
 
     me.add_metabolites([cobrame.Complex('RNA_degradosome')])
     data = cobrame.ComplexData('RNA_degradosome', me)
-    for subunit, value in transcription.RNA_degradosome.items():
+    for subunit, value in transcription.rna_degradosome.items():
         data.stoichiometry[subunit] = value
     data.create_complex_formation(verbose=False)
 
@@ -431,7 +430,7 @@ def return_ME_model():
     data.stoichiometry = {'atp_c': -.25, 'h2o_c': -.25, 'adp_c': .25,
                           'pi_c': .25, 'h_c': .25}
 
-    transcription.add_RNA_splicing(me)
+    transcription.add_rna_splicing(me)
 
     # ------
     # ## Part 3: Add remaining modifications
@@ -466,20 +465,20 @@ def return_ME_model():
 
     # ### 2) Add tRNA mods and asocciate them with tRNA charging reactions
     # New data from:
-    # 1. **ecolime/tRNA_charging.py** (read via *add_tRNA_modification_procedures()*)
+    # 1. **ecolime/trna_charging.py** (read via *add_trna_modification_procedures()*)
     # 2. **post_transcriptional_modification_of_tRNA.txt** (modification types per tRNA)
     #
 
     # In[ ]:
 
     # Add tRNA modifications to ME-model
-    ecolime.tRNA_charging.add_tRNA_modification_procedures(me)
+    ecolime.trna_charging.add_trna_modification_procedures(me)
 
-    # tRNA_modifications = {tRNA_id: {modifications: count}}
-    tRNA_modifications = flat_files.get_tRNA_modification_targets()
-    for tRNA in tRNA_modifications:
-        for data in me.tRNA_data.query(tRNA):
-            data.subreactions = tRNA_modifications[tRNA]
+    # trna_modifications = {tRNA_id: {modifications: count}}
+    trna_modifications = flat_files.get_trna_modification_targets()
+    for trna in trna_modifications:
+        for data in me.tRNA_data.query(trna):
+            data.subreactions = trna_modifications[trna]
 
     # ---
     # ## Part 4: Add remaining subreactions
@@ -534,8 +533,8 @@ def return_ME_model():
         subreaction_data.enzyme = enzymes
 
     for transcription_data in me.transcription_data:
-        # Assume false if not in TU_df\n",
-        rho_dependent = TU_df.rho_dependent.get(transcription_data.id, False)
+        # Assume false if not in tu_df\n",
+        rho_dependent = tu_df.rho_dependent.get(transcription_data.id, False)
         rho = 'dependent' if rho_dependent else 'independent'
         stable = 'stable' if transcription_data.codes_stable_rna else 'normal'
         transcription_data.subreactions['Transcription_%s_rho_%s' % (stable,
@@ -827,6 +826,6 @@ def return_ME_model():
 
 if __name__ == '__main__':
 
-    me = return_ME_model()
+    me = return_me_model()
     with open("./me_models/iLE1678.pickle", "wb") as outfile:
         pickle.dump(me, outfile)

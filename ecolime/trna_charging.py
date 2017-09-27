@@ -3,9 +3,9 @@ from __future__ import print_function, absolute_import, division
 from six import iteritems
 
 import cobrame
-from ecolime.corrections import correct_tRNA_modifications
+from ecolime.corrections import correct_trna_modifications
 
-amino_acid_tRNA_synthetase = {
+amino_acid_trna_synthetase = {
   "cys__L_c": "CysS_mono_mod_1:zn2",
   "leu__L_c": "LeuS_mono",
   "lys__L_c": "generic_LYSINEaaRS",
@@ -104,7 +104,8 @@ trna_modification = {'D_at_20A': {'machines': ['generic_Dus'],
                      's4U_at_8': {'machines': ['ThiI_mono'],
                                   'carriers': {'trdrd_c': -1,
                                                'trdox_c': 1,
-                                               'IscS_mod_2:pydx5p_mod_1:SH': -1,
+                                               'IscS_mod_2:pydx5p_mod_1:SH':
+                                                   -1,
                                                'IscS_mod_2:pydx5p': 1},
                                   'metabolites': {'atp_c': -1,
                                                   'amp_c': 1,
@@ -125,7 +126,8 @@ trna_modification = {'D_at_20A': {'machines': ['generic_Dus'],
                      's2C_at_32': {'machines': ['YdaO_mono'],
                                    'carriers': {'trdrd_c': -1,
                                                 'trdox_c': 1,
-                                                'IscS_mod_2:pydx5p_mod_1:SH': -1,
+                                                'IscS_mod_2:pydx5p_mod_1:SH':
+                                                    -1,
                                                 'IscS_mod_2:pydx5p': 1},
                                    'metabolites': {'atp_c': -1,
                                                    'amp_c': 1,
@@ -172,11 +174,11 @@ trna_modification = {'D_at_20A': {'machines': ['generic_Dus'],
                      # YhhP, YheLMN, YccK involved in sulfur transferase
                      # activity. TrmU catalyzes the addition of sulfur to
                      # uridine
-                     'mnm5s2U_at_34': {'machines':
-                                           ['TrmU_mono', 'YhhP_mono',
-                                            'YheLMN_cplx', 'YccK_mono',
-                                            'MnmEG_cplx_mod_fad_mod_2:k',
-                                            'MnmC_mono_mod_fad'],
+                     'mnm5s2U_at_34': {'machines': [
+                                           'TrmU_mono', 'YhhP_mono',
+                                           'YheLMN_cplx', 'YccK_mono',
+                                           'MnmEG_cplx_mod_fad_mod_2:k',
+                                           'MnmC_mono_mod_fad'],
                                        'carriers': {
                                            'IscS_mod_2:pydx5p_mod_1:SH': -1,
                                            'trdrd_c': -1,
@@ -318,24 +320,24 @@ modification_info = {'D': {'elements': {'H': 2}, 'charge': 0},
                      }
 
 
-def add_tRNA_modification_procedures(model):
+def add_trna_modification_procedures(model):
 
     modifications = trna_modification.copy()
-    modifications = correct_tRNA_modifications(modifications)
+    modifications = correct_trna_modifications(modifications)
 
     for mod, components in iteritems(modifications):
-        tRNA_mod = cobrame.SubreactionData(mod, model)
-        tRNA_mod.enzyme = components['machines']
-        tRNA_mod.stoichiometry = components['metabolites']
-        tRNA_mod.keff = 65.  # iOL uses 65 for all tRNA mods
+        trna_mod = cobrame.SubreactionData(mod, model)
+        trna_mod.enzyme = components['machines']
+        trna_mod.stoichiometry = components['metabolites']
+        trna_mod.keff = 65.  # iOL uses 65 for all tRNA mods
         if 'carriers' in components.keys():
             for carrier, stoich in components['carriers'].items():
                 if stoich < 0:
-                    tRNA_mod.enzyme += [carrier]
-                tRNA_mod.stoichiometry[carrier] = stoich
+                    trna_mod.enzyme += [carrier]
+                trna_mod.stoichiometry[carrier] = stoich
 
         # Add element contribution from modification to tRNA
-        tRNA_mod._element_contribution = \
+        trna_mod._element_contribution = \
             modification_info[mod.split('_')[0]]['elements']
 
     return modifications

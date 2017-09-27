@@ -2,8 +2,8 @@ from __future__ import print_function, absolute_import, division
 
 from collections import defaultdict
 
-from cobrame.core.ProcessData import PostTranslationData
-from cobrame.core.MEReactions import PostTranslationReaction
+from cobrame.core.processdata import PostTranslationData
+from cobrame.core.reaction import PostTranslationReaction
 
 pathway = {'sec': {'enzymes': {'SecB_tetra': {'length_dependent': True,
                                               'fixed_keff': False},

@@ -3,27 +3,29 @@ from __future__ import print_function, absolute_import, division
 from six import iteritems
 
 from cobrame import ComplexData, SubreactionData
-from ecolime.corrections import correct_rRNA_modifications
-
+from ecolime.corrections import correct_rrna_modifications
 
 
 # Dictionary of {formation_step:[{metabolite:stoichiometry}]}
 # Positive for reactants negative for products (complex formation convention)
 
-# Leaving out Tig_mono trigger factor for now. It's a chaperone not part of formation
+# Leaving out Tig_mono trigger factor for now. It's a chaperone not part of
+# formation
 
 ###### From Teddy's notes in original ME code #######
 # What I'm trying to accomplish here: (old, but still useful)
 # 1) 1 30Sp + 1 generic_16S -> 1 rib_30
 # 2) 1 50Sp + 1 generic_23S + 1 generic_5S -> 1 rib_50
 # 3) 1 rib_30 + 1 rib_50 -> 1 rib_70
-# 4) 1 rib_70 + 1 b0884_assumedMonomer + 1 b1718_uniprotComplex  --> 1 rib_30_IF1_IF3 + 1 rib_50
+# 4) 1 rib_70 + 1 b0884_assumedMonomer + 1 b1718_uniprotComplex  -->
+#       1 rib_30_IF1_IF3 + 1 rib_50
 # 5) 1 b3168_assumedMonomer_gtp + 1 rib_30_IF1_IF3 --> 1 rib_30_ini
 
 
 # Mod:
 #   Era_dim (assembly factor) + 2 gtp +2 h20->
-#   30S_assembly_factor_gtp_hydrolying_assembly_phase_1_gtp -> 2 gtp + 2 h + 2 pi
+#   30S_assembly_factor_gtp_hydrolying_assembly_phase_1_gtp ->
+#           2 gtp + 2 h + 2 pi
 
 
 # TODO Check how 2 gtp is added
@@ -42,7 +44,8 @@ ribosome_stoich = {'30_S_assembly_1_(215)': {'stoich': {'RpsD_mono': 1,
                                                         'RpsR_mono': 1,
                                                         'RpsS_mono': 1,
                                                         'RpsT_mono': 1,
-                                                        'generic_16s_rRNAs': 1}},
+                                                        'generic_16s_rRNAs':
+                                                            1}},
                    '30_S_assembly_2_(21S)': {'stoich': {'RpsA_mono': 1,
                                                         'RpsB_mono': 1,
                                                         'RpsC_mono': 1,
@@ -117,23 +120,23 @@ def add_ribosome(me_model, verbose=True):
     ribosome_complex = ComplexData("ribosome", me_model)
     ribosome_components = ribosome_complex.stoichiometry
 
-    rRNA_modifications = correct_rRNA_modifications(rrna_modifications)
-    for mod, components in iteritems(rRNA_modifications):
-        rRNA_mod = SubreactionData(mod, me_model)
-        rRNA_mod.enzyme = components['machine']
-        rRNA_mod.stoichiometry = components['metabolites']
-        rRNA_mod.keff = 65.  # iOL uses 65. for all RNA mods
+    rrna_mods = correct_rrna_modifications(rrna_modifications)
+    for mod, components in iteritems(rrna_mods):
+        rrna_mod = SubreactionData(mod, me_model)
+        rrna_mod.enzyme = components['machine']
+        rrna_mod.stoichiometry = components['metabolites']
+        rrna_mod.keff = 65.  # iOL uses 65. for all RNA mods
 
         # Add element contribution from modification to rRNA
-        rRNA_mod._element_contribution = \
+        rrna_mod._element_contribution = \
             modification_info[mod.split('_')[0]]['elements']
 
         if 'carriers' in components.keys():
             for carrier, stoich in iteritems(components['carriers']):
                 if stoich < 0:
-                    rRNA_mod.enzyme += [carrier]
-                rRNA_mod.stoichiometry[carrier] = stoich
-        ribosome_complex.subreactions[rRNA_mod.id] = 1
+                    rrna_mod.enzyme += [carrier]
+                rrna_mod.stoichiometry[carrier] = stoich
+        ribosome_complex.subreactions[rrna_mod.id] = 1
 
     subreaction_dict = ribosome_subreactions
     for subreaction_id in subreaction_dict:

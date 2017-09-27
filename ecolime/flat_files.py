@@ -1,15 +1,15 @@
-from __future__ import print_function
-import re
+from __future__ import print_function, absolute_import, division
+
 from collections import defaultdict
 import json
 from os.path import dirname, join, abspath
 from warnings import warn
 
-from cobrame.core.MEReactions import MetabolicReaction
 import cobra
 import pandas
 from six import iteritems
 
+import cobrame
 from ecolime import corrections
 
 ecoli_files_dir = join(dirname(abspath(__file__)), 'building_data/')
@@ -26,7 +26,7 @@ def fix_id(id_str):
 
 
 def get_complex_subunit_stoichiometry(complex_stoichiometry_file,
-                                      rna_components={}):
+                                      rna_components=set()):
     """Returns dictionary of complex: {stoichiometry: {bnumber: stoichiometry}}
 
     some entries in the file need to be renamed.
@@ -69,7 +69,6 @@ def get_complex_subunit_stoichiometry(complex_stoichiometry_file,
 
 def get_complex_modifications(complex_modification_file, protein_complex_file):
     """
-                                       modifications: {modificaiton: number}
 
     Reads from protein_complexes.txt and protein_modification.txt
 
@@ -192,7 +191,8 @@ def remove_compartment(id_str):
 
 def process_m_model(m_model, metabolites_file, m_to_me_map_file,
                     reaction_info_file, reaction_matrix_file,
-                    protein_complex_file, defer_to_rxn_matrix=[]):
+                    protein_complex_file, defer_to_rxn_matrix=set()):
+
     m_model = m_model.copy()
 
     met_info = pandas.read_csv(fixpath(metabolites_file), delimiter="\t",
@@ -224,15 +224,15 @@ def process_m_model(m_model, metabolites_file, m_to_me_map_file,
         for met in rxn_stoichiometry:
             try:
                 met_obj = m_model.metabolites.get_by_id(met)
-            except:
-                met_obj = cobra.Metabolite(str(met))
+            except KeyError:
+                met_obj = cobrame.Metabolite(str(met))
                 m_model.add_metabolites([met_obj])
             met_id = remove_compartment(met_obj.id)
             if met_id in met_info.index and not met_obj.formula:
                 met_obj.formula = met_info.loc[met_id, 'formula']
                 met_obj.name = met_info.loc[met_id, 'name']
 
-        rxn = cobra.Reaction(rxn_id)
+        rxn = cobrame.MEReaction(rxn_id)
         m_model.add_reactions([rxn])
         rxn.add_metabolites(rxn_stoichiometry)
         reversible = rxn_info.loc[rxn_id, 'is_reversible']
@@ -284,7 +284,7 @@ def get_m_model():
     rxn_dict = get_reaction_matrix_dict('reaction_matrix.txt',
                                         complex_set=complex_set)
     for rxn_id in rxn_info.index:
-        reaction = cobra.Reaction(rxn_id)
+        reaction = cobrame.MEReaction(rxn_id)
         reaction.name = rxn_info.description[rxn_id]
         for met_id, amount in iteritems(rxn_dict[rxn_id]):
             try:
@@ -316,7 +316,7 @@ def get_m_model():
         met_id = met + "_" + compartment_lookup[sources_sinks.compartment[met]]
         # EX_ or DM_ + met_id
         reaction_id = sources_sinks.rxn_id[met][:3] + met_id
-        reaction = cobra.Reaction(reaction_id)
+        reaction = cobrame.MEReaction(reaction_id)
         m.add_reaction(reaction)
         reaction.add_metabolites({m.metabolites.get_by_id(met_id): -1})
         # set bounds on exchanges
@@ -329,16 +329,16 @@ def get_m_model():
     return m
 
 
-def get_tRNA_modification_targets():
-    tRNA_mod_dict = defaultdict(dict)
+def get_trna_modification_targets():
+    trna_mod_dict = defaultdict(dict)
     filename = fixpath('post_transcriptional_modification_of_tRNA.txt')
-    tRNA_mod = pandas.read_csv(filename, delimiter='\t')
-    for mod in tRNA_mod.iterrows():
+    trna_mod = pandas.read_csv(filename, delimiter='\t')
+    for mod in trna_mod.iterrows():
         mod = mod[1]
         mod_loc = '%s_at_%s' % (mod['modification'], mod['position'])
-        tRNA_mod_dict[mod['bnum']][mod_loc] = 1
+        trna_mod_dict[mod['bnum']][mod_loc] = 1
 
-    return tRNA_mod_dict
+    return trna_mod_dict
 
 
 def get_reaction_keffs(me, verbose=True):
@@ -352,9 +352,12 @@ def get_reaction_keffs(me, verbose=True):
         # skip spontaneous reactions
         if getattr(r, "complex_data", None) is None:
             continue
-        if isinstance(r, MetabolicReaction) and r.complex_data.id != "CPLX_dummy":
+        if isinstance(r, cobrame.MetabolicReaction) and \
+                r.complex_data.id != "CPLX_dummy":
             met_rxn = r
-            key = met_rxn.id.replace("-", "_DASH_").replace("__", "_DASH_").replace(":", "_COLON_")
+            key = met_rxn.id.replace("-", "_DASH_").replace(
+                "__", "_DASH_").replace(":", "_COLON_")
+
             # specific patches for PGK, TPI ids
             key = key.replace('TPI_DASH_CPLX', 'TPI')
             key = key.replace('PGK_DASH_CPLX', 'PGK')
@@ -362,11 +365,15 @@ def get_reaction_keffs(me, verbose=True):
             key = "keff_" + key.replace("_FWD_", "_").replace("_REV_", "_")
 
             matches = [i for i in keffs if key in i]
+
             # get the direction
             if met_rxn.reverse:
-                matches = [i for i in matches if i.endswith("_reverse_priming_keff")]
+                matches = [i for i in matches
+                           if i.endswith("_reverse_priming_keff")]
             else:
-                matches = [i for i in matches if i.endswith("_forward_priming_keff")]
+                matches = [i for i in matches
+                           if i.endswith("_forward_priming_keff")]
+
             if len(matches) == 1:
                 new_keffs[met_rxn.id] = keffs[matches[0]]
             elif len(matches) > 0:

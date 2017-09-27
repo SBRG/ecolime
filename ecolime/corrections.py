@@ -1,9 +1,10 @@
 from __future__ import print_function, absolute_import, division
 
-import json
-import pandas as pd
 from six import iteritems
 from warnings import warn
+import json
+
+import pandas as pd
 
 import cobrame
 
@@ -13,7 +14,7 @@ removed_reactions = ['ALPATG160pp1', 'ALPATE160pp1', 'ATPM',
                      'CITLY-CPLX_2tpr3dpcoa', 'PFL_act']
 
 # PFL enzymes are activated by a glycl radical group
-PFL_isozymes = ['PYRUVFORMLY-INACTIVE-CPLX',
+pfl_isozymes = ['PYRUVFORMLY-INACTIVE-CPLX',
                 'PYRUVFORMLY-MONOMER_EG11784-MONOMER',
                 'KETOBUTFORMLY-INACT-MONOMER',
                 'EG11910-MONOMER_dimer_EG11911-MONOMER']
@@ -29,7 +30,7 @@ def update_metabolite_formulas(m_model):
     for met, formula in formulas:
         try:
             met_obj = m_model.metabolites.get_by_id(met)
-        except:
+        except KeyError:
             warn('Creating new metabolite (%s)' % met)
             met_obj = cobrame.Metabolite(met)
             m_model.add_metabolites([met_obj])
@@ -68,7 +69,7 @@ def correct_reaction_matrix(reaction_matrix_dict):
         reaction_matrix_dict.pop(r)
 
     # Per 10510271, reaction to reduce CU(II) to CU(I)
-    reaction_matrix_dict['CU2R'] = {'cu2_c': -1, 'cu_c': 1 , 'nadh_c': -1,
+    reaction_matrix_dict['CU2R'] = {'cu2_c': -1, 'cu_c': 1, 'nadh_c': -1,
                                     'nad_c': 1, 'h_c': 1}
     return reaction_matrix_dict
 
@@ -111,7 +112,7 @@ def correct_enzyme_reaction_association_frame(df):
     df = df.applymap(
         lambda x: x.replace('EG11910-MONOMER_dimer',
                             'EG11910-MONOMER_dimer_EG11911-MONOMER'))
-    for cplx in PFL_isozymes:
+    for cplx in pfl_isozymes:
         df = df.applymap(
             lambda x: x.replace(cplx, cplx + '_mod_glycl'))
 
@@ -121,9 +122,9 @@ def correct_enzyme_reaction_association_frame(df):
     return df
 
 
-def correct_tRNA_modifications(mod):
+def correct_trna_modifications(mod):
     """
-    Apply corrections to tRNA modfication procedures
+    Apply corrections to tRNA modification procedures
     """
     # Per: 23543739, grxD is involved in repairing miaB 4fe4s prosthetic group
     # after accepting electron
@@ -185,7 +186,7 @@ def correct_tRNA_modifications(mod):
     return mod
 
 
-def correct_rRNA_modifications(mod):
+def correct_rrna_modifications(mod):
     mod['m7G_at_2069']['machine'] = 'RlmL_dim'
     return mod
 
@@ -232,14 +233,14 @@ def correct_complex_modification_dict(stoichiometry):
     stoichiometry["IscS_mod_2:pydx5p"] = {"core_enzyme": "IscS",
                                           "modifications": {"pydx5p_c": 2}}
     stoichiometry["YdaO_dim_mod_4fe4s"] = {"core_enzyme": "YdaO_dim",
-                                          "modifications": {"4fe4s_c": 1}}
+                                           "modifications": {"4fe4s_c": 1}}
 
     # new complex for ATP synthase complex with atpI subunit
     stoichiometry['ATPSYN-CPLX_EG10106-MONOMER_mod_mg2'] = \
         {'core_enzyme': 'ATPSYN-CPLX_EG10106-MONOMER',
          'modifications': {'mg2_c': 1.}}
 
-    for cplx in PFL_isozymes:
+    for cplx in pfl_isozymes:
         stoichiometry[cplx + '_mod_glycl'] = {'core_enzyme': cplx,
                                               "modifications": {'glycl_c': 1}}
 

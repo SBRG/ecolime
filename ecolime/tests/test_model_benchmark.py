@@ -7,29 +7,29 @@ from os.path import dirname, join, abspath
 from cobrame.io.jsonme import (load_json_me, save_full_me_model_json,
                                load_full_me_model_json)
 from cobrame.util.massbalance import check_me_model_mass_balance
-from ecolime.build_ME_model import return_ME_model
-from ecolime.util.ME_model_comparison import find_ME_model_difference
+from ecolime.build_me_model import return_me_model
+from ecolime.util.me_model_comparison import find_me_model_difference
 
 current_dir = dirname(abspath(__file__))
 models_dir = current_dir.split('tests')[0] + 'me_models/'
 
 del dirname, abspath
 
-test_model = return_ME_model()
+test_model = return_me_model()
 save_full_me_model_json(test_model, 'test_json_dump.json')
 json_model = load_full_me_model_json('test_json_dump.json')
 
 
 def test_model_benchmark():
     benchmark_model = load_json_me(join(models_dir, 'iLE1678_benchmark.json'))
-    difference = find_ME_model_difference(benchmark_model, test_model, 1e-6)
+    difference = find_me_model_difference(benchmark_model, test_model, 1e-6)
     print('-----------------------Difference----------------------')
     print(difference)
     assert (len(difference) == 0)
 
 
 def test_full_json_dumping():
-    difference = find_ME_model_difference(test_model, json_model, 1e-6)
+    difference = find_me_model_difference(test_model, json_model, 1e-6)
     print(difference)
     assert (len(difference) == 0)
 

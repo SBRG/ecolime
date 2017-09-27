@@ -3,7 +3,6 @@ from __future__ import division, absolute_import, print_function
 from six import iteritems
 
 from cobrame import ComplexData, SubreactionData
-from ecolime import generics
 
 transcription_subreactions = {
     'Transcription_normal_rho_independent':
@@ -47,7 +46,7 @@ sigma_factor_complex_to_rna_polymerase_dict = {
     'FliA_mono': 'CPLX0-222',
     'FecI_mono': 'CPLX0-221'}
 
-rna_polymerase_sigma_factor_components = {
+rna_polymerase_id_by_sigma_factor = {
     'CPLX0-221': {'sigma_factor': 'FecI_mono',
                   'polymerase': 'hRNAP_mod_1:zn2_mod_2:mg2'},
     'RNAPE-CPLX': {'sigma_factor': 'RpoE_mono',
@@ -63,11 +62,11 @@ rna_polymerase_sigma_factor_components = {
     'RNAPS-CPLX': {'sigma_factor': 'RpoS_mono',
                    'polymerase': 'hRNAP_mod_1:zn2_mod_2:mg2'}}
 
-RNA_polymerases = {'CPLX0-221', 'RNAPE-CPLX', 'CPLX0-222',
+rna_polymerases = {'CPLX0-221', 'RNAPE-CPLX', 'CPLX0-222',
                    'RNAP32-CPLX', 'RNAP54-CPLX',
                    'RNAP70-CPLX', 'RNAPS-CPLX'}
 
-RNA_degradosome = {'Eno_dim_mod_4:mg2': 1, 'Pnp_trim': 1,
+rna_degradosome = {'Eno_dim_mod_4:mg2': 1, 'Pnp_trim': 1,
                    'RNase_E_tetra_mod_2:zn2': 1, 'RhlB_dim': 1,
                    'Orn_dim_mod_2:mg2': 1}
 
@@ -84,10 +83,10 @@ excision_machinery = {
                                 'RNase_T_dim_mod_4:mg2']}
 
 
-def add_RNA_polymerase_complexes(me_model, verbose=True):
+def add_rna_polymerase_complexes(me_model, verbose=True):
 
-    for complex, components in iteritems(rna_polymerase_sigma_factor_components):
-        rnap_complex = ComplexData(complex, me_model)
+    for cplx, components in iteritems(rna_polymerase_id_by_sigma_factor):
+        rnap_complex = ComplexData(cplx, me_model)
         rnap_components = rnap_complex.stoichiometry
         sigma_factor = components['sigma_factor']
         polymerase = components['polymerase']
@@ -98,7 +97,7 @@ def add_RNA_polymerase_complexes(me_model, verbose=True):
         rnap_complex.create_complex_formation(verbose=verbose)
 
 
-def add_RNA_splicing(me_model):
+def add_rna_splicing(me_model):
 
     # Ecoli has three alternatie mechanisms for splicing RNA, depending
     # on what RNA types the TU contains
@@ -123,14 +122,14 @@ def add_RNA_splicing(me_model):
         n_cuts = len(t.RNA_products) * 2
         if n_excised == 0 or n_cuts == 0:
             continue
-        RNA_types = list(t.RNA_types)
-        n_tRNA = RNA_types.count("tRNA")
+        rna_types = list(t.RNA_types)
+        n_trna = rna_types.count("tRNA")
 
-        if "rRNA" in set(RNA_types):
+        if "rRNA" in set(rna_types):
             t.subreactions["rRNA_containing_excision"] = n_cuts
-        elif n_tRNA == 1:
+        elif n_trna == 1:
             t.subreactions["monocistronic_excision"] = n_cuts
-        elif n_tRNA > 1:
+        elif n_trna > 1:
             t.subreactions["polycistronic_wout_rRNA_excision"] = n_cuts
         else:  # only applies to rnpB
             t.subreactions["monocistronic_excision"] = n_cuts

@@ -1,8 +1,11 @@
-from cobrame import SubreactionData, dogma, Complex
+from __future__ import division, absolute_import, print_function
+
+from cobrame import SubreactionData, Complex
+from cobrame.util import dogma
 
 # 1 machine + 1 atp + 1 aa + 1 h2o --> 1 machine-amp + 1 h + 1 ppi
 # 1 machine-amp + 1 free tRNA --> 1 machine + 1 amp + 1 charged tRNA
-special_tRNA_subreactions = {
+special_trna_subreactions = {
     'sec_addition_at_UGA': {
         'enzymes': ['SelA_deca_mod_10:pydx5p',
                     'SelB_mono'],  # Selenocysteine loaders
@@ -11,33 +14,32 @@ special_tRNA_subreactions = {
                    'generic_tRNA_UGA_cys__L_c': -1},
         'element_contribution': {'O': -1, 'Se': 1}}}
 
-initiation_subreactions = {'Translation_initiation_factor_InfA':
-                               {'enzymes': 'InfA_mono',
-                                'stoich': {}},
+initiation_subreactions = {
+    'Translation_initiation_factor_InfA':
+        {'enzymes': 'InfA_mono',
+         'stoich': {}},
 
-                           'Translation_initiation_factor_InfC':
-                               {'enzymes': 'InfC_mono',
-                                'stoich': {}},
+    'Translation_initiation_factor_InfC':
+        {'enzymes': 'InfC_mono',
+         'stoich': {}},
 
-                           'Translation_gtp_initiation_factor_InfB':
-                               {'enzymes': 'InfB_mono',
-                                'stoich': {'gtp_c': -1,
-                                           'h2o_c': -1,
-                                           'h_c': 1,
-                                           'pi_c': 1,
-                                           'gdp_c': 1}},
+    'Translation_gtp_initiation_factor_InfB':
+        {'enzymes': 'InfB_mono',
+         'stoich': {'gtp_c': -1,
+                    'h2o_c': -1,
+                    'h_c': 1,
+                    'pi_c': 1,
+                    'gdp_c': 1}},
 
-                           'fmet_addition_at_START': {
-                               'enzymes': ['InfB_mono',
-                                           'Fmt_mono_mod_mg2_mod_k'],
-                               #  iOL had h_c:1 for fmet addition but this
-                               # is not
-                               #  mass balanced
-                               'stoich': {'10fthf_c': -1, 'thf_c': 1,
-                                          # 'h_c': 1,
-                                          'generic_tRNA_START_met__L_c': -1},
-                               'element_contribution': {'C': 1, 'O': 1}}
-                           }
+    'fmet_addition_at_START':
+        {'enzymes': ['InfB_mono',
+                     'Fmt_mono_mod_mg2_mod_k'],
+         # iOL had h_c:1 for fmet addition but this is not mass balanced
+         'stoich': {'10fthf_c': -1, 'thf_c': 1,
+                    # 'h_c': 1,
+                    'generic_tRNA_START_met__L_c': -1},
+         'element_contribution': {'C': 1, 'O': 1}}
+   }
 
 elongation_subreactions = {'FusA_mono_elongation': {'enzymes': ['FusA_mono'],
                                                     'stoich': {'gtp_c': -1,
@@ -92,7 +94,7 @@ termination_subreactions = {'PrfA_mono_mediated_termination':
 
                             'GroEL_dependent_folding':
                             {'enzymes': ['GroL_14', 'cisGroES_hepta',
-                                        'transGroES_hepta'],
+                                         'transGroES_hepta'],
                              'stoich': {'atp_c': -7,
                                         'h2o_c': -7,
                                         'h_c': 7,
@@ -102,7 +104,7 @@ termination_subreactions = {'PrfA_mono_mediated_termination':
                             # DnaK is correct
                             'DnaK_dependent_folding':
                             {'enzymes': ['DnaK_mono', 'DnaJ_dim_mod_4:zn2',
-                                        'GrpE_dim'],
+                                         'GrpE_dim'],
                              'stoich': {'atp_c': -1,
                                         'h2o_c': -1,
                                         'h_c': 1,
@@ -146,7 +148,7 @@ def add_translation_subreactions_to_model(me_model):
         data.stoichiometry = info['stoich']
 
 
-def add_charged_tRNA_subreactions(me_model):
+def add_charged_trna_subreactions(me_model):
     # create subreaction for each codon. this will be used to model
     # the addition of charged tRNAs to the elongating peptide
     for codon in dogma.codon_table:
@@ -166,7 +168,7 @@ def add_charged_tRNA_subreactions(me_model):
             subreaction_data = SubreactionData(
                 amino_acid + '_addition_at_' + codon.replace('T', 'U'),
                 me_model)
-            tRNA = 'generic_tRNA_' + codon.replace('T', 'U') + '_' + full_aa
+            trna = 'generic_tRNA_' + codon.replace('T', 'U') + '_' + full_aa
             subreaction_data.enzyme = 'generic_Tuf'  # Default AA loader enzyme
 
             # Accounts for GTP hydrolyzed by EF-TU and the ATP hydrolysis to
@@ -175,10 +177,10 @@ def add_charged_tRNA_subreactions(me_model):
                                               'gdp_c': 1, 'h_c': 2, 'pi_c': 1,
                                               'ppi_c': 1, 'amp_c': 1,
                                               'atp_c': -1,
-                                              tRNA: -1}
+                                              trna: -1}
 
     # Add subreactions for start codon and selenocysteine
-    for rxn, info in special_tRNA_subreactions.items():
+    for rxn, info in special_trna_subreactions.items():
         data = SubreactionData(rxn, me_model)
         data.enzyme = info['enzymes']
         data.stoichiometry = info['stoich']
@@ -288,7 +290,7 @@ folding_dict = {
                                'b2463']}
 
 # Codons are not unique to a tRNA
-tRNA_to_codon = {'b2691': ['CGU', 'CGC', 'CGA'],
+trna_to_codon = {'b2691': ['CGU', 'CGC', 'CGA'],
                  'b2692': ['CGU', 'CGC', 'CGA'],
                  'b2693': ['CGU', 'CGC', 'CGA'],
                  'b2694': ['CGU', 'CGC', 'CGA'], 'b2695': ['AGC', 'AGU'],
