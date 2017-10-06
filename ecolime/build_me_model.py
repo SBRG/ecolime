@@ -404,7 +404,7 @@ def return_me_model():
     # associate the correct RNA_polymerase and factors to TUs
     sigma_to_rnap_dict = transcription.sigma_factor_complex_to_rna_polymerase_dict
     for tu_id in tu_df.index:
-        transcription_data = me.transcription_data.get_by_id(tu_id)
+        transcription_data = me.process_data.get_by_id(tu_id)
         sigma = tu_df.sigma[tu_id]
         rna_polymerase = sigma_to_rnap_dict[sigma]
         transcription_data.RNA_polymerase = rna_polymerase
@@ -449,7 +449,7 @@ def return_me_model():
             # stoichiometry of modification determined in
             # subreaction_data.stoichiometry
             modifications['mod_' + mod] = abs(value)
-        me.complex_data.get_by_id(complex_id).subreactions = modifications
+        me.process_data.get_by_id(complex_id).subreactions = modifications
 
     # Adds modification data for more complicated enzyme modifications
     # (ie, iron sulfur cluster modification)
@@ -477,7 +477,7 @@ def return_me_model():
     # trna_modifications = {tRNA_id: {modifications: count}}
     trna_modifications = flat_files.get_trna_modification_targets()
     for trna in trna_modifications:
-        for data in me.tRNA_data.query(trna):
+        for data in me.process_data.query(trna):
             data.subreactions = trna_modifications[trna]
 
     # ---
@@ -580,14 +580,14 @@ def return_me_model():
         new_stoich[cplx]['protein_' + protein] = float(value)
 
     for cplx, stoich in new_stoich.items():
-        complex_data = me.complex_data.get_by_id(cplx)
+        complex_data = me.process_data.get_by_id(cplx)
         for met, value in stoich.items():
             complex_data.stoichiometry.pop(met[0:13])
             complex_data.stoichiometry[met] = value
             complex_data.formation.update()
         # Complex ids in protein compartment file doesn't include mods
         # Some have multiple alternative modifications so must loop through these
-        for complex_data in me.complex_data.query(cplx + '_mod_'):
+        for complex_data in me.process_data.query(cplx + '_mod_'):
             for met, value in stoich.items():
                 complex_data.stoichiometry.pop(met[0:13])
                 complex_data.stoichiometry[met] = value
@@ -640,7 +640,7 @@ def return_me_model():
         for rxn in me.metabolites.get_by_id(
                                         'protein_' + gene + '_' + compartment).reactions:
             if isinstance(rxn, cobrame.ComplexFormation):
-                data = me.complex_data.get_by_id(rxn.complex_data_id)
+                data = me.process_data.get_by_id(rxn.complex_data_id)
                 value = data.stoichiometry.pop(
                     'protein_' + gene + '_' + compartment)
                 data.stoichiometry[
@@ -687,15 +687,15 @@ def return_me_model():
         me.reactions.get_by_id(reaction_id).update()
 
     # Keffs that were not set in the above block
-    me.subreaction_data.N_terminal_methionine_cleavage.keff = 1339.4233102860871
-    me.subreaction_data.peptide_deformylase_processing.keff = 1019.5963333345715
+    me.process_data.N_terminal_methionine_cleavage.keff = 1339.4233102860871
+    me.process_data.peptide_deformylase_processing.keff = 1019.5963333345715
     me.reactions.get_by_id(
         'GLUTRR_FWD_CPLX0-3741').keff = 3000  # 3269.0108007383374
-    me.subreaction_data.fmet_addition_at_START.keff = 1540.4356849968603
-    me.subreaction_data.ribosome_recycler.keff = 1059.6910912619182
-    me.subreaction_data.UAG_PrfA_mono_mediated_termination.keff = 1721.7910609284945
-    me.subreaction_data.UGA_PrfB_mono_mediated_termination.keff = 1700.2966587695353
-    me.subreaction_data.UAA_generic_RF_mediated_termination.keff = 1753.4238515034572
+    me.process_data.fmet_addition_at_START.keff = 1540.4356849968603
+    me.process_data.ribosome_recycler.keff = 1059.6910912619182
+    me.process_data.UAG_PrfA_mono_mediated_termination.keff = 1721.7910609284945
+    me.process_data.UGA_PrfB_mono_mediated_termination.keff = 1700.2966587695353
+    me.process_data.UAA_generic_RF_mediated_termination.keff = 1753.4238515034572
 
     # -----
     # ## Part 8: Model updates and corrections
@@ -713,8 +713,8 @@ def return_me_model():
 
     # Add reaction subsystems from iJO to model
     for rxn in ijo.reactions:
-        if rxn.id in me.stoichiometric_data:
-            data = me.stoichiometric_data.get_by_id(rxn.id)
+        if rxn.id in me.process_data:
+            data = me.process_data.get_by_id(rxn.id)
         else:
             continue
         for r in data.parent_reactions:
@@ -739,8 +739,8 @@ def return_me_model():
     # cobalamin is not in glucose M9 media
     me.reactions.EX_cbl1_e.lower_bound = 0
 
-    me.stoichiometric_data.PPKr.lower_bound = 0.
-    me.stoichiometric_data.PPKr._update_parent_reactions()
+    me.process_data.PPKr.lower_bound = 0.
+    me.process_data.PPKr._update_parent_reactions()
 
     # this RNAP/sigma factor should not be used to transcribe stable rna
     for rxn in me.metabolites.get_by_id('RNAP32-CPLX').reactions:
@@ -751,7 +751,7 @@ def return_me_model():
     # This enyzme is involved in catalyzing this reaction
     sub = cobrame.SubreactionData('EG12450-MONOMER_activity', me)
     sub.enzyme = 'EG12450-MONOMER'
-    me.stoichiometric_data.NHFRBO.subreactions['EG12450-MONOMER_activity'] = 1
+    me.process_data.NHFRBO.subreactions['EG12450-MONOMER_activity'] = 1
 
     # #### Add enzymatic coupling for "carriers"
     # These are enzyme complexes that act as metabolites in a metabolic reaction (i.e. are metabolites in iJO1366)
@@ -768,7 +768,7 @@ def return_me_model():
                 continue
 
             subreaction_id = met + '_carrier_activity'
-            if subreaction_id not in me.subreaction_data:
+            if subreaction_id not in me.process_data:
                 sub = cobrame.SubreactionData(met + '_carrier_activity', me)
                 sub.enzyme = met
             data.subreactions[subreaction_id] = abs(value)

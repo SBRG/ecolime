@@ -56,15 +56,15 @@ def add_iron_sulfur_modifications(me_model):
                                  name: 1})
 
     # add fes transfer enzymes to proper modification data
-    mod_2fe2s = me_model.subreaction_data.mod_2fe2s_c
+    mod_2fe2s = me_model.process_data.mod_2fe2s_c
     mod_2fe2s.enzyme = 'generic_2fe2s_transfer_complex'
     mod_2fe2s.stoichiometry = {'2fe2s_c': -1.}
 
-    mod_4fe4s = me_model.subreaction_data.mod_4fe4s_c
+    mod_4fe4s = me_model.process_data.mod_4fe4s_c
     mod_4fe4s.enzyme = 'generic_4fe4s_transfer_complex'
     mod_4fe4s.stoichiometry = {'4fe4s_c': -1.}
 
-    mod_3fe4s = me_model.subreaction_data.mod_3fe4s_c
+    mod_3fe4s = me_model.process_data.mod_3fe4s_c
     mod_3fe4s.enzyme = 'generic_4fe4s_transfer_complex'
     mod_3fe4s.stoichiometry = {'4fe4s_c': -1., 'fe2_c': 1}
     mod_3fe4s._element_contribution = {'Fe': 3, 'S': 4}
@@ -74,7 +74,7 @@ def add_iron_sulfur_modifications(me_model):
         new_mod.enzyme = [chaperone, 'generic_2fe2s_transfer_complex']
         new_mod.stoichiometry = {'2fe2s_c': -1.}
 
-    for cplx_data in me_model.subreaction_data.get_by_id(
+    for cplx_data in me_model.process_data.get_by_id(
             'mod_2fe2s_c').get_complex_data():
         cplx_id = cplx_data.id.split('_mod')[0]
         if cplx_id in fes_chaperones:
@@ -88,8 +88,8 @@ def add_lipoate_modifications(me_model):
     # We create a separate SubreactionData for each one
 
     for mod, info in lipoate_modifications.items():
-        if mod in me_model.subreaction_data:
-            mod_data = me_model.subreaction_data.get_by_id(mod)
+        if mod in me_model.process_data:
+            mod_data = me_model.process_data.get_by_id(mod)
         else:
             mod_data = cobrame.SubreactionData(mod, me_model)
 
@@ -99,8 +99,8 @@ def add_lipoate_modifications(me_model):
         # element count for lipoate modifications
         mod_data._element_contribution = {'C': 8, 'H': 11, 'O': 1, 'S': 2}
 
-    lipo = me_model.subreaction_data.get_by_id('mod_lipo_c')
-    alt_lipo = me_model.subreaction_data.get_by_id('mod_lipo_c_alt')
+    lipo = me_model.process_data.get_by_id('mod_lipo_c')
+    alt_lipo = me_model.process_data.get_by_id('mod_lipo_c_alt')
     for cplx_data in lipo.get_complex_data():
         alt_cplx_data = cobrame.ComplexData(cplx_data.id + "alt", me_model)
         alt_cplx_data.complex_id = cplx_data.complex_id
@@ -118,7 +118,7 @@ def add_bmocogdp_modifications(me_model):
         new_mod.enzyme = chaperone
         new_mod.stoichiometry = {'bmocogdp_c': -1}
 
-    for cplx_data in me_model.subreaction_data.get_by_id(
+    for cplx_data in me_model.process_data.get_by_id(
             'mod_bmocogdp_c').get_complex_data():
         cplx_id = cplx_data.id.split('_mod')[0]
         if cplx_id in bmocogdp_chaperones:

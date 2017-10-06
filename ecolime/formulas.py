@@ -80,7 +80,8 @@ def add_remaining_complex_formulas(model, modification_formulas):
     # Reset all formulas first
     complex_list = []
     for c in model.metabolites:
-        if not isinstance(c, cobrame.Complex) or c.id in model.complex_data:
+        # If not complex or formed by complex formation reaction, do not reset
+        if not isinstance(c, cobrame.Complex) or c.id in model.process_data:
             continue
         for r in c.reactions:
             if hasattr(r, 'update'):

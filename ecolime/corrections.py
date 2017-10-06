@@ -39,12 +39,12 @@ def update_metabolite_formulas(m_model):
 
 def correct_complex_modifications(model):
     # Known modification (w/ high confidence)
-    mod = model.subreaction_data.mod_acetyl_c
+    mod = model.process_data.mod_acetyl_c
     mod.stoichiometry = {'accoa_c': -1, 'coa_c': 1}
     mod._element_contribution = {'C': 2, 'H': 2, 'O': 1}
 
     # Per 23597401, this is a possible stoichiometry for this modification
-    mod = model.subreaction_data.mod_NiFeCoCN2_c
+    mod = model.process_data.mod_NiFeCoCN2_c
     mod.stoichiometry = {'fe2_c': -1, 'co2_c': -1, 'nadh_c': -2, 'nad_c': 2,
                          'cbp_c': -2, 'atp_c': -4, 'amp_c': 2, 'adp_c': 2,
                          'ppi_c': 2, 'pi_c': 4, 'h_c': 2, 'h2o_c': -1,
@@ -52,11 +52,11 @@ def correct_complex_modifications(model):
     mod._element_contribution = {'C': 3, 'Fe': 1, 'N': 2, 'Ni': 1, 'O': 1}
 
     # Updates to mod_lipo stoichiometry
-    model.subreaction_data.mod_lipo_c.stoichiometry['h_c'] = 2
-    model.subreaction_data.mod_lipo_c_alt.stoichiometry['h_c'] = 1
+    model.process_data.mod_lipo_c.stoichiometry['h_c'] = 2
+    model.process_data.mod_lipo_c_alt.stoichiometry['h_c'] = 1
 
     # PFL is activated by a glycl group by PFLACTENZ-MONOMER
-    mod = model.subreaction_data.mod_glycl_c
+    mod = model.process_data.mod_glycl_c
     mod.enzyme = ['PFLACTENZ-MONOMER', 'FLAVODOXIN1-MONOMER']
     mod.stoichiometry = {'FLAVODOXIN1-MONOMER': -1, 'amet_c': -1,
                          'dad__2_c': 1, 'FLAVODOXIN1-MONOMER_mod_Oxidized': 1,
@@ -93,7 +93,7 @@ def correct_reaction_info_frame(df):
 def correct_reaction_stoichiometries(model, file_name):
     df = pd.read_excel(file_name, index_col=0)
     for d in df.index:
-        stoich_data = model.stoichiometric_data.get_by_id(d)
+        stoich_data = model.process_data.get_by_id(d)
         stoich_dict = json.loads(df.loc[d, 'Stoich Change'].replace("'", "\""))
         for met, stoich in iteritems(stoich_dict):
             stoich_data.stoichiometry[met] = stoich
