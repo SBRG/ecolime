@@ -179,10 +179,11 @@ def correct_trna_modifications(mod):
     correct_mod['RED-THIOREDOXIN-MONOMER_mod_Oxidized'] = 1
 
     # Changed stoichiometry per PMIDs: 23676670, 25855808, 26681692.
-    # Reaction forming 5-hydroxyuridine is not known
+    # The reaction forming 5-hydroxyuridine (first step to cmo5u) is not known.
+    # Therefore, water/hydrogens are added to mass balance this modification.
     mod['cmo5U_at_34']['metabolites'] = {'phpyr_c': 1, 'pphn_c': -1,
-                                         'amet_c': -2, 'h2o_c': 1, 'h_c': 1,
-                                         'ahcys_c': 2}
+                                         'amet_c': -1, 'h_c': 2,
+                                         'ahcys_c': 1}
     return mod
 
 

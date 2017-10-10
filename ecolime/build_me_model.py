@@ -314,7 +314,7 @@ def return_me_model():
 
     # In[ ]:
 
-    dna_demand_stoich = ecolime.dna_replication.return_gr_dependent_dna_demand(
+    dna_demand_stoich, dna_demand_bound = ecolime.dna_replication.return_gr_dependent_dna_demand(
         me.global_info['GC_fraction'])
 
     dna_replication = cobrame.SummaryVariable("DNA_replication")
@@ -330,8 +330,8 @@ def return_me_model():
             dna_mw -= value * dna_mw_no_ppi[met.id.replace('_c', '')] / 1000.
 
     dna_replication.add_metabolites({dna_biomass: dna_mw})
-    dna_replication.lower_bound = mu
-    dna_replication.upper_bound = mu
+    dna_replication.lower_bound = dna_demand_bound
+    dna_replication.upper_bound = dna_demand_bound
 
     # **Note**: From this point forward, executing every codeblock should result in a solveable ME-model
     #

@@ -8,8 +8,6 @@ def get_reaction_stoich_dict(reaction, tol):
     for metabolite, coefficient in reaction.metabolites.items():
         if isinstance(coefficient, Basic):
             coefficient = coefficient.subs(mu, 1.)
-        else:
-            coefficient = coefficient
 
         if abs(coefficient) > tol:
             stoich[metabolite.id] = coefficient
@@ -75,12 +73,20 @@ def find_me_model_difference(old_model, new_model, tol):
             output_dict[old_reaction.id] = ['Reaction not in new model']
             continue
 
-        if old_reaction.lower_bound != new_reaction.lower_bound:
+        def _bound_change(old_bound, new_bound):
+            if isinstance(old_bound, Basic):
+                old_bound = old_bound.subs(mu, 1.)
+            if isinstance(new_bound, Basic):
+                new_bound = new_bound.subs(mu, 1.)
+
+            return abs(old_bound - new_bound) > tol
+
+        if _bound_change(old_reaction.lower_bound, new_reaction.lower_bound):
             output_dict[old_reaction.id] = \
                 ['Reaction lower bound changed ({}->{})'.format(
                     old_reaction.lower_bound, new_reaction.lower_bound)]
 
-        if old_reaction.upper_bound != new_reaction.upper_bound:
+        if _bound_change(old_reaction.upper_bound, new_reaction.upper_bound):
             output_dict[old_reaction.id] = \
                 ['Reaction upper bound changed ({}->{})'.format(
                     old_reaction.upper_bound, new_reaction.upper_bound)]
@@ -92,4 +98,3 @@ def find_me_model_difference(old_model, new_model, tol):
         if new_reaction.id not in reaction_list:
             output_dict[new_reaction.id] = ['Reaction not in old model']
     return output_dict
-

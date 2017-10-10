@@ -133,7 +133,6 @@ nm2_per_m2 = 1e18  # used to convert nm^2 to m^2
 
 def add_translocation_pathways(model, pathways_df, membrane_constraints=False):
 
-
     def add_translocation_data_and_reaction(model, pathways, preprocessed_id,
                                             processed_id, compartment,
                                             alt=False):
@@ -142,8 +141,8 @@ def add_translocation_pathways(model, pathways_df, membrane_constraints=False):
 
         data = PostTranslationData('translocation_' + preprocessed_id + suffix,
                                    model, processed_id, preprocessed_id)
-        for pathway in pathways:
-            data.translocation[pathway] = 1
+
+        data.translocation = pathways
 
         data.translocation_multipliers = \
             multipliers_protein_keys.get(preprocessed_id, {})

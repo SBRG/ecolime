@@ -146,6 +146,7 @@ def add_translation_subreactions_to_model(me_model):
         data = SubreactionData(rxn, me_model)
         data.enzyme = info['enzymes']
         data.stoichiometry = info['stoich']
+        data._element_contribution = info.get('element_contribution', {})
 
 
 def add_charged_trna_subreactions(me_model):
