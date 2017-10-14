@@ -8,7 +8,6 @@ import pandas as pd
 
 import cobrame
 
-
 # MetabolicReactions present in iOL1650 that have been removed for iLE1678
 removed_reactions = ['ALPATG160pp1', 'ALPATE160pp1', 'ATPM',
                      'CITLY-CPLX_2tpr3dpcoa', 'PFL_act']
@@ -18,6 +17,8 @@ pfl_isozymes = ['PYRUVFORMLY-INACTIVE-CPLX',
                 'PYRUVFORMLY-MONOMER_EG11784-MONOMER',
                 'KETOBUTFORMLY-INACT-MONOMER',
                 'EG11910-MONOMER_dimer_EG11911-MONOMER']
+
+making_iOL_model = False
 
 
 def update_metabolite_formulas(m_model):
@@ -98,7 +99,25 @@ def correct_reaction_stoichiometries(model, file_name):
         for met, stoich in iteritems(stoich_dict):
             stoich_data.stoichiometry[met] = stoich
 
-        stoich_data._update_parent_reactions()
+        stoich_data.update_parent_reactions()
+
+
+def correct_tu_dataframe(df):
+    """
+    RpoH sigma factor should not be used to transcribed stable RNA.
+    """
+    incorrect_sigma_32 = ["TU0_3463_from_RPOH_MONOMER",
+                          "TU0_1181_from_RPOH_MONOMER",
+                          "TU0_1182_with_TERM0_1116_from_RPOH_MONOMER",
+                          "TU0_1182_with_TERM0_1115_from_RPOH_MONOMER",
+                          "TU0_1183_with_TERM0_1117_from_RPOH_MONOMER",
+                          "TU0_1186_from_RPOH_MONOMER",
+                          "TU0_1187_from_RPOH_MONOMER",
+                          "TU0_1189_from_RPOH_MONOMER",
+                          "TU0_1191_from_RPOH_MONOMER"]
+    df.drop(incorrect_sigma_32, inplace=True)
+
+    return df
 
 
 def correct_enzyme_reaction_association_frame(df):
@@ -123,6 +142,9 @@ def correct_enzyme_reaction_association_frame(df):
 
 
 def correct_trna_modifications(mod):
+    if making_iOL_model:
+        mod['s2C_at_32']['machines'] = ['YdaO_dim_mod_4fe4s']
+        return mod
     """
     Apply corrections to tRNA modification procedures
     """
@@ -188,6 +210,8 @@ def correct_trna_modifications(mod):
 
 
 def correct_rrna_modifications(mod):
+    if making_iOL_model:
+        return mod
     mod['m7G_at_2069']['machine'] = 'RlmL_dim'
     return mod
 

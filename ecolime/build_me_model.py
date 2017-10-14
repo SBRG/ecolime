@@ -67,7 +67,7 @@ def return_me_model():
     me.global_info['k_deg'] = 1.0 / 5. * 60.0  # 1/5 1/min 60 min/h # h-1
 
     # Molecular mass of RNA component of ribosome
-    me.global_info['m_rr'] = 1700.  # in kDa
+    me.global_info['m_rr'] = 1453.  # in kDa
 
     # Average molecular mass of an amino acid
     me.global_info['m_aa'] = 109. / 1000.  # in kDa
@@ -149,9 +149,7 @@ def return_me_model():
     # In[ ]:
 
     gb_filename = join(flat_files.ecoli_files_dir, 'NC_000913.2.gb')
-    tu_df = pandas.read_csv(
-        join(flat_files.ecoli_files_dir, 'TUs_from_ecocyc.txt'), delimiter="\t",
-        index_col=0)
+    tu_df = flat_files.get_tu_dataframe('TUs_from_ecocyc.txt')
 
     building.build_reactions_from_genbank(me, gb_filename, tu_df, verbose=False,
                                           frameshift_dict=translation.frameshift_dict,
@@ -284,7 +282,7 @@ def return_me_model():
     # Find biomass constituents with 3 numbers followed by a compartment in the BOF
     lipid = re.compile('\d{3}_.')
     lipid_demand = {}
-    for key, value in ijo.reactions.Ec_biomass_iJO1366_WT_53p95M.metabolites.items():
+    for key, value in ijo.reactions.Ec_biomass_iJO1366_core_53p95M.metabolites.items():
         if lipid.search(key.id):
             lipid_demand[key.id] = abs(value)
 
@@ -660,9 +658,9 @@ def return_me_model():
     met2 = me.metabolites.get_by_id('protein_b1677_lipoprotein_Outer_Membrane')
     met2_mass = met2.formula_weight / 1000.
     me.add_reaction(rxn)
+    # biomass of lipoprotein accounted for in translation and lipip_modification
     rxn.add_metabolites({met1: -0.013894, met2: -0.003597,
-                         'component_demand_biomass': (0.013894 * met1_mass +
-                                                      0.003597 * met2_mass)},
+                         'component_demand_biomass': (0.013894 * met1_mass)},
                         combine=False)
     rxn.lower_bound = mu
     rxn.upper_bound = mu
@@ -740,13 +738,7 @@ def return_me_model():
     me.reactions.EX_cbl1_e.lower_bound = 0
 
     me.process_data.PPKr.lower_bound = 0.
-    me.process_data.PPKr._update_parent_reactions()
-
-    # this RNAP/sigma factor should not be used to transcribe stable rna
-    for rxn in me.metabolites.get_by_id('RNAP32-CPLX').reactions:
-        if rxn.id != 'formation_RNAP32-CPLX' and rxn.transcription_data.codes_stable_rna:
-            rxn.upper_bound = 0
-            print(rxn)
+    me.process_data.PPKr.update_parent_reactions()
 
     # This enyzme is involved in catalyzing this reaction
     sub = cobrame.SubreactionData('EG12450-MONOMER_activity', me)
@@ -780,10 +772,10 @@ def return_me_model():
 
     me.reactions.dummy_reaction_FWD_SPONT.objective_coefficient = 1.
     me.reactions.EX_glc__D_e.lower_bound = -1000
-    me.reactions.EX_o2_e.lower_bound = -16.
-    me.ngam = 6.86
-    me.gam = 20.
-    me.unmodeled_protein_fraction = .275
+    me.reactions.EX_o2_e.lower_bound = -1000.
+    me.ngam = 1.
+    me.gam = 34.98
+    me.unmodeled_protein_fraction = .36
 
     # In[ ]:
 

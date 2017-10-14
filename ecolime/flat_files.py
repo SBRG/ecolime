@@ -25,6 +25,15 @@ def fix_id(id_str):
     return id_str.replace("_DASH_", "__")
 
 
+def get_tu_dataframe(filename):
+    tu_df = pandas.read_csv(join(ecoli_files_dir, filename), delimiter="\t",
+                            index_col=0)
+
+    tu_df = corrections.correct_tu_dataframe(tu_df)
+
+    return tu_df
+
+
 def get_complex_subunit_stoichiometry(complex_stoichiometry_file,
                                       rna_components=set()):
     """Returns dictionary of complex: {stoichiometry: {bnumber: stoichiometry}}
