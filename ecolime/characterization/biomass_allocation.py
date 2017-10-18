@@ -22,24 +22,29 @@ def get_biomass_composition(model, solution=None):
 
     # Account for total biomass produced in protein_biomass_dilution reaction
     protein_stoich = 1.
-    for met, stoich in model._protein_biomass_dilution.metabolites.items():
+    for met, stoich in model.reactions.protein_biomass_to_biomass.metabolites.items():
         if abs(stoich) >= 1:
             protein_stoich = stoich
 
-    biomass_composition['Protein'] = \
-        solution.x_dict['protein_biomass_dilution'] * protein_stoich
+    biomass_composition['protein'] = \
+        solution.x_dict['protein_biomass_to_biomass'] * protein_stoich
     biomass_composition['tRNA'] = \
-        solution.x_dict['tRNA_biomass_dilution']
+        solution.x_dict['tRNA_biomass_to_biomass']
     biomass_composition['mRNA'] = \
-        solution.x_dict['mRNA_biomass_dilution']
+        solution.x_dict['mRNA_biomass_to_biomass']
     biomass_composition['ncRNA'] = \
-        solution.x_dict['ncRNA_biomass_dilution']
+        solution.x_dict['ncRNA_biomass_to_biomass']
     biomass_composition['rRNA'] = \
-        solution.x_dict['rRNA_biomass_dilution']
+        solution.x_dict['rRNA_biomass_to_biomass']
+    biomass_composition['lipid'] = \
+        solution.x_dict['lipid_biomass_to_biomass']
     biomass_composition['DNA'] = \
-        solution.x_dict['DNA_biomass_dilution']
+        solution.x_dict['DNA_biomass_to_biomass']
+    biomass_composition['peptidoglycan'] = \
+        solution.x_dict['peptidoglycan_biomass_to_biomass']
     biomass_composition['Other'] = \
-        solution.x_dict['biomass_component_dilution']
+        solution.x_dict['constituent_biomass_to_biomass'] + \
+        solution.x_dict['prosthetic_group_biomass_to_biomass']
 
     return biomass_composition
 

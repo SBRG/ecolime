@@ -233,6 +233,7 @@ def add_lipoprotein_formation(model, compartment_dict,
                                        model, processed_id, preprocessed_id)
             data.subreactions['mod_' + first_lipid] = 1
             data.subreactions['mod2_' + second_lipid + '_p'] = 1
+            data.biomass_type = 'lipid_biomass'
 
             if membrane_constraints:
                 thickness_dict = model.global_info['membrane_thickness']

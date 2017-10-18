@@ -88,6 +88,13 @@ def return_me_model():
     # DNA Replication Parameters
     me.global_info['GC_fraction'] = 0.507896997096
 
+    # Define the types of biomass that will be synthesized in the model
+    me.add_biomass_constraints_to_model(
+        ["protein_biomass", "mRNA_biomass", "tRNA_biomass", "rRNA_biomass",
+         "ncRNA_biomass", "DNA_biomass", "lipid_biomass",
+         "constituent_biomass", "prosthetic_group_biomass",
+         "peptidoglycan_biomass"])
+
     # ### 2) Load metabolites and build Metabolic reactions
     # The below reads in:
     # - Required
@@ -208,11 +215,10 @@ def return_me_model():
     building.add_dummy_reactions(me, seq, update=True)
 
     rxn = cobrame.SummaryVariable('dummy_protein_to_mass')
-    me.add_reaction(rxn)
-    me.add_metabolites([cobrame.Constraint('dummy_protein_biomass')])
+    me.add_reactions([rxn])
     mass = me.metabolites.protein_dummy.mass
     rxn.add_metabolites({'protein_biomass': -mass, 'protein_dummy': -1,
-                         'dummy_protein_biomass': mass})
+                         cobrame.Constraint('unmodeled_protein_biomass'): mass})
 
     # ### 6) Assocated Complexes and build Metabolic Reactions
     # - Required
@@ -243,11 +249,11 @@ def return_me_model():
 
     # In[ ]:
 
-    me.ngam = 6.86
-    me.gam = 20.
-    me.unmodeled_protein_fraction = .275
+    me.ngam = 1
+    me.gam = 34.98
+    me.unmodeled_protein_fraction = .36
 
-    biomass_components = {
+    biomass_constituents = {
         "glycogen_c": -.023 / (me.metabolites.glycogen_c.formula_weight / 1000.),
         "2ohph_c": -0.000223,
         "nad_c": -.001831,
@@ -260,19 +266,15 @@ def return_me_model():
         "10fthf_c": -0.000223
     }
 
-    rxn = cobrame.SummaryVariable('biomass_component_demand')
-    met = cobrame.Constraint('component_demand_biomass')
-    me.add_reaction(rxn)
-    rxn.add_metabolites(biomass_components)
-    component_mass = sum(me.metabolites.get_by_id(c).formula_weight / 1000. * -v
-                         for c, v in biomass_components.items())
+    rxn = cobrame.SummaryVariable('biomass_constituent_demand')
+    me.add_reactions([rxn])
+    rxn.add_metabolites(biomass_constituents)
+    constituent_mass = sum(
+        me.metabolites.get_by_id(c).formula_weight / 1000. * -v
+        for c, v in biomass_constituents.items())
     rxn.lower_bound = mu
     rxn.upper_bound = mu
-    me.reactions.biomass_component_demand.add_metabolites({met: component_mass})
-
-    rxn = cobrame.SummaryVariable('biomass_component_dilution')
-    me.add_reaction(rxn)
-    rxn.add_metabolites({met: -1, me._biomass: 1})
+    rxn.add_metabolites({me.metabolites.constituent_biomass: constituent_mass})
 
     #  #### Lipid components
     #  Metabolites and coefficients from *i*JO1366 biomass objective function
@@ -289,9 +291,9 @@ def return_me_model():
     for met, requirement in lipid_demand.items():
         component_mass = me.metabolites.get_by_id(met).formula_weight / 1000.
         rxn = cobrame.SummaryVariable('Demand_' + met)
-        me.add_reaction(rxn)
+        me.add_reactions([rxn])
         rxn.add_metabolites({met: -1 * requirement,
-                             'component_demand_biomass': component_mass * requirement})
+                             'lipid_biomass': component_mass * requirement})
         rxn.lower_bound = mu
         rxn.upper_bound = 1000.
 
@@ -300,10 +302,10 @@ def return_me_model():
     met = me.metabolites.get_by_id('kdo2lipid4_e')
     component_mass = met.formula_weight / 1000.
     rxn = cobrame.SummaryVariable('Demand_' + met.id)
-    me.add_reaction(rxn)
+    me.add_reactions([rxn])
 
     rxn.add_metabolites({met.id: -1. * requirement,
-                         'component_demand_biomass': component_mass * requirement})
+                         'lipid_biomass': component_mass * requirement})
     rxn.lower_bound = mu
     rxn.upper_bound = mu
 
@@ -651,17 +653,14 @@ def return_me_model():
     # In[ ]:
 
     rxn = cobrame.SummaryVariable('core_structural_demand_brauns')
-    met = cobrame.Constraint('component_demand_biomass')
-    me.add_metabolites([met])
     met1 = me.metabolites.get_by_id('murein5px4p_p')
     met1_mass = met1.formula_weight / 1000.
     met2 = me.metabolites.get_by_id('protein_b1677_lipoprotein_Outer_Membrane')
-    met2_mass = met2.formula_weight / 1000.
-    me.add_reaction(rxn)
+    me.add_reactions([rxn])
     # biomass of lipoprotein accounted for in translation and lipip_modification
     rxn.add_metabolites({met1: -0.013894, met2: -0.003597,
-                         'component_demand_biomass': (0.013894 * met1_mass)},
-                        combine=False)
+                         'peptidoglycan_biomass': (0.013894 * met1_mass)},
+                         combine=False)
     rxn.lower_bound = mu
     rxn.upper_bound = mu
 
