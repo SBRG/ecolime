@@ -6,9 +6,9 @@
 # M model, and the complex reconstruction from iJL1678-ME
 
 # In[ ]:
+from __future__ import print_function, division, absolute_import
 
 # python imports
-
 import re
 from os.path import join
 from collections import defaultdict
@@ -723,7 +723,7 @@ def return_me_model():
 
     ecolime.corrections.correct_reaction_stoichiometries(me, join(
         flat_files.ecoli_files_dir,
-        'iLE1678_model_changes.xlsx'))
+        'iJL1678b_model_changes.xlsx'))
     # RNA_dummy, TU_b3247, TU_b3705 do not have RNAP, this is set as the most common RNAP
     for data in me.transcription_data:
         if len(data.RNA_polymerase) == 0:
@@ -818,5 +818,5 @@ def return_me_model():
 if __name__ == '__main__':
 
     me = return_me_model()
-    with open("./me_models/iLE1678.pickle", "wb") as outfile:
+    with open("./me_models/iJL1678b.pickle", "wb") as outfile:
         pickle.dump(me, outfile)

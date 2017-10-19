@@ -8,7 +8,7 @@ import pandas as pd
 
 import cobrame
 
-# MetabolicReactions present in iOL1650 that have been removed for iLE1678
+# MetabolicReactions present in iOL1650 that have been removed for iJL1678b
 removed_reactions = ['ALPATG160pp1', 'ALPATE160pp1', 'ATPM',
                      'CITLY-CPLX_2tpr3dpcoa', 'PFL_act']
 

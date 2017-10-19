@@ -21,7 +21,7 @@ json_model = load_full_me_model_json('test_json_dump.json')
 
 
 def test_model_benchmark():
-    benchmark_model = load_json_me(join(models_dir, 'iLE1678_benchmark.json'))
+    benchmark_model = load_json_me(join(models_dir, 'iJL1678b_benchmark.json'))
     difference = find_me_model_difference(benchmark_model, test_model, 1e-6)
     print('-----------------------Difference----------------------')
     print(difference)
