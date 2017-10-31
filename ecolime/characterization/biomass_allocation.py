@@ -22,7 +22,8 @@ def get_biomass_composition(model, solution=None):
 
     # Account for total biomass produced in protein_biomass_dilution reaction
     protein_stoich = 1.
-    for met, stoich in model.reactions.protein_biomass_to_biomass.metabolites.items():
+    for met, stoich in \
+            model.reactions.protein_biomass_to_biomass.metabolites.items():
         if abs(stoich) >= 1:
             protein_stoich = stoich
 
@@ -56,8 +57,7 @@ def rna_to_protein_ratio(model, solution=None):
     composition = get_biomass_composition(model, solution=solution)
     rna_to_protein = (composition['mRNA'] + composition['tRNA'] +
                       composition['rRNA'] + composition['ncRNA']) / \
-                     (composition['Protein'] +
-                      composition['Unmodeled Protein'])
+                     (composition['protein'])
     return rna_to_protein
 
 
@@ -110,10 +110,13 @@ def make_composition_piechart(model, kind='Biomass', solution=None):
 
     print('Component sum =', frame.sum().values[0])
     frame = frame[frame > 1e-4].dropna()
-    return frame.plot(kind='pie', subplots=True, legend=None)
+    return frame, frame.plot(kind='pie', subplots=True, legend=None)
 
 
 def compare_to_ijo_biomass(model, kind='amino_acid', solution=None):
+    """
+    First implementation. Can be improved
+    """
     ijo = cobra.test.create_test_model('ecoli')
     biomass_rxn = ijo.reactions.Ec_biomass_iJO1366_core_53p95M
     me_demand = defaultdict(float)
@@ -182,7 +185,7 @@ def get_protein_distribution(model, solution=None, groupby='COG'):
                              encoding="ISO-8859-1")
         cog_df = cog_df.set_index('locus')
         for protein, flux in transcription.items():
-            protein_mass = model.translation_data.get_by_id(protein).mass
+            protein_mass = model.process_data.get_by_id(protein).mass
             if protein != 'dummy':
                 if protein in cog_df. index:
                     try:
