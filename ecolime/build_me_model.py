@@ -10,7 +10,7 @@ from __future__ import print_function, division, absolute_import
 
 # python imports
 import re
-from os.path import join
+from os.path import join, abspath, dirname
 from collections import defaultdict
 import pickle
 
@@ -27,6 +27,7 @@ from ecolime import (transcription, translation, flat_files, generics,
 import cobrame
 from cobrame.util import building, mu, me_model_interface
 from cobrame.util.mass import dna_mw_no_ppi
+from cobrame.io.jsonme import save_full_me_model_json
 
 # ## Part 1: Create minimum solveable ME-model
 # This will include the bare minimum representations of
@@ -804,7 +805,7 @@ def return_me_model():
     # Update reactions affected by formula update
     for r in me.reactions.query('_mod_lipo'):
         r.update()
-    for r in me.reactions.query('_mod_glycl'):
+    for r in me.reactions.query('_mod_glycyl'):
         r.update()
 
     # In[ ]:
@@ -816,7 +817,9 @@ def return_me_model():
     return me
 
 if __name__ == '__main__':
-
+    here = dirname(abspath(__file__))
     me = return_me_model()
-    with open("./me_models/iJL1678b.pickle", "wb") as outfile:
+    with open("%s/me_models/iJL1678b.pickle" % here, "wb") as outfile:
         pickle.dump(me, outfile)
+
+    save_full_me_model_json(me, "%s/me_models/iJL1678b.json" % here)

@@ -12,7 +12,7 @@ import cobrame
 removed_reactions = ['ALPATG160pp1', 'ALPATE160pp1', 'ATPM',
                      'CITLY-CPLX_2tpr3dpcoa', 'PFL_act']
 
-# PFL enzymes are activated by a glycl radical group
+# PFL enzymes are activated by a glycyl radical group
 pfl_isozymes = ['PYRUVFORMLY-INACTIVE-CPLX',
                 'PYRUVFORMLY-MONOMER_EG11784-MONOMER',
                 'KETOBUTFORMLY-INACT-MONOMER',
@@ -56,8 +56,8 @@ def correct_complex_modifications(model):
     model.process_data.mod_lipo_c.stoichiometry['h_c'] = 2
     model.process_data.mod_lipo_c_alt.stoichiometry['h_c'] = 1
 
-    # PFL is activated by a glycl group by PFLACTENZ-MONOMER
-    mod = model.process_data.mod_glycl_c
+    # PFL is activated by a glycyl group by PFLACTENZ-MONOMER
+    mod = model.process_data.mod_glycyl_c
     mod.enzyme = ['PFLACTENZ-MONOMER', 'FLAVODOXIN1-MONOMER']
     mod.stoichiometry = {'FLAVODOXIN1-MONOMER': -1, 'amet_c': -1,
                          'dad__2_c': 1, 'FLAVODOXIN1-MONOMER_mod_Oxidized': 1,
@@ -133,7 +133,7 @@ def correct_enzyme_reaction_association_frame(df):
                             'EG11910-MONOMER_dimer_EG11911-MONOMER'))
     for cplx in pfl_isozymes:
         df = df.applymap(
-            lambda x: x.replace(cplx, cplx + '_mod_glycl'))
+            lambda x: x.replace(cplx, cplx + '_mod_glycyl'))
 
     # Per 10510271, reaction to reduce CU(II) to CU(I)
     df.loc['CU2R', 'Complexes'] = 'NADH-DHII-MONOMER_mod_mg2_mod_cu_mod_fad'
@@ -191,7 +191,7 @@ def correct_trna_modifications(mod):
     # Cobalamin stimulates activity of QueG, but is not required,
     # per PMID:21502530
     mod['Q_at_34']['machines'] = ['Tgt_hexa_mod_6:zn2', 'QueA_mono',
-                                  'QueG_mono']
+                                  'QueG_mono_mod_2:4fe4s']
     correct_mod = mod['Q_at_34']['metabolites']
     correct_mod['h2o_c'] = 1
     correct_mod['h_c'] = 1
@@ -265,8 +265,11 @@ def correct_complex_modification_dict(stoichiometry):
         {'core_enzyme': 'ATPSYN-CPLX_EG10106-MONOMER',
          'modifications': {'mg2_c': 1.}}
 
+    stoichiometry['QueG_mono_mod_2:4fe4s'] = {'core_enzyme': 'QueG_mono',
+                                              'modifications': {'4fe4s_c': 2.}}
+
     for cplx in pfl_isozymes:
-        stoichiometry[cplx + '_mod_glycl'] = {'core_enzyme': cplx,
-                                              "modifications": {'glycl_c': 1}}
+        stoichiometry[cplx + '_mod_glycyl'] = {'core_enzyme': cplx,
+                                              "modifications": {'glycyl_c': 1}}
 
     return stoichiometry
