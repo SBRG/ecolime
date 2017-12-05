@@ -2,10 +2,9 @@ from setuptools import setup, find_packages
 
 
 setup(name='ECOLIme',
-      version='0.0.5',
-      description='ME model data files specific to E. coli K-12 MG1655',
-      author='Ali Ebrahim and Colton Lloyd',
-      author_email='minime_dev@googlegroups.com',
+      version='0.0.7',
+      description='ME-model data files specific to E. coli K-12 MG1655',
+      author='Colton Lloyd and Ali Ebrahim',
       url='https://github.com/SBRG/ecolime',
       install_requires=['Biopython', 'setuptools', 'cobra<=0.5.11', 'xlrd',
                         'pandas', 'six', 'scipy', 'numpy'],
