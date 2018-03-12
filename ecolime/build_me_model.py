@@ -21,7 +21,7 @@ import cobra
 # ECOLIme
 import ecolime
 from ecolime import (transcription, translation, flat_files, generics,
-                     formulas)
+                     formulas, compartments)
 
 # COBRAme
 import cobrame
@@ -95,6 +95,12 @@ def return_me_model():
          "ncRNA_biomass", "DNA_biomass", "lipid_biomass",
          "constituent_biomass", "prosthetic_group_biomass",
          "peptidoglycan_biomass"])
+
+    # Define ME-model compartments
+    me.compartments = {"p": "Periplasm", "e": "Extra-organism", "c": "Cytosol",
+                       "im": 'Inner Membrane', 'om': "Outer Membrane",
+                       "mc": "ME-model Constraint",
+                       "m": "Membrane"}
 
     # ### 2) Load metabolites and build Metabolic reactions
     # The below reads in:
@@ -697,16 +703,6 @@ def return_me_model():
 
     # -----
     # ## Part 8: Model updates and corrections
-    # # Add NDH flux split constraint
-    # for rxn in me.metabolites.get_by_id('NADH-DHII-MONOMER_mod_mg2_mod_cu_mod_fad').metabolic_reactions:
-    #     rxn.stoichiometric_data.stoichiometry['ndh2_constraint'] = 1
-    #     rxn.update()
-    # for rxn in me.metabolites.get_by_id('NADH-DHI-CPLX_mod_2fe2s_mod_4fe4s_mod_fmn').metabolic_reactions:
-    #     rxn.stoichiometric_data.stoichiometry['ndh1_constraint'] = 1
-    #     rxn.update()
-    # rxn = cobra.Reaction('ndh_flux_split_constraint')
-    # me.add_reaction(rxn)
-    # rxn.reaction = 'ndh1_constraint + ndh2_constraint ->'
     # In[ ]:
 
     # Add reaction subsystems from iJO to model
@@ -782,7 +778,7 @@ def return_me_model():
     me.update()
     me.prune()
 
-    # ### Add remaining metabolite formulas to model
+    # ### Add remaining metabolite formulas and compartments to model
 
     # In[ ]:
 
@@ -808,13 +804,15 @@ def return_me_model():
     for r in me.reactions.query('_mod_glycyl'):
         r.update()
 
-    # In[ ]:
+    # add metaboolite compartments
+    compartments.add_compartments_to_model(me)
 
     n_genes = len(me.metabolites.query(re.compile('RNA_b[0-9]')))
     print("number of genes in the model %d (%.2f%%)" % (
     n_genes, n_genes * 100. / (1678)))
 
     return me
+
 
 if __name__ == '__main__':
     here = dirname(abspath(__file__))

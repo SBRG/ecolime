@@ -187,6 +187,7 @@ def add_charged_trna_subreactions(me_model):
         data.stoichiometry = info['stoich']
         data._element_contribution = info.get('element_contribution', {})
 
+
 # N terminal methionine cleaved
 methionine_cleaved = ['b4154', 'b1109', 'b3908', 'b3417', 'b3940', 'b0344',
                       'b1263', 'b0026', 'b2697', 'b2114', 'b3559', 'b0680',

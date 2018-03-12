@@ -53,5 +53,6 @@ def test_json_mass_balance():
     print(not_mass_balanced)
     assert (len(not_mass_balanced) == 0)
 
+
 if __name__ == '__main__':
     test_model_benchmark()
