@@ -27,7 +27,7 @@ from ecolime import (transcription, translation, flat_files, generics,
 import cobrame
 from cobrame.util import building, mu, me_model_interface
 from cobrame.util.mass import dna_mw_no_ppi
-from cobrame.io.jsonme import save_full_me_model_json
+from cobrame.io.json import save_json_me_model
 
 # ## Part 1: Create minimum solveable ME-model
 # This will include the bare minimum representations of
@@ -820,4 +820,4 @@ if __name__ == '__main__':
     with open("%s/me_models/iJL1678b.pickle" % here, "wb") as outfile:
         pickle.dump(me, outfile)
 
-    save_full_me_model_json(me, "%s/me_models/iJL1678b.json" % here)
+    save_json_me_model(me, "%s/me_models/iJL1678b.json" % here)
