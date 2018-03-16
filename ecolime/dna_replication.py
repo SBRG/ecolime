@@ -1,10 +1,11 @@
+from __future__ import division, absolute_import, print_function
+
 import math
 
 import numpy as np
 from scipy.optimize import leastsq
 
 from cobrame import mu
-from cobrame.util.mass import dna_mw_no_ppi
 
 # Experimental Data
 gr_data_doublings_per_hour = [0, 0.6, 1.0, 1.5, 2.0, 2.5]
@@ -55,7 +56,21 @@ def optimize_dna_function(gr, percent_dna):
     return a[0]
 
 
-def return_gr_dependent_dna_demand(gc_fraction):
+def get_dna_mw_no_ppi_dict(model):
+    """
+    Return the molecular weight of dna component with the diphosphate group
+    removed.
+    """
+    dna_mw_no_ppi = {}
+    ppi_mw = model.metabolites.ppi_c.formula_weight
+    for dna in ['dctp', 'dgtp', 'datp', 'dttp']:
+        dna_mw = model.metabolites.get_by_id(dna + '_c').formula_weight
+        dna_mw_no_ppi[dna] = dna_mw - ppi_mw
+
+    return dna_mw_no_ppi
+
+
+def return_gr_dependent_dna_demand(model, gc_fraction):
     """
     Returns dNTP coefficients and lower/upper bounds of DNA_replication
     reaction
@@ -65,7 +80,7 @@ def return_gr_dependent_dna_demand(gc_fraction):
     dna_g_per_g = percent_dna_template_function(fit_params, mu)  # gDNA / gDW
 
     # average dinucleotide molecular weight
-    dna_mw = dna_mw_no_ppi
+    dna_mw = get_dna_mw_no_ppi_dict(model)
     dntp_mw = (gc_fraction * (dna_mw['dctp'] + dna_mw['dgtp'])) / 2 + \
               ((1 - gc_fraction) * (dna_mw['datp'] + dna_mw['dttp'])) / 2
 

@@ -135,7 +135,7 @@ def add_translocation_pathways(model, pathways_df, membrane_constraints=False):
 
     def add_translocation_data_and_reaction(model, pathways, preprocessed_id,
                                             processed_id, compartment,
-                                            alt=False):
+                                            peptide_data, alt=False):
 
         suffix = '_alt' if alt else ''
 
@@ -149,7 +149,9 @@ def add_translocation_pathways(model, pathways_df, membrane_constraints=False):
 
         # Add protein surface area constraint
         if membrane_constraints and compartment != 'Periplasm':
-            mass = peptide_data.mass
+            protein = peptide_data.protein
+            protein_met = model.metabolites.get_by_id('protein_' + protein)
+            mass = protein_met.formula_weight / 1000.  # in kDa
             membrane_thickness = model.global_info['membrane_thickness']
             thickness = membrane_thickness[compartment]
             # Relationship uses protein molecular in kDa
@@ -195,13 +197,15 @@ def add_translocation_pathways(model, pathways_df, membrane_constraints=False):
                 pathways_alt.add(pathway_name)
 
         add_translocation_data_and_reaction(model, pathways, preprocessed_id,
-                                            processed_id, compartment)
+                                            processed_id, compartment,
+                                            peptide_data)
 
         # if there's an alternative pathway (tat) add this reaction as well
         if pathways != pathways_alt:
             add_translocation_data_and_reaction(model, pathways_alt,
                                                 preprocessed_id, processed_id,
-                                                compartment, alt=True)
+                                                compartment, peptide_data,
+                                                alt=True)
 
 
 lipoprotein_precursors = {'AcrA': 'b0463', 'AcrE': 'b3265', 'BamB': 'b2512',
@@ -221,7 +225,7 @@ def add_lipoprotein_formation(model, compartment_dict,
     for protein in lipoprotein_precursors.values():
         compartment = compartment_dict.get(protein)
         protein_met = model.metabolites.get_by_id('protein_' + protein)
-        mass = protein_met.mass
+        mass = protein_met.formula_weight / 1000.  # in kDa
 
         processed_id = 'protein_' + protein + '_lipoprotein_' + compartment
         preprocessed_id = 'protein_' + protein + '_' + compartment

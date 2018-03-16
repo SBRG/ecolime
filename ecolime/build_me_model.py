@@ -26,7 +26,6 @@ from ecolime import (transcription, translation, flat_files, generics,
 # COBRAme
 import cobrame
 from cobrame.util import building, mu, me_model_interface
-from cobrame.util.mass import dna_mw_no_ppi
 from cobrame.io.json import save_json_me_model
 
 # ## Part 1: Create minimum solveable ME-model
@@ -223,7 +222,7 @@ def return_me_model():
 
     rxn = cobrame.SummaryVariable('dummy_protein_to_mass')
     me.add_reactions([rxn])
-    mass = me.metabolites.protein_dummy.mass
+    mass = me.metabolites.protein_dummy.formula_weight / 1000.  # in kDa
     rxn.add_metabolites({'protein_biomass': -mass, 'protein_dummy': -1,
                          cobrame.Constraint('unmodeled_protein_biomass'): mass})
 
@@ -322,7 +321,7 @@ def return_me_model():
     # In[ ]:
 
     dna_demand_stoich, dna_demand_bound = ecolime.dna_replication.return_gr_dependent_dna_demand(
-        me.global_info['GC_fraction'])
+        me, me.global_info['GC_fraction'])
 
     dna_replication = cobrame.SummaryVariable("DNA_replication")
     me.add_reaction(dna_replication)
@@ -332,6 +331,7 @@ def return_me_model():
                             dna_replication.check_mass_balance().items()}
 
     dna_mw = 0
+    dna_mw_no_ppi = ecolime.dna_replication.get_dna_mw_no_ppi_dict(me)
     for met, value in me.reactions.DNA_replication.metabolites.items():
         if met.id != 'ppi_c':
             dna_mw -= value * dna_mw_no_ppi[met.id.replace('_c', '')] / 1000.
@@ -778,7 +778,7 @@ def return_me_model():
     me.update()
     me.prune()
 
-    # ### Add remaining metabolite formulas and compartments to model
+    # ### Add remaining complex formulas and compartments to model
 
     # In[ ]:
 
