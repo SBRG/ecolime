@@ -138,6 +138,13 @@ def correct_enzyme_reaction_association_frame(df):
     # Per 10510271, reaction to reduce CU(II) to CU(I)
     df.loc['CU2R', 'Complexes'] = 'NADH-DHII-MONOMER_mod_mg2_mod_cu_mod_fad'
 
+    # replaced enzymes with correctly modified enzymes (corrected below)
+    df = df.applymap(
+        lambda x: x.replace('ADCLY-CPLX_mod_pydx', 'ADCLY-CPLX_mod_pydx5p'))
+    df = df.applymap(
+        lambda x: x.replace('CYT-O-UBIOX-CPLX_mod_pheme_mod_cu2',
+                            'CYT-O-UBIOX-CPLX_mod_pheme_mod_hemeO_mod_cu2'))
+
     return df
 
 
@@ -270,6 +277,19 @@ def correct_complex_modification_dict(stoichiometry):
 
     for cplx in pfl_isozymes:
         stoichiometry[cplx + '_mod_glycyl'] = {'core_enzyme': cplx,
-                                              "modifications": {'glycyl_c': 1}}
+                                               "modifications": {'glycyl_c':
+                                                                 1}}
+
+    # ADCLY has pydx5p modification per PMID: 1644759
+    stoichiometry.pop('ADCLY-CPLX_mod_pydx')
+    stoichiometry['ADCLY-CPLX_mod_pydx5p'] = {'core_enzyme': 'ADCLY-CPLX',
+                                              'modifications':
+                                                  {'pydx5p_c': 1.0}}
+
+    # CYT-O-UBIOX also has hemeO coenzyme per PMID: 1850294
+    stoichiometry.pop('CYT-O-UBIOX-CPLX_mod_pheme_mod_cu2')
+    stoichiometry['CYT-O-UBIOX-CPLX_mod_pheme_mod_hemeO_mod_cu2'] = \
+        {'core_enzyme': 'CYT-O-UBIOX-CPLX',
+         'modifications': {'pheme_c': 1.0, 'hemeO_c': 1.0, 'cu2_c': 1.0}}
 
     return stoichiometry
