@@ -536,7 +536,7 @@ def return_me_model():
         subreaction_data = cobrame.SubreactionData(subreaction, me)
         enzymes = transcription.transcription_subreactions[subreaction]['enzymes']
         subreaction_data.stoichiometry = \
-        transcription.transcription_subreactions[subreaction]['stoich']
+            transcription.transcription_subreactions[subreaction]['stoich']
         subreaction_data.enzyme = enzymes
 
     for transcription_data in me.transcription_data:
@@ -583,7 +583,8 @@ def return_me_model():
         if cplx == 'EG10544-MONOMER':
             continue
         protein = row.Protein.split('(')[0] + '_' + row.Protein_compartment
-        value = row.Protein.split('(')[1][:-1].split(':')[0]
+        value = me.process_data.get_by_id(cplx).stoichiometry[
+            'protein_' + row.Protein.split('(')[0]]
         new_stoich[cplx]['protein_' + protein] = float(value)
 
     for cplx, stoich in new_stoich.items():

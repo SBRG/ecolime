@@ -5,11 +5,15 @@ import pandas as pd
 from cobrame import MetabolicReaction
 
 
-def output_model_reactions_stats(model, output_file):
+def output_model_reactions_stats(model, output_file, solution=None):
+    if solution:
+        model.solution = solution
+
     """Return general statistics about the reactions in the ME-model"""
-    df = pd.DataFrame(columns=['genes', 'products_stoichiometry', 'products',
-                               'reactants_stoichiometry', 'reactants',
-                               'rxn_id', 'reaction_type', 'reaction'],
+    df = pd.DataFrame(columns=['id', 'genes', 'products_stoichiometry',
+                               'products', 'reactants_stoichiometry',
+                               'reactants', 'reaction_type', 'reaction',
+                               'upper_bound', 'lower_bound'],
                       index=["index"])
     writer = pd.ExcelWriter(output_file)
     rxn_types = set()
@@ -27,18 +31,32 @@ def output_model_reactions_stats(model, output_file):
                 else:
                     products.append(met.id)
                     product_stoich.append(stoich)
-            except:
-                print(r.id)
+            except TypeError:
+                reactants.append(met.id)
+                reactant_stoich.append(stoich)
 
         df.loc[r_index, 'products_stoichiometry'] = product_stoich
         df.loc[r_index, 'products'] = products
         df.loc[r_index, 'reactants_stoichiometry'] = reactant_stoich
         df.loc[r_index, 'reactants'] = reactants
-        df.loc[r_index, 'rxn_id'] = r.id
+        df.loc[r_index, 'id'] = r.id
+        df.loc[r_index, 'lower_bound'] = str(r.lower_bound)
+        df.loc[r_index, 'upper_bound'] = str(r.upper_bound)
+
+        # Add flux if model has been solved
+        if model.solution.x_dict:
+            df.loc[r_index, 'flux'] = model.solution.x_dict[r.id]
         try:
             df.loc[r_index, 'reaction'] = r.reaction
-        except:
-            pass
+        except TypeError:
+            ub, lb = r.upper_bound, r.lower_bound
+            r.upper_bound = 1000.
+            r.lower_bound = 0.
+            df.loc[r_index, 'reaction'] = r.reaction
+            print(r, r.reaction)
+            r.upper_bound = ub
+            r.lower_bound = lb
+            print(r.upper_bound)
 
         gene_list = []
         if isinstance(r, MetabolicReaction) and r.complex_data:
@@ -47,7 +65,7 @@ def output_model_reactions_stats(model, output_file):
 
         df.loc[r_index, 'genes'] = gene_list
         rxn_type = r.__class__.__name__
-        df.loc[r_index, 'rxn_type'] = rxn_type
+        df.loc[r_index, 'reaction_type'] = rxn_type
         rxn_types.add(rxn_type)
 
     for rxn_type in rxn_types:
@@ -77,7 +95,7 @@ def output_model_component_stats(model, output_file):
         rxn_involvement_set = set()
         for r in m.reactions:
             rxn_involvement_set.add(r.__class__.__name__)
-        df.loc[m_index, 'Reaction Involvement'] = str(rxn_involvement_set)
+        df.loc[m_index, 'reaction_involvement'] = str(rxn_involvement_set)
 
     for met_type in met_types:
         df_filtered = df[df.met_type == met_type]

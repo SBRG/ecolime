@@ -117,9 +117,12 @@ def compare_to_ijo_biomass(model, kind='amino_acid', solution=None):
     """
     First implementation. Can be improved
     """
+    if solution:
+        model.solution = solution
     ijo = cobra.test.create_test_model('ecoli')
     biomass_rxn = ijo.reactions.Ec_biomass_iJO1366_core_53p95M
     me_demand = defaultdict(float)
+    x_dict = model.solution.x_dict
 
     # These are reactions that incorporate metabolites into biomass
     skip_list = ['SummaryVariable', 'ComplexFormation',
@@ -138,7 +141,9 @@ def compare_to_ijo_biomass(model, kind='amino_acid', solution=None):
     elif kind == 'cofactors':
         for d in model.complex_data:
             for mod, num in d.subreactions.items():
-                me_demand[mod.replace('mod_', '')] += d.formation.x * num
+                me_demand[mod.replace('mod_', '')] += \
+                    x_dict[d.formation.id] * num
+
     else:
         for met_id in biomass_rxn.metabolites:
             met = model.metabolites.get_by_id(met_id.id)
@@ -147,7 +152,7 @@ def compare_to_ijo_biomass(model, kind='amino_acid', solution=None):
                     stoich = r._metabolites[met]
                     if isinstance(stoich, Basic):
                         stoich = stoich.subs(mu, growth_rate)
-                    me_demand[met_id.id] += r.x * stoich
+                    me_demand[met_id.id] += x_dict[r.id] * stoich
 
     compare = dict()
     compare['ME_gr_%.2f' % growth_rate] = me_demand.copy()
