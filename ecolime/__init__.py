@@ -5,7 +5,7 @@ from ecolime import (chaperones, dna_replication, generics, flat_files,
                      translocation, trna_charging, corrections)
 import cobrame
 
-__version__ = "0.0.8"
+__version__ = "0.0.9"
 
 
 if StrictVersion(__version__) != StrictVersion(cobrame.__version__):

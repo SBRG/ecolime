@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 setup(name='ECOLIme',
-      version='0.0.8',
+      version='0.0.9',
       description='ME-model data files specific to E. coli K-12 MG1655',
       author='Colton Lloyd and Ali Ebrahim',
       url='https://github.com/SBRG/ecolime',
