@@ -8,27 +8,98 @@ from cobrame.core.processdata import SubreactionData, PostTranslationData
 from cobrame.core.component import ProcessedProtein, TranslatedGene
 from cobrame.core.reaction import PostTranslationReaction
 
+
 folding_subreactions = {
-    'folding_KJE_1': {'enzymes': ['DnaJ_dim_mod_4:zn2', 'DnaK_mono'],
-                      'stoichiometry': {'atp_c': -1,
-                                        'h2o_c': -1,
-                                        'adp_c': 1,
+    'folding_KJE_1': {'enzymes': ['DnaJ_dim_mod_4:zn2','DnaK_mono_bound_to_atp'],
+                      'stoichiometry': {'h2o_c': -1,
                                         'h_c': 1,
                                         'pi_c': 1},
+                      'keff': 0.5},
+    'folding_KJE_4': {'enzymes': ['DnaJ_dim_mod_4:zn2','DnaK_mono_bound_to_atp'],
+                      'stoichiometry': {'h2o_c': -1,
+                                        'h_c': 1,
+                                        'pi_c': 1},
+                      'keff': 0.5},
+
+    'folding_KJE_2': {'enzymes': ['DnaK_mono_bound_to_atp'], 
+                      'stoichiometry': {'atp_c': -1,
+                                        'adp_c': 1},
                       'keff': 0.04},
 
-    'folding_KJE_2': {'enzymes': ['GrpE_dim'], 'stoichiometry': {},
-                      'keff': 1.0},
+    'folding_KJE_GrpE': {'enzymes': ['GrpE_dim'],
+                      'stoichiometry': {},
+                      'keff': 0.2}, 
 
-    'folding_GroEL_ES': {'enzymes': ['transGroES_hepta',
-                                     '[GroL]14['
-                                     'GroS]7_cis_with_7_adp_and_7_mg2'],
-                         'stoichiometry': {'atp_c': -7,
-                                           'adp_c': 7,
-                                           'h_c': 7,
-                                           'pi_c': 7},
-                         'keff': 0.12},
-    'folding_spontaneous': {'enzymes': None, 'stoichiometry': {}}
+    'folding_KJE_3': {'enzymes': ['DnaK_mono_bound_to_atp'], 
+                      'stoichiometry': {'atp_c': -1,
+                                        'adp_c': 1},
+                      'keff': 0.04},
+
+    'folding_KJE_5': {'enzymes': ['DnaK_mono_bound_to_atp'],
+                      'stoichiometry': {'atp_c': -1,
+                                        'adp_c': 1},
+                      'keff': 0.04},
+
+    'folding_KJE_6': {'enzymes': ['DnaK_mono_bound_to_atp'],
+                      'stoichiometry': {'atp_c': -1,
+                                        'adp_c': 1},
+                      'keff': 0.04},
+
+    'folding_GroEL_ES_1': {'enzymes':['[GroL]14[GroS]7_cis_with_7_adp_and_7_mg2','transGroES_hepta'],
+                           'stoichiometry': {},
+                           'keff': 50.0},
+    'folding_GroEL_ES_4': {'enzymes':['[GroL]14[GroS]7_cis_with_7_adp_and_7_mg2','transGroES_hepta'],
+                           'stoichiometry': {},
+                           'keff': 50.0},
+
+    'folding_GroEL_ES_2': {'enzymes':['[GroL]14[GroS]7_cis_with_7_adp_and_7_mg2'],
+                           'stoichiometry': {'atp_c': -7,
+                                             'h2o_c': -7,
+                                             'adp_c': 7,
+                                             'h_c': 7,
+                                             'pi_c': 7},
+                           'keff': 0.12},
+
+    'folding_GroEL_ES_3': {'enzymes':['[GroL]14[GroS]7_cis_with_7_adp_and_7_mg2'],
+                           'stoichiometry': {'atp_c': -7,
+                                             'h2o_c': -7,
+                                             'adp_c': 7,
+                                             'h_c': 7,
+                                             'pi_c': 7},
+                           'keff': 0.12},
+    
+    'folding_GroEL_ES_5': {'enzymes':['[GroL]14[GroS]7_cis_with_7_adp_and_7_mg2'],
+                           'stoichiometry': {'atp_c': -7,
+                                             'h2o_c': -7,
+                                             'adp_c': 7,
+                                             'h_c': 7,
+                                             'pi_c': 7},
+                           'keff': 0.12},
+
+    'folding_GroEL_ES_6': {'enzymes':['[GroL]14[GroS]7_cis_with_7_adp_and_7_mg2'],
+                           'stoichiometry': {'atp_c': -7,
+                                             'h2o_c': -7,
+                                             'adp_c': 7,
+                                             'h_c': 7,
+                                             'pi_c': 7},
+                           'keff': 0.12},
+
+    #'folding_spontaneous': {'enzymes': None, 'stoichiometry': {}}
+    'folding_spontaneous': {'enzymes': ['Lon'],
+                            'stoichiometry': {'atp_c': -2,
+                                              'h2o_c': -2,
+                                              'adp_c': 2,
+                                              'h_c': 2,
+                                              'pi_c': 2},
+                            'keff': 1.225},
+    'folding_Lon': {'enzymes': ['Lon'],
+                    'stoichiometry': {'atp_c': -2,
+                                      'h2o_c': -2,
+                                      'adp_c': 2,
+                                      'h_c': 2,
+                                      'pi_c': 2},
+                    'keff': 1.225}
+                 
     }
 
 genes_to_use_dill = ["b2411", "b4035", "b1709", "b2926", "b0115", "b1676",
@@ -90,7 +161,7 @@ genes_to_use_dill = ["b2411", "b4035", "b1709", "b2926", "b0115", "b1676",
                      "b3343", "b3146", "b1135", "b4180", "b3465", "b2532",
                      "b4022", "b2785", "b0082", "b1269", "b2517", "b2140",
                      "b3741", "b3287", "b2566", "b0914", "b0194", "b3389",
-                     "b0002", "b2913", "b1779", "b4388", "b3919", "b1264"]
+                     "b0002", "b2913", "b1779", "b4388", "b3919", "b1264", "b2610", "b0098", "b3464"]
 
 
 def add_chaperone_subreactions(model):
@@ -98,9 +169,8 @@ def add_chaperone_subreactions(model):
         data = SubreactionData(subreaction, model)
         data.enzyme = values['enzymes']
         data.stoichiometry = values['stoichiometry']
-        if subreaction != 'folding_spontaneous':
-            data.keff = values['keff']  # in 1/s
-
+        #if subreaction != 'folding_spontaneous':
+        data.keff = values['keff']  # in 1/s
 
 def add_chaperone_network(model):
     # First remove folding subreactions from translation reactions
@@ -114,12 +184,26 @@ def add_chaperone_network(model):
     k_folding_df = flat_files.get_folding_rates_df()
     aggregation_propensity_df = flat_files.get_aggregation_popensity_df()
 
+    model_protein_set = set()
     for protein in model.metabolites.query(re.compile('^protein_b[0-9]')):
         if not isinstance(protein, TranslatedGene):
             continue
-        protein_bnum = protein.id.replace('protein_', '')
+        model_protein_set.add(protein.id.split('_')[1])
+    for protein_bnum in list(model_protein_set):
+        protein = model.metabolites.get_by_id('protein_'+protein_bnum)
+        #protein_bnum = protein.id.replace('protein_', '')
         folded_met = ProcessedProtein(protein.id + '_folded', protein.id)
         model.add_metabolites([folded_met])
+        intermediate_met = ProcessedProtein(protein.id + '_intermediate', protein.id)
+        model.add_metabolites([intermediate_met])
+        KJE_folding_intermediate_met1 = ProcessedProtein(protein.id + '_KJE_folding_intermediate1', protein.id)
+        model.add_metabolites([KJE_folding_intermediate_met1])
+        GroEL_ES_folding_intermediate_met1 = ProcessedProtein(protein.id + '_GroEL_ES_folding_intermediate1', protein.id)
+        model.add_metabolites([GroEL_ES_folding_intermediate_met1])
+        KJE_folding_intermediate_met2 = ProcessedProtein(protein.id + '_KJE_folding_intermediate2', protein.id)
+        model.add_metabolites([KJE_folding_intermediate_met2])
+        GroEL_ES_folding_intermediate_met2 = ProcessedProtein(protein.id + '_GroEL_ES_folding_intermediate2', protein.id)
+        model.add_metabolites([GroEL_ES_folding_intermediate_met2])
 
         try:
             if protein_bnum in genes_to_use_dill:
@@ -139,13 +223,11 @@ def add_chaperone_network(model):
             k_folding = k_folding_df.median().to_dict()
 
         for folding in folding_subreactions:
-            if folding == 'folding_KJE_2':
+            if '_GrpE' in folding:
                 continue
-            folding_id = 'folding_' + protein.id + '_' + \
-                         folding.replace('_1', '')
+            folding_id = 'folding_' + protein.id + '_' + folding 
 
-            if folding == 'folding_spontaneous':
-
+            if folding == 'folding_spontaneous' or folding == 'folding_Lon':
                 data = PostTranslationData(folding_id, model,
                                            protein.id + '_folded', protein.id)
 
@@ -154,6 +236,7 @@ def add_chaperone_network(model):
                 data.aggregation_propensity = propensity
                 data.k_folding = k_folding
                 data.keq_folding = keq_folding
+                data.biomass_type = 'prosthetic_group_biomass'
 
                 rxn = PostTranslationReaction(folding_id)
                 model.add_reaction(rxn)
@@ -164,18 +247,20 @@ def add_chaperone_network(model):
                                             protein.id + '_folded', protein.id)
 
                 data.subreactions[folding] = 1
-                if folding == 'folding_KJE_1':
-                    data.subreactions['folding_KJE_2'] = 1
-
+                if folding == 'folding_KJE_2' or folding == 'folding_KJE_3' or folding == 'folding_KJE_5' or folding == 'folding_KJE_6':
+                    data.subreactions['folding_KJE_GrpE'] = 1
                 data.folding_mechanism = folding
                 data.aggregation_propensity = propensity
                 data.k_folding = k_folding
                 data.keq_folding = keq_folding
+                data.biomass_type = 'prosthetic_group_biomass'
 
                 rxn = PostTranslationReaction(folding_id)
                 model.add_reaction(rxn)
                 rxn.posttranslation_data = data
+
                 rxn.update()
+                
 
         # TODO remove this block once it is confirmed it is not needed
         #data_2 = PostTranslationData('folding_' + protein.id + '_2', me,
@@ -219,5 +304,8 @@ def change_temperature(model, temperature):
         if hasattr(data, 'keff'):
             new_keff = get_temperature_dependent_keff(data.keff, temperature)
             data.keff = new_keff
+        if hasattr(data,'synthetase_keff'):
+            new_keff = get_temperature_dependent_keff(data.synthetase_keff, temperature)
+            data.synthetase_keff = new_keff
 
     model.update()
