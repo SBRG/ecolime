@@ -10,12 +10,14 @@ from cobrame.core.reaction import PostTranslationReaction
 
 
 folding_subreactions = {
-    'folding_KJE_1': {'enzymes': ['DnaJ_dim_mod_4:zn2','DnaK_mono_bound_to_atp'],
+    'folding_KJE_1': {'enzymes': ['DnaJ_dim_mod_4:zn2',
+                                  'DnaK_mono_bound_to_atp'],
                       'stoichiometry': {'h2o_c': -1,
                                         'h_c': 1,
                                         'pi_c': 1},
                       'keff': 0.5},
-    'folding_KJE_4': {'enzymes': ['DnaJ_dim_mod_4:zn2','DnaK_mono_bound_to_atp'],
+    'folding_KJE_4': {'enzymes': ['DnaJ_dim_mod_4:zn2',
+                                  'DnaK_mono_bound_to_atp'],
                       'stoichiometry': {'h2o_c': -1,
                                         'h_c': 1,
                                         'pi_c': 1},
@@ -161,7 +163,12 @@ genes_to_use_dill = ["b2411", "b4035", "b1709", "b2926", "b0115", "b1676",
                      "b3343", "b3146", "b1135", "b4180", "b3465", "b2532",
                      "b4022", "b2785", "b0082", "b1269", "b2517", "b2140",
                      "b3741", "b3287", "b2566", "b0914", "b0194", "b3389",
-                     "b0002", "b2913", "b1779", "b4388", "b3919", "b1264", "b2610", "b0098", "b3464"]
+                     "b0002", "b2913", "b1779", "b4388", "b3919", "b1264",
+                     "b2610", "b0098", "b3464"]
+
+groel_targets = ['b3340', 'b3988', 'b1241', 'b1719', 'b2286', 'b2557', 'b3650',
+                 'b0726', 'b0115', 'b0114', 'b0014', 'b3987', 'b1243', 'b3741',
+                 'b4154', 'b2155']
 
 
 def add_chaperone_subreactions(model):
@@ -172,7 +179,11 @@ def add_chaperone_subreactions(model):
         #if subreaction != 'folding_spontaneous':
         data.keff = values['keff']  # in 1/s
 
+
 def add_chaperone_network(model):
+    pd = 0.25
+    pg = 0.50
+
     # First remove folding subreactions from translation reactions
     for data in model.translation_data:
         for subreaction in list(data.subreactions.keys()):
@@ -184,27 +195,28 @@ def add_chaperone_network(model):
     k_folding_df = flat_files.get_folding_rates_df()
     aggregation_propensity_df = flat_files.get_aggregation_popensity_df()
 
+    # Get set of all proteins contained in the model
     model_protein_set = set()
     for protein in model.metabolites.query(re.compile('^protein_b[0-9]')):
         if not isinstance(protein, TranslatedGene):
             continue
         model_protein_set.add(protein.id.split('_')[1])
+
+    # For each protein, create
     for protein_bnum in list(model_protein_set):
         protein = model.metabolites.get_by_id('protein_'+protein_bnum)
-        #protein_bnum = protein.id.replace('protein_', '')
         folded_met = ProcessedProtein(protein.id + '_folded', protein.id)
         model.add_metabolites([folded_met])
-        intermediate_met = ProcessedProtein(protein.id + '_intermediate', protein.id)
-        model.add_metabolites([intermediate_met])
-        KJE_folding_intermediate_met1 = ProcessedProtein(protein.id + '_KJE_folding_intermediate1', protein.id)
-        model.add_metabolites([KJE_folding_intermediate_met1])
-        GroEL_ES_folding_intermediate_met1 = ProcessedProtein(protein.id + '_GroEL_ES_folding_intermediate1', protein.id)
-        model.add_metabolites([GroEL_ES_folding_intermediate_met1])
-        KJE_folding_intermediate_met2 = ProcessedProtein(protein.id + '_KJE_folding_intermediate2', protein.id)
-        model.add_metabolites([KJE_folding_intermediate_met2])
-        GroEL_ES_folding_intermediate_met2 = ProcessedProtein(protein.id + '_GroEL_ES_folding_intermediate2', protein.id)
-        model.add_metabolites([GroEL_ES_folding_intermediate_met2])
 
+        for suffix in ['_intermediate', '_KJE_folding_intermediate1',
+                       '_KJE_folding_intermediate2',
+                       '_GroEL_ES_folding_intermediate1',
+                       '_GroEL_ES_folding_intermediate2']:
+            intermediate_met = ProcessedProtein(protein.id + suffix,
+                                                protein.id)
+            model.add_metabolites([intermediate_met])
+
+        # TODO clean this up
         try:
             if protein_bnum in genes_to_use_dill:
                 keq_folding = dill_df.T[protein_bnum].to_dict()
@@ -227,53 +239,43 @@ def add_chaperone_network(model):
                 continue
             folding_id = 'folding_' + protein.id + '_' + folding 
 
-            if folding == 'folding_spontaneous' or folding == 'folding_Lon':
-                data = PostTranslationData(folding_id, model,
-                                           protein.id + '_folded', protein.id)
+            data = PostTranslationData(folding_id, model,
+                                       protein.id + '_folded', protein.id)
 
-                data.folding_mechanism = folding
-                data.subreactions[folding] = 1
-                data.aggregation_propensity = propensity
-                data.k_folding = k_folding
-                data.keq_folding = keq_folding
-                data.biomass_type = 'prosthetic_group_biomass'
-
-                rxn = PostTranslationReaction(folding_id)
-                model.add_reaction(rxn)
-                rxn.posttranslation_data = data
-                rxn.update()
+            data.subreactions[folding] = 1
+            if 'KJE' in folding and folding.split('_')[-1] not in ['1',
+                                                                   '4']:
+                data.subreactions['folding_KJE_GrpE'] = 1
+            data.folding_mechanism = folding
+            data.aggregation_propensity = propensity
+            data.k_folding = k_folding
+            data.keq_folding = keq_folding
+            data.biomass_type = 'prosthetic_group_biomass'
+            if folding.split('_')[-1] in []:
+                data.intermediate_folding_id = ''
             else:
-                data = PostTranslationData(folding_id, model,
-                                            protein.id + '_folded', protein.id)
+                data.intermediate_folding_id = None
 
-                data.subreactions[folding] = 1
-                if folding == 'folding_KJE_2' or folding == 'folding_KJE_3' or folding == 'folding_KJE_5' or folding == 'folding_KJE_6':
-                    data.subreactions['folding_KJE_GrpE'] = 1
-                data.folding_mechanism = folding
-                data.aggregation_propensity = propensity
-                data.k_folding = k_folding
-                data.keq_folding = keq_folding
-                data.biomass_type = 'prosthetic_group_biomass'
+            if protein.id in groel_targets or protein.formula_weight / 1000 < 60:
+                data.size_or_target_scaling_factor = 2/7
 
-                rxn = PostTranslationReaction(folding_id)
-                model.add_reaction(rxn)
-                rxn.posttranslation_data = data
+            if '_2' in folding and 'KJE' in folding:
+                data.dilution_multiplier = pd
+            elif '_2' in folding and 'GroEL_ES' in folding:
+                data.dilution_multiplier = pg
+            elif '_5' in folding and 'KJE' in folding:
+                data.dilution_multiplier = 1 - pd
+            elif '_5' in folding and 'GroEL_ES' in folding:
+                data.dilution_multiplier = 1 - pg
+            elif '_6' in folding and 'GroEL_ES' in folding:
 
-                rxn.update()
-                
+            elif 'folding_lon' in folding:
+                data.dilution_multiplier = 1 - pd
+            rxn = PostTranslationReaction(folding_id)
+            model.add_reaction(rxn)
+            rxn.posttranslation_data = data
 
-        # TODO remove this block once it is confirmed it is not needed
-        #data_2 = PostTranslationData('folding_' + protein.id + '_2', me,
-        #                             protein.id + '_folded', protein.id + '_partially_folded')
-        #data_2.folding_mechanism = folding
-        #data_2.aggregation_propensity = propensity
-        #data_2.k_folding = k_folding
-        #data_2.keq_folding = keq_folding
-
-        #rxn_2 = PostTranslationReaction('folding_' + protein.id + '_2')
-        #me.add_reaction(rxn_2)
-        #rxn_2.posttranslation_data = data_2
-        #rxn_2.update()
+            rxn.update()
 
 
 def change_temperature(model, temperature):
@@ -304,8 +306,9 @@ def change_temperature(model, temperature):
         if hasattr(data, 'keff'):
             new_keff = get_temperature_dependent_keff(data.keff, temperature)
             data.keff = new_keff
-        if hasattr(data,'synthetase_keff'):
-            new_keff = get_temperature_dependent_keff(data.synthetase_keff, temperature)
+        if hasattr(data, 'synthetase_keff'):
+            new_keff = get_temperature_dependent_keff(data.synthetase_keff,
+                                                      temperature)
             data.synthetase_keff = new_keff
 
     model.update()
