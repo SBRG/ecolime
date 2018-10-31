@@ -4,6 +4,7 @@ import math
 import re
 
 from . import flat_files
+import cobrame
 from cobrame.core.processdata import SubreactionData, PostTranslationData
 from cobrame.core.component import ProcessedProtein, TranslatedGene
 from cobrame.core.reaction import PostTranslationReaction
@@ -241,10 +242,10 @@ def add_chaperone_network(model):
 
             data = PostTranslationData(folding_id, model,
                                        protein.id + '_folded', protein.id)
+            data.folding = True
 
             data.subreactions[folding] = 1
-            if 'KJE' in folding and folding.split('_')[-1] not in ['1',
-                                                                   '4']:
+            if 'KJE' in folding and folding.split('_')[-1] not in ['1', '4']:
                 data.subreactions['folding_KJE_GrpE'] = 1
             data.folding_mechanism = folding
             data.aggregation_propensity = propensity
@@ -256,21 +257,81 @@ def add_chaperone_network(model):
             else:
                 data.intermediate_folding_id = None
 
-            if protein.id in groel_targets or protein.formula_weight / 1000 < 60:
+            if protein.id in groel_targets or \
+                    protein.formula_weight / 1000 < 60:
                 data.size_or_target_scaling_factor = 2/7
 
-            if '_2' in folding and 'KJE' in folding:
-                data.dilution_multiplier = pd
-            elif '_2' in folding and 'GroEL_ES' in folding:
-                data.dilution_multiplier = pg
-            elif '_5' in folding and 'KJE' in folding:
-                data.dilution_multiplier = 1 - pd
-            elif '_5' in folding and 'GroEL_ES' in folding:
-                data.dilution_multiplier = 1 - pg
-            elif '_6' in folding and 'GroEL_ES' in folding:
+            if 'KJE' in folding:
+                kind = 'KJE'
+                multiplier = pd
+            elif 'GroEL_ES' in folding:
+                kind = 'GroEL_ES'
+                multiplier = pg
 
-            elif 'folding_lon' in folding:
+            if folding == 'folding_Lon':
+                data.folding_reactant_metabolite = protein.id + '_intermediate'
+
+                data.coupling_expression_id = 'folding_protease'
                 data.dilution_multiplier = 1 - pd
+
+            elif folding == 'folding_spontaneous':
+                data.folding_reactant_metabolite = protein.id
+                data.folding_product_metabolite = folded_met.id
+
+                data.coupling_expression_id = \
+                    'folding_spontaneous_w_degradation'
+
+            if folding.endswith('_1'):
+                data.folding_reactant_metabolite = protein.id
+                data.folding_product_metabolite = \
+                    '%s_%s_folding_intermediate1' % (protein.id, kind)
+                data.coupling_expression_id = 'noncoupling'
+
+            elif folding.endswith('_2'):
+                data.folding_reactant_constraint = \
+                    '%s_folding_%s_constraint1' % (protein.id, kind)
+                data.folding_product_metabolite = folded_met.id
+                data.folding_reactant_metabolite = \
+                    '%s_%s_folding_intermediate1' % (protein.id, kind)
+
+                data.dilution_multiplier = multiplier
+                data.coupling_expression_id = 'folding_chaperone'
+
+            elif folding.endswith('_3'):
+                data.folding_product_metabolite = protein.id + '_intermediate'
+                data.folding_product_constraint = \
+                    '%s_folding_%s_constraint1' % (protein.id, kind)
+                data.folding_reactant_metabolite = \
+                    '%s_%s_folding_intermediate1' % (protein.id, kind)
+
+                data.coupling_expression_id = 'noncoupling'
+
+            elif folding.endswith('_4'):
+                data.folding_reactant_metabolite = protein.id + '_intermediate'
+                data.folding_product_metabolite =\
+                    '%s_%s_folding_intermediate2' % (protein.id, kind)
+
+                data.coupling_expression_id = 'noncoupling'
+
+            elif folding.endswith('_5'):
+                data.folding_product_metabolite = folded_met.id
+                data.folding_reactant_metabolite = \
+                    '%s_%s_folding_intermediate2' % (protein.id, kind)
+                data.folding_reactant_constraint = \
+                    '%s_folding_%s_constraint2' % (protein.id, kind)
+
+                data.dilution_multiplier = 1 - multiplier
+                data.coupling_expression_id = 'folding_chaperone'
+
+            elif folding.endswith('_6'):
+                data.folding_product_metabolite = protein.id + '_intermediate'
+                data.folding_product_constraint = \
+                    '%s_folding_%s_constraint2' % (protein.id, kind)
+                data.folding_reactant_metabolite = \
+                    '%s_%s_folding_intermediate2' % (protein.id, kind)
+
+                data.coupling_expression_id = 'noncoupling'
+
             rxn = PostTranslationReaction(folding_id)
             model.add_reaction(rxn)
             rxn.posttranslation_data = data
@@ -312,3 +373,75 @@ def change_temperature(model, temperature):
             data.synthetase_keff = new_keff
 
     model.update()
+
+
+def add_foldme_module(me):
+    for r in me.subreaction_data:
+        if not hasattr(r, 'keff'):
+            r.keff = 65.
+
+    rxn = cobrame.MEReaction('cisGroES_to_transGroES')
+    me.add_reaction(rxn)
+    rxn.add_metabolites({'cisGroES_hepta': -1, 'transGroES_hepta': 1})
+    rxn.lower_bound = -1000.
+
+    mod = cobrame.SubreactionData('mod_adp_c', me)
+    mod.stoichiometry = {'adp_c': -1.0}
+
+    data = cobrame.ComplexData('[GroL]14[GroS]7_cis_with_7_adp_and_7_mg2', me)
+    data.stoichiometry = {'GroL_14': 1., 'cisGroES_hepta': 1.}
+    data.subreactions = {'mod_adp_c': 7., 'mod_mg2_c': 7.}
+    data.create_complex_formation()
+
+    # modification to DnaK_mono
+    mod = cobrame.SubreactionData('mod_atp_c', me)
+    mod.stoichiometry = {'atp_c': -1.0}
+    data = cobrame.ComplexData('DnaK_mono_bound_to_atp', me)
+    data.stoichiometry = {'DnaK_mono': 1.}
+    data.subreactions = {'mod_atp_c': 1.}
+    data.create_complex_formation()
+
+    # create Lon complex
+    data = cobrame.ComplexData('Lon', me)
+    data.stoichiometry = {'protein_b2020': 6}  # TODO protein actually b0439
+    data.subreactions = {'mod_mg2_c': 6.}
+    data.create_complex_formation()
+
+    # add folding/cycling coupling constraint
+    for met in me.metabolites.query(re.compile('RNA_b[0-9]')):
+        protein_bnum = met.id.replace('RNA_', '')
+        constraint_id_list = []
+        constraint_id_list.append(
+            'protein_' + protein_bnum + '_folding_KJE_constraint1')
+        constraint_id_list.append(
+            'protein_' + protein_bnum + '_folding_KJE_constraint2')
+        constraint_id_list.append(
+            'protein_' + protein_bnum + '_folding_GroEL_ES_constraint1')
+        constraint_id_list.append(
+            'protein_' + protein_bnum + '_folding_GroEL_ES_constraint2')
+        for constraint_id in constraint_id_list:
+            try:
+                folding_constraint = me.metabolites.get_by_id(constraint_id)
+            except KeyError:
+                folding_constraint = cobrame.Constraint(constraint_id)
+                me.add_metabolites([folding_constraint])
+
+    # constructing chaperone network
+    add_chaperone_subreactions(me)
+    add_chaperone_network(me)
+
+    # Update stoichiometries of complexes to the folded version of the proteins,
+    # if they are not membrane/periplasm proteins
+    for data in list(me.complex_data):
+        for key in data.stoichiometry:
+            if key == 'protein_dummy':
+                continue
+            if key.endswith('Membrane') or key.endswith('Periplasm'):
+                continue
+            if key.startswith('protein_') and not key.endswith('_folded'):
+                value = data.stoichiometry.pop(key)
+                data.stoichiometry[key + '_folded'] = value
+
+    for data in me.complex_data:
+        data.formation.update()
+
