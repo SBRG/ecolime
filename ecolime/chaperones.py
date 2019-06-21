@@ -24,16 +24,16 @@ folding_subreactions = {
                                         'pi_c': 1},
                       'keff': 0.5},
 
-    'folding_KJE_2': {'enzymes': ['DnaK_mono_bound_to_atp'], 
+    'folding_KJE_2': {'enzymes': ['DnaK_mono_bound_to_atp'],
                       'stoichiometry': {'atp_c': -1,
                                         'adp_c': 1},
                       'keff': 0.04},
 
     'folding_KJE_GrpE': {'enzymes': ['GrpE_dim'],
                       'stoichiometry': {},
-                      'keff': 0.2}, 
+                      'keff': 0.2},
 
-    'folding_KJE_3': {'enzymes': ['DnaK_mono_bound_to_atp'], 
+    'folding_KJE_3': {'enzymes': ['DnaK_mono_bound_to_atp'],
                       'stoichiometry': {'atp_c': -1,
                                         'adp_c': 1},
                       'keff': 0.04},
@@ -70,7 +70,7 @@ folding_subreactions = {
                                              'h_c': 7,
                                              'pi_c': 7},
                            'keff': 0.12},
-    
+
     'folding_GroEL_ES_5': {'enzymes':['[GroL]14[GroS]7_cis_with_7_adp_and_7_mg2'],
                            'stoichiometry': {'atp_c': -7,
                                              'h2o_c': -7,
@@ -102,7 +102,7 @@ folding_subreactions = {
                                       'h_c': 2,
                                       'pi_c': 2},
                     'keff': 1.225}
-                 
+
     }
 
 genes_to_use_dill = ["b2411", "b4035", "b1709", "b2926", "b0115", "b1676",
@@ -238,7 +238,7 @@ def add_chaperone_network(model):
         for folding in folding_subreactions:
             if '_GrpE' in folding:
                 continue
-            folding_id = 'folding_' + protein.id + '_' + folding 
+            folding_id = 'folding_' + protein.id + '_' + folding
 
             data = PostTranslationData(folding_id, model,
                                        protein.id + '_folded', protein.id)
@@ -403,7 +403,7 @@ def add_foldme_module(me):
 
     # create Lon complex
     data = cobrame.ComplexData('Lon', me)
-    data.stoichiometry = {'protein_b2020': 6}  # TODO protein actually b0439
+    data.stoichiometry = {'protein_b0439': 6}  # TODO protein actually b0439
     data.subreactions = {'mod_mg2_c': 6.}
     data.create_complex_formation()
 
