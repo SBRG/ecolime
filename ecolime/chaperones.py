@@ -183,7 +183,7 @@ def add_chaperone_subreactions(model):
 
 def add_chaperone_network(model):
     pd = 0.25
-    pg = 0.50
+    pg = 0.10
 
     # First remove folding subreactions from translation reactions
     for data in model.translation_data:
@@ -259,7 +259,7 @@ def add_chaperone_network(model):
 
             if protein.id in groel_targets or \
                     protein.formula_weight / 1000 < 60:
-                data.size_or_target_scaling_factor = 2/7
+                data.size_or_target_scaling_factor = 1./7
 
             if 'KJE' in folding:
                 kind = 'KJE'
